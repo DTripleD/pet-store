@@ -1,11 +1,16 @@
 import PropTypes from "prop-types";
+import icons from "../images/icons.svg";
 
 const SliderItem = ({ item }) => {
   return (
     <div className="swiper__item">
       <div className="swiper__image_wrapper">
         <img src={item.img} alt={item.title} className="swiper__image" />
-        {/* <Heart count={null} stylesIcon={styles.swiper__icon} /> */}
+        <button className="favorite-button">
+          <svg className="heart__icon">
+            <use href={icons + "#heart"}></use>
+          </svg>
+        </button>
       </div>
       <div className="swiper__info_wrapper">
         <ul className="swiper__weight_list">

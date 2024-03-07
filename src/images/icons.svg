@@ -64,5 +64,14 @@
 <path fill="none" stroke="#5d5d5d" style="stroke: var(--color2, #5d5d5d)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M13.947 9.68c-0.347-1.84-1.72-4.027-3.28-5.68h7.733c0.633-0.002 1.245 0.22 1.729 0.628s0.806 0.974 0.911 1.598l0.307 1.867"></path>
 <path fill="none" stroke="#5d5d5d" style="stroke: var(--color2, #5d5d5d)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M21.347 23.907l-0.307 1.867c-0.104 0.624-0.427 1.191-0.911 1.599s-1.097 0.631-1.729 0.628h-5.733c1.292-1.465 1.999-3.354 1.987-5.307"></path>
 </symbol>
+<symbol id="heart" viewBox="0 0 33 32">
+<path fill="none" stroke="#5d5d5d" style="stroke: var(--color1, #5d5d5d)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M26.4 18.667c1.987-1.947 4-4.28 4-7.333 0-1.945-0.773-3.81-2.148-5.185s-3.241-2.148-5.185-2.148c-2.347 0-4 0.667-6 2.667-2-2-3.653-2.667-6-2.667-1.945 0-3.81 0.773-5.185 2.148s-2.148 3.241-2.148 5.185c0 3.067 2 5.4 4 7.333l9.333 9.333 9.333-9.333z"></path>
+</symbol>
+<symbol id="icon-left" viewBox="0 0 32 32">
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M20 24l-8-8 8-8"></path>
+</symbol>
+<symbol id="icon-right" viewBox="0 0 32 32">
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M12 24l8-8-8-8"></path>
+</symbol>
 </defs>
 </svg>

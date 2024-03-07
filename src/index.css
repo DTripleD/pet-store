@@ -127,21 +127,6 @@ section {
   width: auto;
 }
 
-.swiper-pagination {
-  position: static;
-}
-
-.swiper-pagination-bullet {
-  background-color: #3786a5;
-}
-
-.swiper-pagination-bullet {
-  /* Марджин між булетами виходить 8 пх . ПИТАННЯ! Підійде чи костилити на 10 по макету? */
-  width: 12px;
-  height: 12px;
-  /* margin: 0 5px; */
-}
-
 .swiper-wrapper {
   margin-bottom: 20px;
 }
@@ -176,9 +161,7 @@ section {
 
 .swiper__icon {
   stroke: #3786a5;
-  position: absolute;
-  top: 0;
-  right: 0;
+
   width: 32px;
   height: 32px;
 }
@@ -207,20 +190,31 @@ section {
 }
 
 .slider__button {
-  background-color: #3786a5;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
+  background-color: #34955d;
+
+  border-radius: 50%;
+  padding: 12px;
+
+  display: flex;
+  border: none;
+}
+
+.slider__button .slider__icon {
+  stroke: #ffffff;
+}
+
+.slider__button:disabled .slider__icon {
+  stroke: #b0b0b0;
+}
+
+.slider__button:disabled {
+  background-color: #e7e7e7;
 }
 
 .slider__buttons_wrapper {
   display: flex;
-  gap: 20px;
+  gap: 12px;
   justify-items: center;
-}
-
-.slider__button:disabled {
-  background-color: #011240;
 }
 
 .slider__header {
@@ -317,4 +311,46 @@ section {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.heart__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.slider__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.show__all--icon {
+  stroke: #5d5d5d;
+  width: 24px;
+  height: 24px;
+}
+
+.favorite-button {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #e7e7e780;
+  border-radius: 50%;
+  padding: 12px;
+  border: none;
+  outline: none;
+}
+
+.styled-link {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.show__all--text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #5d5d5d;
 }

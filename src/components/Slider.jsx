@@ -4,12 +4,15 @@ import SliderItem from "./SliderItem";
 import SliderButtons from "./SliderButtons";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 
 import PropTypes from "prop-types";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { Link } from "react-router-dom";
+
+import icons from "../images/icons.svg";
 
 const Slider = ({ title, data }) => {
   const [isStartBtnActive, setStartBtnActive] = useState(true);
@@ -35,11 +38,8 @@ const Slider = ({ title, data }) => {
       <Swiper
         slidesPerView={"auto"}
         spaceBetween={40}
-        pagination={{
-          clickable: true,
-        }}
         onSlideChange={isButtonActive}
-        modules={[Pagination, Navigation]}
+        modules={[Navigation]}
         className="mySwiper"
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
@@ -51,6 +51,12 @@ const Slider = ({ title, data }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <Link to="new" className="styled-link">
+        <p className="show__all--text">Переглянути все</p>
+        <svg className="show__all--icon ">
+          <use href={icons + "#icon-right"}></use>
+        </svg>
+      </Link>
     </section>
   );
 };
