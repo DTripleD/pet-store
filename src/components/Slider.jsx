@@ -27,36 +27,38 @@ const Slider = ({ title, data }) => {
 
   return (
     <section>
-      <div className="slider__header">
-        <h2 className="slider__header_title">{title}</h2>
-        <SliderButtons
-          isStartBtnActive={isStartBtnActive}
-          isEndBtnActive={isEndBtnActive}
-          swiperRef={swiperRef}
-        />
+      <div className="cont">
+        <div className="slider__header">
+          <h2 className="slider__header_title">{title}</h2>
+          <SliderButtons
+            isStartBtnActive={isStartBtnActive}
+            isEndBtnActive={isEndBtnActive}
+            swiperRef={swiperRef}
+          />
+        </div>
+        <Swiper
+          slidesPerView={"auto"}
+          spaceBetween={24}
+          onSlideChange={isButtonActive}
+          modules={[Navigation]}
+          className="mySwiper"
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+        >
+          {data.map((item) => (
+            <SwiperSlide key={item.id}>
+              <SliderItem item={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <Link to="new" className="styled-link">
+          <p className="show__all--text">Переглянути все</p>
+          <svg className="show__all--icon ">
+            <use href={icons + "#icon-right"}></use>
+          </svg>
+        </Link>
       </div>
-      <Swiper
-        slidesPerView={"auto"}
-        spaceBetween={40}
-        onSlideChange={isButtonActive}
-        modules={[Navigation]}
-        className="mySwiper"
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
-        }}
-      >
-        {data.map((item) => (
-          <SwiperSlide key={item.id}>
-            <SliderItem item={item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <Link to="new" className="styled-link">
-        <p className="show__all--text">Переглянути все</p>
-        <svg className="show__all--icon ">
-          <use href={icons + "#icon-right"}></use>
-        </svg>
-      </Link>
     </section>
   );
 };

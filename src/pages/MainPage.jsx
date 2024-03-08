@@ -6,13 +6,15 @@ import Sidebar from "../components/Sidebar";
 
 const MainPage = () => {
   return (
-    <div className="container">
+    <div className="container main-container">
       <aside>
         <Sidebar />
       </aside>
-      <div>
+      <div className="main-part__wrapper">
         <section>
-          <div className="bg-image"></div>
+          <div className="cont">
+            <div className="bg-image"></div>
+          </div>
         </section>
         <Slider title="Акції" data={data} />
         <Slider title="Новинки" data={data} />
