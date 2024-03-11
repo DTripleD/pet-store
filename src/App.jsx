@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+
+import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import MainPage from "./pages/MainPage";
 import CategoryPage from "./pages/CategoryPage";
-import { SharedLayout } from "./components/SharedLayout";
 
 function App() {
   return (

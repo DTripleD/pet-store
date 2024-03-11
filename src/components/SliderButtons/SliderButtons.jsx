@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import icons from "../images/icons.svg";
+import icons from "../../images/icons.svg";
 
 const SliderButtons = ({ swiperRef, isStartBtnActive, isEndBtnActive }) => {
   return (

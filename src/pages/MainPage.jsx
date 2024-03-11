@@ -1,20 +1,16 @@
-import Slider from "../components/Slider";
-
 import data from "../data/data";
 
-import Sidebar from "../components/Sidebar";
+import Slider from "../components/Slider/Slider";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const MainPage = () => {
   return (
-    <div className="container main-container">
-      <aside>
-        <Sidebar />
-      </aside>
-      <div className="main-part__wrapper">
+    <div className="container main__wrapper">
+      <Sidebar />
+
+      <div className="main__container">
         <section>
-          <div className="cont">
-            <div className="bg-image"></div>
-          </div>
+          <div className="bg-image"></div>
         </section>
         <Slider title="Акції" data={data} />
         <Slider title="Новинки" data={data} />

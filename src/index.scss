@@ -14,16 +14,11 @@
     padding-right: 32px;
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1920px) {
     width: 1920px;
     padding-left: 48px;
     padding-right: 48px;
   }
-}
-
-.main-container {
-  display: flex;
-  gap: 24px;
 }
 
 .sub-cat-img {
@@ -49,6 +44,7 @@ img {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .sub-cat-list {
@@ -95,7 +91,7 @@ body {
   display: flex;
   gap: 8px;
 
-  padding: 14px 29px 14px 0;
+  padding: 12px 0;
 }
 
 a {
@@ -110,7 +106,10 @@ p {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 216px;
+
+  padding: 0 24px;
+
+  width: 153px;
 }
 
 .bg-image {
@@ -362,10 +361,114 @@ section {
   color: #5d5d5d;
 }
 
-.main-part__wrapper {
-  width: 100%;
+.sidebar__wrapper {
+  padding: 64px 63px 0 0;
 }
 
-.cont {
+.main__container {
   width: 1584px;
+}
+
+.main__wrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 25px;
+  padding-bottom: 25px;
+  align-items: center;
+}
+
+.icon__header {
+  width: 24px;
+  height: 24px;
+}
+.category__header--button {
+  background-color: #e7e7e7;
+
+  border: none;
+
+  padding: 12px 18px;
+
+  border-radius: 100px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.header__btn--text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  color: #5d5d5d;
+}
+
+.header__label {
+  width: 1044px;
+  border: 1px solid #d1d1d1;
+  padding: 12px 18px;
+  display: flex;
+  border-radius: 100px;
+  gap: 8px;
+  align-items: center;
+}
+
+.header__input {
+  border: none;
+  outline: none;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.search__section {
+  display: flex;
+  gap: 8px;
+}
+
+.phone__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.phone {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  color: #5d5d5d;
+}
+
+.work_hours {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 13px;
+  color: #888888;
+  text-align: center;
+}
+
+.user__button {
+  border: none;
+  background-color: transparent;
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+}
+
+.info__wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.logo__wrapper {
+  width: 216px;
 }
