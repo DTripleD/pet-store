@@ -9,6 +9,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Link } from "react-router-dom";
 
+import css from "./Slider.module.scss";
+
 import icons from "../../images/icons.svg";
 import SliderButtons from "../SliderButtons/SliderButtons";
 import SliderItem from "../SliderItem/SliderItem";
@@ -28,8 +30,8 @@ const Slider = ({ title, data }) => {
 
   return (
     <section>
-      <div className="slider__header">
-        <h2 className="slider__header_title">{title}</h2>
+      <div className={css.slider__header}>
+        <h2 className={css.slider__header_title}>{title}</h2>
         <SliderButtons
           isStartBtnActive={isStartBtnActive}
           isEndBtnActive={isEndBtnActive}
@@ -52,9 +54,9 @@ const Slider = ({ title, data }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <Link to="new" className="styled-link">
-        <p className="show__all--text">Переглянути все</p>
-        <svg className="show__all--icon ">
+      <Link to="new" className={css.styled__link}>
+        <p className={css.show__all_text}>Переглянути все</p>
+        <svg className={css.show__all_icon}>
           <use href={icons + "#icon-right"}></use>
         </svg>
       </Link>

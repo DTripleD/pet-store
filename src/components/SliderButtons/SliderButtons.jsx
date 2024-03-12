@@ -2,24 +2,26 @@ import PropTypes from "prop-types";
 
 import icons from "../../images/icons.svg";
 
+import css from "./SliderButtons.module.scss";
+
 const SliderButtons = ({ swiperRef, isStartBtnActive, isEndBtnActive }) => {
   return (
-    <div className="slider__buttons_wrapper">
+    <div className={css.slider__buttons_wrapper}>
       <button
         onClick={() => swiperRef.current.slidePrev()}
         disabled={isStartBtnActive}
-        className="slider__button"
+        className={css.slider__button}
       >
-        <svg className="slider__icon">
+        <svg className={css.slider__icon}>
           <use href={icons + "#icon-left"}></use>
         </svg>
       </button>
       <button
         onClick={() => swiperRef.current.slideNext()}
         disabled={isEndBtnActive}
-        className="slider__button"
+        className={css.slider__button}
       >
-        <svg className="slider__icon">
+        <svg className={css.slider__icon}>
           <use href={icons + "#icon-right"}></use>
         </svg>
       </button>

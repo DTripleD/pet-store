@@ -1,8 +1,13 @@
 import { NavLink } from "react-router-dom";
 
 import icons from "../../images/icons.svg";
+import { useState } from "react";
+
+import Sidebar from "../Sidebar/Sidebar";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header>
       <div className="container header__container">
@@ -12,7 +17,11 @@ const Header = () => {
           </svg>
         </NavLink>
         <div className="search__section">
-          <button className="category__header--button" type="button">
+          <button
+            className="category__header--button"
+            type="button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
             <svg className="icon__header">
               <use href={icons + "#lines"}></use>
             </svg>
@@ -38,7 +47,7 @@ const Header = () => {
               <a href="tel:+000-000-00-00" className="phone">
                 000-000-00-00
               </a>
-              <svg className="icon__header">
+              <svg className={`icon__header icon__down__header`}>
                 <use href={icons + "#icon-down"}></use>
               </svg>
             </div>
@@ -59,6 +68,10 @@ const Header = () => {
               <use href={icons + "#person"}></use>
             </svg>
           </button>
+        </div>
+
+        <div className={`menu ${!menuOpen ? "visually_hidden" : ""}`}>
+          <Sidebar />
         </div>
       </div>
     </header>
