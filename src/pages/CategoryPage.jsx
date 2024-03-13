@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { getCategoryByPath } from "../data/categorys";
+import Routes from "../components/Routes/Routes";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -8,12 +9,15 @@ const CategoryPage = () => {
 
   return (
     <div className="container">
-      <div>Головна/{categoryObj.display}</div>
+      <Routes
+        routes={[{ display: categoryObj.display, path: categoryObj.path }]}
+      />
       <h2 className="sub-cat-title">{categoryObj.display}</h2>
       <ul className="sub-cat-list">
         {categoryObj.dropdown.map((subCat) => (
           <Link
             to={`/${category}/${subCat.path}`}
+            state={{ from: categoryObj, to: subCat }}
             key={subCat.id}
             className="sub-cat-item"
           >

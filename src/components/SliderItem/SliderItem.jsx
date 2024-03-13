@@ -18,13 +18,13 @@ const SliderItem = ({ item }) => {
         <li
           className={`${css.swiper__weight_item} ${css.swiper__weight_item__able}`}
         >
-          <p className={css.swiper__weight_text}>3кг</p>
+          <p className={css.swiper__weight_text}>3 кг</p>
         </li>
         <li className={css.swiper__weight_item}>
-          <p className={css.swiper__weight_text}>6кг</p>
+          <p className={css.swiper__weight_text}>6 кг</p>
         </li>
         <li className={css.swiper__weight_item}>
-          <p className={css.swiper__weight_text}>12кг</p>
+          <p className={css.swiper__weight_text}>12 кг</p>
         </li>
       </ul>
       <div>

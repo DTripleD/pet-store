@@ -12,7 +12,7 @@ const Header = () => {
     <header>
       <div className="container header__container">
         <NavLink to="/" className="logo__wrapper">
-          <svg className="logo">
+          <svg className="logo logo__header">
             <use href={icons + "#logo"}></use>
           </svg>
         </NavLink>

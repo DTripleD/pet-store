@@ -8,7 +8,7 @@
   padding-left: 20px;
   padding-right: 20px;
 
-  border: 1px solid red;
+  // border: 1px solid red;
 
   @media (min-width: 768px) {
     width: 768px;
@@ -64,6 +64,16 @@ body {
   height: 32px;
 }
 
+.logo__footer {
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+
+.logo__header {
+  stroke: #34955d;
+  fill: #34955d;
+}
+
 .category-logo {
   width: 24px;
   height: 24px;
@@ -72,10 +82,11 @@ body {
 .category-link {
   font-size: 18px;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 13px;
   color: #5d5d5d;
 
   display: flex;
+  align-items: center;
   gap: 8px;
 
   padding: 12px 0;
@@ -169,7 +180,7 @@ section {
 .header__btn--text {
   font-size: 16px;
   font-weight: 600;
-  line-height: 19px;
+  line-height: 12px;
   color: #5d5d5d;
 }
 
@@ -285,9 +296,9 @@ section {
 }
 
 .sort__text {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 21.78px;
+  line-height: 12px;
   color: #888888;
 }
 
@@ -316,7 +327,7 @@ section {
 .found__title {
   font-size: 20px;
   font-weight: 500;
-  line-height: 24.2px;
+  line-height: 24px;
   color: #262626;
 }
 
@@ -328,7 +339,7 @@ section {
 .clean__button {
   font-weight: 500;
   font-size: 15px;
-  line-height: 18.15px;
+  line-height: 11px;
   color: #5d5d5d;
   background-color: #e7e7e7;
   border-radius: 100px;
@@ -345,7 +356,7 @@ section {
 .apply__button {
   font-size: 16px;
   font-weight: 600;
-  line-height: 19.36px;
+  line-height: 12px;
   color: #ffffff;
   background-color: #34955d;
   border: none;
@@ -356,15 +367,100 @@ section {
 .price__form {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
 .clear__button {
   font-size: 16px;
   font-weight: 500;
-  line-height: 19.36px;
+  line-height: 12px;
   color: #5d5d5d;
   background-color: #e7e7e7;
   border-radius: 10px;
   padding: 18px;
   border: none;
+}
+
+.icon__house {
+  width: 24px;
+  height: 24px;
+}
+
+.routes__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px;
+}
+
+.route__text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #888888;
+}
+
+.last__route {
+  color: #262626;
+}
+
+.route__slash {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #888888;
+}
+
+.price__label {
+  border: 1.5px solid #d1d1d1;
+  border-radius: 7px;
+  padding: 13px 12px;
+  display: flex;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #888888;
+  justify-content: space-between;
+
+  width: calc(50% - 4px);
+}
+
+.price__input {
+  border: none;
+  outline: none;
+  max-width: 50%;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #3d3d3d;
+
+  text-align: end;
+
+  padding: 0;
+}
+
+.price__inputs__wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.form__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #3d3d3d;
+}
+
+.MuiSlider-thumb {
+  color: #5eb580;
+}
+
+.MuiSlider-rail {
+  color: red;
+}
+
+.MuiSlider-track {
+  color: #b7e3c4;
 }

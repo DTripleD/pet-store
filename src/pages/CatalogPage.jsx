@@ -1,16 +1,26 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import CatalogList from "../components/CatalogList/CatalogList";
 import FilterForm from "../components/FilterFrom/FilterForm";
 
-const CatalogPage = () => {
-  const { catalog } = useParams();
+import Routes from "../components/Routes/Routes";
 
-  console.log(catalog);
+const CatalogPage = () => {
+  // const { catalog } = useParams();
+
+  const { state } = useLocation();
 
   return (
-    <div className="container catalog__container">
-      <FilterForm />
-      <CatalogList />
+    <div className="container">
+      <Routes
+        routes={[
+          { display: state.from.display, path: state.from.path },
+          { display: state.to.display, path: state.to.path },
+        ]}
+      />
+      <div className="catalog__container">
+        <FilterForm />
+        <CatalogList />
+      </div>
     </div>
   );
 };
