@@ -1,0 +1,29 @@
+.routes__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px;
+}
+
+.icon__house {
+  width: 24px;
+  height: 24px;
+}
+
+.route__text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #888888;
+}
+
+.route__slash {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #888888;
+}
+
+.last__route {
+  color: #262626;
+}

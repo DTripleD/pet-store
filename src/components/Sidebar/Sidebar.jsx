@@ -2,66 +2,23 @@ import { Link } from "react-router-dom";
 
 import icons from "../../images/icons.svg";
 
+import css from "./Sidebar.module.scss";
+import { sidebarItems } from "../../data/sidebarItems";
+
 const Sidebar = () => {
   return (
-    <div className="sidebar__wrapper">
-      <ul className="category-list">
-        <li>
-          <Link to="discount" className="category-link">
-            <svg className="category-logo">
-              <use href={icons + "#discount"}></use>
-            </svg>
-            <p>Акції</p>
-          </Link>
-        </li>
-        <li>
-          <Link to="dogs" className="category-link">
-            <svg className="category-logo">
-              <use href={icons + "#dog"}></use>
-            </svg>
-            <p>Собаки</p>
-          </Link>
-        </li>
-        <li>
-          <Link to="cats" className="category-link">
-            <svg className="category-logo">
-              <use href={icons + "#cat"}></use>
-            </svg>
-            <p>Коти</p>
-          </Link>
-        </li>
-        <li>
-          <Link to="smallpets" className="category-link">
-            <svg className="category-logo">
-              <use href={icons + "#mouse"}></use>
-            </svg>
-            <p>Гризуни</p>
-          </Link>
-        </li>
-        <li>
-          <Link to="birds" className="category-link">
-            <svg className="category-logo">
-              <use href={icons + "#bird"}></use>
-            </svg>
-            <p>Птахи</p>
-          </Link>
-        </li>
-        <li>
-          <Link to="reptiles" className="category-link">
-            <svg className="category-logo">
-              <use href={icons + "#turtle"}></use>
-            </svg>
-            <p>Рептилії</p>
-          </Link>
-        </li>
-        <li>
-          <Link to="fish" className="category-link">
-            <svg className="category-logo">
-              <use href={icons + "#fish"}></use>
-            </svg>
-            <p>Риби</p>
-          </Link>
-        </li>
+    <div className={css.sidebar__wrapper}>
+      <ul className={css.category_list}>
+        {sidebarItems.map((item) => (
+          <li key={item.id}>
+            <Link to={item.to} className={css.category_link}>
+              <svg className={css.category_logo}>
+                <use href={icons + `#${item.icon}`}></use>
+              </svg>
+              <p>{item.title}</p>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

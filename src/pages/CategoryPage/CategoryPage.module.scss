@@ -1,0 +1,29 @@
+.sub_cat_title {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 34px;
+  color: #262626;
+}
+
+.sub_cat_list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sub_cat_item {
+  padding: 20px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.sub_cat_img_wrapper {
+  width: 244px;
+  height: 258px;
+}
+
+.sub_cat_text {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  color: #3d3d3d;
+}

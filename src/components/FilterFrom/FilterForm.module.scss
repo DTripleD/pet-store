@@ -1,0 +1,79 @@
+.filters__wrapper {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+
+  width: 284px;
+}
+
+.form__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #3d3d3d;
+}
+
+.price__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.price__inputs__wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.price__label {
+  border: 1.5px solid #d1d1d1;
+  border-radius: 7px;
+  padding: 13px 12px;
+  display: flex;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #888888;
+  justify-content: space-between;
+
+  width: calc(50% - 4px);
+}
+
+.price__input {
+  border: none;
+  outline: none;
+  max-width: 50%;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #3d3d3d;
+
+  text-align: end;
+
+  padding: 0;
+}
+
+.apply__button {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 12px;
+  color: #ffffff;
+  background-color: #34955d;
+  border: none;
+  padding: 18px;
+  border-radius: 10px;
+}
+
+.clear__button {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #5d5d5d;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  padding: 18px;
+  border: none;
+}

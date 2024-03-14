@@ -1,8 +1,10 @@
 import { useLocation, useParams } from "react-router-dom";
-import CatalogList from "../components/CatalogList/CatalogList";
-import FilterForm from "../components/FilterFrom/FilterForm";
+import CatalogList from "../../components/CatalogList/CatalogList";
+import FilterForm from "../../components/FilterFrom/FilterForm";
 
-import Routes from "../components/Routes/Routes";
+import Routes from "../../components/Routes/Routes";
+
+import css from "./CatalogPage.module.scss";
 
 const CatalogPage = () => {
   // const { catalog } = useParams();
@@ -17,7 +19,7 @@ const CatalogPage = () => {
           { display: state.to.display, path: state.to.path },
         ]}
       />
-      <div className="catalog__container">
+      <div className={css.catalog__container}>
         <FilterForm />
         <CatalogList />
       </div>

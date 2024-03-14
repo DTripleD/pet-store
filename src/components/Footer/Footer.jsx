@@ -1,16 +1,12 @@
-import { NavLink } from "react-router-dom";
+import Logo from "../Logo/Logo";
 
-import icons from "../../images/icons.svg";
+import css from "./Footer.module.scss";
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className={css.footer}>
       <div className="container">
-        <NavLink to="/" className="logo__wrapper">
-          <svg className="logo logo__footer">
-            <use href={icons + "#logo"}></use>
-          </svg>
-        </NavLink>
+        <Logo color={"logo__footer"} />
       </div>
     </footer>
   );
