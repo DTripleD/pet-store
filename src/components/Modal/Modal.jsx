@@ -119,7 +119,6 @@ const Login = ({ setActive }) => {
                 type={passwordShown ? "text" : "password"}
                 placeholder="Введіть пароль"
                 className="register__input"
-                autoComplete="off"
               />
               <svg
                 className="icon__password"
