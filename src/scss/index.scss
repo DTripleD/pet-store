@@ -5,3 +5,142 @@
 @import "./utils/sections";
 @import "./utils/swiper";
 @import "./utils/slider";
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register__label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  color: #262626;
+}
+
+.register__button {
+  background-color: #34955d;
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 12px;
+
+  border: none;
+  padding: 26px;
+  border-radius: 10px;
+
+  margin-bottom: 24px;
+}
+
+.inputs__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 53px;
+  width: 472px;
+}
+
+.input__wrapper {
+  border: 1.6px solid #d1d1d1;
+  padding: 22px 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.register__input {
+  border: none;
+  outline: none;
+  padding: 0;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  color: #888888;
+}
+
+.modal__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 17px;
+
+  color: #262626;
+}
+
+.icon__password {
+  width: 24px;
+  height: 24px;
+}
+
+.icon__empty_cart {
+  width: 24px;
+  height: 24px;
+}
+
+.cart__wrapper {
+  width: 836px;
+  display: flex;
+  flex-direction: column;
+  gap: 194px;
+}
+
+.cart__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #262626;
+}
+
+.empty__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty__text {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #888888;
+}
+
+.empty__button {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 12px;
+  color: #5d5d5d;
+  background-color: #e7e7e7;
+  padding: 26px;
+  border-radius: 10px;
+  border: none;
+}
+
+.have__acc_text {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 11px;
+  color: #888888;
+}
+
+.have__acc_button {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #5d5d5d;
+  border: none;
+  background-color: transparent;
+  padding: 12px 10px;
+}
+
+.have__acc_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -6,7 +6,9 @@ import Sidebar from "../Sidebar/Sidebar";
 import css from "./Header.module.scss";
 import Logo from "../Logo/Logo";
 
-const Header = () => {
+import PropTypes from "prop-types";
+
+const Header = ({ setActive }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -55,12 +57,18 @@ const Header = () => {
               <use href={icons + "#heart"}></use>
             </svg>
           </button>
-          <button className={css.user__button}>
+          <button
+            className={css.user__button}
+            onClick={() => setActive("cart")}
+          >
             <svg className={css.icon__header}>
               <use href={icons + "#cart"}></use>
             </svg>
           </button>
-          <button className={css.user__button}>
+          <button
+            className={css.user__button}
+            onClick={() => setActive("register")}
+          >
             <svg className={css.icon__header}>
               <use href={icons + "#person"}></use>
             </svg>
@@ -76,3 +84,7 @@ const Header = () => {
 };
 
 export default Header;
+
+Header.propTypes = {
+  setActive: PropTypes.func,
+};
