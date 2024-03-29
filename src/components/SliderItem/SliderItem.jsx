@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import icons from "../../images/icons.svg";
 
 import css from "./SliderItem.module.scss";
+import WeightButtonsList from "../WeightButtons/WeightButtonsList/WeightButtonsList";
 
 const SliderItem = ({ item }) => {
   return (
@@ -14,19 +15,7 @@ const SliderItem = ({ item }) => {
           </svg>
         </button>
       </div>
-      <ul className={css.swiper__weight_list}>
-        <li
-          className={`${css.swiper__weight_item} ${css.swiper__weight_item__able}`}
-        >
-          <p className={css.swiper__weight_text}>3 кг</p>
-        </li>
-        <li className={css.swiper__weight_item}>
-          <p className={css.swiper__weight_text}>6 кг</p>
-        </li>
-        <li className={css.swiper__weight_item}>
-          <p className={css.swiper__weight_text}>12 кг</p>
-        </li>
-      </ul>
+      <WeightButtonsList />
       <div>
         <div className={css.swiper__descr_wrapper}>
           <h3 className={css.swiper__title}>{item.title}</h3>
