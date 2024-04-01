@@ -68,12 +68,32 @@ const ProductPage = () => {
           </ul>
         </div>
       </div>
-      <div>
-        <h3>Характеристики</h3>
+      <div className="about_product_wrapper">
+        <h3 className="product_page__sub_title">Характеристики</h3>
+        <ul className="characteristic__list">
+          <li className="characteristic__item">
+            <p className="characteristic_text">Lorem ipsum</p>
+            <p className="characteristic_text characteristic_value">
+              Lorem ipsum
+            </p>
+          </li>
+          <li className="characteristic__item">
+            <p className="characteristic_text">Lorem ipsum</p>
+            <p className="characteristic_text characteristic_value">
+              Lorem ipsum
+            </p>
+          </li>
+          <li className="characteristic__item">
+            <p className="characteristic_text">Lorem ipsum</p>
+            <p className="characteristic_text characteristic_value">
+              Lorem ipsum
+            </p>
+          </li>
+        </ul>
       </div>
-      <div>
-        <h3>Опис товару</h3>
-        <p>
+      <div className="about_product_wrapper">
+        <h3 className="product_page__sub_title">Опис товару</h3>
+        <p className="description__text">
           Brit Care Cat GF Large Cats Power & Vitality - це високоякісний сухий
           корм, спеціально розроблений для задоволення потреб великих порід
           котів. Збалансований склад і вміст корисних інгредієнтів роблять цей
