@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Slider from "../../components/Slider/Slider";
+import SortButton from "../../components/SortButton/SortButton";
 import WeightButtonsList from "../../components/WeightButtons/WeightButtonsList/WeightButtonsList";
 import data from "../../data/data";
 import icons from "../../images/icons.svg";
@@ -6,30 +8,32 @@ import icons from "../../images/icons.svg";
 import css from "./ProductPage.module.scss";
 
 const ProductPage = () => {
+  const [selectedButton, setSelectedButton] = useState("Все про товар");
+
   return (
     <div className={css.container}>
       <div className={css.product_page__wrapper}>
         <ul className={css.product__nav_buttons_list}>
           <li>
-            <button
-              className={`${css.product__nav_button} ${css.product__nav_button_active}`}
-            >
-              Все про товар
-            </button>
+            <SortButton
+              isActive={selectedButton === "Все про товар"}
+              setSelectedButton={setSelectedButton}
+              text={"Все про товар"}
+            />
           </li>
           <li>
-            <button
-              className={`${css.product__nav_button} ${css.product__nav_button_inactive}`}
-            >
-              Опис
-            </button>
+            <SortButton
+              isActive={selectedButton === "Опис"}
+              setSelectedButton={setSelectedButton}
+              text={"Опис"}
+            />
           </li>
           <li>
-            <button
-              className={`${css.product__nav_button} ${css.product__nav_button_inactive}`}
-            >
-              Характеристики
-            </button>
+            <SortButton
+              isActive={selectedButton === "Характеристики"}
+              setSelectedButton={setSelectedButton}
+              text={"Характеристики"}
+            />
           </li>
         </ul>
         <div className={css.main_product_info_wrapper}>

@@ -1,0 +1,23 @@
+.product__nav_button {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 11px;
+
+  padding: 16px 24px;
+
+  border: none;
+
+  border-radius: 100px;
+
+  cursor: pointer;
+}
+
+.product__nav_button_active {
+  background-color: #34955d;
+  color: #ffffff;
+}
+
+.product__nav_button_inactive {
+  background-color: #e7e7e7;
+  color: #5d5d5d;
+}
