@@ -1,0 +1,18 @@
+.characteristic__item {
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+  padding: 21px 24px;
+  border-radius: 7px;
+}
+
+.characteristic_text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #888888;
+}
+
+.characteristic_value {
+  color: #454545;
+}

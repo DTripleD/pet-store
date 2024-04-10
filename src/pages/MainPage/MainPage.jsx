@@ -1,6 +1,6 @@
 import data from "../../data/data";
 
-import Slider from "../../components/Slider/Slider";
+import Slider from "../../modules/Slider/Slider";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 import css from "./MainPage.module.scss";
