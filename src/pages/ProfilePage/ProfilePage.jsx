@@ -3,24 +3,36 @@ import css from "./ProfilePage.module.scss";
 const ProfilePage = () => {
   return (
     <div>
-      <h2>Персональні дані</h2>
+      <h2 className={css.userTitle}>Персональні дані</h2>
 
       <form className={css.profileForm}>
-        <label>
+        <label className={css.profileLabel}>
           Ім’я
-          <input type="text" placeholder="Введіть ім’я" />
+          <input
+            className={css.profileInput}
+            type="text"
+            placeholder="Введіть ім’я"
+          />
         </label>
-        <label>
+        <label className={css.profileLabel}>
           Прізвище
-          <input type="text" placeholder="Введіть прізвище" />
+          <input
+            className={css.profileInput}
+            type="text"
+            placeholder="Введіть прізвище"
+          />
         </label>
-        <label>
+        <label className={css.profileLabel}>
           Номер телефону
-          <input type="text" placeholder="+380" />
+          <input className={css.profileInput} type="tel" placeholder="+380" />
         </label>
-        <label>
+        <label className={css.profileLabel}>
           Електронна пошта
-          <input type="email" placeholder="example@gmail.com" />
+          <input
+            className={css.profileInput}
+            type="email"
+            placeholder="example@gmail.com"
+          />
         </label>
       </form>
     </div>

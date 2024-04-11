@@ -4,8 +4,14 @@ import SortButton from "../../components/SortButton/SortButton";
 
 import { useState } from "react";
 
+import { useLocation } from "react-router-dom";
+
 const DeliveryPage = () => {
   const [selectedButton, setSelectedButton] = useState("Всі");
+
+  const { pathname } = useLocation();
+
+  console.log(pathname);
 
   return (
     <div>

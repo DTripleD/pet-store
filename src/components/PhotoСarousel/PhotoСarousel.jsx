@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import icons from "../../images/icons.svg";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -28,24 +30,47 @@ const photoArray = [
 const PhotoCarousel = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+  const swiperReff = useRef();
+
   return (
     <div className={css.imageThumbWrapper}>
       <Swiper
         loop={true}
         spaceBetween={24}
-        navigation={true}
         slidesPerView={1}
+        onSwiper={(swiper) => {
+          swiperReff.current = swiper;
+        }}
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className={css.mySwiper211}
       >
         {photoArray.map((item) => (
           <SwiperSlide key={item.id}>
             <img src={item.img} className={css.bigImage} />
           </SwiperSlide>
         ))}
+        <div className={css.imageSliderButtonsWrapper}>
+          <button
+            onClick={() => {
+              swiperReff.current.slidePrev();
+            }}
+            className={css.imageSliderButton}
+          >
+            <svg className={css.slider__icon}>
+              <use href={icons + "#icon-left"}></use>
+            </svg>
+          </button>
+          <button
+            onClick={() => swiperReff.current.slideNext()}
+            className={css.imageSliderButton}
+          >
+            <svg className={css.slider__icon}>
+              <use href={icons + "#icon-right"}></use>
+            </svg>
+          </button>
+        </div>
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -54,7 +79,7 @@ const PhotoCarousel = () => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className={css.mySwiper1111111}
+        className="smallProductSlider"
       >
         {photoArray.map((item) => (
           <SwiperSlide key={item.id}>

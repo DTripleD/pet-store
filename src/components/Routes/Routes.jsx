@@ -5,7 +5,7 @@ import React from "react";
 
 import css from "./Routes.module.scss";
 
-const Routes = ({ routes }) => {
+const Routes = ({ routes = [] }) => {
   return (
     <div className={css.routes__wrapper}>
       <svg className={css.icon__house}>

@@ -22,8 +22,6 @@ const Slider = ({ title, data }) => {
   const swiperRef = useRef();
 
   function isButtonActive(e) {
-    console.log(e.isEnd);
-    console.log(e);
     e.isBeginning ? setStartBtnActive(true) : setStartBtnActive(false);
     e.isEnd ? setIsEndBtnActive(true) : setIsEndBtnActive(false);
   }

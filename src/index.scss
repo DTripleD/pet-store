@@ -4,11 +4,11 @@
 
 @import "./scss";
 
-.swiper-slide {
+.smallProductSlider .swiper-slide {
   border-radius: 20px;
   border: 2px solid #e7e7e7;
 }
 
-.swiper-slide-thumb-active {
+.smallProductSlider .swiper-slide-thumb-active {
   border: 2px solid #34955d;
 }

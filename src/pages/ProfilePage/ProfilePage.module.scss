@@ -3,4 +3,39 @@
   flex-direction: column;
 
   gap: 24px;
+
+  width: 472px;
+}
+
+.profileLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+
+  color: #262626;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profileInput {
+  padding: 22px 16px;
+  border: 1.6px solid #d1d1d1;
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  color: #888888;
+}
+
+.userTitle {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 17px;
+
+  color: #262626;
+
+  margin-bottom: 32px;
 }

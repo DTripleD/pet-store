@@ -22,4 +22,37 @@
   border-radius: 20px;
   width: 516px;
   height: 516px;
+
+  user-select: none;
+}
+
+.imageSliderButtonsWrapper {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+
+  position: absolute;
+  top: 50%;
+
+  z-index: 1;
+
+  transform: translateY(-50%);
+}
+
+.slider__icon {
+  width: 24px;
+  height: 24px;
+  stroke: #d1d1d1;
+}
+
+.imageSliderButton {
+  padding: 12px;
+  background-color: #f6f6f680;
+  border-radius: 100px;
+  border: none;
+
+  display: flex;
+
+  cursor: pointer;
 }
