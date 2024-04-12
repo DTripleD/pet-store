@@ -1,5 +1,4 @@
 import icons from "../../images/icons.svg";
-import { useState } from "react";
 
 import Sidebar from "../Sidebar/Sidebar";
 
@@ -9,23 +8,25 @@ import Logo from "../Logo/Logo";
 import PropTypes from "prop-types";
 
 const Header = ({ setActive }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <header>
       <div className={`container ${css.header__container}`}>
         <Logo color={"logo__header"} />
+
         <div className={css.search__section}>
-          <button
-            className={css.category__header_button}
-            type="button"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <svg className={css.icon__header}>
-              <use href={icons + "#lines"}></use>
-            </svg>
-            <p className={css.header__btn_text}>Категорії</p>
-          </button>
+          <div className={css.dropdown}>
+            <button className={css.category__header_button} type="button">
+              <svg className={css.icon__header}>
+                <use href={icons + "#lines"}></use>
+              </svg>
+              <p className={css.header__btn_text}>Категорії</p>
+            </button>
+
+            <div className={`${css.menu}`}>
+              <Sidebar />
+            </div>
+          </div>
+
           <label className={css.header__label}>
             <svg className={css.icon__header}>
               <use href={icons + "#loop"}></use>
@@ -73,10 +74,6 @@ const Header = ({ setActive }) => {
               <use href={icons + "#person"}></use>
             </svg>
           </button>
-        </div>
-
-        <div className={`${css.menu} ${!menuOpen ? "visually_hidden" : ""}`}>
-          <Sidebar />
         </div>
       </div>
     </header>

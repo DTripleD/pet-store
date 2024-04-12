@@ -5,8 +5,6 @@
   padding-top: 25px;
   padding-bottom: 25px;
   align-items: center;
-
-  position: relative;
 }
 
 .search__section {
@@ -101,13 +99,23 @@
   height: 48px;
 }
 
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
 .menu {
   background-color: #ffffff;
+  display: none;
   position: absolute;
-  bottom: 0;
-  transform: translateY(100%);
-  width: 1824px;
+
   padding: 64px 48px;
   border-radius: 20px;
   border: 2px solid #e7e7e7;
+
+  z-index: 111;
+}
+
+.dropdown:hover .menu {
+  display: block;
 }
