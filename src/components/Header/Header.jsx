@@ -1,30 +1,35 @@
 import icons from "../../images/icons.svg";
 
-import Sidebar from "../Sidebar/Sidebar";
-
 import css from "./Header.module.scss";
 import Logo from "../Logo/Logo";
 
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HeaderDropDown from "../HeaderDropDown/HeaderDropDown";
 
 const Header = ({ setActive }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header>
       <div className={`container ${css.header__container}`}>
         <Logo color={"logo__header"} />
 
         <div className={css.search__section}>
-          <div className={css.dropdown}>
+          <div
+            className={css.dropdown}
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
+            onClick={() => setIsOpen(false)}
+          >
             <button className={css.category__header_button} type="button">
               <svg className={css.icon__header}>
                 <use href={icons + "#lines"}></use>
               </svg>
               <p className={css.header__btn_text}>Категорії</p>
             </button>
-
-            <div className={`${css.menu}`}>
-              <Sidebar />
-            </div>
+            <HeaderDropDown isOpen={isOpen} />
           </div>
 
           <label className={css.header__label}>

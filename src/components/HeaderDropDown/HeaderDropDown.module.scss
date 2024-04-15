@@ -1,0 +1,83 @@
+.menu {
+  background-color: #ffffff;
+  display: none;
+  position: absolute;
+
+  padding: 64px 48px;
+  border-radius: 20px;
+  border: 2px solid #e7e7e7;
+
+  z-index: 111;
+}
+
+.animalsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.animalsItem {
+  display: flex;
+  width: 188px;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.animalWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.iconRight {
+  width: 24px;
+  height: 24px;
+  stroke: #5d5d5d;
+}
+
+.animalName {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 13px;
+
+  color: #5d5d5d;
+}
+
+.categoriesList {
+  display: flex;
+  gap: 48px;
+}
+
+.categoryName {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 13px;
+  color: #262626;
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  margin-bottom: 12px;
+}
+
+.subcategoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subcategoryName {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 13px;
+
+  color: #5d5d5d;
+
+  padding: 12px 8px;
+}
+
+.isOpen {
+  display: flex;
+  gap: 48px;
+}

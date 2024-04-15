@@ -94,28 +94,12 @@
 .user__button {
   border: none;
   background-color: transparent;
-  padding: 12px;
-  width: 48px;
+  padding: 12px 8px;
+  width: 40px;
   height: 48px;
 }
 
 .dropdown {
   float: left;
   overflow: hidden;
-}
-
-.menu {
-  background-color: #ffffff;
-  display: none;
-  position: absolute;
-
-  padding: 64px 48px;
-  border-radius: 20px;
-  border: 2px solid #e7e7e7;
-
-  z-index: 111;
-}
-
-.dropdown:hover .menu {
-  display: block;
 }

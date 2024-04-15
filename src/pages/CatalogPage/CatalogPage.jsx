@@ -15,8 +15,8 @@ const CatalogPage = () => {
     <div className="container">
       <Routes
         routes={[
-          { display: state.from.display, path: state.from.path },
-          { display: state.to.display, path: state.to.path },
+          { name: state.from.name, key: state.from.key },
+          { name: state.to.name, key: state.to.key },
         ]}
       />
       <div className={css.catalog__container}>

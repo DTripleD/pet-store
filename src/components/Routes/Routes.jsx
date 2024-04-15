@@ -15,19 +15,19 @@ const Routes = ({ routes = [] }) => {
         Головна
       </Link>
       {routes.map((route, index) => (
-        <React.Fragment key={route.path}>
+        <React.Fragment key={route.key}>
           {routes.length > index && <p className={css.route__slash}>/</p>}
           {routes.length === index + 1 ? (
             <p className={`${css.last__route} ${css.route__text}`}>
-              {route.display}
+              {route.name}
             </p>
           ) : (
             <Link
-              to={`/${route.path}`}
-              key={route.display}
+              to={`/${route.key}`}
+              key={route.name}
               className={css.route__text}
             >
-              {route.display}
+              {route.name}
             </Link>
           )}
         </React.Fragment>

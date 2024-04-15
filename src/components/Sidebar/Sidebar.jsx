@@ -11,7 +11,7 @@ const Sidebar = () => {
       <ul className={css.category_list}>
         {sidebarItems.map((item) => (
           <li key={item.id}>
-            <Link to={item.to} className={css.category_link}>
+            <Link to={item.to} className={css.category_link} state={item.id}>
               <svg className={css.category_logo}>
                 <use href={icons + `#${item.icon}`}></use>
               </svg>
