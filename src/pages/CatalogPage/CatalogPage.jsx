@@ -11,14 +11,16 @@ const CatalogPage = () => {
 
   const { state } = useLocation();
 
+  console.log(state);
+
   return (
     <div className="container">
-      <Routes
+      {/* <Routes
         routes={[
-          { name: state.from.name, key: state.from.key },
-          { name: state.to.name, key: state.to.key },
+          { name: state.name, key: state.key },
+          { name: state.name, key: state.key },
         ]}
-      />
+      /> */}
       <div className={css.catalog__container}>
         <FilterForm />
         <CatalogList />

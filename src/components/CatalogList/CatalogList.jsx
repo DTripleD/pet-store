@@ -1,13 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "../../data/data";
-import SliderItem from "../SliderItem/SliderItem";
 
 import icons from "../../images/icons.svg";
 
 import css from "./CatalogList.module.scss";
+import CatalogItem from "../CatalogItem/CatalogItem";
 
 const CatalogList = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [products, setProducts] = useState([]);
+
+  const getData = () => {
+    return fetch("http://127.0.0.1:8000/api/v1/products/")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  };
+
+  console.log(products);
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className={css.catolog__list__wrapper}>
@@ -16,7 +30,7 @@ const CatalogList = () => {
       </div>
 
       <div className={css.middle__wrapper}>
-        <h2 className={css.found__title}>Знайдено 104 товарів</h2>
+        <h2 className={css.found__title}>Знайдено {products.length} товарів</h2>
         <div>
           <div className={css.sort__text__wrapper}>
             <p className={css.sort__text}>Сортувати</p>
@@ -48,10 +62,8 @@ const CatalogList = () => {
       </div>
 
       <ul className={css.catalog__list}>
-        {data.map((item) => (
-          <li key={item.id}>
-            <SliderItem item={item} />
-          </li>
+        {products.map((item) => (
+          <CatalogItem item={item} key={item.id} />
         ))}
       </ul>
     </div>
