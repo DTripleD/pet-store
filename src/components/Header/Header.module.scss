@@ -1,5 +1,6 @@
 .header__container {
   display: flex;
+  gap: 24px;
   justify-content: space-between;
 
   padding-top: 25px;
@@ -9,6 +10,7 @@
 
 .search__section {
   display: flex;
+  flex-grow: 1;
   gap: 12px;
 }
 
@@ -27,12 +29,6 @@
   cursor: pointer;
 }
 
-.icon__header {
-  width: 24px;
-  height: 24px;
-  stroke: #5d5d5d;
-}
-
 .header__btn_text {
   font-size: 16px;
   font-weight: 600;
@@ -40,29 +36,16 @@
   color: #5d5d5d;
 }
 
-.header__label {
-  width: 1044px;
-  border: 1px solid #d1d1d1;
-  padding: 12px 18px;
-  display: flex;
-  border-radius: 100px;
-  gap: 8px;
-  align-items: center;
-}
-
-.header__input {
-  border: none;
-  outline: none;
-
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 16px;
-}
-
 .info__wrapper {
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+.headerIcon {
+  width: 24px;
+  height: 24px;
+  stroke: #5d5d5d;
 }
 
 .phone__wrapper {
