@@ -15,15 +15,18 @@ const CatalogPage = () => {
 
   return (
     <div className="container">
-      {/* <Routes
+      <Routes
         routes={[
-          { name: state.name, key: state.key },
-          { name: state.name, key: state.key },
+          { name: state.from.name, key: state.from.key, id: state.from.id },
+          { name: state.to.name, key: state.to.key },
         ]}
-      /> */}
+      />
       <div className={css.catalog__container}>
         <FilterForm />
-        <CatalogList />
+        <CatalogList
+          animalId={state.from.animalId}
+          productsId={state.from.productsId}
+        />
       </div>
     </div>
   );

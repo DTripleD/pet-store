@@ -20,8 +20,6 @@ const CategoryPage = () => {
     getCategoryPage(state);
   }, [state]);
 
-  console.log(state);
-
   return (
     <div className="container">
       <Routes routes={[{ name: categorys.name, key: categorys.key }]} />
@@ -30,7 +28,10 @@ const CategoryPage = () => {
         {categorys.product_categories.map((subCat) => (
           <Link
             to={`/${categorys.key}/${subCat.key}`}
-            state={{ from: categorys, to: subCat }}
+            state={{
+              from: { ...categorys, animalId: state, productsId: subCat.id },
+              to: subCat,
+            }}
             key={subCat.id}
             className={css.sub_cat_item}
           >

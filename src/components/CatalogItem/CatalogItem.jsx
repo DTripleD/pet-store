@@ -5,7 +5,6 @@ import WeightButtonsList from "../WeightButtons/WeightButtonsList/WeightButtonsL
 import icons from "../../images/icons.svg";
 
 const CatalogItem = ({ item }) => {
-  console.log(item);
   return (
     <li className={css.productCard}>
       <Link
@@ -14,7 +13,7 @@ const CatalogItem = ({ item }) => {
         className={css.productLink}
       >
         <div className={css.productImageWrapper}>
-          <img src={item.images[0].image} alt={item.name} />
+          <img src={item.images[0]?.image} alt={item.name} />
           <button className={css.favorite__button}>
             <svg className={css.heart__icon}>
               <use href={icons + "#heart"}></use>

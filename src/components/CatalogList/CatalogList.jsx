@@ -5,23 +5,24 @@ import icons from "../../images/icons.svg";
 
 import css from "./CatalogList.module.scss";
 import CatalogItem from "../CatalogItem/CatalogItem";
+import { useLocation } from "react-router-dom";
 
-const CatalogList = () => {
+const CatalogList = ({ productsId, animalId }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [products, setProducts] = useState([]);
 
-  const getData = () => {
-    return fetch("http://127.0.0.1:8000/api/v1/products/")
+  const getData = (productsId, animalId) => {
+    return fetch(
+      `http://127.0.0.1:8000/api/v1/products/?product_category=${productsId}&animal_category=${animalId}`
+    )
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data.results));
   };
 
-  console.log(products);
-
   useEffect(() => {
-    getData();
-  }, []);
+    getData(productsId, animalId);
+  }, [animalId, productsId]);
 
   return (
     <div className={css.catolog__list__wrapper}>

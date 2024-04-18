@@ -26,6 +26,7 @@ const Routes = ({ routes = [] }) => {
               to={`/${route.key}`}
               key={route.name}
               className={css.route__text}
+              state={route.id}
             >
               {route.name}
             </Link>
