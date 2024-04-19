@@ -1,0 +1,60 @@
+.sort__text__wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.sort__text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #888888;
+}
+
+.sort_by__text {
+  color: #262626;
+}
+
+.select__header {
+  cursor: pointer;
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.icon__down__sort {
+  stroke: #262626;
+  width: 24px;
+  height: 24px;
+  transition: transform 300ms ease-out;
+}
+
+.icon__sort__open {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  z-index: 100;
+
+  border: 1.5px solid #e7e7e7;
+
+  padding: 16px;
+
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dropdownItem {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #5d5d5d;
+
+  cursor: pointer;
+
+  padding: 12px 8px;
+}

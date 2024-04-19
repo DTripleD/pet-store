@@ -1,12 +1,12 @@
 import icons from "../../images/icons.svg";
 
 import css from "./Header.module.scss";
-import Logo from "../Logo/Logo";
 
 import PropTypes from "prop-types";
 import { useState } from "react";
-import HeaderDropDown from "../HeaderDropDown/HeaderDropDown";
-import HeaderSearch from "../HeaderSearch/HeaderSearch";
+import HeaderDropDown from "../../components/HeaderDropDown/HeaderDropDown";
+import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
+import Logo from "../../components/Logo/Logo";
 
 const Header = ({ setActive }) => {
   const [isOpen, setIsOpen] = useState(false);

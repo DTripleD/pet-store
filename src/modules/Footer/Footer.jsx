@@ -1,4 +1,4 @@
-import Logo from "../Logo/Logo";
+import Logo from "../../components/Logo/Logo";
 
 import css from "./Footer.module.scss";
 
