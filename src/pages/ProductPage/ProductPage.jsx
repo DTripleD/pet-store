@@ -1,50 +1,36 @@
 import Slider from "../../modules/Slider/Slider";
-import SortButton from "../../components/SortButton/SortButton";
 
 import data from "../../data/data";
 
 import css from "./ProductPage.module.scss";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Routes from "../../components/Routes/Routes";
+import { useEffect, useState } from "react";
+import ProductNavigation from "../../modules/ProductNavigation/ProductNavigation";
 
 const ProductPage = () => {
-  const { pathname, state } = useLocation();
+  const [product, setProduct] = useState({});
 
-  console.log(state);
+  const { productId } = useParams();
+
+  const getProductData = (id) => {
+    return fetch(`http://127.0.0.1:8000/api/v1/products/${id}/`)
+      .then((res) => res.json())
+      .then((data) => setProduct(data));
+  };
+
+  useEffect(() => {
+    getProductData(productId);
+  }, [productId]);
 
   return (
     <div className={`${css.container} ${css.productPageContainer}`}>
       <Sidebar />
       <div className={css.product_page__wrapper}>
         <Routes />
-        <ul className={css.product__nav_buttons_list}>
-          <li>
-            <SortButton
-              link=""
-              isActive={
-                !pathname.endsWith("description") &&
-                !pathname.endsWith("characteristic")
-              }
-              text={"Все про товар"}
-            />
-          </li>
-          <li>
-            <SortButton
-              link="description"
-              isActive={pathname.endsWith("description")}
-              text={"Опис"}
-            />
-          </li>
-          <li>
-            <SortButton
-              link="characteristic"
-              isActive={pathname.endsWith("characteristic")}
-              text={"Характеристики"}
-            />
-          </li>
-        </ul>
+        <ProductNavigation productId={productId} />
         <Outlet />
         <Slider title="Акції" data={data} />
       </div>

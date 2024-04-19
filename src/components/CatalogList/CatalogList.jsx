@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import data from "../../data/data";
 
 import icons from "../../images/icons.svg";
 
 import css from "./CatalogList.module.scss";
 import CatalogItem from "../CatalogItem/CatalogItem";
-import { useLocation } from "react-router-dom";
+
+import PropTypes from "prop-types";
 
 const CatalogList = ({ productsId, animalId }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,3 +72,8 @@ const CatalogList = ({ productsId, animalId }) => {
 };
 
 export default CatalogList;
+
+CatalogList.propTypes = {
+  productsId: PropTypes.number,
+  animalId: PropTypes.number,
+};

@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import css from "./CatalogItem.module.scss";
 import WeightButtonsList from "../WeightButtons/WeightButtonsList/WeightButtonsList";
 import icons from "../../images/icons.svg";
+import PropTypes from "prop-types";
 
 const CatalogItem = ({ item }) => {
+  console.log(item.id);
   return (
     <li className={css.productCard}>
       <Link
-        to={item.id}
+        to={`${item.id}`}
         state={{ from: "dd", to: "dd" }}
         className={css.productLink}
       >
@@ -40,3 +42,7 @@ const CatalogItem = ({ item }) => {
 };
 
 export default CatalogItem;
+
+CatalogItem.propTypes = {
+  item: PropTypes.object,
+};

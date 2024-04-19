@@ -1,10 +1,13 @@
 .headerSearch {
   display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .headerLabel {
   padding: 12px 18px;
   display: flex;
+  width: 100%;
   gap: 8px;
   align-items: center;
 
