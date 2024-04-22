@@ -2,6 +2,8 @@ import Slider from "@mui/material/Slider";
 import { useState } from "react";
 import css from "./FilterForm.module.scss";
 
+import FilterElement from "../FilterElement/FilterElement";
+
 const FilterForm = () => {
   const [value, setValue] = useState([0, 100]);
 
@@ -15,16 +17,12 @@ const FilterForm = () => {
 
   return (
     <div className={css.filters__wrapper}>
-      <div>
+      <div className={css.labelsSection}>
         <p className={css.form__title}>Фільтри</p>
-        <div>
-          <input type="checkbox" id="new" name="new" />
-          <label htmlFor="new">Новинки</label>
-        </div>
-        <div>
-          <input type="checkbox" id="discounts" name="discounts" />
-          <label htmlFor="discounts">Знижка</label>
-        </div>
+        <ul className={css.labelsList}>
+          <FilterElement text={"Новинки"} id={"new"} name={"new"} />
+          <FilterElement text={"Знижка"} id={"discounts"} name={"discounts"} />
+        </ul>
       </div>
       <form className={css.price__form}>
         <p className={css.form__title}>Ціна</p>
@@ -62,39 +60,40 @@ const FilterForm = () => {
           Застосувати
         </button>
       </form>
-      <div>
+      <div className={css.labelsSection}>
         <p className={css.form__title}>Lorem Ipsum</p>
-        <div>
-          <input type="checkbox" id="new" name="new" />
-          <label htmlFor="new">Lorem Ipsum</label>
-        </div>
-        <div>
-          <input type="checkbox" id="discounts" name="discounts" />
-          <label htmlFor="discounts">Lorem Ipsum</label>
-        </div>
+        <ul className={css.labelsList}>
+          <FilterElement text={"Lorem Ipsum"} id={"new"} name={"new"} />
+          <FilterElement
+            text={"Lorem Ipsum"}
+            id={"discounts"}
+            name={"discounts"}
+          />
+        </ul>
       </div>
-      <div>
+      <div className={css.labelsSection}>
         <p className={css.form__title}>Lorem Ipsum</p>
-        <div>
-          <input type="checkbox" id="new" name="new" />
-          <label htmlFor="new">Lorem Ipsum</label>
-        </div>
-        <div>
-          <input type="checkbox" id="discounts" name="discounts" />
-          <label htmlFor="discounts">Lorem Ipsum</label>
-        </div>
+        <ul className={css.labelsList}>
+          <FilterElement text={"Lorem Ipsum"} id={"new"} name={"new"} />
+          <FilterElement
+            text={"Lorem Ipsum"}
+            id={"discounts"}
+            name={"discounts"}
+          />
+        </ul>
       </div>
-      <div>
-        Lorem Ipsum
-        <div>
-          <input type="checkbox" id="new" name="new" />
-          <label htmlFor="new">Lorem Ipsum</label>
-        </div>
-        <div>
-          <input type="checkbox" id="discounts" name="discounts" />
-          <label htmlFor="discounts">Lorem Ipsum</label>
-        </div>
+      <div className={css.labelsSection}>
+        <p className={css.form__title}>Lorem Ipsum</p>
+        <ul className={css.labelsList}>
+          <FilterElement text={"Lorem Ipsum"} id={"new"} name={"new"} />
+          <FilterElement
+            text={"Lorem Ipsum"}
+            id={"discounts"}
+            name={"discounts"}
+          />
+        </ul>
       </div>
+
       <button className={css.clear__button}>Очистити</button>
     </div>
   );

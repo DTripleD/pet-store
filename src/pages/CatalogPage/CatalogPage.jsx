@@ -11,8 +11,6 @@ const CatalogPage = () => {
 
   const { state } = useLocation();
 
-  console.log(state);
-
   return (
     <div className="container">
       <Routes

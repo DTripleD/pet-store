@@ -6,7 +6,12 @@ import icons from "../../images/icons.svg";
 import PropTypes from "prop-types";
 
 const HeaderDropDown = ({ isOpen }) => {
-  const [selectedAnimal, setSelectedAnimal] = useState({ array: [], key: "" });
+  const [selectedAnimal, setSelectedAnimal] = useState({
+    product_categories: [],
+    key: "",
+    id: null,
+    name: "",
+  });
   const [animals, setAnimals] = useState([]);
 
   const getData = async () => {
@@ -21,19 +26,18 @@ const HeaderDropDown = ({ isOpen }) => {
   return (
     <div
       className={`${css.menu} ${isOpen ? css.isOpen : ""}`}
-      onMouseLeave={() => setSelectedAnimal({ array: [], key: "" })}
+      onMouseLeave={() =>
+        setSelectedAnimal({
+          product_categories: [],
+          key: "",
+          id: null,
+          name: "",
+        })
+      }
     >
       <ul className={css.animalsList}>
         {animals.map((animal) => (
-          <li
-            key={animal.id}
-            onMouseEnter={() =>
-              setSelectedAnimal({
-                array: animal.product_categories,
-                key: animal.key,
-              })
-            }
-          >
+          <li key={animal.id} onMouseEnter={() => setSelectedAnimal(animal)}>
             <Link to={animal.key} className={css.animalsItem} state={animal.id}>
               <div className={css.animalWrapper}>
                 <svg className={css.iconRight}>
@@ -49,11 +53,21 @@ const HeaderDropDown = ({ isOpen }) => {
         ))}
       </ul>
 
-      {selectedAnimal.array.length > 0 && (
+      {selectedAnimal.product_categories.length > 0 && (
         <ul className={css.categoriesList}>
-          {selectedAnimal.array.map((categori) => (
+          {selectedAnimal.product_categories.map((categori) => (
             <li key={categori.id}>
-              <Link to={`${selectedAnimal.key}/${categori.key}`}>
+              <Link
+                to={`${selectedAnimal.key}/${categori.key}`}
+                state={{
+                  from: {
+                    animalId: selectedAnimal.id,
+                    productsId: categori.id,
+                    name: selectedAnimal.name,
+                  },
+                  to: categori,
+                }}
+              >
                 <p className={css.categoryName}>{categori.name}</p>
               </Link>
               <ul className={css.subcategoryList}>

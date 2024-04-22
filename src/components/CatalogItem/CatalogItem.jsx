@@ -6,7 +6,6 @@ import icons from "../../images/icons.svg";
 import PropTypes from "prop-types";
 
 const CatalogItem = ({ item }) => {
-  console.log(item.id);
   return (
     <li className={css.productCard}>
       <Link

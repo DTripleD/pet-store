@@ -12,7 +12,6 @@ const DeliveryPage = () => {
   const { pathname } = useLocation();
 
   console.log(pathname);
-
   return (
     <div>
       <h2>Мої замовлення</h2>

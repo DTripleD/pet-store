@@ -20,8 +20,6 @@ const CategoryPage = () => {
     getCategoryPage(state);
   }, [state]);
 
-  console.log(categorys);
-
   return (
     <div className="container">
       <Routes routes={[{ name: categorys.name, key: categorys.key }]} />
