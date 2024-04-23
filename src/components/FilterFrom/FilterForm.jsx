@@ -15,6 +15,10 @@ const FilterForm = () => {
     return `${value}°C`;
   }
 
+  const handlePrice = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div className={css.filters__wrapper}>
       <div className={css.labelsSection}>
@@ -24,7 +28,7 @@ const FilterForm = () => {
           <FilterElement text={"Знижка"} id={"discounts"} name={"discounts"} />
         </ul>
       </div>
-      <form className={css.price__form}>
+      <form className={css.price__form} onSubmit={handlePrice}>
         <p className={css.form__title}>Ціна</p>
         <Slider
           getAriaLabel={() => "Price"}
