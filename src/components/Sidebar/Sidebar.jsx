@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 import css from "./Sidebar.module.scss";
-import { sidebarItems } from "../../data/sidebarItems";
+import { sidebarItems } from "src/data/sidebarItems";
 
 const Sidebar = () => {
   return (

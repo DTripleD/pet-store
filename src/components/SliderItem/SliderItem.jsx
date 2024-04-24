@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 import css from "./SliderItem.module.scss";
-import WeightButtonsList from "../WeightButtons/WeightButtonsList/WeightButtonsList";
+import WeightButtonsList from "components/WeightButtons/WeightButtonsList/WeightButtonsList";
 import { Link } from "react-router-dom";
 
 const SliderItem = ({ item }) => {

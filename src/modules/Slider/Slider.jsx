@@ -11,9 +11,9 @@ import { Link } from "react-router-dom";
 
 import css from "./Slider.module.scss";
 
-import icons from "../../images/icons.svg";
-import SliderButtons from "../../components/SliderButtons/SliderButtons";
-import SliderItem from "../../components/SliderItem/SliderItem";
+import icons from "src/images/icons.svg";
+import SliderButtons from "components/SliderButtons/SliderButtons";
+import SliderItem from "components/SliderItem/SliderItem";
 
 const Slider = ({ title, data }) => {
   const [isStartBtnActive, setStartBtnActive] = useState(true);

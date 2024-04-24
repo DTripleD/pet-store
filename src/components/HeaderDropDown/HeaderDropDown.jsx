@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import css from "./HeaderDropDown.module.scss";
 import { Link } from "react-router-dom";
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 import PropTypes from "prop-types";
 
@@ -64,6 +64,7 @@ const HeaderDropDown = ({ isOpen }) => {
                     animalId: selectedAnimal.id,
                     productsId: categori.id,
                     name: selectedAnimal.name,
+                    key: selectedAnimal.key,
                   },
                   to: categori,
                 }}

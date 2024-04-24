@@ -1,6 +1,6 @@
 import css from "./SortBy.module.scss";
 
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 import { useState } from "react";
 
 const SortBy = () => {

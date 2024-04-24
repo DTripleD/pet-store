@@ -1,10 +1,10 @@
-import PhotoCarousel from "../../components/PhotoСarousel/PhotoСarousel";
+import PhotoCarousel from "components/PhotoСarousel/PhotoСarousel";
 import css from "./AllAboutProduct.module.scss";
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 import { Link } from "react-router-dom";
-import WeightButtonsList from "../../components/WeightButtons/WeightButtonsList/WeightButtonsList";
-import CharacteristicList from "../../components/CharacteristicList/CharacteristicList";
+import WeightButtonsList from "components/WeightButtons/WeightButtonsList/WeightButtonsList";
+import CharacteristicList from "components/CharacteristicList/CharacteristicList";
 
 const characteristicsArray = [
   { name: "Lorem ipsum", descr: "Lorem ipsum", id: 1 },

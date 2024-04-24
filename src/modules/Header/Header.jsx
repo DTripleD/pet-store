@@ -1,14 +1,14 @@
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 import css from "./Header.module.scss";
 
 import PropTypes from "prop-types";
 import { useState } from "react";
-import HeaderDropDown from "../../components/HeaderDropDown/HeaderDropDown";
-import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
-import Logo from "../../components/Logo/Logo";
+import HeaderDropDown from "components/HeaderDropDown/HeaderDropDown";
+import HeaderSearch from "components/HeaderSearch/HeaderSearch";
+import Logo from "components/Logo/Logo";
 
-const Header = ({ setActive }) => {
+const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -56,7 +56,7 @@ const Header = ({ setActive }) => {
           </button>
           <button
             className={css.user__button}
-            onClick={() => setActive("cart")}
+            onClick={() => setActiveCartModal(true)}
           >
             <svg className={css.headerIcon}>
               <use href={icons + "#cart"}></use>
@@ -64,7 +64,7 @@ const Header = ({ setActive }) => {
           </button>
           <button
             className={css.user__button}
-            onClick={() => setActive("register")}
+            onClick={() => setActiveAuthModal(true)}
           >
             <svg className={css.headerIcon}>
               <use href={icons + "#person"}></use>
@@ -79,5 +79,6 @@ const Header = ({ setActive }) => {
 export default Header;
 
 Header.propTypes = {
-  setActive: PropTypes.func,
+  setActiveAuthModal: PropTypes.func,
+  setActiveCartModal: PropTypes.func,
 };

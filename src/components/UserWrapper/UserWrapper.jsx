@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 
 import css from "./UserWrapper.module.scss";
 
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 const profileSidebarItems = [
   { title: "Персональні дані", link: "profile", icon: "person" },

@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
-import SortButton from "../../components/SortButton/SortButton";
+import SortButton from "components/SortButton/SortButton";
 
 import PropTypes from "prop-types";
 
 import css from "./ProductNavigation.module.scss";
-import { buttonsArray } from "../../data/buttonsArray";
+import { buttonsArray } from "src/data/buttonsArray";
 
 const ProductNavigation = ({ productId }) => {
   const { pathname } = useLocation();

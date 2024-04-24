@@ -8,12 +8,19 @@
 .sub_cat_list {
   display: flex;
   flex-wrap: wrap;
+
+  gap: 24px;
 }
 
 .sub_cat_item {
   padding: 20px;
+}
+
+.subCatItem {
   background-color: #ffffff;
   text-align: center;
+
+  border-radius: 18px;
 }
 
 .sub_cat_img_wrapper {

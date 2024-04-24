@@ -1,5 +1,5 @@
 import css from "./HeaderSearch.module.scss";
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 const HeaderSearch = () => {
   return (

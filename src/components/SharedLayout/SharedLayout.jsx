@@ -1,21 +1,36 @@
 import { Outlet } from "react-router-dom";
 import { Suspense, useState } from "react";
-
-import Modal from "../Modal/Modal";
-import Footer from "../../modules/Footer/Footer";
-import Header from "../../modules/Header/Header";
+import Footer from "modules/Footer/Footer";
+import Header from "modules/Header/Header";
+import AuthModal from "modules/Modals/AuthModal";
+import CartModal from "modules/Modals/CartModal";
 
 export const SharedLayout = () => {
-  const [active, setActive] = useState(null);
+  const [activeAuthModal, setActiveAuthModal] = useState(false);
+
+  const [activeCartModal, setActiveCartModal] = useState(false);
+
   return (
     <>
-      <Header setActive={setActive} />
+      <Header
+        setActiveAuthModal={setActiveAuthModal}
+        setActiveCartModal={setActiveCartModal}
+      />
       <Suspense fallback={<div>Loading</div>}>
         <Outlet />
       </Suspense>
 
       <Footer />
-      <Modal active={active} setActive={setActive} />
+
+      <AuthModal
+        activeAuthModal={activeAuthModal}
+        setActiveAuthModal={setActiveAuthModal}
+      />
+
+      <CartModal
+        activeCartModal={activeCartModal}
+        setActiveCartModal={setActiveCartModal}
+      />
     </>
   );
 };

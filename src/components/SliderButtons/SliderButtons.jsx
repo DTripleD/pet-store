@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 import css from "./SliderButtons.module.scss";
 

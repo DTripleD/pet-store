@@ -1,6 +1,6 @@
 import css from "./Characteristic.module.scss";
 
-import CharacteristicList from "../../components/CharacteristicList/CharacteristicList";
+import CharacteristicList from "components/CharacteristicList/CharacteristicList";
 
 const characteristicsArray = [
   { name: "Lorem ipsum", descr: "Lorem ipsum", id: 1 },

@@ -1,14 +1,14 @@
-import Slider from "../../modules/Slider/Slider";
+import Slider from "modules/Slider/Slider";
 
-import data from "../../data/data";
+import data from "src/data/data";
 
 import css from "./ProductPage.module.scss";
 import { Outlet, useParams } from "react-router-dom";
 
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Routes from "../../components/Routes/Routes";
+import Sidebar from "components/Sidebar/Sidebar";
+import Routes from "components/Routes/Routes";
 import { useEffect, useState } from "react";
-import ProductNavigation from "../../modules/ProductNavigation/ProductNavigation";
+import ProductNavigation from "modules/ProductNavigation/ProductNavigation";
 
 const ProductPage = () => {
   const [product, setProduct] = useState({});

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 import css from "./Logo.module.scss";
 
 import PropTypes from "prop-types";

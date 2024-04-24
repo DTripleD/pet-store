@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import icons from "../../images/icons.svg";
+import icons from "src/images/icons.svg";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -13,7 +13,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 import css from "./PhotoСarousel.module.scss";
 
-import mainImage from "../../images/img.png";
+import mainImage from "src/images/img.png";
 
 const photoArray = [
   { img: mainImage, id: 1 },

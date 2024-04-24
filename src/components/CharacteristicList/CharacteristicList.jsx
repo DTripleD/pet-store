@@ -1,6 +1,6 @@
 import css from "./CharacteristicList.module.scss";
 
-import CharacteristicItem from "../СharacteristicItem/СharacteristicItem";
+import CharacteristicItem from "components/СharacteristicItem/СharacteristicItem";
 
 import PropTypes from "prop-types";
 

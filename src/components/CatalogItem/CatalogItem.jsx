@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
+import placeholder from "src/images/placeholder.jpg";
+
 import css from "./CatalogItem.module.scss";
-import WeightButtonsList from "../WeightButtons/WeightButtonsList/WeightButtonsList";
-import icons from "../../images/icons.svg";
+import WeightButtonsList from "components/WeightButtons/WeightButtonsList/WeightButtonsList";
+import icons from "src/images/icons.svg";
 import PropTypes from "prop-types";
 
 const CatalogItem = ({ item }) => {
@@ -14,7 +16,10 @@ const CatalogItem = ({ item }) => {
         className={css.productLink}
       >
         <div className={css.productImageWrapper}>
-          <img src={item.images[0]?.image} alt={item.name} />
+          <img
+            src={item.images.length > 0 ? item.images[0]?.image : placeholder}
+            alt={item.name}
+          />
           <button className={css.favorite__button}>
             <svg className={css.heart__icon}>
               <use href={icons + "#heart"}></use>

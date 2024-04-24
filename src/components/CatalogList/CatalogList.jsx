@@ -1,26 +1,10 @@
-import { useState, useEffect } from "react";
-
 import css from "./CatalogList.module.scss";
-import CatalogItem from "../CatalogItem/CatalogItem";
+import CatalogItem from "components/CatalogItem/CatalogItem";
 
 import PropTypes from "prop-types";
-import SortBy from "../../modules/SortBy/SortBy";
+import SortBy from "modules/SortBy/SortBy";
 
-const CatalogList = ({ productsId, animalId }) => {
-  const [products, setProducts] = useState([]);
-
-  const getData = (productsId, animalId) => {
-    return fetch(
-      `http://127.0.0.1:8000/api/v1/products/?product_category=${productsId}&animal_category=${animalId}`
-    )
-      .then((res) => res.json())
-      .then((data) => setProducts(data.results));
-  };
-
-  useEffect(() => {
-    getData(productsId, animalId);
-  }, [animalId, productsId]);
-
+const CatalogList = ({ products }) => {
   return (
     <div className={css.catolog__list__wrapper}>
       <div>
@@ -44,6 +28,5 @@ const CatalogList = ({ productsId, animalId }) => {
 export default CatalogList;
 
 CatalogList.propTypes = {
-  productsId: PropTypes.number,
-  animalId: PropTypes.number,
+  products: PropTypes.array,
 };

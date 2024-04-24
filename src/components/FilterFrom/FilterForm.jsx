@@ -1,12 +1,34 @@
 import Slider from "@mui/material/Slider";
-import { useState } from "react";
 import css from "./FilterForm.module.scss";
 
-import FilterElement from "../FilterElement/FilterElement";
+import FilterElement from "components/FilterElement/FilterElement";
+import { getProducts } from "src/api/getProducts";
 
-const FilterForm = () => {
-  const [value, setValue] = useState([0, 100]);
+const filtersArray = [
+  {
+    title: "SubCat",
+    filters: [
+      { text: "Lorem Ipsum", id: "dogs", name: "dogs" },
+      { text: "Lorem Ipsum", id: "cats", name: "cats" },
+    ],
+  },
+  {
+    title: "Type",
+    filters: [
+      { text: "Lorem Ipsum", id: "Pack", name: "Pack" },
+      { text: "Lorem Ipsum", id: "Box", name: "Box" },
+    ],
+  },
+  {
+    title: "Size",
+    filters: [
+      { text: "Lorem Ipsum", id: "small", name: "small" },
+      { text: "Lorem Ipsum", id: "big", name: "big" },
+    ],
+  },
+];
 
+const FilterForm = ({ value, setValue, animalId, productsId, setProducts }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -17,6 +39,10 @@ const FilterForm = () => {
 
   const handlePrice = (event) => {
     event.preventDefault();
+
+    getProducts(productsId, animalId, value).then((data) =>
+      setProducts(data.results)
+    );
   };
 
   return (
@@ -30,6 +56,7 @@ const FilterForm = () => {
       </div>
       <form className={css.price__form} onSubmit={handlePrice}>
         <p className={css.form__title}>Ціна</p>
+
         <Slider
           getAriaLabel={() => "Price"}
           value={value}
@@ -37,6 +64,7 @@ const FilterForm = () => {
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
         />
+
         <div className={css.price__inputs__wrapper}>
           <label className={css.price__label}>
             від
@@ -64,39 +92,22 @@ const FilterForm = () => {
           Застосувати
         </button>
       </form>
-      <div className={css.labelsSection}>
-        <p className={css.form__title}>Lorem Ipsum</p>
-        <ul className={css.labelsList}>
-          <FilterElement text={"Lorem Ipsum"} id={"new"} name={"new"} />
-          <FilterElement
-            text={"Lorem Ipsum"}
-            id={"discounts"}
-            name={"discounts"}
-          />
-        </ul>
-      </div>
-      <div className={css.labelsSection}>
-        <p className={css.form__title}>Lorem Ipsum</p>
-        <ul className={css.labelsList}>
-          <FilterElement text={"Lorem Ipsum"} id={"new"} name={"new"} />
-          <FilterElement
-            text={"Lorem Ipsum"}
-            id={"discounts"}
-            name={"discounts"}
-          />
-        </ul>
-      </div>
-      <div className={css.labelsSection}>
-        <p className={css.form__title}>Lorem Ipsum</p>
-        <ul className={css.labelsList}>
-          <FilterElement text={"Lorem Ipsum"} id={"new"} name={"new"} />
-          <FilterElement
-            text={"Lorem Ipsum"}
-            id={"discounts"}
-            name={"discounts"}
-          />
-        </ul>
-      </div>
+
+      {filtersArray.map((filter) => (
+        <div className={css.labelsSection} key={filter.title}>
+          <p className={css.form__title}>{filter.title}</p>
+          <ul className={css.labelsList}>
+            {filter.filters.map((item) => (
+              <FilterElement
+                key={item.id}
+                text={item.text}
+                id={item.id}
+                name={item.name}
+              />
+            ))}
+          </ul>
+        </div>
+      ))}
 
       <button className={css.clear__button}>Очистити</button>
     </div>

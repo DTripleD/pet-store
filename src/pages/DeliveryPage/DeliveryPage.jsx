@@ -1,6 +1,6 @@
 import css from "./DeliveryPage.module.scss";
 
-import SortButton from "../../components/SortButton/SortButton";
+import SortButton from "components/SortButton/SortButton";
 
 import { useState } from "react";
 
