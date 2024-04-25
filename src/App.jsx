@@ -16,6 +16,9 @@ import AllAboutProduct from "./modules/AllAboutProduct/AllAboutProduct";
 import Description from "./modules/Description/Description";
 import Сharacteristic from "./modules/Сharacteristic/Сharacteristic";
 
+import { Toaster } from "react-hot-toast";
+import { toastOptions } from "src/shared/toasterOptions/toasterOptions";
+
 function App() {
   return (
     <>
@@ -38,6 +41,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
+      <Toaster toastOptions={toastOptions} />
     </>
   );
 }
