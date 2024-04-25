@@ -13,7 +13,7 @@ const DeliveryPage = () => {
 
   console.log(pathname);
   return (
-    <div>
+    <section>
       <h2>Мої замовлення</h2>
       <ul className={css.buttonsList}>
         <li>
@@ -46,7 +46,7 @@ const DeliveryPage = () => {
         </li>
       </ul>
       <p>Замовлень ще немає</p>
-    </div>
+    </section>
   );
 };
 

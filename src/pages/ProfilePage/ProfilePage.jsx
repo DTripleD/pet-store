@@ -2,7 +2,7 @@ import css from "./ProfilePage.module.scss";
 
 const ProfilePage = () => {
   return (
-    <div>
+    <section>
       <h2 className={css.userTitle}>Персональні дані</h2>
 
       <form className={css.profileForm}>
@@ -35,7 +35,7 @@ const ProfilePage = () => {
           />
         </label>
       </form>
-    </div>
+    </section>
   );
 };
 
