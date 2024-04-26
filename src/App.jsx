@@ -18,6 +18,7 @@ import Сharacteristic from "./modules/Сharacteristic/Сharacteristic";
 
 import { Toaster } from "react-hot-toast";
 import { toastOptions } from "src/shared/toasterOptions/toasterOptions";
+import ActivatePage from "./pages/ActivatePage/ActivatePage";
 
 function App() {
   return (
@@ -32,14 +33,16 @@ function App() {
             <Route path="description" element={<Description />} />
             <Route path="characteristic" element={<Сharacteristic />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
+
           <Route path="/user" element={<UserWrapper />}>
             <Route path="profile" element={<ProfilePage />} />
             <Route path="delivery" element={<DeliveryPage />} />
             <Route path="favorite" element={<FavoritePage />} />
             <Route path="cart" element={<CartPage />} />
           </Route>
+          <Route path="/activate/:uid/:token" element={<ActivatePage />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster toastOptions={toastOptions} />
     </>

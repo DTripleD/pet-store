@@ -11,11 +11,8 @@ const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
     e.preventDefault();
 
     const form = e.target;
-
     const first_name = form.name.value;
-
     const email = form.email.value;
-
     const password = form.password.value;
 
     try {
@@ -25,8 +22,9 @@ const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
         password,
         re_password: password,
       });
-      console.log(res);
+      return res;
     } catch (error) {
+      console.log(error);
       for (const key in error.response.data) {
         error.response.data[key].map((problem) => toast.error(problem));
       }

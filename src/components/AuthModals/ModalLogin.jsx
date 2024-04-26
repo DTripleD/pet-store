@@ -3,18 +3,52 @@ import icons from "src/images/icons.svg";
 import css from "./AuthModals.module.scss";
 
 import PropTypes from "prop-types";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/auth/operations";
 
 const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
+  const dispatch = useDispatch();
+
+  const login = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+      const res = await dispatch(signIn({ email, password }));
+
+      if (res.payload.response?.status === 400) {
+        for (const key in res.payload.response.data) {
+          res.payload.response.data[key].map((problem) => toast.error(problem));
+        }
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        throw new Error(res.payload.response.data);
+      }
+
+      toast.success("User login succesfully!");
+
+      return res.data;
+    } catch (error) {
+      return error;
+    }
+  };
+
   return (
     <>
       <h3 className={css.modalTitle}>Вхід до акаунту</h3>
-      <form className={css.registerForm}>
+      <form className={css.registerForm} onSubmit={login}>
         <div className={css.inputsWrapper}>
           <label className={css.registerLabel}>
             Електронна пошта
             <div className={css.inputWrapper}>
               <input
                 type="text"
+                name="email"
                 placeholder="Введіть email"
                 className={css.registerInput}
               />
@@ -25,6 +59,7 @@ const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
             <div className={css.inputWrapper}>
               <input
                 type={passwordShown ? "text" : "password"}
+                name="password"
                 placeholder="Введіть пароль"
                 className={css.registerInput}
               />
