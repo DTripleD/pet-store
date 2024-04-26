@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
-import { signIn } from "./operations";
+import { signIn, signUp } from "./operations";
 
 const initialState = {
   authToken: null,
@@ -33,7 +33,9 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = action.payload.message;
       })
-
+      .addCase(signUp.fulfilled, (state) => {
+        state.isRefreshing = false;
+      })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
@@ -46,7 +48,7 @@ const authReducer = authSlice.reducer;
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["accessToken", "refreshToken"],
+  whitelist: ["authToken"],
 };
 
 export const persistedAuthReducer = persistReducer(

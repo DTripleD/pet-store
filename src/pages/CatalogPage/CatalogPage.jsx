@@ -2,22 +2,25 @@ import { useLocation, useParams } from "react-router-dom";
 import CatalogList from "components/CatalogList/CatalogList";
 import FilterForm from "components/FilterFrom/FilterForm";
 
-import { getProducts } from "src/api/getProducts";
-
 import Routes from "components/Routes/Routes";
 
 import css from "./CatalogPage.module.scss";
 import { useEffect, useState } from "react";
 import { getPriceLine } from "src/helpers/getPriceLine";
+import { getProducts } from "../../redux/products/productsOperations";
+import { useDispatch, useSelector } from "react-redux";
+import { selectProducts } from "../../redux/products/productsSelectors";
 
 const CatalogPage = () => {
   // const { catalog } = useParams();
 
-  const [products, setProducts] = useState();
-
   const [value, setValue] = useState([0, 0]);
 
   const { state } = useLocation();
+
+  const products = useSelector(selectProducts);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (products) {
@@ -26,10 +29,13 @@ const CatalogPage = () => {
   }, [products, setValue]);
 
   useEffect(() => {
-    getProducts(state.from.productsId, state.from.animalId).then((data) =>
-      setProducts(data.results)
+    dispatch(
+      getProducts({
+        productsId: state.from.productsId,
+        animalId: state.from.animalId,
+      })
     );
-  }, [state.from.animalId, state.from.productsId]);
+  }, [dispatch, state.from.animalId, state.from.productsId]);
 
   return (
     <div className="container">
@@ -49,7 +55,6 @@ const CatalogPage = () => {
           setValue={setValue}
           animalId={state.from.animalId}
           productsId={state.from.productsId}
-          setProducts={setProducts}
         />
 
         {products ? <CatalogList products={products} /> : <div>Loading...</div>}

@@ -3,10 +3,12 @@ import icons from "src/images/icons.svg";
 import PropTypes from "prop-types";
 
 import css from "./AuthModals.module.scss";
-import axios from "axios";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../redux/auth/operations";
 
 const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
+  const dispatch = useDispatch();
   const register = async (e) => {
     e.preventDefault();
 
@@ -16,19 +18,28 @@ const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
     const password = form.password.value;
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/v1/auth/users/", {
-        first_name,
-        email,
-        password,
-        re_password: password,
-      });
-      return res;
-    } catch (error) {
-      console.log(error);
-      for (const key in error.response.data) {
-        error.response.data[key].map((problem) => toast.error(problem));
+      const res = await dispatch(
+        signUp({
+          first_name,
+          email,
+          password,
+          re_password: password,
+        })
+      );
+
+      if (res.payload.response?.status === 400) {
+        for (const key in res.payload.response.data) {
+          res.payload.response.data[key].map((problem) => toast.error(problem));
+        }
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        throw new Error(res.payload.response.data);
       }
 
+      toast.success("User register succesfully!");
+
+      return res;
+    } catch (error) {
       return error;
     }
   };

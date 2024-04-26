@@ -32,7 +32,7 @@ const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
 
       toast.success("User login succesfully!");
 
-      return res.data;
+      return res;
     } catch (error) {
       return error;
     }

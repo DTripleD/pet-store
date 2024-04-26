@@ -7,13 +7,22 @@ import instance from "../../shared/api/instance";
 
 export const signIn = createAsyncThunk(
   "auth/signIn",
-  async ({ email, password }, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     try {
-      const res = await instance.post("/auth/token/login", {
-        email,
-        password,
-      });
-      return res;
+      const res = await instance.post("/auth/token/login", credentials);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const signUp = createAsyncThunk(
+  "auth/signUp",
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await instance.post("/auth/users", credentials);
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

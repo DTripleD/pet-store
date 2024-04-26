@@ -2,7 +2,8 @@ import Slider from "@mui/material/Slider";
 import css from "./FilterForm.module.scss";
 
 import FilterElement from "components/FilterElement/FilterElement";
-import { getProducts } from "src/api/getProducts";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../../redux/products/productsOperations";
 
 const filtersArray = [
   {
@@ -28,7 +29,7 @@ const filtersArray = [
   },
 ];
 
-const FilterForm = ({ value, setValue, animalId, productsId, setProducts }) => {
+const FilterForm = ({ value, setValue, animalId, productsId }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -37,12 +38,12 @@ const FilterForm = ({ value, setValue, animalId, productsId, setProducts }) => {
     return `${value}°C`;
   }
 
+  const dispatch = useDispatch();
+
   const handlePrice = (event) => {
     event.preventDefault();
 
-    getProducts(productsId, animalId, value).then((data) =>
-      setProducts(data.results)
-    );
+    dispatch(getProducts({ productsId, animalId, value }));
   };
 
   return (
@@ -82,7 +83,7 @@ const FilterForm = ({ value, setValue, animalId, productsId, setProducts }) => {
               type="text"
               className={css.price__input}
               maxLength="7"
-              value={value[1]}
+              value={value[1] || 0}
               onChange={(e) => setValue([value[0], parseInt(e.target.value)])}
             />
           </label>
