@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
-import { signIn, signUp } from "./operations";
+import { getUserInfo, signIn, signUp } from "./operations";
 
 const initialState = {
   authToken: null,
   isLoggedIn: false,
   isRefreshing: false,
+  user: { firstName: null, lastName: null, email: null, phoneNumber: null },
 };
 
 const handlePending = (state) => {
@@ -35,6 +36,12 @@ const authSlice = createSlice({
       })
       .addCase(signUp.fulfilled, (state) => {
         state.isRefreshing = false;
+      })
+      .addCase(getUserInfo.fulfilled, (state, { payload }) => {
+        state.user.firstName = payload.first_name;
+        state.user.lastName = payload.last_name;
+        state.user.email = payload.email;
+        state.user.phoneNumber = payload.phone_number;
       })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
