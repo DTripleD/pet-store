@@ -5,9 +5,9 @@ const setAuthHeader = (accessToken) => {
   instance.defaults.headers.common["Authorization"] = "Token " + accessToken;
 };
 
-const clearAuthHeader = () => {
-  instance.defaults.headers.common["Authorization"] = "";
-};
+// const clearAuthHeader = () => {
+//   instance.defaults.headers.common["Authorization"] = "";
+// };
 
 export const signIn = createAsyncThunk(
   "auth/signIn",
@@ -48,10 +48,9 @@ export const getUserInfo = createAsyncThunk(
 
 export const updateUserInfo = createAsyncThunk(
   "auth/updateUserInfo",
-  async (token, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     try {
-      setAuthHeader(token);
-      const res = await instance.put("/auth/users/me/", token);
+      const res = await instance.put("/auth/users/me/", credentials);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

@@ -1,11 +1,11 @@
-import icons from "src/images/icons.svg";
-
 import css from "./AuthModals.module.scss";
 
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../redux/auth/operations";
+
+import icons from "src/images/icons.svg";
+import { signIn } from "src/redux/auth/operations";
 
 const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
   const dispatch = useDispatch();
