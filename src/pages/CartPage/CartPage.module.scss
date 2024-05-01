@@ -32,6 +32,8 @@
   font-weight: 600;
   line-height: 12px;
 
+  text-align: center;
+
   width: 100%;
 
   color: #ffffff;
@@ -43,26 +45,4 @@
   background-color: #34955d;
 
   border-radius: 10px;
-}
-
-.amountPrice {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 22px;
-
-  color: #262626;
-}
-
-.amountText {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 13px;
-
-  margin-bottom: 8px;
-
-  color: #888888;
-}
-
-.amountWrapper {
-  margin-bottom: 24px;
 }

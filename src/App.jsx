@@ -10,6 +10,9 @@ import ProductPage from "./pages/ProductPage/ProductPage";
 import UserWrapper from "./components/UserWrapper/UserWrapper";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import DeliveryPage from "./pages/DeliveryPage/DeliveryPage";
+
+import OrderPage from "./pages/OrderPage/OrderPage";
+
 import CartPage from "./pages/CartPage/CartPage";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import AllAboutProduct from "./modules/AllAboutProduct/AllAboutProduct";
@@ -39,6 +42,7 @@ function App() {
             <Route path="delivery" element={<DeliveryPage />} />
             <Route path="favorite" element={<FavoritePage />} />
             <Route path="cart" element={<CartPage />} />
+            <Route path="order" element={<OrderPage />} />
           </Route>
           <Route path="/activate/:uid/:token" element={<ActivatePage />} />
         </Route>

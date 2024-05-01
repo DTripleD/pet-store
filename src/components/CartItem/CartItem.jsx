@@ -26,25 +26,27 @@ const CartItem = ({ item }) => {
             )}
           </div>
         </div>
-        <div className={css.quantityWrapper}>
-          <button
-            type="button"
-            className={css.quantityButton}
-            disabled={quantity <= 1}
-            onClick={() => setQuantity((prev) => prev - 1)}
-          >
-            -
-          </button>
-          <span className={css.quantityText}>{quantity}</span>
-          <button
-            type="button"
-            className={css.quantityButton}
-            onClick={() => setQuantity((prev) => prev + 1)}
-          >
-            +
-          </button>
+        <div className={css.priceFunctionsWrapper}>
+          <div className={css.quantityWrapper}>
+            <button
+              type="button"
+              className={css.quantityButton}
+              disabled={quantity <= 1}
+              onClick={() => setQuantity((prev) => prev - 1)}
+            >
+              -
+            </button>
+            <span className={css.quantityText}>{quantity}</span>
+            <button
+              type="button"
+              className={css.quantityButton}
+              onClick={() => setQuantity((prev) => prev + 1)}
+            >
+              +
+            </button>
+          </div>
+          <p className={css.totalPrice}>{item.current_price * quantity} грн</p>
         </div>
-        <p className={css.totalPrice}>{item.current_price * quantity} грн</p>
       </div>
       <svg className={css.iconExtraMenu}>
         <use href={icons + "#extra-menu"}></use>

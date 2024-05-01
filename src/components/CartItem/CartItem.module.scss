@@ -12,12 +12,14 @@
 
 .imageWrapper {
   width: 100px;
+  min-width: 100px;
   height: 100px;
 }
 
 .itemWrapper {
   display: flex;
   align-items: center;
+  gap: 24px;
   flex-grow: 1;
   justify-content: space-between;
 
@@ -50,6 +52,8 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
+
+  white-space: nowrap;
 
   color: #262626;
 }
@@ -108,4 +112,10 @@
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+.priceFunctionsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 48px;
 }

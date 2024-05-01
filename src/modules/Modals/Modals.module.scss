@@ -44,7 +44,8 @@
   width: 836px;
   display: flex;
   flex-direction: column;
-  gap: 194px;
+
+  gap: 24px;
 }
 
 .cartTitle {
@@ -59,6 +60,8 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
+
+  margin: 194px auto;
 }
 
 .iconEmptyCart {
@@ -73,13 +76,37 @@
   color: #888888;
 }
 
-.emptyButton {
+.cartButton {
   font-size: 16px;
   font-weight: 600;
   line-height: 12px;
-  color: #5d5d5d;
-  background-color: #e7e7e7;
   padding: 26px;
   border-radius: 10px;
   border: none;
+  text-align: center;
+
+  width: 100%;
+}
+
+.emptyButton {
+  color: #5d5d5d;
+  background-color: #e7e7e7;
+}
+
+.activeButton {
+  color: #ffffff;
+  background-color: #34955d;
+}
+
+.quantityText {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 13px;
+  color: #888888;
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

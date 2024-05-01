@@ -42,7 +42,7 @@ const UserInfoItem = ({ title, userValue, setUserValue, itemKey }) => {
             onClick={() => {
               setIsEditing(false);
               setUserValue((prev) => {
-                return { ...prev, [itemKey]: user.firstName };
+                return { ...prev, [itemKey]: user[itemKey] };
               });
             }}
           >

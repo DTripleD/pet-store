@@ -17,7 +17,7 @@ const CatalogItem = ({ item }) => {
       >
         <div className={css.productImageWrapper}>
           <img
-            src={item.images.length > 0 ? item.images[0]?.image : placeholder}
+            src={item.images.length > 0 ? item.images : placeholder}
             alt={item.name}
           />
           <button className={css.favorite__button}>

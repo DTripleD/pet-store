@@ -1,13 +1,12 @@
+import { Link } from "react-router-dom";
 import { itemsInCart } from "../../data/itemsInCart";
 import css from "./CartPage.module.scss";
 
 import CartItem from "components/CartItem/CartItem";
+import TotalPrice from "../../components/TotalPrice/TotalPrice";
+import { totalPrice } from "../../helpers/totalPrice";
 
 const CartPage = () => {
-  const totalPrice = itemsInCart.reduce((acc, currentItem) => {
-    acc += currentItem.current_price;
-    return acc;
-  }, 0);
   return (
     <section className={css.cartSection}>
       <h2 className={css.cartTitle}>Кошик</h2>
@@ -18,13 +17,10 @@ const CartPage = () => {
           ))}
         </ul>
         <div>
-          <div className={css.amountWrapper}>
-            <p className={css.amountText}>Сума замовлення:</p>
-            <p className={css.amountPrice}>{totalPrice} грн</p>
-          </div>
-          <button type="button" className={css.orderButton}>
+          <TotalPrice totalPrice={totalPrice(itemsInCart)} />
+          <Link to="/user/order" type="button" className={css.orderButton}>
             Оформити замовлення
-          </button>
+          </Link>
         </div>
       </div>
     </section>

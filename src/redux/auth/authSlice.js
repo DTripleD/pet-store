@@ -7,7 +7,7 @@ const initialState = {
   authToken: null,
   isLoggedIn: false,
   isRefreshing: false,
-  user: { firstName: null, lastName: null, email: null, phoneNumber: null },
+  user: { first_name: null, last_name: null, email: null, phone_number: null },
 };
 
 const handlePending = (state) => {

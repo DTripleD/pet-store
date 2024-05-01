@@ -13,6 +13,8 @@ const ProfilePage = () => {
 
   const authToken = useSelector(selectAuthToken);
 
+  console.log(userValue);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -65,7 +67,7 @@ const ProfilePage = () => {
           title="Прізвище"
           userValue={userValue}
           setUserValue={setUserValue}
-          itemKey="second_name"
+          itemKey="last_name"
         />
         <UserInfoItem
           title="Номер телефону"
