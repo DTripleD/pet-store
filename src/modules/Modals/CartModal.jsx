@@ -48,7 +48,7 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
               <TotalPrice totalPrice={totalPrice(itemsInCart)} />
               <Link
                 className={`${css.cartButton} ${css.activeButton}`}
-                to="/user/order"
+                to="/order"
                 onClick={() => setActiveCartModal(false)}
                 type="button"
               >

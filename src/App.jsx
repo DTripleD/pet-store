@@ -29,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
+          <Route path="order" element={<OrderPage />} />
           <Route path=":category" element={<CategoryPage />} />
           <Route path=":category/:catalog" element={<CatalogPage />} />
           <Route path=":category/:catalog/:productId" element={<ProductPage />}>
@@ -42,7 +43,6 @@ function App() {
             <Route path="delivery" element={<DeliveryPage />} />
             <Route path="favorite" element={<FavoritePage />} />
             <Route path="cart" element={<CartPage />} />
-            <Route path="order" element={<OrderPage />} />
           </Route>
           <Route path="/activate/:uid/:token" element={<ActivatePage />} />
         </Route>

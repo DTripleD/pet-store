@@ -6,6 +6,7 @@ import css from "./AuthModals.module.scss";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/auth/operations";
+import Button from "../Button/Button";
 
 const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
   const dispatch = useDispatch();
@@ -89,9 +90,7 @@ const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
             </div>
           </label>
         </div>
-        <button type="submit" className={css.registerButton}>
-          Увійти
-        </button>
+        <Button text="Зареєструватись" type="submit" />
         <div className={css.haveAccWrapper}>
           <p className={css.haveAccText}>Вже маєте акаунт?</p>
           <button

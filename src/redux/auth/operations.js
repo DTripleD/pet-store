@@ -5,14 +5,16 @@ const setAuthHeader = (accessToken) => {
   instance.defaults.headers.common["Authorization"] = "Token " + accessToken;
 };
 
-// const clearAuthHeader = () => {
-//   instance.defaults.headers.common["Authorization"] = "";
-// };
+const clearAuthHeader = () => {
+  instance.defaults.headers.common["Authorization"] = "";
+};
 
 export const signIn = createAsyncThunk(
   "auth/signIn",
   async (credentials, thunkAPI) => {
     try {
+      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      clearAuthHeader();
       const res = await instance.post("/auth/token/login/", credentials);
       return res.data;
     } catch (error) {
@@ -33,12 +35,27 @@ export const signUp = createAsyncThunk(
   }
 );
 
+export const logOut = createAsyncThunk(
+  "auth/logOut",
+  async (token, thunkAPI) => {
+    try {
+      setAuthHeader(token);
+      const res = await instance.post("/auth/token/logout/");
+
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const getUserInfo = createAsyncThunk(
   "auth/getUserInfo",
   async (token, thunkAPI) => {
     try {
       setAuthHeader(token);
       const res = await instance.get("/auth/users/me/", token);
+
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

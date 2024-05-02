@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 
 import icons from "src/images/icons.svg";
 import { signIn } from "src/redux/auth/operations";
+import Button from "../Button/Button";
 
 const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
   const dispatch = useDispatch();
@@ -72,9 +73,8 @@ const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
             </div>
           </label>
         </div>
-        <button type="submit" className={css.registerButton}>
-          Увійти
-        </button>
+
+        <Button text="Увійти" type="submit" />
 
         <div className={css.haveAccWrapper}>
           <p className={css.haveAccText}>Немає акаунту?</p>

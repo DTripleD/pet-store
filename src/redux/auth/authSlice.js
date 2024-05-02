@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
-import { getUserInfo, signIn, signUp } from "./operations";
+import { getUserInfo, logOut, signIn, signUp } from "./operations";
 
 const initialState = {
   authToken: null,
@@ -36,6 +36,9 @@ const authSlice = createSlice({
       })
       .addCase(signUp.fulfilled, (state) => {
         state.isRefreshing = false;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.authToken = null;
       })
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
         state.user.firstName = payload.first_name;

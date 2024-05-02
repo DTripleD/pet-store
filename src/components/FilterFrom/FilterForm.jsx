@@ -4,6 +4,7 @@ import css from "./FilterForm.module.scss";
 import FilterElement from "components/FilterElement/FilterElement";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/products/productsOperations";
+import Button from "../Button/Button";
 
 const filtersArray = [
   {
@@ -89,9 +90,7 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
           </label>
         </div>
 
-        <button type="submit" className={css.apply__button}>
-          Застосувати
-        </button>
+        <Button type="submit" text="Застосувати" isSmall={true} />
       </form>
 
       {filtersArray.map((filter) => (

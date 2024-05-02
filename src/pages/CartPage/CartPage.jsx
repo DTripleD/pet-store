@@ -18,7 +18,7 @@ const CartPage = () => {
         </ul>
         <div>
           <TotalPrice totalPrice={totalPrice(itemsInCart)} />
-          <Link to="/user/order" type="button" className={css.orderButton}>
+          <Link to="/order" type="button" className={css.orderButton}>
             Оформити замовлення
           </Link>
         </div>
