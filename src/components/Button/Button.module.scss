@@ -11,6 +11,16 @@
   width: 100%;
 
   cursor: pointer;
+
+  transition: background-color ease-in-out 200ms;
+
+  &:hover {
+    background-color: #247749;
+  }
+
+  &:active {
+    background-color: #1d5f3c;
+  }
 }
 
 .smallButton {
