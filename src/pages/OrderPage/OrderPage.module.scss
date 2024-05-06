@@ -42,3 +42,54 @@
 .contactInfoInput {
   padding: 22.5px 16px;
 }
+
+.orderContainer {
+  display: flex;
+  gap: 24px;
+}
+
+.formWrapper {
+  flex-grow: 1;
+}
+
+.orderInfoWrapper {
+  background-color: #ffffff;
+
+  border: 1.5px solid #e7e7e7;
+
+  width: 438px;
+  height: fit-content;
+
+  padding: 32px 16px;
+}
+
+.priceItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.totalPrice {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+
+  color: #262626;
+}
+
+.totalPriceNumber {
+  font-weight: 600;
+}
+
+.partPrice {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+
+  color: #888888;
+}
+
+.priceList {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
