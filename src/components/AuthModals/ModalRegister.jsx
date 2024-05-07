@@ -90,16 +90,18 @@ const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
             </div>
           </label>
         </div>
-        <Button text="Зареєструватись" type="submit" />
-        <div className={css.haveAccWrapper}>
-          <p className={css.haveAccText}>Вже маєте акаунт?</p>
-          <button
-            type="button"
-            onClick={() => setIsLogin((prev) => !prev)}
-            className={css.haveAccButton}
-          >
-            Увійдіть
-          </button>
+        <div className={css.authButtonWraper}>
+          <Button text="Зареєструватись" type="submit" />
+          <div className={css.haveAccWrapper}>
+            <p className={css.haveAccText}>Вже маєте акаунт?</p>
+            <button
+              type="button"
+              onClick={() => setIsLogin((prev) => !prev)}
+              className={css.haveAccButton}
+            >
+              Увійдіть
+            </button>
+          </div>
         </div>
       </form>
     </>

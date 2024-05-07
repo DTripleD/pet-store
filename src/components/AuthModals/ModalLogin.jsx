@@ -74,17 +74,19 @@ const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
           </label>
         </div>
 
-        <Button text="Увійти" type="submit" />
+        <div className={css.authButtonWraper}>
+          <Button text="Увійти" type="submit" />
 
-        <div className={css.haveAccWrapper}>
-          <p className={css.haveAccText}>Немає акаунту?</p>
-          <button
-            type="button"
-            onClick={() => setIsLogin((prev) => !prev)}
-            className={css.haveAccButton}
-          >
-            Зареєструватися
-          </button>
+          <div className={css.haveAccWrapper}>
+            <p className={css.haveAccText}>Немає акаунту?</p>
+            <button
+              type="button"
+              onClick={() => setIsLogin((prev) => !prev)}
+              className={css.haveAccButton}
+            >
+              Зареєструватися
+            </button>
+          </div>
         </div>
       </form>
     </>

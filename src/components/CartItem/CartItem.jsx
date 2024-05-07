@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 import icons from "src/images/icons.svg";
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, isOrderPage }) => {
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -16,7 +16,11 @@ const CartItem = ({ item }) => {
       <div className={css.imageWrapper}>
         <img src={item.img ? item.img : placeholder} alt="Image of cart item" />
       </div>
-      <div className={css.itemWrapper}>
+      <div
+        className={`${css.itemWrapper} ${
+          isOrderPage ? css.itemWrapperOrderPage : ""
+        }`}
+      >
         <div className={css.baseInfoWrapper}>
           <p className={css.itemText}>{item.text}</p>
           <div className={css.priceWrapper}>
@@ -45,7 +49,11 @@ const CartItem = ({ item }) => {
               +
             </button>
           </div>
-          <p className={css.totalPrice}>{item.current_price * quantity} грн</p>
+          {!isOrderPage && (
+            <p className={css.totalPrice}>
+              {item.current_price * quantity} грн
+            </p>
+          )}
         </div>
       </div>
       <svg className={css.iconExtraMenu}>
@@ -59,4 +67,5 @@ export default CartItem;
 
 CartItem.propTypes = {
   item: PropTypes.object,
+  isOrderPage: PropTypes.bool,
 };

@@ -3,37 +3,60 @@ import CartItem from "../../components/CartItem/CartItem";
 import { itemsInCart } from "../../data/itemsInCart";
 import css from "./OrderPage.module.scss";
 
+import icons from "src/images/icons.svg";
+
 const OrderPage = () => {
   return (
     <section className={css.orderSection}>
       <div className={`container ${css.orderContainer} `}>
         <div className={css.formWrapper}>
-          <h2 className={css.orderTitle}>Оформлення замовлення</h2>
+          <div className={css.titleWrapper}>
+            <svg className={css.iconBack}>
+              <use href={icons + "#icon-down"}></use>
+            </svg>
+            <h2 className={css.orderTitle}>Оформлення замовлення</h2>
+          </div>
           <form>
             <h3 className={css.orderSubTitle}>Контактні дані</h3>
             <ul className={css.contactInfoList}>
               <li>
                 <label className={css.contactInfoLabel}>
                   Ім’я*
-                  <input type="text" className={css.contactInfoInput} />
+                  <input
+                    type="text"
+                    placeholder="Введіть ім’я"
+                    className={css.contactInfoInput}
+                  />
                 </label>
               </li>
               <li>
                 <label className={css.contactInfoLabel}>
                   Прізвище*
-                  <input type="text" />
+                  <input
+                    type="text"
+                    placeholder="Введіть номер або email"
+                    className={css.contactInfoInput}
+                  />
                 </label>
               </li>
               <li>
                 <label className={css.contactInfoLabel}>
                   Номер телефону*
-                  <input type="text" />
+                  <input
+                    type="text"
+                    placeholder="Введіть номер"
+                    className={css.contactInfoInput}
+                  />
                 </label>
               </li>
               <li>
                 <label className={css.contactInfoLabel}>
                   Електронна пошта
-                  <input type="text" />
+                  <input
+                    type="text"
+                    placeholder="Введіть email"
+                    className={css.contactInfoInput}
+                  />
                 </label>
               </li>
             </ul>
@@ -48,7 +71,7 @@ const OrderPage = () => {
         <div className={css.orderInfoWrapper}>
           <ul>
             {itemsInCart.map((item) => (
-              <CartItem key={item.id} item={item} />
+              <CartItem key={item.id} item={item} isOrderPage={true} />
             ))}
           </ul>
           <ul className={css.priceList}>
