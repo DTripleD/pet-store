@@ -30,6 +30,7 @@ const ProductPage = () => {
       <Sidebar />
       <div className={css.product_page__wrapper}>
         <Routes />
+
         <ProductNavigation productId={productId} />
         <Outlet />
         <Slider title="Акції" data={data} />

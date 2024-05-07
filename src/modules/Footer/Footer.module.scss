@@ -1,3 +1,113 @@
 .footer {
   background-color: #153f2a;
+
+  padding-top: 64px;
+  padding-bottom: 32px;
+}
+
+.footerInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.footerNavTitle {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+
+  color: #ffffff;
+
+  margin-bottom: 18px;
+}
+
+.footerNavText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+
+  color: #ffffff;
+}
+
+.footerNavList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footerAddress {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+
+  color: #ffffff;
+}
+
+.footerAddressWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.infoTitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  color: #ffffff;
+
+  margin-bottom: 12px;
+}
+
+.logoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contactsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.socLinkIcon {
+  width: 24px;
+  height: 24px;
+
+  fill: #ffffff;
+}
+
+.socLinkList {
+  display: flex;
+  gap: 24px;
+}
+
+.footerPaymentIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.footerPaymentList {
+  display: flex;
+  gap: 24px;
+}
+
+.copyrightText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  color: #ffffff;
+}
+
+.copyrightWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
 }
