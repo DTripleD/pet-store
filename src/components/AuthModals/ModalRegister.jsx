@@ -4,12 +4,16 @@ import PropTypes from "prop-types";
 
 import css from "./AuthModals.module.scss";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../redux/auth/operations";
 import Button from "../Button/Button";
+import { selectActivation } from "../../redux/auth/selectors";
 
 const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
   const dispatch = useDispatch();
+
+  const activationSent = useSelector(selectActivation);
+
   const register = async (e) => {
     e.preventDefault();
 
@@ -45,7 +49,9 @@ const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
     }
   };
 
-  return (
+  return activationSent ? (
+    <p>Активуйте аккаунт на пошті</p>
+  ) : (
     <>
       <h3 className={css.modalTitle}>Реєстрація</h3>
       <form className={css.registerForm} onSubmit={register}>

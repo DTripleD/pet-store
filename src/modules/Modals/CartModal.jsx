@@ -5,12 +5,14 @@ import icons from "src/images/icons.svg";
 import PropTypes from "prop-types";
 import { itemsInCart } from "../../data/itemsInCart";
 import CartItem from "components/CartItem/CartItem";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
 import { totalPrice } from "../../helpers/totalPrice";
 
 const CartModal = ({ activeCartModal, setActiveCartModal }) => {
   // const itemsInCart = [];
+
+  const location = useLocation();
 
   return (
     <div
@@ -51,6 +53,7 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
                 to="/order"
                 onClick={() => setActiveCartModal(false)}
                 type="button"
+                state={location.pathname}
               >
                 Оформити замовлення
               </Link>

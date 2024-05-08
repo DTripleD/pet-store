@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import CartItem from "../../components/CartItem/CartItem";
 import { itemsInCart } from "../../data/itemsInCart";
@@ -6,14 +7,18 @@ import css from "./OrderPage.module.scss";
 import icons from "src/images/icons.svg";
 
 const OrderPage = () => {
+  const { state } = useLocation();
+
   return (
     <section className={css.orderSection}>
       <div className={`container ${css.orderContainer} `}>
         <div className={css.formWrapper}>
           <div className={css.titleWrapper}>
-            <svg className={css.iconBack}>
-              <use href={icons + "#icon-down"}></use>
-            </svg>
+            <Link to={state || "/"}>
+              <svg className={css.iconBack}>
+                <use href={icons + "#icon-down"}></use>
+              </svg>
+            </Link>
             <h2 className={css.orderTitle}>Оформлення замовлення</h2>
           </div>
           <form>

@@ -8,6 +8,7 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
   user: { first_name: null, last_name: null, email: null, phone_number: null },
+  isActivationSent: false,
 };
 
 const handlePending = (state) => {
@@ -34,15 +35,18 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = action.payload.message;
       })
-      .addCase(signUp.fulfilled, (state) => {
+      .addCase(signUp.fulfilled, (state, { payload }) => {
+        state.user.email = payload.email;
+        state.user.first_name = payload.first_name;
+        state.isActivationSent = true;
         state.isRefreshing = false;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.authToken = null;
       })
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
-        state.user.firstName = payload.first_name;
-        state.user.lastName = payload.last_name;
+        state.user.first_name = payload.first_name;
+        state.user.last_name = payload.last_name;
         state.user.email = payload.email;
         state.user.phoneNumber = payload.phone_number;
       })

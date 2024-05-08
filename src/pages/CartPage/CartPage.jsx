@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { itemsInCart } from "../../data/itemsInCart";
 import css from "./CartPage.module.scss";
 
@@ -7,6 +7,8 @@ import TotalPrice from "../../components/TotalPrice/TotalPrice";
 import { totalPrice } from "../../helpers/totalPrice";
 
 const CartPage = () => {
+  const location = useLocation();
+
   return (
     <section className={css.cartSection}>
       <h2 className={css.cartTitle}>Кошик</h2>
@@ -18,7 +20,12 @@ const CartPage = () => {
         </ul>
         <div>
           <TotalPrice totalPrice={totalPrice(itemsInCart)} />
-          <Link to="/order" type="button" className={css.orderButton}>
+          <Link
+            to="/order"
+            type="button"
+            className={css.orderButton}
+            state={location.pathname}
+          >
             Оформити замовлення
           </Link>
         </div>
