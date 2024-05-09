@@ -7,7 +7,7 @@ const initialState = {
   authToken: null,
   isLoggedIn: false,
   isRefreshing: false,
-  user: { first_name: null, last_name: null, email: null, phone_number: null },
+  user: { first_name: "", last_name: "", email: "", phone_number: "" },
   isActivationSent: false,
 };
 
@@ -48,7 +48,9 @@ const authSlice = createSlice({
         state.user.first_name = payload.first_name;
         state.user.last_name = payload.last_name;
         state.user.email = payload.email;
-        state.user.phoneNumber = payload.phone_number;
+        state.user.phone_number = payload.phone_number;
+
+        state.isLoggedIn = true;
       })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(

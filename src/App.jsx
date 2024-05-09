@@ -1,29 +1,42 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import { SharedLayout } from "./components/SharedLayout/SharedLayout";
-import MainPage from "./pages/MainPage/MainPage";
-import CategoryPage from "./pages/CategoryPage/CategoryPage";
-import CatalogPage from "./pages/CatalogPage/CatalogPage";
-import NotFound from "./pages/NotFound/NotFound";
-import ProductPage from "./pages/ProductPage/ProductPage";
+import { lazy, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
+import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
+const CartPage = lazy(() => import("./pages/CartPage/CartPage"));
+const OrderPage = lazy(() => import("./pages/OrderPage/OrderPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
+const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
+const ProductPage = lazy(() => import("./pages/ProductPage/ProductPage"));
+const CategoryPage = lazy(() => import("./pages/CategoryPage/CategoryPage"));
+const DeliveryPage = lazy(() => import("./pages/DeliveryPage/DeliveryPage"));
+const FavoritePage = lazy(() => import("./pages/FavoritePage/FavoritePage"));
+const ActivatePage = lazy(() => import("./pages/ActivatePage/ActivatePage"));
+
 import UserWrapper from "./components/UserWrapper/UserWrapper";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import DeliveryPage from "./pages/DeliveryPage/DeliveryPage";
+import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 
-import OrderPage from "./pages/OrderPage/OrderPage";
-
-import CartPage from "./pages/CartPage/CartPage";
-import FavoritePage from "./pages/FavoritePage/FavoritePage";
-import AllAboutProduct from "./modules/AllAboutProduct/AllAboutProduct";
 import Description from "./modules/Description/Description";
 import Сharacteristic from "./modules/Сharacteristic/Сharacteristic";
+import AllAboutProduct from "./modules/AllAboutProduct/AllAboutProduct";
 
-import { Toaster } from "react-hot-toast";
 import { toastOptions } from "src/shared/toasterOptions/toasterOptions";
-import ActivatePage from "./pages/ActivatePage/ActivatePage";
+
+import { getUserInfo } from "./redux/auth/operations";
+import { selectAuthToken } from "./redux/auth/selectors";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const authToken = useSelector(selectAuthToken);
+  useEffect(() => {
+    dispatch(getUserInfo(authToken));
+  }, [authToken, dispatch]);
+
   return (
     <>
       <Routes>

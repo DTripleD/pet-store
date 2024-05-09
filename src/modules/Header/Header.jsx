@@ -7,11 +7,18 @@ import { useState } from "react";
 import HeaderDropDown from "components/HeaderDropDown/HeaderDropDown";
 import HeaderSearch from "components/HeaderSearch/HeaderSearch";
 import Logo from "components/Logo/Logo";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Link } from "react-router-dom";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [contactsVisible, setContactsVisible] = useState(false);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  console.log(isLoggedIn);
 
   return (
     <header className={css.header}>
@@ -75,14 +82,22 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
               <use href={icons + "#cart"}></use>
             </svg>
           </button>
-          <button
-            className={css.user__button}
-            onClick={() => setActiveAuthModal(true)}
-          >
-            <svg className={css.headerIcon}>
-              <use href={icons + "#person"}></use>
-            </svg>
-          </button>
+          {isLoggedIn ? (
+            <Link to="/user/profile" className={css.userLink}>
+              <svg className={css.headerIcon}>
+                <use href={icons + "#person"}></use>
+              </svg>
+            </Link>
+          ) : (
+            <button
+              className={css.user__button}
+              onClick={() => setActiveAuthModal(true)}
+            >
+              <svg className={css.headerIcon}>
+                <use href={icons + "#person"}></use>
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </header>

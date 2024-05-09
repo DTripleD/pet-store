@@ -1,9 +1,13 @@
-.fieldTitle {
+.userLabel {
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
 
   color: #6d6d6d;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .userFieldInput {
@@ -19,13 +23,6 @@
   line-height: 22px;
 
   color: #262626;
-}
-
-.userInfoItem {
-  display: grid;
-  grid-template-columns: 1fr auto;
-
-  row-gap: 16px;
 }
 
 .editButtonsWrapper {

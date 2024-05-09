@@ -3,34 +3,50 @@ import css from "./ProfilePage.module.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getUserInfo } from "src/redux/auth/operations";
-import { selectAuthToken } from "src/redux/auth/selectors";
-
 import UserInfoItem from "components/UserInfoItem/UserInfoItem";
 
+import { updateUserInfo } from "src/redux/auth/operations";
+import Button from "../../components/Button/Button";
+import { selectUser } from "../../redux/auth/selectors";
+
 const ProfilePage = () => {
-  const [userValue, setUserValue] = useState({});
+  const [userValue, setUserValue] = useState({
+    first_name: "",
+    last_name: "",
+    phone_number: "",
+    email: "",
+  });
 
-  const authToken = useSelector(selectAuthToken);
+  const [isAble, setIsAble] = useState(false);
 
-  // console.log(userValue);
-
-  // ;
-  // ;
-  // ;
-  // ;
+  const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserInfo(authToken)).then((data) => setUserValue(data.payload));
-  }, [authToken, dispatch]);
+    setUserValue(user);
+  }, [user]);
+
+  useEffect(() => {
+    setIsAble(
+      () =>
+        userValue.first_name !== user.first_name ||
+        userValue.last_name !== user.last_name ||
+        userValue.email !== user.email ||
+        userValue.phone_number !== user.phone_number
+    );
+  }, [user, userValue]);
+
+  const updateUser = (e) => {
+    e.preventDefault();
+    dispatch(updateUserInfo(userValue)).then(() => setIsAble(false));
+  };
 
   return (
     <section>
       <h2 className={css.userTitle}>Персональні дані</h2>
 
-      <ul className={css.infoList}>
+      <form onSubmit={updateUser} className={css.userForm}>
         <UserInfoItem
           title="Ім’я"
           userValue={userValue}
@@ -53,7 +69,7 @@ const ProfilePage = () => {
           setUserValue={setUserValue}
           itemKey="phone_number"
           type="tel"
-          placeholder="example@gmail.com"
+          placeholder="+380"
         />
         <UserInfoItem
           title="Електронна пошта"
@@ -61,9 +77,10 @@ const ProfilePage = () => {
           setUserValue={setUserValue}
           itemKey="email"
           type="email"
-          placeholder="+380"
+          placeholder="email@example.com"
         />
-      </ul>
+        <Button text="Зберегти зміни" type="submit" isAble={isAble} />
+      </form>
     </section>
   );
 };

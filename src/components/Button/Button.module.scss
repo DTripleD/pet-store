@@ -20,6 +20,11 @@
   &:active {
     background-color: #1d5f3c;
   }
+
+  &:disabled {
+    background-color: #e7e7e7;
+    color: #5d5d5d;
+  }
 }
 
 .smallButton {
