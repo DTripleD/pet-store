@@ -26,7 +26,7 @@ const CatalogPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (products) {
+    if (products.length) {
       setValue(getPriceLine(products));
     }
   }, [products, setValue]);

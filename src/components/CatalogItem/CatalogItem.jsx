@@ -10,10 +10,7 @@ import PropTypes from "prop-types";
 const CatalogItem = ({ item }) => {
   return (
     <li className={css.productCard}>
-      <Link
-        to={`${item.id}`}
-        className={css.productLink}
-      >
+      <Link to={`${item.id}`} className={css.productLink}>
         <div className={css.productImageWrapper}>
           <img
             src={item.images.length > 0 ? item.images : placeholder}
@@ -27,7 +24,7 @@ const CatalogItem = ({ item }) => {
           <div className={css.discount}>-{item.discount}%</div>
         </div>
         <WeightButtonsList />
-        <div>
+        <div className={css.textWrapper}>
           <div className={css.swiper__descr_wrapper}>
             <h3 className={css.swiper__title}>{item.name}</h3>
             <p className={css.swipper__description}>{item.description}</p>

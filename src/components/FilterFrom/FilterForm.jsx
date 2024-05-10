@@ -1,6 +1,8 @@
 import Slider from "@mui/material/Slider";
 import css from "./FilterForm.module.scss";
 
+import PropTypes from "prop-types";
+
 import FilterElement from "components/FilterElement/FilterElement";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/products/productsOperations";
@@ -115,3 +117,10 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
 };
 
 export default FilterForm;
+
+FilterForm.propTypes = {
+  value: PropTypes.array,
+  setValue: PropTypes.func,
+  animalId: PropTypes.string,
+  productsId: PropTypes.string,
+};
