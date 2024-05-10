@@ -38,7 +38,7 @@ const HeaderDropDown = ({ isOpen }) => {
       <ul className={css.animalsList}>
         {animals.map((animal) => (
           <li key={animal.id} onMouseEnter={() => setSelectedAnimal(animal)}>
-            <Link to={animal.key} className={css.animalsItem} state={animal.id}>
+            <Link to={`${animal.id}`} className={css.animalsItem}>
               <div className={css.animalWrapper}>
                 <svg className={css.iconRight}>
                   <use href={icons + `#${animal.key}`}></use>
@@ -57,18 +57,7 @@ const HeaderDropDown = ({ isOpen }) => {
         <ul className={css.categoriesList}>
           {selectedAnimal.product_categories.map((categori) => (
             <li key={categori.id}>
-              <Link
-                to={`${selectedAnimal.key}/${categori.key}`}
-                state={{
-                  from: {
-                    animalId: selectedAnimal.id,
-                    productsId: categori.id,
-                    name: selectedAnimal.name,
-                    key: selectedAnimal.key,
-                  },
-                  to: categori,
-                }}
-              >
+              <Link to={`${selectedAnimal.id}/${categori.id}`}>
                 <p className={css.categoryName}>{categori.name}</p>
               </Link>
               <ul className={css.subcategoryList}>

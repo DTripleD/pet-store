@@ -9,11 +9,8 @@ import { useLocation } from "react-router-dom";
 const DeliveryPage = () => {
   const [selectedButton, setSelectedButton] = useState("Всі");
 
-  console.log(selectedButton);
-
   const { pathname } = useLocation();
 
-  console.log(pathname);
   return (
     <section>
       <h2>Мої замовлення</h2>

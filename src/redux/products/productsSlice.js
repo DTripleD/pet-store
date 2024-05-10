@@ -6,6 +6,7 @@ const initialState = {
   next: null,
   previous: null,
   results: [],
+  categories: {},
 };
 
 const handlePending = (state) => {
@@ -24,6 +25,7 @@ const productsSlice = createSlice({
     builder
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.results = payload.results;
+        state.categories = payload.categories;
       })
 
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)

@@ -34,7 +34,9 @@ function App() {
 
   const authToken = useSelector(selectAuthToken);
   useEffect(() => {
-    dispatch(getUserInfo(authToken));
+    if (authToken) {
+      dispatch(getUserInfo(authToken));
+    }
   }, [authToken, dispatch]);
 
   return (

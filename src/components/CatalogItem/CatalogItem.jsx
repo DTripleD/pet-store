@@ -12,7 +12,6 @@ const CatalogItem = ({ item }) => {
     <li className={css.productCard}>
       <Link
         to={`${item.id}`}
-        state={{ from: "dd", to: "dd" }}
         className={css.productLink}
       >
         <div className={css.productImageWrapper}>

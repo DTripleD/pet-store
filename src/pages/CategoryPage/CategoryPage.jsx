@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Routes from "components/Routes/Routes";
 
@@ -8,7 +8,7 @@ import css from "./CategoryPage.module.scss";
 import { useEffect, useState } from "react";
 
 const CategoryPage = () => {
-  const { state } = useLocation();
+  const { category } = useParams();
 
   const [categorys, setCategorys] = useState(null);
 
@@ -19,8 +19,8 @@ const CategoryPage = () => {
   };
 
   useEffect(() => {
-    getCategoryPage(state);
-  }, [state]);
+    getCategoryPage(category);
+  }, [category]);
 
   return categorys ? (
     <div className="container">
@@ -31,11 +31,7 @@ const CategoryPage = () => {
         {categorys.product_categories.map((subCat) => (
           <li key={subCat.id} className={css.subCatItem}>
             <Link
-              to={`/${categorys.key}/${subCat.key}`}
-              state={{
-                from: { ...categorys, animalId: state, productsId: subCat.id },
-                to: subCat,
-              }}
+              to={`/${categorys.id}/${subCat.id}`}
               className={css.sub_cat_item}
             >
               <div className={css.sub_cat_img_wrapper}>

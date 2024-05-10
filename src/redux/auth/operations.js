@@ -58,6 +58,7 @@ export const getUserInfo = createAsyncThunk(
       }
       setAuthHeader(token);
       const res = await instance.get("/auth/users/me/", token);
+
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

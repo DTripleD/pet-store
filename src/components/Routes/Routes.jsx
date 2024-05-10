@@ -5,7 +5,7 @@ import React from "react";
 
 import css from "./Routes.module.scss";
 
-const Routes = ({ routes = [] }) => {
+const Routes = ({ routes }) => {
   return (
     <div className={css.routes__wrapper}>
       <svg className={css.icon__house}>
@@ -14,6 +14,7 @@ const Routes = ({ routes = [] }) => {
       <Link to="/" className={css.route__text}>
         Головна
       </Link>
+
       {routes.map((route, index) => (
         <React.Fragment key={route.key}>
           {routes.length > index && <p className={css.route__slash}>/</p>}
@@ -22,12 +23,7 @@ const Routes = ({ routes = [] }) => {
               {route.name}
             </p>
           ) : (
-            <Link
-              to={`/${route.key}`}
-              key={route.name}
-              className={css.route__text}
-              state={route.id}
-            >
+            <Link to={`/${route.id}`} className={css.route__text}>
               {route.name}
             </Link>
           )}

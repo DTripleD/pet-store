@@ -18,8 +18,6 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log(isLoggedIn);
-
   return (
     <header className={css.header}>
       <div className={`container ${css.header__container}`}>

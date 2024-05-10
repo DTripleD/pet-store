@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const SliderItem = ({ item }) => {
   return (
-    <Link to={item.id} state={{ from: "dd", to: "dd" }}>
+    <Link to={item.id}>
       <div className={css.swiper__item}>
         <div className={css.swiper__image_wrapper}>
           <img src={item.img} alt={item.title} />

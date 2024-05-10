@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CatalogList from "components/CatalogList/CatalogList";
 import FilterForm from "components/FilterFrom/FilterForm";
 
@@ -9,16 +9,19 @@ import { useEffect, useState } from "react";
 import { getPriceLine } from "src/helpers/getPriceLine";
 import { getProducts } from "../../redux/products/productsOperations";
 import { useDispatch, useSelector } from "react-redux";
-import { selectProducts } from "../../redux/products/productsSelectors";
+import {
+  selectCategories,
+  selectProducts,
+} from "../../redux/products/productsSelectors";
 
 const CatalogPage = () => {
-  // const { catalog } = useParams();
+  const { category, catalog } = useParams();
 
   const [value, setValue] = useState([0, 0]);
 
-  const { state } = useLocation();
-
   const products = useSelector(selectProducts);
+
+  const routes = useSelector(selectCategories);
 
   const dispatch = useDispatch();
 
@@ -31,30 +34,33 @@ const CatalogPage = () => {
   useEffect(() => {
     dispatch(
       getProducts({
-        productsId: state.from.productsId,
-        animalId: state.from.animalId,
+        productsId: catalog,
+        animalId: category,
       })
     );
-  }, [dispatch, state.from.animalId, state.from.productsId]);
+  }, [catalog, category, dispatch]);
 
   return (
     <div className="container">
-      {products ? (
+      {routes.name ? (
         <Routes
           routes={[
-            { name: state.from.name, key: state.from.key, id: state.from.id },
-            { name: state.to.name, key: state.to.key },
+            { name: routes.name, key: routes.key, id: routes.id },
+            {
+              name: routes.product_category.name,
+              key: routes.product_category.key,
+            },
           ]}
         />
       ) : (
-        <div>Loading...</div>
+        <div>No routes</div>
       )}
       <div className={css.catalog__container}>
         <FilterForm
           value={value}
           setValue={setValue}
-          animalId={state.from.animalId}
-          productsId={state.from.productsId}
+          animalId={catalog}
+          productsId={category}
         />
 
         {products ? <CatalogList products={products} /> : <div>Loading...</div>}
