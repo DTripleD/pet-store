@@ -5,9 +5,21 @@ import css from "./CartPage.module.scss";
 import CartItem from "components/CartItem/CartItem";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
 import { totalPrice } from "../../helpers/totalPrice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getCart } from "../../redux/cart/cartOperations";
+import { getCookies } from "../../shared/cookies/cookies";
 
 const CartPage = () => {
   const location = useLocation();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const cookies = getCookies();
+
+    dispatch(getCart(cookies.cartTokenPetStore));
+  }, [dispatch]);
 
   return (
     <section className={css.cartSection}>

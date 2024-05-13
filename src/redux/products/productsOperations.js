@@ -10,7 +10,7 @@ export const getProducts = createAsyncThunk(
   async ({ productsId, animalId, value = [] }, thunkAPI) => {
     try {
       const res = await instance.get(
-        `http://127.0.0.1:8000/api/v1/products/?product_category=${productsId}&animal_category=${animalId}${
+        `/products/?product_category=${productsId}&animal_category=${animalId}${
           value.length > 0 ? `&min_price=${value[0]}&max_price=${value[1]}` : ""
         }`
       );
