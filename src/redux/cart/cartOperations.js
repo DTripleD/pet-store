@@ -12,10 +12,22 @@ const clearCartHeader = () => {
 export const getCart = createAsyncThunk(
   "cart/getCart",
   async (token, thunkAPI) => {
-    console.log(token);
     try {
       setCartHeader(token);
-      const res = await instance.get("/cart");
+      const res = await instance.get("/cart/");
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const addToCart = createAsyncThunk(
+  "cart/addToCart",
+  async ({ id, token }, thunkAPI) => {
+    try {
+      setCartHeader(token);
+      const res = await instance.post(`cart/add/${id}/`);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

@@ -9,7 +9,9 @@ import PropTypes from "prop-types";
 import icons from "src/images/icons.svg";
 
 const CartItem = ({ item, isOrderPage }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(item.quantity);
+
+  console.log(item);
 
   return (
     <li className={css.cartItem}>

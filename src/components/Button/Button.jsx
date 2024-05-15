@@ -1,7 +1,7 @@
 import css from "./Button.module.scss";
 import PropTypes from "prop-types";
 
-const Button = ({ text, type, isSmall = false, isAble }) => {
+const Button = ({ text, type, isSmall = false, isAble = true }) => {
   return (
     <button
       type={type}

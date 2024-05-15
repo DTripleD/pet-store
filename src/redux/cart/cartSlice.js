@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCart } from "./cartOperations";
+import { addToCart, getCart } from "./cartOperations";
 
-const initialState = {};
+const initialState = {
+  cartItems: [],
+};
 
 const handlePending = (state) => {
   state.error = "";
@@ -14,13 +16,14 @@ const handleRejected = (state, action) => {
 const cartSlice = createSlice({
   name: "cart",
   initialState,
-
   extraReducers: (builder) =>
     builder
       .addCase(getCart.fulfilled, (state, { payload }) => {
-        console.log(payload);
+        state.cartItems = payload.cart_items;
       })
-
+      .addCase(addToCart.fulfilled, (state, { payload }) => {
+        state.cartItems = payload.cart_items;
+      })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),

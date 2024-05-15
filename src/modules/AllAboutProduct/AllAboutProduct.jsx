@@ -2,9 +2,12 @@ import PhotoCarousel from "components/PhotoСarousel/PhotoСarousel";
 import css from "./AllAboutProduct.module.scss";
 import icons from "src/images/icons.svg";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import WeightButtonsList from "components/WeightButtons/WeightButtonsList/WeightButtonsList";
 import CharacteristicList from "components/CharacteristicList/CharacteristicList";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cart/cartOperations";
+import { getCookies } from "../../shared/cookies/cookies";
 
 const characteristicsArray = [
   { name: "Lorem ipsum", descr: "Lorem ipsum", id: 1 },
@@ -13,6 +16,16 @@ const characteristicsArray = [
 ];
 
 const AllAboutProduct = () => {
+  const dispatch = useDispatch();
+
+  const { productId } = useParams();
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({ token: getCookies().cartTokenPetStore, id: productId })
+    );
+  };
+
   return (
     <>
       <div className={css.main_product_info_wrapper}>
@@ -40,7 +53,10 @@ const AllAboutProduct = () => {
           </div>
           <ul className={css.add__button_wrapper}>
             <li>
-              <button className={`${css.add__button} ${css.to_cart__button}`}>
+              <button
+                className={`${css.add__button} ${css.to_cart__button}`}
+                onClick={handleAddToCart}
+              >
                 <svg className={css.to_cart__icon}>
                   <use href={icons + "#cart"}></use>
                 </svg>

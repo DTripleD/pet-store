@@ -29,7 +29,7 @@ const ProductPage = () => {
     <div className={`${css.container} ${css.productPageContainer}`}>
       <Sidebar />
       <div className={css.product_page__wrapper}>
-        <Routes />
+        {/* <Routes /> */}
 
         <ProductNavigation productId={productId} />
         <Outlet />
