@@ -3,14 +3,17 @@ import { addToCart, getCart } from "./cartOperations";
 
 const initialState = {
   cartItems: [],
+  isLoading: true,
 };
 
 const handlePending = (state) => {
   state.error = "";
+  state.isLoading = true;
 };
 
 const handleRejected = (state, action) => {
   state.error = action.payload;
+  state.isLoading = false;
 };
 
 const cartSlice = createSlice({
@@ -20,9 +23,11 @@ const cartSlice = createSlice({
     builder
       .addCase(getCart.fulfilled, (state, { payload }) => {
         state.cartItems = payload.cart_items;
+        state.isLoading = false;
       })
       .addCase(addToCart.fulfilled, (state, { payload }) => {
         state.cartItems = payload.cart_items;
+        state.isLoading = false;
       })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(

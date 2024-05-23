@@ -4,7 +4,6 @@ import { redirect, useParams } from "react-router-dom";
 
 const ActivatePage = () => {
   const { uid, token } = useParams();
-  console.log(uid, token);
 
   const activateUser = async (userId, userToken) => {
     try {

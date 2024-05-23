@@ -1,13 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import CartItem from "../../components/CartItem/CartItem";
-import { itemsInCart } from "../../data/itemsInCart";
 import css from "./OrderPage.module.scss";
 
 import icons from "src/images/icons.svg";
+import { useSelector } from "react-redux";
+import { selectItemsInCart } from "../../redux/cart/cartSelectors";
 
 const OrderPage = () => {
   const { state } = useLocation();
+
+  const itemsInCart = useSelector(selectItemsInCart);
 
   return (
     <section className={css.orderSection}>

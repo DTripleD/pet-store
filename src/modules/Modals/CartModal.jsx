@@ -3,16 +3,21 @@ import css from "./Modals.module.scss";
 import icons from "src/images/icons.svg";
 
 import PropTypes from "prop-types";
-import { itemsInCart } from "../../data/itemsInCart";
 import CartItem from "components/CartItem/CartItem";
 import { Link, useLocation } from "react-router-dom";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
-import { totalPrice } from "../../helpers/totalPrice";
+
+import { useSelector } from "react-redux";
+import {
+  selectCartIsLoading,
+  selectItemsInCart,
+} from "../../redux/cart/cartSelectors";
 
 const CartModal = ({ activeCartModal, setActiveCartModal }) => {
-  // const itemsInCart = [];
-
   const location = useLocation();
+
+  const itemsInCart = useSelector(selectItemsInCart);
+  const cartIsLoading = useSelector(selectCartIsLoading);
 
   return (
     <div
@@ -30,7 +35,9 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
               <p className={css.quantityText}>{itemsInCart.length} товара</p>
             )}
           </div>
-          {itemsInCart.length ? (
+          {cartIsLoading ? (
+            <div>Loading...</div>
+          ) : itemsInCart.length ? (
             <ul className={css.cartList}>
               {itemsInCart.map((item) => (
                 <CartItem key={item.id} item={item} />
@@ -47,7 +54,7 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
 
           {itemsInCart.length ? (
             <div>
-              <TotalPrice totalPrice={totalPrice(itemsInCart)} />
+              <TotalPrice itemsInCart={itemsInCart} />
               <Link
                 className={`${css.cartButton} ${css.activeButton}`}
                 to="/order"

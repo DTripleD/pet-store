@@ -30,6 +30,7 @@ import { getUserInfo } from "./redux/auth/operations";
 import { selectAuthToken } from "./redux/auth/selectors";
 import instance from "./shared/api/instance";
 import { getCookies } from "./shared/cookies/cookies";
+import { getCart } from "./redux/cart/cartOperations";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +63,12 @@ function App() {
       createCart();
     }
   }, []);
+
+  useEffect(() => {
+    const cookies = getCookies();
+
+    dispatch(getCart(cookies.cartTokenPetStore));
+  }, [dispatch]);
 
   const authToken = useSelector(selectAuthToken);
   useEffect(() => {

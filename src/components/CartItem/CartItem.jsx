@@ -11,12 +11,17 @@ import icons from "src/images/icons.svg";
 const CartItem = ({ item, isOrderPage }) => {
   const [quantity, setQuantity] = useState(item.quantity);
 
-  console.log(item);
-
   return (
     <li className={css.cartItem}>
       <div className={css.imageWrapper}>
-        <img src={item.img ? item.img : placeholder} alt="Image of cart item" />
+        <img
+          src={
+            item.product.images
+              ? `http://127.0.0.1:8000${item.product.images}`
+              : placeholder
+          }
+          alt="Image of cart item"
+        />
       </div>
       <div
         className={`${css.itemWrapper} ${
@@ -24,11 +29,13 @@ const CartItem = ({ item, isOrderPage }) => {
         }`}
       >
         <div className={css.baseInfoWrapper}>
-          <p className={css.itemText}>{item.text}</p>
+          <p className={css.itemText}>{item.product.name}</p>
           <div className={css.priceWrapper}>
-            <p className={css.totalPrice}>{item.current_price} грн</p>
-            {item.old_price && (
-              <p className={css.oldPrice}>{item.old_price} грн</p>
+            <p className={css.totalPrice}>
+              {item.product.discount_price || item.product.price} грн
+            </p>
+            {item.product.discount_price && (
+              <p className={css.oldPrice}>{item.product.price} грн</p>
             )}
           </div>
         </div>
@@ -53,7 +60,8 @@ const CartItem = ({ item, isOrderPage }) => {
           </div>
           {!isOrderPage && (
             <p className={css.totalPrice}>
-              {item.current_price * quantity} грн
+              {(item.product.discount_price || item.product.price) * quantity}{" "}
+              грн
             </p>
           )}
         </div>

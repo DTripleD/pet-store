@@ -1,11 +1,14 @@
 import css from "./TotalPrice.module.scss";
 import PropTypes from "prop-types";
 
-const TotalPrice = ({ totalPrice }) => {
+import { totalPrice } from "../../helpers/totalPrice";
+
+const TotalPrice = ({ itemsInCart }) => {
+  const price = totalPrice(itemsInCart);
   return (
     <div className={css.amountWrapper}>
       <p className={css.amountText}>Сума замовлення:</p>
-      <p className={css.amountPrice}>{totalPrice} грн</p>
+      <p className={css.amountPrice}>{price} грн</p>
     </div>
   );
 };
@@ -13,5 +16,5 @@ const TotalPrice = ({ totalPrice }) => {
 export default TotalPrice;
 
 TotalPrice.propTypes = {
-  totalPrice: PropTypes.number,
+  itemsInCart: PropTypes.array,
 };
