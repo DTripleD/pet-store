@@ -4,40 +4,30 @@
 
 .header__container {
   display: flex;
-  gap: 24px;
+
   justify-content: space-between;
 
-  padding-top: 25px;
-  padding-bottom: 25px;
   align-items: center;
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  @media screen and (min-width: 744px) {
+    padding-top: 21px;
+    padding-bottom: 21px;
+    gap: 24px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
 }
 
 .search__section {
   display: flex;
   flex-grow: 1;
   gap: 12px;
-}
-
-.category__header_button {
-  background-color: #e7e7e7;
-
-  border: none;
-
-  padding: 12px 18px;
-
-  border-radius: 100px;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
-
-.header__btn_text {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 12px;
-  color: #5d5d5d;
 }
 
 .info__wrapper {
@@ -52,31 +42,6 @@
   stroke: #5d5d5d;
 }
 
-.contactsWrapper {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-
-  position: relative;
-}
-
-.contactLink {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 12px;
-
-  color: #5d5d5d;
-
-  padding: 12px 8px;
-}
-
-.icon__down__header {
-  stroke: #5d5d5d;
-  transition: transform 300ms ease-in-out;
-
-  cursor: pointer;
-}
-
 .user__button {
   border: none;
   background-color: transparent;
@@ -89,44 +54,4 @@
 
 .userLink {
   display: flex;
-}
-
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.contactsText {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19px;
-
-  color: #5d5d5d;
-}
-
-.contactsDropDownList {
-  position: absolute;
-  border-radius: 8px;
-  border: 1.5px solid #e7e7e7;
-
-  background-color: #ffffff;
-
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition: opacity 300ms ease-in-out;
-}
-
-.contactsVisible {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.iconOpen {
-  transform: rotate(180deg);
 }

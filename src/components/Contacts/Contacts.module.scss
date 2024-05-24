@@ -1,0 +1,65 @@
+.contactsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  position: relative;
+}
+
+.contactsText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+
+  color: #5d5d5d;
+}
+
+.headerIcon {
+  width: 24px;
+  height: 24px;
+  stroke: #5d5d5d;
+}
+
+.icon__down__header {
+  stroke: #5d5d5d;
+  transition: transform 300ms ease-in-out;
+
+  cursor: pointer;
+}
+
+.contactsDropDownList {
+  position: absolute;
+  border-radius: 8px;
+  border: 1.5px solid #e7e7e7;
+
+  background-color: #ffffff;
+
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 300ms ease-in-out;
+}
+
+.contactLink {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+
+  color: #5d5d5d;
+
+  padding: 12px 8px;
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}
+
+.contactsVisible {
+  opacity: 1;
+  pointer-events: all;
+}

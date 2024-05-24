@@ -3,19 +3,17 @@ import icons from "src/images/icons.svg";
 import css from "./Header.module.scss";
 
 import PropTypes from "prop-types";
-import { useState } from "react";
-import HeaderDropDown from "components/HeaderDropDown/HeaderDropDown";
+
 import HeaderSearch from "components/HeaderSearch/HeaderSearch";
 import Logo from "components/Logo/Logo";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Link } from "react-router-dom";
+import CategoryButton from "../../components/CategoryButton/CategoryButton";
+import Contacts from "../../components/Contacts/Contacts";
+import MediaQuery from "react-responsive";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [contactsVisible, setContactsVisible] = useState(false);
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
@@ -23,50 +21,17 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
       <div className={`container ${css.header__container}`}>
         <Logo color={"logo__header"} />
 
-        <div className={css.search__section}>
-          <div
-            className={css.dropdown}
-            onMouseEnter={() => setIsOpen(true)}
-            onMouseLeave={() => setIsOpen(false)}
-            onClick={() => setIsOpen(false)}
-          >
-            <button className={css.category__header_button} type="button">
-              <svg className={css.headerIcon}>
-                <use href={icons + "#lines"}></use>
-              </svg>
-              <p className={css.header__btn_text}>Категорії</p>
-            </button>
-            <HeaderDropDown isOpen={isOpen} />
+        <MediaQuery minWidth={744}>
+          <div className={css.search__section}>
+            <CategoryButton />
+            <HeaderSearch />
           </div>
-
-          <HeaderSearch />
-        </div>
+        </MediaQuery>
         <div className={css.info__wrapper}>
-          <div>
-            <div className={css.contactsWrapper}>
-              <p className={css.contactsText}>Контакти</p>
-              <svg
-                className={`${css.headerIcon} ${css.icon__down__header} ${
-                  contactsVisible ? css.iconOpen : ""
-                }`}
-                onClick={() => setContactsVisible((prev) => !prev)}
-              >
-                <use href={icons + "#icon-down"}></use>
-              </svg>
-            </div>
-            <ul
-              className={`${css.contactsDropDownList} ${
-                contactsVisible ? css.contactsVisible : ""
-              }`}
-            >
-              <a href="tel:+000-000-00-00" className={css.contactLink}>
-                000-000-00-00
-              </a>
-              <a href="mailto:pettopia@gmail.com" className={css.contactLink}>
-                pettopia@gmail.com
-              </a>
-            </ul>
-          </div>
+          <MediaQuery minWidth={744}>
+            <Contacts />
+          </MediaQuery>
+
           <button className={css.user__button}>
             <svg className={css.headerIcon}>
               <use href={icons + "#heart"}></use>

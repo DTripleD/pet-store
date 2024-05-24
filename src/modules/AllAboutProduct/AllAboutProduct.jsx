@@ -2,12 +2,13 @@ import PhotoCarousel from "components/PhotoСarousel/PhotoСarousel";
 import css from "./AllAboutProduct.module.scss";
 import icons from "src/images/icons.svg";
 
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import WeightButtonsList from "components/WeightButtons/WeightButtonsList/WeightButtonsList";
 import CharacteristicList from "components/CharacteristicList/CharacteristicList";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cart/cartOperations";
 import { getCookies } from "../../shared/cookies/cookies";
+import { selectProduct } from "../../redux/product/productSelectors";
 
 const characteristicsArray = [
   { name: "Lorem ipsum", descr: "Lorem ipsum", id: 1 },
@@ -18,10 +19,6 @@ const characteristicsArray = [
 const AllAboutProduct = () => {
   const dispatch = useDispatch();
 
-  const product = useOutletContext();
-
-  console.log(product);
-
   const { productId } = useParams();
 
   const handleAddToCart = () => {
@@ -29,6 +26,8 @@ const AllAboutProduct = () => {
       addToCart({ token: getCookies().cartTokenPetStore, id: productId })
     );
   };
+
+  const product = useSelector(selectProduct);
 
   return (
     <>

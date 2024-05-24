@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "./productsOperations";
+import { getProduct } from "./productOperations";
 
 const initialState = {
-  product: { name: "", description: "" },
+  productInfo: { name: "", description: "", images: [] },
 };
 
 const handlePending = (state) => {
@@ -13,13 +13,15 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const productsSlice = createSlice({
-  name: "products",
+const productSlice = createSlice({
+  name: "product",
   initialState,
 
   extraReducers: (builder) =>
     builder
-      .addCase(getProduct.fulfilled, (state, { payload }) => {})
+      .addCase(getProduct.fulfilled, (state, { payload }) => {
+        console.log(payload);
+      })
 
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
@@ -28,4 +30,4 @@ const productsSlice = createSlice({
       ),
 });
 
-export const productsReducer = productsSlice.reducer;
+export const productReducer = productSlice.reducer;

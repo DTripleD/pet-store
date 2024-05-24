@@ -7,18 +7,19 @@ import { Link } from "react-router-dom";
 
 const SliderItem = ({ item }) => {
   return (
-    <Link to={item.id}>
-      <div className={css.swiper__item}>
-        <div className={css.swiper__image_wrapper}>
-          <img src={item.img} alt={item.title} />
-          <button className={css.favorite__button}>
-            <svg className={css.heart__icon}>
-              <use href={icons + "#heart"}></use>
-            </svg>
-          </button>
-        </div>
-        <WeightButtonsList />
-        <div>
+    <li className={css.item}>
+      <Link to={item.id}>
+        <div className={css.swiper__item}>
+          <div className={css.swiper__image_wrapper}>
+            <img src={item.img} alt={item.title} />
+            <button className={css.favorite__button}>
+              <svg className={css.heart__icon}>
+                <use href={icons + "#heart"}></use>
+              </svg>
+            </button>
+          </div>
+          <WeightButtonsList />
+
           <div className={css.swiper__descr_wrapper}>
             <h3 className={css.swiper__title}>{item.title}</h3>
             <p className={css.swipper__description}>{item.description}</p>
@@ -28,8 +29,8 @@ const SliderItem = ({ item }) => {
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </li>
   );
 };
 

@@ -7,25 +7,19 @@ import { Outlet, useParams } from "react-router-dom";
 
 import Sidebar from "components/Sidebar/Sidebar";
 import Routes from "components/Routes/Routes";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ProductNavigation from "modules/ProductNavigation/ProductNavigation";
+import { getProduct } from "../../redux/product/productOperations";
+import { useDispatch } from "react-redux";
 
 const ProductPage = () => {
-  const [product, setProduct] = useState({});
-
   const { productId } = useParams();
 
-  const getProductData = (id) => {
-    return fetch(`http://127.0.0.1:8000/api/v1/products/${id}/`)
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  };
-
-  console.log(product);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getProductData(productId);
-  }, [productId]);
+    dispatch(getProduct(productId));
+  }, [dispatch, productId]);
 
   return (
     <div className={`${css.container} ${css.productPageContainer}`}>
@@ -34,7 +28,7 @@ const ProductPage = () => {
         {/* <Routes /> */}
 
         <ProductNavigation productId={productId} />
-        <Outlet context={product} />
+        <Outlet />
         <Slider title="Акції" data={data} />
       </div>
     </div>

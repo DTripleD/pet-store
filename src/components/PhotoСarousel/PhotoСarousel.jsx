@@ -13,9 +13,9 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 import css from "./PhotoСarousel.module.scss";
 
-import mainImage from "src/images/img.png";
+import PropTypes from "prop-types";
 
-const PhotoCarousel = ({ images = [] }) => {
+const PhotoCarousel = ({ images }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   console.log(images);
@@ -82,3 +82,7 @@ const PhotoCarousel = ({ images = [] }) => {
 };
 
 export default PhotoCarousel;
+
+PhotoCarousel.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.object),
+};

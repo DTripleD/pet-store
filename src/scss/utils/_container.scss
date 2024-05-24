@@ -1,18 +1,16 @@
 .container {
   width: 100%;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 8px;
+  padding-right: 8px;
 
   // border: 1px solid red;
 
-  @media (min-width: 768px) {
-    width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
+  @media screen and (min-width: 744px) {
+    width: 744px;
   }
 
-  @media (min-width: 1920px) {
+  @media screen and (min-width: 1920px) {
     width: 1920px;
     padding-left: 48px;
     padding-right: 48px;

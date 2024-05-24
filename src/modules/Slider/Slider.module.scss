@@ -32,3 +32,9 @@
   width: 24px;
   height: 24px;
 }
+
+.productsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}

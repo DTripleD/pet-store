@@ -1,0 +1,33 @@
+.dropdown {
+  display: block;
+  float: left;
+  overflow: hidden;
+}
+
+.category__header_button {
+  background-color: #e7e7e7;
+
+  border: none;
+
+  padding: 12px 18px;
+
+  border-radius: 100px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.headerIcon {
+  width: 24px;
+  height: 24px;
+  stroke: #5d5d5d;
+}
+
+.header__btn_text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 12px;
+  color: #5d5d5d;
+}
