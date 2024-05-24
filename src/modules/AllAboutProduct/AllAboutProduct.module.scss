@@ -141,3 +141,17 @@
   line-height: 24px;
   color: #454545;
 }
+
+.priceWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.productDiscountPrice {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #b0b0b0;
+  text-decoration: line-through;
+}

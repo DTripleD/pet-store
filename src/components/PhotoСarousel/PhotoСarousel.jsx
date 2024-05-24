@@ -15,20 +15,10 @@ import css from "./PhotoСarousel.module.scss";
 
 import mainImage from "src/images/img.png";
 
-const photoArray = [
-  { img: mainImage, id: 1 },
-  { img: mainImage, id: 2 },
-  { img: mainImage, id: 3 },
-  { img: mainImage, id: 4 },
-  { img: mainImage, id: 5 },
-  { img: mainImage, id: 6 },
-  { img: mainImage, id: 8 },
-  { img: mainImage, id: 9 },
-  { img: mainImage, id: 10 },
-];
-
-const PhotoCarousel = () => {
+const PhotoCarousel = ({ images = [] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  console.log(images);
 
   const swiperReff = useRef();
 
@@ -46,9 +36,9 @@ const PhotoCarousel = () => {
         }}
         modules={[FreeMode, Navigation, Thumbs]}
       >
-        {photoArray.map((item) => (
+        {images.map((item) => (
           <SwiperSlide key={item.id}>
-            <img src={item.img} className={css.bigImage} />
+            <img src={item.image} className={css.bigImage} />
           </SwiperSlide>
         ))}
         <div className={css.imageSliderButtonsWrapper}>
@@ -81,9 +71,9 @@ const PhotoCarousel = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="smallProductSlider"
       >
-        {photoArray.map((item) => (
+        {images.map((item) => (
           <SwiperSlide key={item.id}>
-            <img src={item.img} className={css.hita} />
+            <img src={item.image} className={css.hita} />
           </SwiperSlide>
         ))}
       </Swiper>

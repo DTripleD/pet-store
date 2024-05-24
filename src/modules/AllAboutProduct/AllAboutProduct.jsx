@@ -2,7 +2,7 @@ import PhotoCarousel from "components/PhotoСarousel/PhotoСarousel";
 import css from "./AllAboutProduct.module.scss";
 import icons from "src/images/icons.svg";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import WeightButtonsList from "components/WeightButtons/WeightButtonsList/WeightButtonsList";
 import CharacteristicList from "components/CharacteristicList/CharacteristicList";
 import { useDispatch } from "react-redux";
@@ -18,6 +18,10 @@ const characteristicsArray = [
 const AllAboutProduct = () => {
   const dispatch = useDispatch();
 
+  const product = useOutletContext();
+
+  console.log(product);
+
   const { productId } = useParams();
 
   const handleAddToCart = () => {
@@ -29,14 +33,11 @@ const AllAboutProduct = () => {
   return (
     <>
       <div className={css.main_product_info_wrapper}>
-        <PhotoCarousel />
+        <PhotoCarousel images={product.images} />
 
         <div className={css.product__header}>
           <div className={css.base_info__wrapper}>
-            <h2 className={css.product_page_title}>
-              Сухий корм для кошек крупних порід Brit Care Cat GF Large Cats
-              Power & Vitality 400 г (курка та качка)
-            </h2>
+            <h2 className={css.product_page_title}>{product.name}</h2>
             <p className={css.product_code}>код товару:0000000</p>
             <div className={css.in_stock__wrapper}>
               <svg className={css.stock__icon}>
@@ -47,9 +48,15 @@ const AllAboutProduct = () => {
           </div>
           <div className={css.price__wrapper}>
             <WeightButtonsList />
-            <p className={css.product_page__price}>
-              360<span className={css.product_page__price_symbol}>₴</span>
-            </p>
+            <div className={css.priceWrapper}>
+              <p className={css.product_page__price}>
+                {product.discount_price || product.price}
+                <span className={css.product_page__price_symbol}>₴</span>
+              </p>
+              {product.discount_price && (
+                <p className={css.productDiscountPrice}>{product.price} ₴</p>
+              )}
+            </div>
           </div>
           <ul className={css.add__button_wrapper}>
             <li>
@@ -84,13 +91,7 @@ const AllAboutProduct = () => {
       </div>
       <div className={css.about_product_wrapper}>
         <h3 className={css.product_page__sub_title}>Опис товару</h3>
-        <p className={css.description__text}>
-          Brit Care Cat GF Large Cats Power & Vitality - це високоякісний сухий
-          корм, спеціально розроблений для задоволення потреб великих порід
-          котів. Збалансований склад і вміст корисних інгредієнтів роблять цей
-          корм ідеальним вибором для забезпечення сильного здоров
-          {"'"}я та енергії вашої кішки.
-        </p>
+        <p className={css.description__text}>{product.description}</p>
         <Link to="description" className={css.read_more_link}>
           Читати більше...
         </Link>

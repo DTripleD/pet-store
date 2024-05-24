@@ -31,7 +31,7 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
         <div className={css.cartWrapper}>
           <div className={css.titleWrapper}>
             <h3 className={css.cartTitle}>Кошик</h3>
-            {itemsInCart.length && (
+            {itemsInCart.length > 0 && (
               <p className={css.quantityText}>{itemsInCart.length} товара</p>
             )}
           </div>

@@ -21,6 +21,8 @@ const ProductPage = () => {
       .then((data) => setProduct(data));
   };
 
+  console.log(product);
+
   useEffect(() => {
     getProductData(productId);
   }, [productId]);
@@ -32,7 +34,7 @@ const ProductPage = () => {
         {/* <Routes /> */}
 
         <ProductNavigation productId={productId} />
-        <Outlet />
+        <Outlet context={product} />
         <Slider title="Акції" data={data} />
       </div>
     </div>
