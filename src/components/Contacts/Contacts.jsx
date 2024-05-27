@@ -23,12 +23,16 @@ const Contacts = () => {
           contactsVisible ? css.contactsVisible : ""
         }`}
       >
-        <a href="tel:+000-000-00-00" className={css.contactLink}>
-          000-000-00-00
-        </a>
-        <a href="mailto:pettopia@gmail.com" className={css.contactLink}>
-          pettopia@gmail.com
-        </a>
+        <li>
+          <a href="tel:+000-000-00-00" className={css.contactLink}>
+            000-000-00-00
+          </a>
+        </li>
+        <li>
+          <a href="mailto:pettopia@gmail.com" className={css.contactLink}>
+            pettopia@gmail.com
+          </a>
+        </li>
       </ul>
     </div>
   );

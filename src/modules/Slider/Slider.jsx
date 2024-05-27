@@ -29,48 +29,49 @@ const Slider = ({ title, data }) => {
 
   return (
     <section>
-      <div className={css.slider__header}>
-        <h2 className={css.slider__header_title}>{title}</h2>
-        <MediaQuery minWidth={744}>
-          <SliderButtons
-            isStartBtnActive={isStartBtnActive}
-            isEndBtnActive={isEndBtnActive}
-            swiperRef={swiperRef}
-          />
+      <div className={css.sliderContainer}>
+        <div className={css.slider__header}>
+          <h2 className={css.slider__header_title}>{title}</h2>
+          <MediaQuery minWidth={744}>
+            <SliderButtons
+              isStartBtnActive={isStartBtnActive}
+              isEndBtnActive={isEndBtnActive}
+              swiperRef={swiperRef}
+            />
+          </MediaQuery>
+        </div>
+        <MediaQuery maxWidth={743}>
+          <ul className={css.productsList}>
+            {data.map((item) => (
+              <SliderItem key={item.id} item={item} />
+            ))}
+          </ul>
         </MediaQuery>
+        <MediaQuery minWidth={744}>
+          <Swiper
+            slidesPerView={"auto"}
+            spaceBetween={24}
+            onSlideChange={isButtonActive}
+            modules={[Navigation]}
+            className="mySwiper"
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+          >
+            {data.map((item) => (
+              <SwiperSlide key={item.id}>
+                <SliderItem item={item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </MediaQuery>
+        <Link to="new" className={css.styled__link}>
+          <p className={css.show__all_text}>Переглянути все</p>
+          <svg className={css.show__all_icon}>
+            <use href={icons + "#icon-right"}></use>
+          </svg>
+        </Link>
       </div>
-      <MediaQuery maxWidth={743}>
-        <ul className={css.productsList}>
-          {data.map((item) => (
-            <SliderItem key={item.id} item={item} />
-          ))}
-        </ul>
-      </MediaQuery>
-      <MediaQuery minWidth={744}>
-        <Swiper
-          slidesPerView={"auto"}
-          spaceBetween={24}
-          onSlideChange={isButtonActive}
-          modules={[Navigation]}
-          className="mySwiper"
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-        >
-          {data.map((item) => (
-            <SwiperSlide key={item.id}>
-              <SliderItem item={item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </MediaQuery>
-
-      <Link to="new" className={css.styled__link}>
-        <p className={css.show__all_text}>Переглянути все</p>
-        <svg className={css.show__all_icon}>
-          <use href={icons + "#icon-right"}></use>
-        </svg>
-      </Link>
     </section>
   );
 };

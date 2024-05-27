@@ -12,14 +12,30 @@ import { Link } from "react-router-dom";
 import CategoryButton from "../../components/CategoryButton/CategoryButton";
 import Contacts from "../../components/Contacts/Contacts";
 import MediaQuery from "react-responsive";
+import { useState } from "react";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
     <header className={css.header}>
       <div className={`container ${css.header__container}`}>
-        <Logo color={"logo__header"} />
+        <div className={css.logoWrapper}>
+          <MediaQuery maxWidth={743}>
+            <button
+              className={css.menuButton}
+              onClick={() => setIsOpen((prev) => !prev)}
+            >
+              <svg className={css.menuIcon}>
+                <use href={icons + "#menu"}></use>
+              </svg>
+            </button>
+          </MediaQuery>
+          <Logo color={"logo__header"} />
+        </div>
 
         <MediaQuery minWidth={744}>
           <div className={css.search__section}>
@@ -32,11 +48,20 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
             <Contacts />
           </MediaQuery>
 
-          <button className={css.user__button}>
-            <svg className={css.headerIcon}>
-              <use href={icons + "#heart"}></use>
-            </svg>
-          </button>
+          <MediaQuery minWidth={744}>
+            <button className={css.user__button}>
+              <svg className={css.headerIcon}>
+                <use href={icons + "#heart"}></use>
+              </svg>
+            </button>
+          </MediaQuery>
+          <MediaQuery maxWidth={743}>
+            <button className={css.user__button}>
+              <svg className={css.headerIcon}>
+                <use href={icons + "#loop"}></use>
+              </svg>
+            </button>
+          </MediaQuery>
           <button
             className={css.user__button}
             onClick={() => setActiveCartModal(true)}
@@ -45,23 +70,26 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
               <use href={icons + "#cart"}></use>
             </svg>
           </button>
-          {isLoggedIn ? (
-            <Link to="/user/profile" className={css.userLink}>
-              <svg className={css.headerIcon}>
-                <use href={icons + "#person"}></use>
-              </svg>
-            </Link>
-          ) : (
-            <button
-              className={css.user__button}
-              onClick={() => setActiveAuthModal(true)}
-            >
-              <svg className={css.headerIcon}>
-                <use href={icons + "#person"}></use>
-              </svg>
-            </button>
-          )}
+          <MediaQuery minWidth={744}>
+            {isLoggedIn ? (
+              <Link to="/user/profile" className={css.userLink}>
+                <svg className={css.headerIcon}>
+                  <use href={icons + "#person"}></use>
+                </svg>
+              </Link>
+            ) : (
+              <button
+                className={css.user__button}
+                onClick={() => setActiveAuthModal(true)}
+              >
+                <svg className={css.headerIcon}>
+                  <use href={icons + "#person"}></use>
+                </svg>
+              </button>
+            )}
+          </MediaQuery>
         </div>
+        <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </header>
   );

@@ -1,15 +1,32 @@
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media screen and (min-width: 1920px) {
+    gap: 24px;
+  }
+}
+
 .slider__header {
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
   justify-content: space-between;
 }
 
 .slider__header_title {
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 34px;
   color: #3d3d3d;
+
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 34px;
+  }
 }
 
 .styled__link {
@@ -23,7 +40,7 @@
 .show__all_text {
   font-size: 16px;
   font-weight: 500;
-  line-height: 19.36px;
+  line-height: 12px;
   color: #5d5d5d;
 }
 

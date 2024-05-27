@@ -24,6 +24,18 @@
   }
 }
 
+.menuIcon {
+  width: 40px;
+  height: 40px;
+  stroke: #5d5d5d;
+}
+
+.logoWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .search__section {
   display: flex;
   flex-grow: 1;
@@ -54,4 +66,12 @@
 
 .userLink {
   display: flex;
+}
+
+.menuButton {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  height: 40px;
+  cursor: pointer;
 }
