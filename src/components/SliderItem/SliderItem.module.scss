@@ -2,7 +2,11 @@
   flex-basis: calc((100% - 16px) / 2);
 
   @media screen and (min-width: 744px) {
-    width: 297.6px;
+    max-width: 170px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    max-width: 297.6px;
   }
 }
 

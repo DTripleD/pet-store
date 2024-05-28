@@ -64,7 +64,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
         </ul>
       </div>
       <div className={css.burgerContainer}>
-        <p>Контакти</p>
+        <p className={css.contactsTitle}>Контакти</p>
         <ul className={css.contactsList}>
           <li className={css.contactItem}>
             <a href="tel:+380 000 000 00" className={css.contactText}>
@@ -79,44 +79,42 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
         </ul>
       </div>
       <div className={css.burgerContainer}>
-        <div>
-          <p>Ми у соц. мережах:</p>
-          <ul className={css.burgerSocList}>
-            <li>
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg className={css.socIcon}>
-                  <use href={icons + "#instagram"}></use>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg className={css.socIcon}>
-                  <use href={icons + "#facebook"}></use>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.tiktok.com/uk-UA/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg className={css.socIcon}>
-                  <use href={icons + "#tiktok"}></use>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </div>
+        <p className={css.contactsTitle}>Ми у соц. мережах:</p>
+        <ul className={css.burgerSocList}>
+          <li>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg className={css.socIcon}>
+                <use href={icons + "#instagram"}></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg className={css.socIcon}>
+                <use href={icons + "#facebook"}></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.tiktok.com/uk-UA/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg className={css.socIcon}>
+                <use href={icons + "#tiktok"}></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );

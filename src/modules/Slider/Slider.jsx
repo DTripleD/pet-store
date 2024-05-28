@@ -49,8 +49,15 @@ const Slider = ({ title, data }) => {
         </MediaQuery>
         <MediaQuery minWidth={744}>
           <Swiper
+            breakpoints={{
+              744: {
+                spaceBetween: 16,
+              },
+              1920: {
+                spaceBetween: 24,
+              },
+            }}
             slidesPerView={"auto"}
-            spaceBetween={24}
             onSlideChange={isButtonActive}
             modules={[Navigation]}
             className="mySwiper"

@@ -18,7 +18,7 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className={css.header}>
