@@ -1,46 +1,97 @@
 .footer {
   background-color: #153f2a;
 
-  padding-top: 64px;
-  padding-bottom: 32px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+
+  @media screen and (min-width: 1920px) {
+    padding-top: 64px;
+    padding-bottom: 32px;
+  }
 }
 
 .footerInfo {
-  display: flex;
+  display: grid;
+
   justify-content: space-between;
   margin-bottom: 48px;
+
+  gap: 48px;
+
+  flex-direction: column;
+
+  @media screen and (min-width: 744px) {
+    flex-direction: row;
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @media screen and (min-width: 1920px) {
+    grid-template-columns: repeat(4, auto);
+  }
 }
 
 .footerNavTitle {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 22px;
-
   color: #ffffff;
 
-  margin-bottom: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+
+  margin-bottom: 16px;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+
+    margin-bottom: 18px;
+  }
 }
 
 .footerNavText {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19px;
-
   color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+
+  &.contact {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  &,
+  &.contact {
+    @media screen and (min-width: 1920px) {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19px;
+    }
+  }
 }
 
 .footerNavList {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
+
+  @media screen and (min-width: 1920px) {
+    gap: 18px;
+  }
 }
 
 .footerAddress {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 17px;
 
   color: #ffffff;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+  }
 }
 
 .footerAddressWrapper {
@@ -50,10 +101,11 @@
 }
 
 .infoTitle {
+  color: #ffffff;
+
   font-size: 14px;
   font-weight: 600;
   line-height: 17px;
-  color: #ffffff;
 
   margin-bottom: 12px;
 }
@@ -62,6 +114,14 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media screen and (min-width: 744px) {
+    grid-column: span 3;
+  }
+
+  @media screen and (min-width: 1920px) {
+    grid-column: span 1;
+  }
 }
 
 .contactsWrapper {
@@ -99,10 +159,16 @@
 }
 
 .copyrightText {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 17px;
   color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
 
 .copyrightWrapper {

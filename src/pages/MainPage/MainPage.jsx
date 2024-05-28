@@ -9,7 +9,7 @@ import MediaQuery from "react-responsive";
 const MainPage = () => {
   return (
     <div className={`container ${css.main__wrapper}`}>
-      <MediaQuery minWidth={744}>
+      <MediaQuery minWidth={1920}>
         <Sidebar />
       </MediaQuery>
 

@@ -2,7 +2,7 @@
   position: absolute;
   width: 100vw;
   height: 100vh;
-  z-index: 99999;
+  // z-index: 99999;
   background-color: #ffffff;
   top: 0;
   left: 0;
@@ -24,6 +24,9 @@
 
 .burgerContainer {
   padding: 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
   &:not(:last-child) {
     border-bottom: 1px solid #f6f6f6;
@@ -34,6 +37,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
 }
 
 .burgerSocList {
@@ -76,6 +80,8 @@
 .burgerAuthWrapper {
   display: flex;
   gap: 8px;
+
+  padding: 12px 0;
 }
 
 .burgerAuthList {
@@ -90,4 +96,26 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 13px;
+}
+
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contactItem {
+  padding: 12px 8px;
+}
+
+.contactText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+
+  color: #3d3d3d;
+
+  @media screen and (min-width: 744px) {
+    font-size: 18px;
+  }
 }

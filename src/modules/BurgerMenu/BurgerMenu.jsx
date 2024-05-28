@@ -65,52 +65,58 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
       </div>
       <div className={css.burgerContainer}>
         <p>Контакти</p>
-        <ul>
-          <li>
-            <a href="tel:+380 000 000 00">+380 000 000 00</a>
+        <ul className={css.contactsList}>
+          <li className={css.contactItem}>
+            <a href="tel:+380 000 000 00" className={css.contactText}>
+              +380 000 000 00
+            </a>
           </li>
-          <li>
-            <a href="mailto:pettopia@gmail.com">pettopia@gmail.com</a>
+          <li className={css.contactItem}>
+            <a href="mailto:pettopia@gmail.com" className={css.contactText}>
+              pettopia@gmail.com
+            </a>
           </li>
         </ul>
       </div>
       <div className={css.burgerContainer}>
-        <p>Ми у соц. мережах:</p>
-        <ul className={css.burgerSocList}>
-          <li>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg className={css.socIcon}>
-                <use href={icons + "#instagram"}></use>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg className={css.socIcon}>
-                <use href={icons + "#facebook"}></use>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.tiktok.com/uk-UA/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg className={css.socIcon}>
-                <use href={icons + "#tiktok"}></use>
-              </svg>
-            </a>
-          </li>
-        </ul>
+        <div>
+          <p>Ми у соц. мережах:</p>
+          <ul className={css.burgerSocList}>
+            <li>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg className={css.socIcon}>
+                  <use href={icons + "#instagram"}></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg className={css.socIcon}>
+                  <use href={icons + "#facebook"}></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.tiktok.com/uk-UA/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg className={css.socIcon}>
+                  <use href={icons + "#tiktok"}></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -24,31 +24,31 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
     <header className={css.header}>
       <div className={`container ${css.header__container}`}>
         <div className={css.logoWrapper}>
-          <MediaQuery maxWidth={743}>
-            <button
-              className={css.menuButton}
+          <MediaQuery maxWidth={1919}>
+            <svg
+              className={css.menuIcon}
               onClick={() => setIsOpen((prev) => !prev)}
             >
-              <svg className={css.menuIcon}>
-                <use href={icons + "#menu"}></use>
-              </svg>
-            </button>
+              <use href={icons + "#menu"}></use>
+            </svg>
           </MediaQuery>
           <Logo color={"logo__header"} />
         </div>
 
         <MediaQuery minWidth={744}>
           <div className={css.search__section}>
-            <CategoryButton />
+            <MediaQuery minWidth={1920}>
+              <CategoryButton />
+            </MediaQuery>
             <HeaderSearch />
           </div>
         </MediaQuery>
         <div className={css.info__wrapper}>
-          <MediaQuery minWidth={744}>
+          <MediaQuery minWidth={1920}>
             <Contacts />
           </MediaQuery>
 
-          <MediaQuery minWidth={744}>
+          <MediaQuery minWidth={1920}>
             <button className={css.user__button}>
               <svg className={css.headerIcon}>
                 <use href={icons + "#heart"}></use>
@@ -62,6 +62,7 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
               </svg>
             </button>
           </MediaQuery>
+
           <button
             className={css.user__button}
             onClick={() => setActiveCartModal(true)}
@@ -70,7 +71,8 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
               <use href={icons + "#cart"}></use>
             </svg>
           </button>
-          <MediaQuery minWidth={744}>
+
+          <MediaQuery minWidth={1920}>
             {isLoggedIn ? (
               <Link to="/user/profile" className={css.userLink}>
                 <svg className={css.headerIcon}>
@@ -89,7 +91,9 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
             )}
           </MediaQuery>
         </div>
-        <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MediaQuery maxWidth={1919}>
+          <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+        </MediaQuery>
       </div>
     </header>
   );

@@ -68,7 +68,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="tel:+38(000)-000-00-00"
-                    className={css.footerNavText}
+                    className={`${css.footerNavText} ${css.contact}`}
                   >
                     +38(000)-000-00-00
                   </a>
@@ -76,7 +76,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="mailto:pettopiateamchallenge@gmail.com"
-                    className={css.footerNavText}
+                    className={`${css.footerNavText} ${css.contact}`}
                   >
                     pettopiateamchallenge@gmail.com
                   </a>
