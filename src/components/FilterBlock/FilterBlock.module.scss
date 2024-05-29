@@ -1,0 +1,29 @@
+.labelsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media screen and (min-width: 1920px) {
+    gap: 24px;
+  }
+}
+
+.form__title {
+  color: #3d3d3d;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+}
+
+.labelsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

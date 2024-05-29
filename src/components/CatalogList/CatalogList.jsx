@@ -3,11 +3,39 @@ import CatalogItem from "components/CatalogItem/CatalogItem";
 
 import PropTypes from "prop-types";
 import SortBy from "modules/SortBy/SortBy";
+import { useEffect, useState } from "react";
+import MediaQuery from "react-responsive";
+import icons from "src/images/icons.svg";
 
-const CatalogList = ({ products }) => {
+import FilterBurger from "../../modules/FilterBurger/FilterBurger";
+
+const CatalogList = ({ products, value, setValue, animalId, productsId }) => {
+  const [filtersIsOpen, setFiltersIsOpen] = useState(true);
+
+  useEffect(() => {
+    if (filtersIsOpen) {
+      document.body.style.overflow = "hidden";
+    }
+    if (!filtersIsOpen) {
+      document.body.style.overflow = "";
+    }
+  });
+
   return (
     <div className={css.catolog__list__wrapper}>
       <div>
+        <MediaQuery maxWidth={1919}>
+          <button
+            className={css.filterButton}
+            type="button"
+            onClick={() => setFiltersIsOpen((prev) => !prev)}
+          >
+            <svg className={css.filterIcon}>
+              <use href={icons + "#filter"}></use>
+            </svg>
+            <p>Фільтри</p>
+          </button>
+        </MediaQuery>
         <button className={css.clean__button}>Очистити</button>
       </div>
 
@@ -21,6 +49,14 @@ const CatalogList = ({ products }) => {
           <CatalogItem item={item} key={item.id} />
         ))}
       </ul>
+      <FilterBurger
+        filtersIsOpen={filtersIsOpen}
+        setFiltersIsOpen={setFiltersIsOpen}
+        value={value}
+        setValue={setValue}
+        animalId={animalId}
+        productsId={productsId}
+      />
     </div>
   );
 };

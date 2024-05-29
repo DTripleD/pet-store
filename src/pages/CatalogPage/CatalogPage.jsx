@@ -13,6 +13,7 @@ import {
   selectCategories,
   selectProducts,
 } from "../../redux/products/productsSelectors";
+import MediaQuery from "react-responsive";
 
 const CatalogPage = () => {
   const { category, catalog } = useParams();
@@ -56,14 +57,26 @@ const CatalogPage = () => {
         <div>No routes</div>
       )}
       <div className={css.catalog__container}>
-        <FilterForm
-          value={value}
-          setValue={setValue}
-          animalId={catalog}
-          productsId={category}
-        />
+        <MediaQuery minWidth={1920}>
+          <FilterForm
+            value={value}
+            setValue={setValue}
+            animalId={catalog}
+            productsId={category}
+          />
+        </MediaQuery>
 
-        {products ? <CatalogList products={products} /> : <div>Loading...</div>}
+        {products ? (
+          <CatalogList
+            products={products}
+            value={value}
+            setValue={setValue}
+            animalId={catalog}
+            productsId={category}
+          />
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </div>
   );

@@ -14,7 +14,12 @@
   background-color: #e7e7e7;
   border-radius: 100px;
   border: none;
-  padding: 15px 16px;
+
+  padding: 12px;
+
+  @media screen and (min-width: 1920px) {
+    padding: 15px 16px;
+  }
 }
 
 .middle__wrapper {
@@ -23,14 +28,51 @@
 }
 
 .found__title {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 24px;
   color: #262626;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+  }
 }
 
 .catalog__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 16px;
+
+  @media screen and (min-width: 1920px) {
+    gap: 24px;
+  }
+}
+
+.filterButton {
+  padding: 8px 12px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+
+  color: #ffffff;
+
+  background-color: #34955d;
+  border: none;
+
+  border-radius: 100px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterIcon {
+  width: 24px;
+  height: 24px;
+
+  stroke: #ffffff;
 }

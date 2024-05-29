@@ -30,7 +30,11 @@
 .smallButton {
   font-size: 16px;
   font-weight: 600;
-  padding: 18px;
+  line-height: 12px;
 
   margin: 0;
+
+  @media screen and (min-width: 1920px) {
+    padding: 18px;
+  }
 }

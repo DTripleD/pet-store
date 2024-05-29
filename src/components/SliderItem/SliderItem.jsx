@@ -32,9 +32,11 @@ const SliderItem = ({ item }) => {
                 <p className={css.swiper__new_price}>{item.new_price} грн.</p>
                 <p className={css.swiper__old_price}>{item.old_price} грн.</p>
               </div>
-              <svg className={css.cartBuyIcon}>
-                <use href={icons + "#cart"}></use>
-              </svg>
+              <MediaQuery maxWidth={1919}>
+                <svg className={css.cartBuyIcon}>
+                  <use href={icons + "#cart"}></use>
+                </svg>
+              </MediaQuery>
             </div>
           </div>
         </div>

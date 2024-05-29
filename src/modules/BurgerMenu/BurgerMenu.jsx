@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import css from "./BurgerMenu.module.scss";
 import Logo from "components/Logo/Logo";
 import icons from "src/images/icons.svg";
 
 import PropTypes from "prop-types";
+import AnimalBurgerMenu from "../AnimalBurgerMenu/AnimalBurgerMenu";
 
 const BurgerMenu = ({ isOpen, setIsOpen }) => {
   useEffect(() => {
@@ -16,6 +17,8 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
   });
 
   const isLogIn = false;
+
+  const [categoryIsOpen, setCategoryIsOpen] = useState(false);
 
   return (
     <div className={`${css.burgerWrapper} ${isOpen ? css.open : ""}`}>
@@ -43,7 +46,10 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
           )}
         </div>
         <ul className={css.burgerMenuList}>
-          <li className={css.burgerMenuItem}>
+          <li
+            className={css.burgerMenuItem}
+            onClick={() => setCategoryIsOpen(true)}
+          >
             <svg className={css.burgerIcon} onClick={() => setIsOpen(false)}>
               <use href={icons + "#menu"}></use>
             </svg>
@@ -116,6 +122,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
           </li>
         </ul>
       </div>
+      <AnimalBurgerMenu isOpen={categoryIsOpen} setIsOpen={setCategoryIsOpen} />
     </div>
   );
 };

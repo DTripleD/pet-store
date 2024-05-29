@@ -14,6 +14,7 @@ import Contacts from "../../components/Contacts/Contacts";
 import MediaQuery from "react-responsive";
 import { useState } from "react";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import AnimalBurgerMenu from "../AnimalBurgerMenu/AnimalBurgerMenu";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

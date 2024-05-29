@@ -2,7 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getProduct } from "./productOperations";
 
 const initialState = {
-  productInfo: { name: "", description: "", images: [] },
+  productInfo: {
+    name: "",
+    description: "",
+    images: [],
+    price: "",
+    discount_price: "",
+  },
 };
 
 const handlePending = (state) => {
@@ -20,7 +26,7 @@ const productSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(getProduct.fulfilled, (state, { payload }) => {
-        console.log(payload);
+        state.productInfo = payload;
       })
 
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)

@@ -1,19 +1,40 @@
+.categorySection {
+  padding: 0 0 100px 0;
+}
+
 .sub_cat_title {
   font-size: 28px;
   font-weight: 600;
   line-height: 34px;
   color: #262626;
+
+  padding: 24px 0;
 }
 
 .sub_cat_list {
   display: flex;
   flex-wrap: wrap;
 
-  gap: 24px;
+  gap: 8px;
+
+  @media screen and (min-width: 1920px) {
+    gap: 24px;
+  }
+
+  padding: 24px 0;
 }
 
 .sub_cat_item {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  padding: 16px 12px;
+  gap: 12px;
+
+  @media screen and (min-width: 1920px) {
+    gap: 18px;
+    padding: 20px;
+  }
 }
 
 .subCatItem {
@@ -24,13 +45,57 @@
 }
 
 .sub_cat_img_wrapper {
-  width: 244px;
-  height: 258px;
+  width: 159px;
+  height: 168px;
+
+  @media screen and (min-width: 1920px) {
+    width: 244px;
+    height: 258px;
+  }
 }
 
 .sub_cat_text {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 22px;
   color: #3d3d3d;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+
+  @media screen and (min-width: 744px) {
+    // !!!!! НЕТУ
+  }
+
+  @media screen and (min-width: 1920px) {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px;
+  }
+}
+
+.iconBack {
+  stroke: #3d3d3d;
+  transform: rotate(90deg);
+
+  width: 24px;
+  height: 24px;
+}
+
+.textBack {
+  color: #3d3d3d;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 12px;
+
+  @media screen and (min-width: 744px) {
+    font-size: 16px;
+  }
+}
+
+.linkBack {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  padding: 12px 8px 12px 0;
 }
