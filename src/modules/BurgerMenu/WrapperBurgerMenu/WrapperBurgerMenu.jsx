@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
-import css from "./BurgerMenu.module.scss";
 import Logo from "components/Logo/Logo";
 import icons from "src/images/icons.svg";
 
-import PropTypes from "prop-types";
-import AnimalBurgerMenu from "../AnimalBurgerMenu/AnimalBurgerMenu";
+import css from "./WrapperBurgerMenu.module.scss";
+import { useEffect } from "react";
 
-const BurgerMenu = ({ isOpen, setIsOpen }) => {
+const WrapperBurgerMenu = ({ children, isOpen, setIsOpen }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -15,10 +13,6 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
       document.body.style.overflow = "";
     }
   });
-
-  const isLogIn = false;
-
-  const [categoryIsOpen, setCategoryIsOpen] = useState(false);
 
   return (
     <div className={`${css.burgerWrapper} ${isOpen ? css.open : ""}`}>
@@ -29,46 +23,9 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
           <use href={icons + "#cross"}></use>
         </svg>
       </div>
-      <div className={css.burgerContainer}>
-        <div className={css.burgerAuthWrapper}>
-          <svg className={css.burgerIcon} onClick={() => setIsOpen(false)}>
-            <use href={icons + "#person"}></use>
-          </svg>
-          {isLogIn ? (
-            <p className={css.burgerMenuText}>PersonName</p>
-          ) : (
-            <ul className={css.burgerAuthList}>
-              {/* !!!!!! нужно ли тут лишками или как то по другому? */}
-              <li className={css.burgerMenuText}>Вхід</li>
-              <li className={css.line}>|</li>
-              <li className={css.burgerMenuText}>Реєстрація</li>
-            </ul>
-          )}
-        </div>
-        <ul className={css.burgerMenuList}>
-          <li
-            className={css.burgerMenuItem}
-            onClick={() => setCategoryIsOpen(true)}
-          >
-            <svg className={css.burgerIcon} onClick={() => setIsOpen(false)}>
-              <use href={icons + "#menu"}></use>
-            </svg>
-            <p className={css.burgerMenuText}>Каталог</p>
-          </li>
-          <li className={css.burgerMenuItem}>
-            <svg className={css.burgerIcon} onClick={() => setIsOpen(false)}>
-              <use href={icons + "#heart"}></use>
-            </svg>
-            <p className={css.burgerMenuText}>Обране</p>
-          </li>
-          <li className={css.burgerMenuItem}>
-            <svg className={css.burgerIcon} onClick={() => setIsOpen(false)}>
-              <use href={icons + "#cart"}></use>
-            </svg>
-            <p className={css.burgerMenuText}>Кошик</p>
-          </li>
-        </ul>
-      </div>
+
+      <div className={css.burgerContainer}>{children}</div>
+
       <div className={css.burgerContainer}>
         <p className={css.contactsTitle}>Контакти</p>
         <ul className={css.contactsList}>
@@ -122,14 +79,8 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
           </li>
         </ul>
       </div>
-      <AnimalBurgerMenu isOpen={categoryIsOpen} setIsOpen={setCategoryIsOpen} />
     </div>
   );
 };
 
-export default BurgerMenu;
-
-BurgerMenu.propTypes = {
-  isOpen: PropTypes.bool,
-  setIsOpen: PropTypes.func,
-};
+export default WrapperBurgerMenu;

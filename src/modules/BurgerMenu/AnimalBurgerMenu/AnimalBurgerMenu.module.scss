@@ -1,0 +1,36 @@
+.animalLogo {
+  width: 24px;
+  height: 24px;
+
+  stroke: #5d5d5d;
+}
+
+.animalItem {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 8px;
+}
+
+.toAnimalIcon {
+  width: 24px;
+  height: 24px;
+
+  transform: rotate(-90deg);
+
+  stroke: #5d5d5d;
+}
+
+.animalWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.animalsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

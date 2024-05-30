@@ -5,6 +5,7 @@ import { persistedAuthReducer } from "./auth/authSlice";
 import { productsReducer } from "./products/productsSlice";
 import { cartReducer } from "./cart/cartSlice";
 import { productReducer } from "./product/productSlice";
+import { burgerAnimalReducer } from "./burgerAnimal/burgerAnimalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     products: productsReducer,
     product: productReducer,
     cart: cartReducer,
+    burgerAnimal: burgerAnimalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

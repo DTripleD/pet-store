@@ -1,0 +1,88 @@
+.burgerWrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.burgerIcon {
+  width: 24px;
+  height: 24px;
+  stroke: #5d5d5d;
+
+  cursor: pointer;
+}
+
+.burgerContainer {
+  padding: 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #f6f6f6;
+  }
+}
+
+.burgerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.burgerMenuItem {
+  display: flex;
+
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 0;
+}
+
+.burgerMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.burgerMenuText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 13px;
+  color: #5d5d5d;
+
+  @media screen and (min-width: 744px) {
+    font-size: 18px;
+  }
+}
+
+.burgerAuthWrapper {
+  display: flex;
+  gap: 8px;
+
+  padding: 12px 0;
+}
+
+.burgerAuthList {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.line {
+  color: #b0b0b0;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 13px;
+}

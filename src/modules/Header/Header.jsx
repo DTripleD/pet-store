@@ -13,13 +13,20 @@ import CategoryButton from "../../components/CategoryButton/CategoryButton";
 import Contacts from "../../components/Contacts/Contacts";
 import MediaQuery from "react-responsive";
 import { useState } from "react";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import AnimalBurgerMenu from "../AnimalBurgerMenu/AnimalBurgerMenu";
+
+import AnimalBurgerMenu from "../BurgerMenu/AnimalBurgerMenu/AnimalBurgerMenu";
+import WrapperBurgerMenu from "../BurgerMenu/WrapperBurgerMenu/WrapperBurgerMenu";
+import CategoryBurgerMenu from "../BurgerMenu/CategoryBurgerMenu/CategoryBurgerMenu";
+import RegisterBurgerMenu from "../BurgerMenu/RegisterBurgerMenu/RegisterBurgerMenu";
+import MainBurgerMenu from "../BurgerMenu/MainBurgerMenu/MainBurgerMenu";
+import LoginBurgerMenu from "../BurgerMenu/LoginBurgerMenu/LoginBurgerMenu";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const [openedBurger, setOpenedBurger] = useState("");
 
   return (
     <header className={css.header}>
@@ -28,7 +35,10 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
           <MediaQuery maxWidth={1919}>
             <svg
               className={css.menuIcon}
-              onClick={() => setIsOpen((prev) => !prev)}
+              onClick={() => {
+                setOpenedBurger("main");
+                setIsOpen((prev) => !prev);
+              }}
             >
               <use href={icons + "#menu"}></use>
             </svg>
@@ -48,7 +58,6 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
           <MediaQuery minWidth={1920}>
             <Contacts />
           </MediaQuery>
-
           <MediaQuery minWidth={1920}>
             <button className={css.user__button}>
               <svg className={css.headerIcon}>
@@ -63,7 +72,6 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
               </svg>
             </button>
           </MediaQuery>
-
           <button
             className={css.user__button}
             onClick={() => setActiveCartModal(true)}
@@ -72,7 +80,6 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
               <use href={icons + "#cart"}></use>
             </svg>
           </button>
-
           <MediaQuery minWidth={1920}>
             {isLoggedIn ? (
               <Link to="/user/profile" className={css.userLink}>
@@ -93,7 +100,25 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
           </MediaQuery>
         </div>
         <MediaQuery maxWidth={1919}>
-          <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+          <WrapperBurgerMenu isOpen={isOpen} setIsOpen={setIsOpen}>
+            {openedBurger === "main" && (
+              <MainBurgerMenu setOpenedBurger={setOpenedBurger} />
+            )}
+            {openedBurger === "animal" && (
+              <AnimalBurgerMenu setOpenedBurger={setOpenedBurger} />
+            )}
+            {openedBurger === "category" && (
+              <CategoryBurgerMenu setOpenedBurger={setOpenedBurger} />
+            )}
+
+            {openedBurger === "login" && (
+              <LoginBurgerMenu setOpenedBurger={setOpenedBurger} />
+            )}
+
+            {openedBurger === "register" && (
+              <RegisterBurgerMenu setOpenedBurger={setOpenedBurger} />
+            )}
+          </WrapperBurgerMenu>
         </MediaQuery>
       </div>
     </header>

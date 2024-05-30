@@ -14,14 +14,6 @@
   transform: translateX(0);
 }
 
-.burgerIcon {
-  width: 24px;
-  height: 24px;
-  stroke: #5d5d5d;
-
-  cursor: pointer;
-}
-
 .burgerContainer {
   padding: 16px 16px;
   display: flex;
@@ -40,62 +32,20 @@
   flex-direction: row;
 }
 
-.burgerSocList {
-  display: flex;
-  gap: 24px;
-}
-
-.socIcon {
+.burgerIcon {
   width: 24px;
   height: 24px;
-  fill: #3d3d3d;
+  stroke: #5d5d5d;
+
+  cursor: pointer;
 }
 
-.burgerMenuItem {
-  display: flex;
-
-  align-items: center;
-  gap: 8px;
-
-  padding: 12px 0;
-}
-
-.burgerMenuList {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.burgerMenuText {
-  font-size: 16px;
-  font-weight: 500;
+.contactsTitle {
+  font-size: 15px;
+  font-weight: 600;
   line-height: 13px;
-  color: #5d5d5d;
 
-  @media screen and (min-width: 744px) {
-    font-size: 18px;
-  }
-}
-
-.burgerAuthWrapper {
-  display: flex;
-  gap: 8px;
-
-  padding: 12px 0;
-}
-
-.burgerAuthList {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.line {
-  color: #b0b0b0;
-
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 13px;
+  color: #888888;
 }
 
 .contactsList {
@@ -120,10 +70,13 @@
   }
 }
 
-.contactsTitle {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 13px;
+.burgerSocList {
+  display: flex;
+  gap: 24px;
+}
 
-  color: #888888;
+.socIcon {
+  width: 24px;
+  height: 24px;
+  fill: #3d3d3d;
 }

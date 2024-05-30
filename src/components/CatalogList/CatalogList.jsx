@@ -12,14 +12,7 @@ import FilterBurger from "../../modules/FilterBurger/FilterBurger";
 const CatalogList = ({ products, value, setValue, animalId, productsId }) => {
   const [filtersIsOpen, setFiltersIsOpen] = useState(true);
 
-  useEffect(() => {
-    if (filtersIsOpen) {
-      document.body.style.overflow = "hidden";
-    }
-    if (!filtersIsOpen) {
-      document.body.style.overflow = "";
-    }
-  });
+
 
   return (
     <div className={css.catolog__list__wrapper}>
