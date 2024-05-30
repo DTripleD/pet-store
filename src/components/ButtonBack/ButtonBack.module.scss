@@ -24,4 +24,9 @@
   line-height: 12px;
 
   color: #3d3d3d;
+
+  @media screen and (min-width: 744px) {
+    font-size: 20px;
+    line-height: 15px;
+  }
 }

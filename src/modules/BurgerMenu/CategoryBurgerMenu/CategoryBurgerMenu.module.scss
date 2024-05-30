@@ -13,3 +13,44 @@
 .open {
   transform: translateX(0);
 }
+
+.categoryName {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+
+  color: #5d5d5d;
+
+  @media screen and (min-width: 744px) {
+    font-size: 18px;
+    line-height: 13px;
+  }
+}
+
+.subCatName {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #3d3d3d;
+
+  @media screen and (min-width: 744px) {
+    font-size: 18px;
+    line-height: 13px;
+  }
+}
+
+.subCatItem {
+  padding: 12px 8px;
+}
+
+.subCatList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -1,5 +1,6 @@
 import css from "./ButtonBack.module.scss";
 import icons from "../../images/icons.svg";
+import PropTypes from "prop-types";
 
 const ButtonBack = ({ text, backTo, setOpenedBurger }) => {
   return (
@@ -19,3 +20,9 @@ const ButtonBack = ({ text, backTo, setOpenedBurger }) => {
 };
 
 export default ButtonBack;
+
+ButtonBack.propTypes = {
+  text: PropTypes.string,
+  backTo: PropTypes.string,
+  setOpenedBurger: PropTypes.func,
+};

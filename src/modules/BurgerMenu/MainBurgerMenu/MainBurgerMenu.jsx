@@ -64,6 +64,6 @@ const MainBurgerMenu = ({ setIsOpen, setOpenedBurger }) => {
 export default MainBurgerMenu;
 
 MainBurgerMenu.propTypes = {
-  isOpen: PropTypes.bool,
   setIsOpen: PropTypes.func,
+  setOpenedBurger: PropTypes.func,
 };

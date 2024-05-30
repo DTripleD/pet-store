@@ -50,7 +50,7 @@ const AnimalBurgerMenu = ({ setOpenedBurger }) => {
               <svg className={css.animalLogo}>
                 <use href={icons + `#${item.key}`}></use>
               </svg>
-              <p>{item.name}</p>
+              <p className={css.animalText}>{item.name}</p>
             </div>
             <svg className={css.toAnimalIcon}>
               <use href={icons + "#icon-down"}></use>

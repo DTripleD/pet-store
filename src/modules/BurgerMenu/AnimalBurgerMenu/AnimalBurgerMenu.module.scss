@@ -34,3 +34,15 @@
   flex-direction: column;
   gap: 4px;
 }
+
+.animalText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+
+  color: #5d5d5d;
+
+  @media screen and (min-width: 744px) {
+    font-size: 18px;
+  }
+}
