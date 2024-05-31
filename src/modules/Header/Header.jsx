@@ -28,6 +28,16 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
 
   const [openedBurger, setOpenedBurger] = useState("");
 
+  const obj = {
+    main: <MainBurgerMenu setOpenedBurger={setOpenedBurger} />,
+    animal: <AnimalBurgerMenu setOpenedBurger={setOpenedBurger} />,
+    category: <CategoryBurgerMenu setOpenedBurger={setOpenedBurger} />,
+    login: <LoginBurgerMenu setOpenedBurger={setOpenedBurger} key="auth" />,
+    register: (
+      <RegisterBurgerMenu setOpenedBurger={setOpenedBurger} key="auth" />
+    ),
+  };
+
   return (
     <header className={css.header}>
       <div className={`container ${css.header__container}`}>
@@ -101,23 +111,7 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
         </div>
         <MediaQuery maxWidth={1919}>
           <WrapperBurgerMenu isOpen={isOpen} setIsOpen={setIsOpen}>
-            {openedBurger === "main" && (
-              <MainBurgerMenu setOpenedBurger={setOpenedBurger} />
-            )}
-            {openedBurger === "animal" && (
-              <AnimalBurgerMenu setOpenedBurger={setOpenedBurger} />
-            )}
-            {openedBurger === "category" && (
-              <CategoryBurgerMenu setOpenedBurger={setOpenedBurger} />
-            )}
-
-            {openedBurger === "login" && (
-              <LoginBurgerMenu setOpenedBurger={setOpenedBurger} />
-            )}
-
-            {openedBurger === "register" && (
-              <RegisterBurgerMenu setOpenedBurger={setOpenedBurger} />
-            )}
+            {obj[openedBurger]}
           </WrapperBurgerMenu>
         </MediaQuery>
       </div>

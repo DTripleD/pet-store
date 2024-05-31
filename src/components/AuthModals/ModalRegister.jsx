@@ -9,7 +9,13 @@ import { signUp } from "../../redux/auth/operations";
 import Button from "../Button/Button";
 import { selectActivation } from "../../redux/auth/selectors";
 
-const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
+const ModalRegister = ({
+  passwordShown,
+  setPasswordShown,
+  setIsLogin,
+  setOpenedBurger,
+  isBurger = false,
+}) => {
   const dispatch = useDispatch();
 
   const activationSent = useSelector(selectActivation);
@@ -102,7 +108,11 @@ const ModalRegister = ({ passwordShown, setPasswordShown, setIsLogin }) => {
             <p className={css.haveAccText}>Вже маєте акаунт?</p>
             <button
               type="button"
-              onClick={() => setIsLogin((prev) => !prev)}
+              onClick={() => {
+                isBurger
+                  ? setOpenedBurger("login")
+                  : setIsLogin((prev) => !prev);
+              }}
               className={css.haveAccButton}
             >
               Увійдіть
@@ -120,4 +130,6 @@ ModalRegister.propTypes = {
   passwordShown: PropTypes.bool,
   setPasswordShown: PropTypes.func,
   setIsLogin: PropTypes.func,
+  setOpenedBurger: PropTypes.func,
+  isBurger: PropTypes.bool,
 };

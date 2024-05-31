@@ -10,9 +10,7 @@ import icons from "src/images/icons.svg";
 import FilterBurger from "../../modules/FilterBurger/FilterBurger";
 
 const CatalogList = ({ products, value, setValue, animalId, productsId }) => {
-  const [filtersIsOpen, setFiltersIsOpen] = useState(true);
-
-
+  const [filtersIsOpen, setFiltersIsOpen] = useState(false);
 
   return (
     <div className={css.catolog__list__wrapper}>

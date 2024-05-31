@@ -8,7 +8,13 @@ import icons from "src/images/icons.svg";
 import { signIn } from "src/redux/auth/operations";
 import Button from "../Button/Button";
 
-const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
+const ModalLogin = ({
+  passwordShown,
+  setPasswordShown,
+  setIsLogin,
+  setOpenedBurger,
+  isBurger = false,
+}) => {
   const dispatch = useDispatch();
 
   const login = async (e) => {
@@ -71,6 +77,9 @@ const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
                 <use href={icons + "#eye"}></use>
               </svg>
             </div>
+            <button type="button" className={css.forgotPassword}>
+              Забули пароль?
+            </button>
           </label>
         </div>
 
@@ -81,7 +90,11 @@ const ModalLogin = ({ passwordShown, setPasswordShown, setIsLogin }) => {
             <p className={css.haveAccText}>Немає акаунту?</p>
             <button
               type="button"
-              onClick={() => setIsLogin((prev) => !prev)}
+              onClick={() => {
+                isBurger
+                  ? setOpenedBurger("register")
+                  : setIsLogin((prev) => !prev);
+              }}
               className={css.haveAccButton}
             >
               Зареєструватися
@@ -99,4 +112,6 @@ ModalLogin.propTypes = {
   passwordShown: PropTypes.bool,
   setPasswordShown: PropTypes.func,
   setIsLogin: PropTypes.func,
+  setOpenedBurger: PropTypes.func,
+  isBurger: PropTypes.bool,
 };
