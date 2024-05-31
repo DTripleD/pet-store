@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import ProductNavigation from "modules/ProductNavigation/ProductNavigation";
 import { getProduct } from "../../redux/product/productOperations";
 import { useDispatch } from "react-redux";
+import MediaQuery from "react-responsive";
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -23,7 +24,9 @@ const ProductPage = () => {
 
   return (
     <div className={`${css.container} ${css.productPageContainer}`}>
-      <Sidebar />
+      <MediaQuery minWidth={1920}>
+        <Sidebar />
+      </MediaQuery>
       <div className={css.product_page__wrapper}>
         {/* <Routes /> */}
 

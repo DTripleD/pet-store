@@ -3,9 +3,13 @@
 .product_page__wrapper {
   display: flex;
   flex-direction: column;
-  gap: 64px;
 
   overflow: hidden;
+  gap: 48px;
+
+  @media screen and (min-width: 1920px) {
+    gap: 64px;
+  }
 }
 
 .main__image_wrapper {

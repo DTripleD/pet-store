@@ -13,10 +13,10 @@ const characteristicsArray = [
 
 const Сharacteristic = () => {
   return (
-    <>
+    <div className={css.characteristicWrapper}>
       <h3 className={css.product_page__sub_title}>Характеристики</h3>
       <CharacteristicList array={characteristicsArray} />
-    </>
+    </div>
   );
 };
 

@@ -54,6 +54,24 @@ function App() {
     }
   };
 
+  const createFeatured = async () => {
+    try {
+      const res = await instance.post("/featured/create/");
+
+      const date = new Date();
+      // 14 это количество дней
+      date.setTime(date.getTime() + 14 * 24 * 60 * 60 * 1000);
+
+      document.cookie = [
+        `featuredTokenPetStore=${res.data.hash_code}`,
+        `expires=${date.toUTCString()}`,
+        "path=/",
+      ].join("; ");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const cookies = getCookies();
 
@@ -61,6 +79,16 @@ function App() {
       return;
     } else {
       createCart();
+    }
+  }, []);
+
+  useEffect(() => {
+    const cookies = getCookies();
+
+    if (cookies.featuredTokenPetStore) {
+      return;
+    } else {
+      createFeatured();
     }
   }, []);
 

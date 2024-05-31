@@ -14,7 +14,11 @@ const CatalogItem = ({ item }) => {
       <Link to={`${item.id}`} className={css.productLink}>
         <div className={css.productImageWrapper}>
           <img
-            src={item.images.length > 0 ? item.images : placeholder}
+            src={
+              item.images.length > 0 && item.images.startsWith("http")
+                ? item.images
+                : placeholder
+            }
             alt={item.name}
           />
           <button className={css.favorite__button}>

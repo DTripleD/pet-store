@@ -14,6 +14,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import css from "./PhotoСarousel.module.scss";
 
 import PropTypes from "prop-types";
+import MediaQuery from "react-responsive";
 
 const PhotoCarousel = ({ images }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -62,21 +63,23 @@ const PhotoCarousel = ({ images }) => {
           </button>
         </div>
       </Swiper>
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        spaceBetween={24}
-        slidesPerView={"auto"}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="smallProductSlider"
-      >
-        {images.map((item) => (
-          <SwiperSlide key={item.id}>
-            <img src={item.image} className={css.hita} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <MediaQuery minWidth={1920}>
+        <Swiper
+          onSwiper={setThumbsSwiper}
+          spaceBetween={24}
+          slidesPerView={"auto"}
+          freeMode={true}
+          watchSlidesProgress={true}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="smallProductSlider"
+        >
+          {images.map((item) => (
+            <SwiperSlide key={item.id}>
+              <img src={item.image} className={css.hita} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </MediaQuery>
     </div>
   );
 };

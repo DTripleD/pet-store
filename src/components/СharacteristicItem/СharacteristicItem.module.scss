@@ -2,17 +2,30 @@
   background-color: #f4f4f4;
   display: flex;
   justify-content: space-between;
-  padding: 21px 24px;
+
   border-radius: 7px;
+
+  padding: 14px 16px;
+
+  @media screen and (min-width: 1920px) {
+    padding: 21px 24px;
+  }
 }
 
 .characteristic_text {
-  font-size: 16px;
+  color: #888888;
+
+  font-size: 15px;
   font-weight: 400;
   line-height: 12px;
-  color: #888888;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 16px;
+  }
 }
 
 .characteristic_value {
   color: #454545;
+
+  font-weight: 500;
 }

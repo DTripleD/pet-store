@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cart/cartOperations";
 import { getCookies } from "../../shared/cookies/cookies";
 import { selectProduct } from "../../redux/product/productSelectors";
+import { addToFeatured } from "../../redux/featured/featuredOperations";
 
 const characteristicsArray = [
   { name: "Lorem ipsum", descr: "Lorem ipsum", id: 1 },
@@ -24,6 +25,15 @@ const AllAboutProduct = () => {
   const handleAddToCart = () => {
     dispatch(
       addToCart({ token: getCookies().cartTokenPetStore, id: productId })
+    );
+  };
+
+  const handleAddToFeatured = () => {
+    dispatch(
+      addToFeatured({
+        token: getCookies().featuredTokenPetStore,
+        id: productId,
+      })
     );
   };
 
@@ -70,7 +80,10 @@ const AllAboutProduct = () => {
               </button>
             </li>
             <li>
-              <button className={`${css.add__button} ${css.to_wish__button}`}>
+              <button
+                className={`${css.add__button} ${css.to_wish__button}`}
+                onClick={handleAddToFeatured}
+              >
                 <svg className={css.to_wish__icon}>
                   <use href={icons + "#heart"}></use>
                 </svg>

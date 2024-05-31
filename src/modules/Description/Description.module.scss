@@ -1,6 +1,33 @@
 .product_page__sub_title {
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 20px;
   color: #262626;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 16px;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+}
+
+.descriptionText {
+  color: #3d3d3d;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.descriptionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }

@@ -1,4 +1,9 @@
 .prodNavButtonsList {
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  @media screen and (min-width: 1920px) {
+    gap: 12px;
+  }
 }

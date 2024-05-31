@@ -2,9 +2,9 @@ import css from "./Description.module.scss";
 
 const Description = () => {
   return (
-    <div>
+    <div className={css.descriptionWrapper}>
       <h3 className={css.product_page__sub_title}>Опис</h3>
-      <p>
+      <p className={css.descriptionText}>
         Lorem ipsum dolor sit amet consectetur. Nisi blandit mi venenatis nec
         sagittis magna adipiscing diam. Amet integer vestibulum nulla aliquet.
         Imperdiet tellus rhoncus enim velit adipiscing placerat natoque leo.
