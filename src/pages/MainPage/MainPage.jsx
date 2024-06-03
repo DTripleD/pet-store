@@ -15,7 +15,7 @@ const MainPage = () => {
 
       <div className={css.main__container}>
         <section>
-          <div className={css.bg_image}></div>
+          <div className={css.hero} />
         </section>
 
         <Slider title="Акції" data={data} />
