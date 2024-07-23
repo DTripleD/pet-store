@@ -1,9 +1,11 @@
+@import "../../scss/common";
+
 .sliderContainer {
   display: flex;
   flex-direction: column;
   gap: 16px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     gap: 24px;
   }
 }
@@ -15,12 +17,10 @@
 }
 
 .slider__header_title {
-  color: #3d3d3d;
-
-  font-family: Inter;
+  color: $text-dark-color;
   font-size: 20px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 1.2;
 
   @media screen and (min-width: 1920px) {
     font-size: 28px;
@@ -50,8 +50,34 @@
   height: 24px;
 }
 
+.swiper_container {
+  display: none;
+
+  @include on-tablet {
+    display: flex;
+  }
+}
+
+.swiper_wrapper {
+  display: flex;
+  margin-bottom: 0;
+}
+
 .productsList {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
+
+  @include on-tablet {
+    display: none;
+  }
 }
+
+.item_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+}
+

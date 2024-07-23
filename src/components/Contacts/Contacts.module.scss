@@ -1,9 +1,14 @@
-.contactsWrapper {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+@import "../../scss/common";
 
-  position: relative;
+.contactsWrapper {
+  display: none;
+
+  @include on-desktop {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+  }
 }
 
 .contactsText {
@@ -28,21 +33,25 @@
 }
 
 .contactsDropDownList {
-  position: absolute;
-  border-radius: 8px;
-  border: 1.5px solid #e7e7e7;
+  display: none;
 
-  background-color: #ffffff;
-
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition: opacity 300ms ease-in-out;
+  @include on-desktop {
+    position: absolute;
+    border-radius: 8px;
+    border: 1.5px solid #e7e7e7;
+  
+    background-color: #ffffff;
+  
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  
+    opacity: 0;
+  
+    pointer-events: none;
+  
+    transition: opacity 300ms ease-in-out;
+  }
 }
 
 .contactLink {

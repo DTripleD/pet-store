@@ -24,7 +24,6 @@ const animalsArray = [
 const Footer = () => {
   return (
     <footer className={css.footer}>
-      <div className="container">
         <div className={css.footerInfo}>
           <div className={css.logoWrapper}>
             <Logo color={"logo__footer"} />
@@ -140,7 +139,6 @@ const Footer = () => {
             Copyright © 2023, Pettopia. All Rights Reserved.
           </p>
         </div>
-      </div>
     </footer>
   );
 };

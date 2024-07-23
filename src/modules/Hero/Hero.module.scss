@@ -1,0 +1,65 @@
+@import "../../scss/common";
+
+.hero {
+  padding: 16px 0;
+  margin: 0 auto;
+  max-width: 100%;
+  
+  @include on-desktop {
+    padding: 64px 0;
+  }
+
+  &__img {
+    background-color: #8e8e8e33;
+    background-image: linear-gradient(#00000033, #00000033),
+      url(../../images/background/bg-img_s@1x.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    // max-width: 1584px;
+    height: 226px;
+    border-radius: 10px;
+
+    // retina mobile screen
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(to right, #00000033, #00000033),
+        url(../../images/background/bg-img_s@2x.jpg);
+    }
+
+    // Tablet screen
+    @include on-tablet {
+      background-image: linear-gradient(to right, #00000033, #00000033),
+        url(../../images/background/bg-img_m@1x.jpg);
+
+      height: 298px;
+
+      @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: linear-gradient(to right, #00000033, #00000033),
+          url(../../images/background/bg-img_m@2x.jpg);
+      }
+    }
+
+    // Desktop screen
+    @include on-desktop {
+      background-image: linear-gradient(to right, #00000033, #00000033),
+        url(../../images/background/bg-img_l@1x.jpg);
+      height: 400px;
+      border-radius: 20px;
+
+      @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: linear-gradient(to right, #00000033, #00000033),
+          url(../../images/background/bg-img_l@2x.jpg);
+      }
+    }
+
+    @include on-desktop-max {
+      height: 500px;
+    }
+  }
+}

@@ -1,5 +1,12 @@
+@import "../../scss/common";
+
 .sidebar__wrapper {
-  padding: 64px 63px 0 0;
+  display: none;
+
+  @include on-desktop {
+    display: block;
+    padding: 64px 63px 0 0;
+  }
 }
 
 .category_list {

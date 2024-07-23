@@ -1,72 +1,135 @@
+@import "../../scss/common";
+
 .header {
-  background-color: #ffffff;
-}
+  background-color: $white-color;
+  min-width: fit-content;
 
-.header__container {
-  display: flex;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
 
-  justify-content: space-between;
-
-  align-items: center;
-
-  padding-top: 12px;
-  padding-bottom: 12px;
-
-  @media screen and (min-width: 744px) {
-    padding-top: 17px;
-    padding-bottom: 17px;
-    gap: 24px;
+    @include on-tablet {
+      padding: 17px 0;
+      gap: 24px;
+    }
   }
 
-  @media screen and (min-width: 1920px) {
-    padding-top: 25px;
-    padding-bottom: 25px;
+  &__box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__burger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 6px 4px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  &__search {
+    display: none;
+
+    @include on-tablet {
+      display: flex;
+    }
+  }
+
+}
+
+.info {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+
+  &__btn {
+    display: none
+  }
+
+  &__search,
+  &__cart {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+  }
+
+  &__cart {
+    position: relative;
+  }
+
+  &__search {
+    @include on-tablet {
+      display: none;
+    }
+  }
+
+  &__user {
+    display: none;
+  }
+
+  &__button {
+    display: none;
   }
 }
 
-.menuIcon {
+.icon_menu {
+  width: 16px;
+  height: 12px;
+  stroke: $icon-grey-color;
+}
+
+.icon_paw {
   width: 24px;
   height: 24px;
-  stroke: #5d5d5d;
+  fill: $light-green-color;
+  stroke: $light-green-color;
+
+  @include on-tablet {
+    width: 32px;
+    height: 32px;
+  }
 }
 
-.logoWrapper {
-  display: flex;
-  gap: 16px;
-  align-items: center;
+.icon_name {
+  width: 79px;
+  height: 19px;
+  fill: $light-green-color;
+  stroke: $light-green-color;
+
+  @include on-tablet {
+    width: 108px;
+    height: 25px;
+  }
 }
 
-.search__section {
-  display: flex;
-  flex-grow: 1;
-  gap: 12px;
+.icon_loop {
+  width: 20px;
+  height: 20px;
+  stroke: $icon-grey-color;
 }
 
-.info__wrapper {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+.icon_cart {
+  width: 20px;
+  height: 20px;
+  stroke: $icon-grey-color;
 }
 
-.headerIcon {
-  width: 24px;
-  height: 24px;
-  stroke: #5d5d5d;
-}
-
-.user__button {
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  padding: 8px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-}
-
-.userLink {
-  display: flex;
+.cart_count {
+  position: absolute;
+  color: $icon-grey-color;
 }

@@ -1,7 +1,17 @@
+@import "../../scss/common";
+
 .headerSearch {
-  display: flex;
-  flex-grow: 1;
-  justify-content: space-between;
+  display: none;
+
+  @include on-tablet {
+    width: 411px;
+    display: flex;
+  }
+
+  @include on-desktop {
+    justify-content: space-between;
+    flex-grow: 1;
+  }
 }
 
 .headerLabel {
@@ -10,28 +20,21 @@
   width: 100%;
   gap: 8px;
   align-items: center;
-
-  border: 1.6px solid #d1d1d1;
-
+  border: 1.6px solid $grey-border-color;
   border-right: none;
-
   border-radius: 100px 0 0 100px;
 }
 
-.headerIcon {
-  width: 24px;
-  height: 24px;
-  stroke: #5d5d5d;
+.icon_loop {
+  width: 20px;
+  height: 20px;
+  stroke: $icon-grey-color;
 }
 
 .headerInput {
   border: none;
   outline: none;
-
-  font-weight: 400;
   font-size: 16px;
-  line-height: 16px;
-
   background-color: transparent;
 }
 
@@ -39,16 +42,11 @@
   border: none;
   outline: none;
   padding: 18px 24px;
-
-  color: #ffffff;
-
-  background-color: #34955d;
-
+  color: $white-color;
+  background-color: $light-green-color;
   cursor: pointer;
-
   border-radius: 0 100px 100px 0;
-
   font-size: 16px;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.75;
 }

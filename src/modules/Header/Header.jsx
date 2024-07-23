@@ -5,13 +5,11 @@ import css from "./Header.module.scss";
 import PropTypes from "prop-types";
 
 import HeaderSearch from "components/HeaderSearch/HeaderSearch";
-import Logo from "components/Logo/Logo";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Link } from "react-router-dom";
 import CategoryButton from "../../components/CategoryButton/CategoryButton";
 import Contacts from "../../components/Contacts/Contacts";
-import MediaQuery from "react-responsive";
 import { useState } from "react";
 
 import AnimalBurgerMenu from "../BurgerMenu/AnimalBurgerMenu/AnimalBurgerMenu";
@@ -23,9 +21,7 @@ import LoginBurgerMenu from "../BurgerMenu/LoginBurgerMenu/LoginBurgerMenu";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
   const [isOpen, setIsOpen] = useState(false);
-
   const [openedBurger, setOpenedBurger] = useState("");
 
   const obj = {
@@ -40,80 +36,80 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
 
   return (
     <header className={css.header}>
-      <div className={`container ${css.header__container}`}>
-        <div className={css.logoWrapper}>
-          <MediaQuery maxWidth={1919}>
-            <svg
-              className={css.menuIcon}
+      <div className="container">
+        <div className={css.header__container}>
+          <div className={css.header__box}>
+            <button 
+              className={css.header__burger}
               onClick={() => {
                 setOpenedBurger("main");
                 setIsOpen((prev) => !prev);
-              }}
-            >
-              <use href={icons + "#menu"}></use>
-            </svg>
-          </MediaQuery>
-          <Logo color={"logo__header"} />
-        </div>
-
-        <MediaQuery minWidth={744}>
-          <div className={css.search__section}>
-            <MediaQuery minWidth={1920}>
-              <CategoryButton />
-            </MediaQuery>
-            <HeaderSearch />
-          </div>
-        </MediaQuery>
-        <div className={css.info__wrapper}>
-          <MediaQuery minWidth={1920}>
-            <Contacts />
-          </MediaQuery>
-          <MediaQuery minWidth={1920}>
-            <button className={css.user__button}>
-              <svg className={css.headerIcon}>
-                <use href={icons + "#heart"}></use>
-              </svg>
-            </button>
-          </MediaQuery>
-          <MediaQuery maxWidth={743}>
-            <button className={css.user__button}>
-              <svg className={css.headerIcon}>
-                <use href={icons + "#loop"}></use>
-              </svg>
-            </button>
-          </MediaQuery>
-          <button
-            className={css.user__button}
-            onClick={() => setActiveCartModal(true)}
-          >
-            <svg className={css.headerIcon}>
-              <use href={icons + "#cart"}></use>
-            </svg>
-          </button>
-          <MediaQuery minWidth={1920}>
-            {isLoggedIn ? (
-              <Link to="/user/profile" className={css.userLink}>
-                <svg className={css.headerIcon}>
-                  <use href={icons + "#person"}></use>
-                </svg>
-              </Link>
-            ) : (
-              <button
-                className={css.user__button}
-                onClick={() => setActiveAuthModal(true)}
-              >
-                <svg className={css.headerIcon}>
-                  <use href={icons + "#person"}></use>
+              }}>
+                <svg
+                  className={css.icon_menu}
+                >
+                  <use href={icons + "#menu"}></use>
                 </svg>
               </button>
-            )}
-          </MediaQuery>
+              <Link to="/" className={css.header__logo}>
+                <svg className={css.icon_paw}>
+                  <use href={icons + "#icon-paw"}></use>
+                </svg>
+                <svg className={css.icon_name}>
+                  <use href={icons + "#icon-pettopia"}></use>
+                </svg>
+              </Link>
+          </div>
+
+          <div className={css.header__search}>
+              <CategoryButton />
+              <HeaderSearch />
+          </div>
+          
+          <div className={css.info}>
+              <Contacts />
+              <button className={css.info__btn}>
+                <svg className={css.icon_heart}>
+                  <use href={icons + "#heart"}></use>
+                </svg>
+              </button>
+              <button className={css.info__search}>
+                <svg className={css.icon_loop}>
+                  <use href={icons + "#loop"}></use>
+                </svg>
+              </button>
+            <button
+              className={css.info__cart}
+              onClick={() => setActiveCartModal(true)}
+            >
+              <svg className={css.icon_cart}>
+                <use href={icons + "#cart"}></use>
+              </svg>
+              {/* {!!totalCount && (
+                <span className={css.cart_count}>{({totalCount})}</span>
+              )} */}
+            </button>
+              {isLoggedIn ? (
+                <Link to="/user/profile" className={css.info__user}>
+                  <svg className={css.icon_person}>
+                    <use href={icons + "#person"}></use>
+                  </svg>
+                </Link>
+              ) : (
+                <button
+                  className={css.info__button}
+                  onClick={() => setActiveAuthModal(true)}
+                >
+                  <svg className={css.icon_person}>
+                    <use href={icons + "#person"}></use>
+                  </svg>
+                </button>
+              )}
+          </div>
         </div>
-        <MediaQuery maxWidth={1919}>
-          <WrapperBurgerMenu isOpen={isOpen} setIsOpen={setIsOpen}>
-            {obj[openedBurger]}
-          </WrapperBurgerMenu>
-        </MediaQuery>
+            <WrapperBurgerMenu isOpen={isOpen} setIsOpen={setIsOpen}>
+              {obj[openedBurger]}
+            </WrapperBurgerMenu>
       </div>
     </header>
   );

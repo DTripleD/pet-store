@@ -1,7 +1,13 @@
+@import "../../scss/common";
+
 .dropdown {
-  display: block;
-  float: left;
-  overflow: hidden;
+  display: none;
+
+  @include on-desktop {
+    display: block;
+    float: left;
+    overflow: hidden;
+  }
 }
 
 .category__header_button {

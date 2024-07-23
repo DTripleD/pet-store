@@ -1,16 +1,21 @@
+@import "../../scss/common";
+
 .slider__buttons_wrapper {
-  display: flex;
+  display: none;
 
-  justify-items: center;
-  gap: 8px;
+  @include on-tablet {
+    display: flex;
+    justify-items: center;
+    gap: 8px;
+  }
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     gap: 12px;
   }
 }
 
 .slider__button {
-  background-color: #34955d;
+  background-color: $light-green-color;
 
   border-radius: 50%;
   padding: 6px;

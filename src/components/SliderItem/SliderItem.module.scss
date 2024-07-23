@@ -1,34 +1,41 @@
+@import "../../scss/common";
+
 .item {
-  flex-basis: calc((100% - 16px) / 2);
-
-  @media screen and (min-width: 744px) {
-    max-width: 170px;
-  }
-
-  @media screen and (min-width: 1920px) {
-    max-width: 297.6px;
-  }
-}
-
-.swiper__item {
   display: flex;
   flex-direction: column;
   padding: 16px 8px;
   gap: 16px;
-
   border-radius: 6px;
-
-  @media screen and (max-width: 1919px) {
-    border: 1px solid #f6f6f6;
-  }
-
-  @media screen and (min-width: 1920px) {
-    padding: 20px 16px;
-    border-radius: 10px;
-
-    transition: box-shadow 500ms ease-out;
+  background-color: $white-color;
+  width: calc((100% - 16px) / 2);
+  
+  @include on-tablet {
+    width: 170px;
   }
 }
+
+// .swiper__item {
+//   display: flex;
+//   flex-direction: column;
+//   padding: 16px 8px;
+//   gap: 16px;
+//   border-radius: 6px;
+
+//   @include on-tablet {
+//     width: 170px;
+//   }
+
+//   @media screen and (max-width: 1919px) {
+//     border: 1px solid #f6f6f6;
+//   }
+
+//   @media screen and (min-width: 1920px) {
+//     padding: 20px 16px;
+//     border-radius: 10px;
+
+//     transition: box-shadow 500ms ease-out;
+//   }
+// }
 
 .swiper__item:hover,
 .swiper__item:focus {
@@ -38,22 +45,26 @@
 }
 
 .swiper__image_wrapper {
-  overflow: hidden;
   position: relative;
-  margin-right: auto;
-  margin-left: auto;
-
-  width: 163px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  align-self: center;
   height: 144px;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     width: 154px;
   }
 
-  @media screen and (min-width: 1920px) {
-    max-width: 252px;
+  @include on-desktop {
     height: 258px;
   }
+}
+
+.swiper__image {
+  width: auto;
+  height: 100%;
 }
 
 .favorite__button {
@@ -89,7 +100,7 @@
 .cartBuyIcon {
   width: 24px;
   height: 24px;
-  stroke: #34955d;
+  stroke: $light-green-color;
 }
 
 .swiper__descr_wrapper {
@@ -99,12 +110,13 @@
 }
 
 .swiper__title {
-  color: #3d3d3d;
+  width: 163px;
+  color: $text-dark-color;
   font-size: 15px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.4;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 18px;
     font-weight: 700;
     line-height: 23px;
@@ -112,20 +124,21 @@
 }
 
 .swipper__description {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 19px;
+  display: none;
 
-  color: #5d5d5d;
+  @include on-tablet {
+    font-size: 15px;
+    line-height: 1.27;
+    color: $icon-grey-color;
+  }
 }
 
 .swiper__price_wrapper {
   display: flex;
   flex-direction: column-reverse;
-
   gap: 4px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     flex-direction: row;
     gap: 8px;
     align-items: center;
@@ -133,13 +146,12 @@
 }
 
 .swiper__new_price {
-  color: #3d3d3d;
-
+  color: $text-dark-color;
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;
@@ -150,11 +162,10 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
-
   text-decoration: line-through;
-  color: #b2b2b2;
+  color: $grey-color-price;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 16px;
     font-weight: 500;
     line-height: 19px;
