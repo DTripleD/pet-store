@@ -5,8 +5,7 @@
   padding: 24px 16px;
 
   @include on-desktop {
-    padding-top: 64px;
-    padding-bottom: 32px;
+    padding: 64px 48px 32px;
   }
 
   &__logo {

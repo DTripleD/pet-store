@@ -1,6 +1,5 @@
 @import "./base/reset";
 @import "./utils/visually-hiden";
-@import "./utils/sections";
 @import "./utils/swiper";
 @import "./utils/slider";
 @import "./utils/variables";
@@ -33,5 +32,13 @@ body {
     padding: 0 48px;
     min-width: $desktop-min-width;
     max-width: $desktop-max-width;
+  }
+}
+
+section {
+  padding: 16px 0;
+
+  @include on-desktop {
+    padding: 64px 0;
   }
 }

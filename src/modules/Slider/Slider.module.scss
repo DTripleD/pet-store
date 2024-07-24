@@ -55,8 +55,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0;
+  margin-right: 0;
+
+  @include on-desktop {
+    margin-bottom: 24px;
+  }
 }
+
 
 .styled__link {
   display: flex;
