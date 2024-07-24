@@ -3,6 +3,8 @@
 .hero {
   padding: 16px 0;
   margin: 0 auto;
+  max-width: 100%;
+  
   
   @include on-desktop {
     padding: 64px 0;
@@ -16,7 +18,7 @@
     background-size: cover;
     background-position: center;
     max-width: 1584px;
-    height: 226px;
+    min-height: 226px;
     border-radius: 10px;
 
     // retina mobile screen
@@ -31,8 +33,11 @@
     @include on-tablet {
       background-image: linear-gradient(to right, #00000033, #00000033),
         url(../../images/background/bg-img_m@1x.jpg);
-      max-width: 728px;
-      height: 298px;
+      min-height: 298px;
+
+      @media screen and (min-width: 850px)  {
+        min-height: 400px;
+      }
 
       @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
@@ -46,8 +51,8 @@
     @include on-desktop {
       background-image: linear-gradient(to right, #00000033, #00000033),
         url(../../images/background/bg-img_l@1x.jpg);
-      height: 400px;
       border-radius: 20px;
+      height: 350px;
 
       @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
@@ -55,6 +60,10 @@
         background-image: linear-gradient(to right, #00000033, #00000033),
           url(../../images/background/bg-img_l@2x.jpg);
       }
+    }
+
+    @media screen and (min-width: 1550px)  {
+      min-height: 450px;
     }
 
     @include on-desktop-max {
