@@ -9,7 +9,7 @@ import icons from "src/images/icons.svg";
 import SliderButtons from "components/SliderButtons/SliderButtons";
 import SliderItem from "components/SliderItem/SliderItem";
 
-const Slider = ({ data }) => {
+const Slider = ({ data, title }) => {
   const [isStartBtnActive, setStartBtnActive] = useState(true);
   const [isEndBtnActive, setIsEndBtnActive] = useState(false);
 
@@ -24,7 +24,7 @@ const Slider = ({ data }) => {
     <section>
       <div className={css.sliderContainer}>
         <div className={css.slider__header}>
-          <h2 className={css.slider__header_title}>Знижки</h2>
+          <h2 className={css.slider__header_title}>{title}</h2>
             <SliderButtons
               isStartBtnActive={isStartBtnActive}
               isEndBtnActive={isEndBtnActive}
@@ -60,7 +60,7 @@ const Slider = ({ data }) => {
               ))}
             </Swiper>
           </div>
-        <Link to="new" className={css.styled__link}>
+         <Link to="new" className={css.styled__link}>
           <p className={css.show__all_text}>Переглянути все</p>
           <svg className={css.show__all_icon}>
             <use href={icons + "#icon-right"}></use>

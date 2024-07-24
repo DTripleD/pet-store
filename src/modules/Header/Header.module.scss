@@ -29,6 +29,7 @@
     background-color: transparent;
     border: none;
     padding: 6px 4px;
+    cursor: pointer;
   }
 
   &__logo {
@@ -66,10 +67,12 @@
     justify-content: center;
     background-color: transparent;
     border: none;
+    cursor: pointer;
   }
 
   &__cart {
     position: relative;
+    cursor: pointer;
   }
 
   &__search {
@@ -80,10 +83,12 @@
 
   &__user {
     display: none;
+    cursor: pointer;
   }
 
   &__button {
     display: none;
+    cursor: pointer;
   }
 }
 

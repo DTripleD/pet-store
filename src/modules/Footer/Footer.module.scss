@@ -8,24 +8,51 @@
     padding-top: 64px;
     padding-bottom: 32px;
   }
+
+  &__logo {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+}
+
+.icon_paw {
+  width: 24px;
+  height: 24px;
+  fill: $white-color;
+  stroke: $white-color;
+
+  @include on-tablet {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.icon_name {
+  width: 79px;
+  height: 19px;
+  fill: $white-color;
+  stroke: $white-color;
+
+  @include on-tablet {
+    width: 108px;
+    height: 25px;
+  }
 }
 
 .footerInfo {
   display: grid;
-
   justify-content: space-between;
   margin-bottom: 48px;
-
   gap: 48px;
-
   flex-direction: column;
-
-  @media screen and (min-width: 744px) {
+  
+  @include on-tablet {
     flex-direction: row;
     grid-template-columns: repeat(3, auto);
   }
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     grid-template-columns: repeat(4, auto);
   }
 }
@@ -35,37 +62,32 @@
 
   font-size: 16px;
   font-weight: 600;
-  line-height: 19px;
-
+  line-height: 1.19;
   margin-bottom: 16px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 18px;
-    font-weight: 600;
-    line-height: 22px;
-
     margin-bottom: 18px;
   }
 }
 
 .footerNavText {
   color: $white-color;
-
   font-size: 15px;
-  font-weight: 400;
-  line-height: 18px;
+  line-height: 1.2;
+
+  @include on-desktop {
+    font-size: 16px;
+    line-height: 1.9;
+  }
 
   &.contact {
     font-size: 14px;
-    line-height: 17px;
-  }
+    line-height: 1.2;
 
-  &,
-  &.contact {
-    @media screen and (min-width: 1920px) {
+    @include on-desktop {
       font-size: 16px;
-      font-weight: 400;
-      line-height: 19px;
+      line-height: 1.9;
     }
   }
 }
@@ -75,22 +97,18 @@
   flex-direction: column;
   gap: 16px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     gap: 18px;
   }
 }
 
 .footerAddress {
   font-size: 14px;
-  font-weight: 400;
-  line-height: 17px;
-
+  line-height: 1.21;
   color: $white-color;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 15px;
-    font-weight: 400;
-    line-height: 18px;
   }
 }
 
@@ -102,11 +120,9 @@
 
 .infoTitle {
   color: $white-color;
-
   font-size: 14px;
   font-weight: 600;
-  line-height: 17px;
-
+  line-height: 1.21;
   margin-bottom: 12px;
 }
 
@@ -115,11 +131,11 @@
   flex-direction: column;
   gap: 24px;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     grid-column: span 3;
   }
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     grid-column: span 1;
   }
 }
@@ -139,8 +155,7 @@
 .socLinkIcon {
   width: 24px;
   height: 24px;
-
-  fill: #ffffff;
+  fill: $white-color;
 }
 
 .socLinkList {
@@ -159,15 +174,12 @@
 }
 
 .copyrightText {
-  color: #ffffff;
-
+  color: $white-color;
   font-size: 13px;
-  font-weight: 400;
-  line-height: 16px;
+  line-height: 1.23;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 14px;
-    line-height: 17px;
   }
 }
 

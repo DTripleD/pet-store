@@ -16,20 +16,19 @@
 
 .slider__button {
   background-color: $light-green-color;
-
   border-radius: 50%;
   padding: 6px;
-
   display: flex;
   border: none;
+  cursor: pointer;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     padding: 12px;
   }
-}
 
-.slider__button:disabled {
-  background-color: #e7e7e7;
+  &:disabled {
+    background-color: $disabled-color;
+  }
 }
 
 .slider__icon {
@@ -38,9 +37,9 @@
 }
 
 .slider__button .slider__icon {
-  stroke: #ffffff;
+  stroke: $white-color;
 }
 
 .slider__button:disabled .slider__icon {
-  stroke: #b0b0b0;
+  stroke: $disabled-icon-color;
 }

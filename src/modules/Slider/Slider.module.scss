@@ -22,32 +22,9 @@
   font-weight: 600;
   line-height: 1.2;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 28px;
-    font-weight: 600;
-    line-height: 34px;
   }
-}
-
-.styled__link {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 8px;
-}
-
-.show__all_text {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 12px;
-  color: #5d5d5d;
-}
-
-.show__all_icon {
-  stroke: #5d5d5d;
-  width: 24px;
-  height: 24px;
 }
 
 .swiper_container {
@@ -79,5 +56,28 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0;
+}
+
+.styled__link {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  width: 182px;
+  align-self: center;
+}
+
+.show__all_text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 0.75;
+  color: $icon-grey-color;
+}
+
+.show__all_icon {
+  stroke: $icon-grey-color;
+  width: 24px;
+  height: 24px;
 }
 

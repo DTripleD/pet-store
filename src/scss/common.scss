@@ -6,6 +6,10 @@
 @import "./utils/variables";
 @import "./utils/mixins";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: $background-color;
   margin: 0;
@@ -15,19 +19,20 @@ body {
 }
 
 .container {
-  min-width: 390px;
+  min-width: $mobile-min-width;
   max-width: 430px;
   margin: 0 auto;
   padding: 0 8px;
 
   @include on-tablet {
-    min-width: 744px;
+    min-width: $tablet-min-width;
     max-width: 1024px;
   }
 
   @include on-desktop {
     padding-left: 48px;
     padding-right: 48px;
-    max-width: 1920px;
+    min-width: $desktop-min-width;
+    max-width: $desktop-max-width;
   }
 }
