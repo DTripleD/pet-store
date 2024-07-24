@@ -30,19 +30,32 @@
     border: none;
     padding: 6px 4px;
     cursor: pointer;
+
+    @include on-desktop {
+      display: none;
+    }
   }
 
   &__logo {
     display: flex;
     align-items: baseline;
     gap: 6px;
+
+    @include on-desktop {
+      width: 216px;
+    }
   }
 
   &__search {
     display: none;
 
     @include on-tablet {
+      flex-grow: 1;
       display: flex;
+    }
+
+    @include on-desktop {
+      gap: 12px;
     }
   }
 
@@ -54,8 +67,21 @@
   align-items: center;
   gap: 8px;
 
-  &__btn {
-    display: none
+  @include on-desktop {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  &__btn,
+  &__button {
+    display: none;
+
+    @include on-desktop {
+      display: flex;
+      background-color: transparent;
+      border: none;
+      padding: 12px 8px;
+    }
   }
 
   &__search,
@@ -84,11 +110,22 @@
   &__user {
     display: none;
     cursor: pointer;
+
+    // @include on-desktop {
+    //   display: flex;
+    //   padding: 12px 8px;
+    //   border: none;
+    //   background-color: transparent;
+    // }
   }
 
   &__button {
     display: none;
     cursor: pointer;
+
+    @include on-desktop {
+      display: flex;
+    }
   }
 }
 
@@ -122,12 +159,7 @@
   }
 }
 
-.icon_loop {
-  width: 20px;
-  height: 20px;
-  stroke: $icon-grey-color;
-}
-
+.icon_loop,
 .icon_cart {
   width: 20px;
   height: 20px;
@@ -137,4 +169,11 @@
 .cart_count {
   position: absolute;
   color: $icon-grey-color;
+}
+
+.icon_heart,
+.icon_person {
+  width: 24px;
+  height: 24px;
+  stroke: $icon-grey-color;
 }

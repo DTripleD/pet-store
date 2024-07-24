@@ -1,7 +1,5 @@
 import icons from "src/images/icons.svg";
-
 import css from "./Header.module.scss";
-
 import PropTypes from "prop-types";
 
 import HeaderSearch from "components/HeaderSearch/HeaderSearch";

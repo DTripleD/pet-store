@@ -4,13 +4,12 @@
   display: none;
 
   @include on-tablet {
-    width: 411px;
+    flex-grow: 1;
     display: flex;
   }
 
   @include on-desktop {
     justify-content: space-between;
-    flex-grow: 1;
   }
 }
 

@@ -3,7 +3,7 @@
 .hero {
   padding: 16px 0;
   margin: 0 auto;
-  max-width: 100%;
+  max-width: fit-content;
   
   @include on-desktop {
     padding: 64px 0;
@@ -16,7 +16,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    // max-width: 1584px;
+    max-width: 1584px;
     height: 226px;
     border-radius: 10px;
 
@@ -32,7 +32,7 @@
     @include on-tablet {
       background-image: linear-gradient(to right, #00000033, #00000033),
         url(../../images/background/bg-img_m@1x.jpg);
-
+      max-width: 728px;
       height: 298px;
 
       @media (min-device-pixel-ratio: 2),
