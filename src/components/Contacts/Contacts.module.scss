@@ -14,21 +14,19 @@
 .contactsText {
   font-size: 16px;
   font-weight: 500;
-  line-height: 19px;
-
-  color: #5d5d5d;
+  line-height: 1.19;
+  color: $icon-grey-color;
 }
 
 .headerIcon {
   width: 24px;
   height: 24px;
-  stroke: #5d5d5d;
+  stroke: $icon-grey-color;
 }
 
 .icon__down__header {
-  stroke: #5d5d5d;
+  stroke: $icon-grey-color;
   transition: transform 300ms ease-in-out;
-
   cursor: pointer;
 }
 
@@ -38,18 +36,13 @@
   @include on-desktop {
     position: absolute;
     border-radius: 8px;
-    border: 1.5px solid #e7e7e7;
-  
-    background-color: #ffffff;
-  
+    border: 1.5px solid $light-border-color;
+    background-color: $white-color;
     padding: 16px;
     display: flex;
     flex-direction: column;
-  
     opacity: 0;
-  
     pointer-events: none;
-  
     transition: opacity 300ms ease-in-out;
   }
 }
@@ -57,9 +50,9 @@
 .contactLink {
   font-size: 16px;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.75;
 
-  color: #5d5d5d;
+  color: $icon-grey-color;
 
   padding: 12px 8px;
 }

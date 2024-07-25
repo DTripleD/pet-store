@@ -8,7 +8,6 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Link } from "react-router-dom";
 import CategoryButton from "../../components/CategoryButton/CategoryButton";
 import Contacts from "../../components/Contacts/Contacts";
-import { useState } from "react";
 
 import AnimalBurgerMenu from "../BurgerMenu/AnimalBurgerMenu/AnimalBurgerMenu";
 import WrapperBurgerMenu from "../BurgerMenu/WrapperBurgerMenu/WrapperBurgerMenu";
@@ -16,6 +15,7 @@ import CategoryBurgerMenu from "../BurgerMenu/CategoryBurgerMenu/CategoryBurgerM
 import RegisterBurgerMenu from "../BurgerMenu/RegisterBurgerMenu/RegisterBurgerMenu";
 import MainBurgerMenu from "../BurgerMenu/MainBurgerMenu/MainBurgerMenu";
 import LoginBurgerMenu from "../BurgerMenu/LoginBurgerMenu/LoginBurgerMenu";
+import { useState } from "react";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
