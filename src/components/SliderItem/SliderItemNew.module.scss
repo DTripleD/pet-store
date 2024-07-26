@@ -1,6 +1,6 @@
 @import "../../scss/common";
 
-.item {
+.item1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,24 +37,25 @@
   align-self: center;
   height: 144px;
 
+  &::before {
+    background-color: $label-green-color;
+    position: absolute;
+    content: 'NEW';
+    font-size: 13px;
+    padding: 7px 8px;
+    border-radius: 100px;
+    top: 0;
+    left: 0;
+    color: $white-color;
+
+    @include on-desktop {
+      font-size: 16px;
+      padding: 9px 12px;
+    }
+  }
+
   @include on-desktop {
     height: 258px;
-  }
-}
-
-.swiper_disc {
-  background-color: $red-color;
-  position: absolute;
-  font-size: 13px;
-  padding: 7px 8px;
-  border-radius: 100px;
-  top: 0;
-  left: 0;
-  color: $white-color;
-
-  @include on-desktop {
-    font-size: 16px;
-    padding: 9px 12px;
   }
 }
 
@@ -158,21 +159,7 @@
   @include on-desktop {
     font-size: 20px;
     font-weight: 700;
-    line-height: 1.2px;
-  }
-}
-
-.swiper__old_price {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.21;
-  text-decoration: line-through;
-  color: $grey-color-price;
-
-  @include on-desktop {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.9;
+    line-height: 1.5;
   }
 }
 

@@ -1,0 +1,44 @@
+@import "./base/reset";
+@import "./utils/visually-hiden";
+@import "./utils/swiper";
+@import "./utils/slider";
+@import "./utils/variables";
+@import "./utils/mixins";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+  min-width: 320px;
+}
+
+.container {
+  min-width: $mobile-min-width;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 8px;
+
+  @include on-tablet {
+    min-width: $tablet-min-width;
+    max-width: 1024px;
+  }
+
+  @include on-desktop {
+    padding: 0 48px;
+    min-width: $desktop-min-width;
+    max-width: $desktop-max-width;
+  }
+}
+
+section {
+  padding: 16px 0;
+
+  @include on-desktop {
+    padding: 64px 0;
+  }
+}

@@ -1,6 +1,6 @@
 @import "../node_modules/modern-normalize/modern-normalize.css";
 
-@import "./scss";
+@import "./scss/common";
 
 .smallProductSlider .swiper-slide {
   border-radius: 20px;
@@ -9,4 +9,8 @@
 
 .smallProductSlider .swiper-slide-thumb-active {
   border: 2px solid #34955d;
+}
+
+iframe {
+  display: none;
 }

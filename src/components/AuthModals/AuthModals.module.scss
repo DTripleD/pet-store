@@ -1,17 +1,58 @@
+@import "../../scss/common";
+
+.register_box {
+  position: relative;
+
+  &__close {
+    display: none;
+
+    @include on-desktop {
+      display: flex;
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 24px;
+      height: 24px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;      
+    }
+  }
+}
+
+.icon_close {
+  width: 12px;
+  height: 12px;
+  stroke: $light-grey-color;
+
+  @include hover(stroke, $dark-color);
+}
+
+.modalTitle {
+  color: $dark-color;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 0.75;
+  text-align: center;
+  margin-bottom: 48px;
+
+  @include on-desktop {
+    font-size: 24px;
+  }
+}
+
 .registerLabel {
   display: flex;
   flex-direction: column;
   gap: 10px;
-
-  color: #262626;
-
+  color: $dark-color;
   font-size: 15px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.2;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 16px;
-    line-height: 19px;
+    line-height: 1.19;
   }
 }
 
@@ -21,18 +62,7 @@
   justify-content: center;
 }
 
-.modalTitle {
-  color: #262626;
 
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 15px;
-
-  @media screen and (min-width: 1920px) {
-    font-size: 24px;
-    line-height: 17px;
-  }
-}
 
 .registerForm {
   display: flex;
@@ -147,5 +177,43 @@
 
   @media screen and (min-width: 744px) {
     font-size: 16px;
+  }
+}
+
+.register_btn {
+  background-color: #34955d;
+  color: #ffffff;
+
+  border: none;
+
+  border-radius: 10px;
+  width: 100%;
+  padding: 18px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 12px;
+
+  @media screen and (min-width: 744px) {
+    font-size: 18px;
+
+    padding: 26px;
+  }
+
+  cursor: pointer;
+
+  transition: background-color ease-in-out 200ms;
+
+  &:hover {
+    background-color: #247749;
+  }
+
+  &:active {
+    background-color: #1d5f3c;
+  }
+
+  &:disabled {
+    background-color: #e7e7e7;
+    color: #5d5d5d;
   }
 }

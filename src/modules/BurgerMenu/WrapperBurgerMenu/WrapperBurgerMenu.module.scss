@@ -1,9 +1,11 @@
+@import "../../../scss/common";
+
 .burgerWrapper {
   position: absolute;
   width: 100vw;
   height: 100vh;
   z-index: 99999;
-  background-color: #ffffff;
+  background-color: $white-color;
   top: 0;
   left: 0;
   transform: translateX(-100%);
@@ -21,7 +23,7 @@
   gap: 16px;
 
   &:not(:last-child) {
-    border-bottom: 1px solid #f6f6f6;
+    border-bottom: 1px solid $light-color;
   }
 }
 
@@ -35,17 +37,15 @@
 .burgerIcon {
   width: 24px;
   height: 24px;
-  stroke: #5d5d5d;
-
+  stroke: $icon-grey-color;
   cursor: pointer;
 }
 
 .contactsTitle {
   font-size: 15px;
   font-weight: 600;
-  line-height: 13px;
-
-  color: #888888;
+  line-height: 0.87;
+  color: $light-grey-color;
 }
 
 .contactsList {
@@ -61,11 +61,10 @@
 .contactText {
   font-size: 16px;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.75;
+  color: $text-dark-color;
 
-  color: #3d3d3d;
-
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 18px;
   }
 }
@@ -78,11 +77,41 @@
 .socIcon {
   width: 24px;
   height: 24px;
-  fill: #3d3d3d;
+  fill: $text-dark-color;
 }
 
 .authCloseIcon {
   position: absolute;
   top: 16px;
   right: 16px;
+}
+
+.menu__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.icon_paw {
+  width: 24px;
+  height: 24px;
+  fill: $light-green-color;
+  stroke: $light-green-color;
+
+  @include on-tablet {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.icon_name {
+  width: 79px;
+  height: 19px;
+  fill: $light-green-color;
+  stroke: $light-green-color;
+
+  @include on-tablet {
+    width: 108px;
+    height: 25px;
+  }
 }

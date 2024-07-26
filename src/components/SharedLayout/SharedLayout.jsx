@@ -7,8 +7,9 @@ import CartModal from "modules/Modals/CartModal";
 
 export const SharedLayout = () => {
   const [activeAuthModal, setActiveAuthModal] = useState(false);
-
   const [activeCartModal, setActiveCartModal] = useState(false);
+
+  const onCloseModal = () => setActiveAuthModal(false);
 
   return (
     <>
@@ -25,6 +26,7 @@ export const SharedLayout = () => {
       <AuthModal
         activeAuthModal={activeAuthModal}
         setActiveAuthModal={setActiveAuthModal}
+        onCloseModal={onCloseModal}
       />
 
       <CartModal

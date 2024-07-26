@@ -1,8 +1,5 @@
-import Logo from "components/Logo/Logo";
-
 import css from "./Footer.module.scss";
 import { Link } from "react-router-dom";
-
 import icons from "src/images/icons.svg";
 
 const navOnSiteArray = [
@@ -24,10 +21,16 @@ const animalsArray = [
 const Footer = () => {
   return (
     <footer className={css.footer}>
-      <div className="container">
         <div className={css.footerInfo}>
           <div className={css.logoWrapper}>
-            <Logo color={"logo__footer"} />
+            <Link to="/" className={css.footer__logo}>
+              <svg className={css.icon_paw}>
+                <use href={icons + "#icon-paw"}></use>
+              </svg>
+              <svg className={css.icon_name}>
+                <use href={icons + "#icon-pettopia"}></use>
+              </svg>
+            </Link>
             <div className={css.footerAddressWrapper}>
               <p className={css.footerAddress}>
                 Графік роботи: Пн-Нд: 9:00-18:00
@@ -140,7 +143,6 @@ const Footer = () => {
             Copyright © 2023, Pettopia. All Rights Reserved.
           </p>
         </div>
-      </div>
     </footer>
   );
 };

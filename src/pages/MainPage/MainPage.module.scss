@@ -1,3 +1,5 @@
+@import "../../scss/common";
+
 .main__wrapper {
   display: flex;
   gap: 24px;
@@ -5,59 +7,4 @@
 
 .main__container {
   overflow: hidden;
-}
-
-.hero {
-  background-color: #8e8e8e33;
-  background-image: linear-gradient(#00000033, #00000033),
-    url(../../images/background/bg-img_s@1x.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  max-width: 1584px;
-  height: 226px;
-  border-radius: 10px;
-  margin-left: auto;
-  margin-right: auto;
-
-  // retina mobile screen
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: linear-gradient(to right, #00000033, #00000033),
-      url(../../images/background/bg-img_s@2x.jpg);
-  }
-
-  // Tablet screen
-  @media screen and (min-width: 744px) {
-    background-image: linear-gradient(to right, #00000033, #00000033),
-      url(../../images/background/bg-img_m@1x.jpg);
-
-    height: 298px;
-
-    // retina tablet screen
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: linear-gradient(to right, #00000033, #00000033),
-        url(../../images/background/bg-img_m@2x.jpg);
-    }
-  }
-
-  // Desktop screen
-  @media screen and (min-width: 1920px) {
-    background-image: linear-gradient(to right, #00000033, #00000033),
-      url(../../images/background/bg-img_l@1x.jpg);
-
-    height: 500px;
-    border-radius: 20px;
-
-    // retina desktop screen
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: linear-gradient(to right, #00000033, #00000033),
-        url(../../images/background/bg-img_l@2x.jpg);
-    }
-  }
 }

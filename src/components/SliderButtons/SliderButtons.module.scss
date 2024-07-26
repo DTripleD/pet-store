@@ -1,30 +1,34 @@
+@import "../../scss/common";
+
 .slider__buttons_wrapper {
-  display: flex;
+  display: none;
 
-  justify-items: center;
-  gap: 8px;
+  @include on-tablet {
+    display: flex;
+    justify-items: center;
+    gap: 8px;
+  }
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     gap: 12px;
   }
 }
 
 .slider__button {
-  background-color: #34955d;
-
+  background-color: $light-green-color;
   border-radius: 50%;
   padding: 6px;
-
   display: flex;
   border: none;
+  cursor: pointer;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     padding: 12px;
   }
-}
 
-.slider__button:disabled {
-  background-color: #e7e7e7;
+  &:disabled {
+    background-color: $disabled-color;
+  }
 }
 
 .slider__icon {
@@ -33,9 +37,9 @@
 }
 
 .slider__button .slider__icon {
-  stroke: #ffffff;
+  stroke: $white-color;
 }
 
 .slider__button:disabled .slider__icon {
-  stroke: #b0b0b0;
+  stroke: $disabled-icon-color;
 }

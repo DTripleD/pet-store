@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../redux/auth/operations";
 import Button from "../Button/Button";
 import { selectActivation } from "../../redux/auth/selectors";
+import { useNavigate } from "react-router-dom";
 
 const ModalRegister = ({
   passwordShown,
@@ -15,10 +16,11 @@ const ModalRegister = ({
   setIsLogin,
   setOpenedBurger,
   isBurger = false,
+  onCloseModal,
 }) => {
   const dispatch = useDispatch();
-
   const activationSent = useSelector(selectActivation);
+  const navigate = useNavigate();
 
   const register = async (e) => {
     e.preventDefault();
@@ -48,7 +50,9 @@ const ModalRegister = ({
       }
 
       toast.success("User register succesfully!");
-
+      onCloseModal(); 
+      navigate('/user/profile');
+      
       return res;
     } catch (error) {
       return error;
@@ -58,7 +62,12 @@ const ModalRegister = ({
   return activationSent ? (
     <p>Активуйте аккаунт на пошті</p>
   ) : (
-    <>
+    <div className={css.register_box}>
+      <button className={css.register_box__close} onClick={onCloseModal}>
+        <svg className={css.icon_close}>
+          <use href={icons + "#close"}></use>
+        </svg>
+      </button>
       <h3 className={css.modalTitle}>Реєстрація</h3>
       <form className={css.registerForm} onSubmit={register}>
         <div className={css.inputsWrapper}>
@@ -103,7 +112,10 @@ const ModalRegister = ({
           </label>
         </div>
         <div className={css.authButtonWraper}>
-          <Button text="Зареєструватись" type="submit" />
+          <Button
+            text="Зареєструватись" 
+            type="submit"
+            />
           <div className={css.haveAccWrapper}>
             <p className={css.haveAccText}>Вже маєте акаунт?</p>
             <button
@@ -120,7 +132,7 @@ const ModalRegister = ({
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
@@ -132,4 +144,5 @@ ModalRegister.propTypes = {
   setIsLogin: PropTypes.func,
   setOpenedBurger: PropTypes.func,
   isBurger: PropTypes.bool,
+  onCloseModal: PropTypes.func,
 };

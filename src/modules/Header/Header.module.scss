@@ -1,72 +1,179 @@
+@import "../../scss/common";
+
 .header {
-  background-color: #ffffff;
-}
+  background-color: $white-color;
+  min-width: fit-content;
 
-.header__container {
-  display: flex;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
 
-  justify-content: space-between;
-
-  align-items: center;
-
-  padding-top: 12px;
-  padding-bottom: 12px;
-
-  @media screen and (min-width: 744px) {
-    padding-top: 17px;
-    padding-bottom: 17px;
-    gap: 24px;
+    @include on-tablet {
+      padding: 17px 0;
+      gap: 24px;
+    }
   }
 
-  @media screen and (min-width: 1920px) {
-    padding-top: 25px;
-    padding-bottom: 25px;
+  &__box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__burger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 6px 4px;
+    cursor: pointer;
+
+    @include on-desktop {
+      display: none;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+
+    @include on-desktop {
+      width: 216px;
+    }
+  }
+
+  &__search {
+    display: none;
+
+    @include on-tablet {
+      flex-grow: 1;
+      display: flex;
+    }
+
+    @include on-desktop {
+      gap: 12px;
+    }
+  }
+
+}
+
+.info {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+
+  @include on-desktop {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  &__btn,
+  &__button {
+    display: none;
+
+    @include on-desktop {
+      display: flex;
+      background-color: transparent;
+      border: none;
+      padding: 12px 8px;
+    }
+  }
+
+  &__search,
+  &__cart {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__cart {
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__search {
+    @include on-tablet {
+      display: none;
+    }
+  }
+
+  &__user {
+    display: none;
+    cursor: pointer;
+
+    // @include on-desktop {
+    //   display: flex;
+    //   padding: 12px 8px;
+    //   border: none;
+    //   background-color: transparent;
+    // }
+  }
+
+  &__button {
+    display: none;
+    cursor: pointer;
+
+    @include on-desktop {
+      display: flex;
+    }
   }
 }
 
-.menuIcon {
+.icon_menu {
+  width: 16px;
+  height: 12px;
+  stroke: $icon-grey-color;
+}
+
+.icon_paw {
   width: 24px;
   height: 24px;
-  stroke: #5d5d5d;
+  fill: $light-green-color;
+  stroke: $light-green-color;
+
+  @include on-tablet {
+    width: 32px;
+    height: 32px;
+  }
 }
 
-.logoWrapper {
-  display: flex;
-  gap: 16px;
-  align-items: center;
+.icon_name {
+  width: 79px;
+  height: 19px;
+  fill: $light-green-color;
+  stroke: $light-green-color;
+
+  @include on-tablet {
+    width: 108px;
+    height: 25px;
+  }
 }
 
-.search__section {
-  display: flex;
-  flex-grow: 1;
-  gap: 12px;
+.icon_loop,
+.icon_cart {
+  width: 20px;
+  height: 20px;
+  stroke: $icon-grey-color;
 }
 
-.info__wrapper {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+.cart_count {
+  position: absolute;
+  color: $icon-grey-color;
 }
 
-.headerIcon {
+.icon_heart,
+.icon_person {
   width: 24px;
   height: 24px;
-  stroke: #5d5d5d;
-}
-
-.user__button {
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  padding: 8px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-}
-
-.userLink {
-  display: flex;
+  stroke: $icon-grey-color;
 }
