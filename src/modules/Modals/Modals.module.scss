@@ -1,3 +1,5 @@
+@import "../../scss/common";
+
 .modal {
   height: 100vh;
   width: 100vw;
@@ -18,22 +20,25 @@
 }
 
 .modal.active {
+  width: 100%;
   opacity: 1;
   pointer-events: all;
 }
 
 .modal__content {
-  padding: 48px;
+  padding: 64px 8px;
   border-radius: 12px;
-  background-color: white;
-
+  background-color: $white-color;
   transform: scale(1);
   transition: 0.4s all;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 48px;
+
+  @include on-tablet {
+    padding: 48px;
+  }
 }
 
 .modal__content.active {

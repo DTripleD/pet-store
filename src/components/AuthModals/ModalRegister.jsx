@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../redux/auth/operations";
 import Button from "../Button/Button";
 import { selectActivation } from "../../redux/auth/selectors";
-import { useNavigate } from "react-router-dom";
 
 const ModalRegister = ({
   passwordShown,
@@ -20,7 +19,6 @@ const ModalRegister = ({
 }) => {
   const dispatch = useDispatch();
   const activationSent = useSelector(selectActivation);
-  const navigate = useNavigate();
 
   const register = async (e) => {
     e.preventDefault();
@@ -51,7 +49,6 @@ const ModalRegister = ({
 
       toast.success("User register succesfully!");
       onCloseModal(); 
-      navigate('/user/profile');
       
       return res;
     } catch (error) {
