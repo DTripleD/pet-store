@@ -8,11 +8,19 @@
   }
 }
 
+.logoHeader {
+  fill: $light-green-color;
+  stroke: $light-green-color;
+}
+
+.logoFooter {
+  fill: $white-color;
+  stroke: $white-color;
+}
+
 .icon_paw {
   width: 24px;
   height: 24px;
-  // fill: $light-green-color;
-  // stroke: $light-green-color;
 
   @include on-tablet {
     width: 32px;
@@ -23,8 +31,6 @@
 .icon_name {
   width: 79px;
   height: 19px;
-  // fill: $light-green-color;
-  // stroke: $light-green-color;
 
   @include on-tablet {
     width: 108px;

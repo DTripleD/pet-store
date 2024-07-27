@@ -6,36 +6,6 @@
   @include on-desktop {
     padding: 64px 48px 32px;
   }
-
-  &__logo {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-  }
-}
-
-.icon_paw {
-  width: 24px;
-  height: 24px;
-  fill: $white-color;
-  stroke: $white-color;
-
-  @include on-tablet {
-    width: 32px;
-    height: 32px;
-  }
-}
-
-.icon_name {
-  width: 79px;
-  height: 19px;
-  fill: $white-color;
-  stroke: $white-color;
-
-  @include on-tablet {
-    width: 108px;
-    height: 25px;
-  }
 }
 
 .footerInfo {

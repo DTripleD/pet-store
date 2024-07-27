@@ -1,5 +1,3 @@
-@import "../../../scss/common";
-
 .burgerWrapper {
   position: absolute;
   width: 100vw;
@@ -84,34 +82,4 @@
   position: absolute;
   top: 16px;
   right: 16px;
-}
-
-.menu__logo {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-}
-
-.icon_paw {
-  width: 24px;
-  height: 24px;
-  fill: $light-green-color;
-  stroke: $light-green-color;
-
-  @include on-tablet {
-    width: 32px;
-    height: 32px;
-  }
-}
-
-.icon_name {
-  width: 79px;
-  height: 19px;
-  fill: $light-green-color;
-  stroke: $light-green-color;
-
-  @include on-tablet {
-    width: 108px;
-    height: 25px;
-  }
 }

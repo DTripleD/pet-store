@@ -48,7 +48,6 @@ const ModalRegister = ({
       }
 
       toast.success("User register succesfully!");
-      onCloseModal(); 
       
       return res;
     } catch (error) {

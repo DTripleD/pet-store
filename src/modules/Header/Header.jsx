@@ -50,7 +50,7 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
                   <use href={icons + "#menu"}></use>
                 </svg>
               </button>
-            <Logo />
+            <Logo color={"logoHeader"} />
           </div>
 
           <div className={css.header__search}>

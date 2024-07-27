@@ -3,7 +3,7 @@ import css from "./WrapperBurgerMenu.module.scss";
 import { useEffect } from "react";
 
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import Logo from "../../../components/Logo/Logo";
 
 const WrapperBurgerMenu = ({ children, isOpen, setIsOpen }) => {
   useEffect(() => {
@@ -26,14 +26,7 @@ const WrapperBurgerMenu = ({ children, isOpen, setIsOpen }) => {
         </svg>
       ) : (
         <div className={`${css.burgerContainer} ${css.burgerHeader}`}>
-          <Link to="/" className={css.menu__logo}>
-            <svg className={css.icon_paw}>
-              <use href={icons + "#icon-paw"}></use>
-            </svg>
-            <svg className={css.icon_name}>
-              <use href={icons + "#icon-pettopia"}></use>
-            </svg>
-          </Link>
+          <Logo color={"logoHeader"} />
 
           <svg className={css.burgerIcon} onClick={() => setIsOpen(false)}>
             <use href={icons + "#cross"}></use>

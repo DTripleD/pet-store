@@ -99,12 +99,12 @@
     display: none;
     cursor: pointer;
 
-    // @include on-desktop {
-    //   display: flex;
-    //   padding: 12px 8px;
-    //   border: none;
-    //   background-color: transparent;
-    // }
+    @include on-desktop {
+      display: flex;
+      padding: 12px 8px;
+      border: none;
+      background-color: transparent;
+    }
   }
 
   &__button {
