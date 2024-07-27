@@ -16,6 +16,7 @@ import RegisterBurgerMenu from "../BurgerMenu/RegisterBurgerMenu/RegisterBurgerM
 import MainBurgerMenu from "../BurgerMenu/MainBurgerMenu/MainBurgerMenu";
 import LoginBurgerMenu from "../BurgerMenu/LoginBurgerMenu/LoginBurgerMenu";
 import { useState } from "react";
+import Logo from "../../components/Logo/Logo";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -49,14 +50,7 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
                   <use href={icons + "#menu"}></use>
                 </svg>
               </button>
-              <Link to="/" className={css.header__logo}>
-                <svg className={css.icon_paw}>
-                  <use href={icons + "#icon-paw"}></use>
-                </svg>
-                <svg className={css.icon_name}>
-                  <use href={icons + "#icon-pettopia"}></use>
-                </svg>
-              </Link>
+            <Logo />
           </div>
 
           <div className={css.header__search}>
