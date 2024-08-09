@@ -1,29 +1,28 @@
-.product__nav_button {
+.productNavButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 42px;
   font-size: 15px;
   font-weight: 500;
-  line-height: 11px;
-
-  padding: 14px 18px;
-
-  @media screen and (min-width: 1920px) {
-    padding: 16px 24px;
-  }
-
+  line-height: 0.74;
   border: none;
-
   border-radius: 100px;
-
   cursor: pointer;
 
-  display: block;
+  @include on-desktop {
+    width: 120px;
+  }
+
 }
 
 .product__nav_button_active {
-  background-color: #34955d;
-  color: #ffffff;
+  background-color: $light-green-color;
+  color: $white-color;
 }
 
 .product__nav_button_inactive {
-  background-color: #e7e7e7;
-  color: #5d5d5d;
+  background-color: $light-border-color;
+  color: $icon-grey-color;
 }

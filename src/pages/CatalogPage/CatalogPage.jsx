@@ -17,13 +17,9 @@ import MediaQuery from "react-responsive";
 
 const CatalogPage = () => {
   const { category, catalog } = useParams();
-
   const [value, setValue] = useState([0, 0]);
-
   const products = useSelector(selectProducts);
-
   const routes = useSelector(selectCategories);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,7 +53,7 @@ const CatalogPage = () => {
         <div>No routes</div>
       )}
       <div className={css.catalog__container}>
-        <MediaQuery minWidth={1920}>
+        <MediaQuery minWidth={1280}>
           <FilterForm
             value={value}
             setValue={setValue}

@@ -1,4 +1,62 @@
+.deliveryPage {
+  position: absolute;
+  background-color: $white-color;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  min-height: 120vh;
+  z-index: 555;
+
+  @include on-desktop {
+    position: static;
+    background-color: transparent;
+    width: auto;
+    min-height: calc(100vh - 473px);
+  }
+}
+
+.wrapper {
+  min-width: 320px;
+  max-width: $mobile-max-width;
+  margin: 0 auto;
+
+  @include on-tablet {
+    max-width: $tablet-max-width;
+  }
+}
+
+.btnBack {
+  padding: 0 8px 16px;
+  border-bottom: 1px solid $light-color;
+
+  @include on-desktop {
+    display: none;
+  }
+}
+
+.title {
+  display: none;
+
+  @include on-desktop {
+    display: block;
+    margin-bottom: 32px;
+  }
+}
+
 .buttonsList {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
+  padding-top: 16px;
+  margin-bottom: 32px;
+
+  @include on-desktop {
+    padding-top: 0;
+  }
+}
+
+.deliveryText {
+  color: $light-grey-color;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }

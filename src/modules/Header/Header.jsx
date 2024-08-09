@@ -17,6 +17,7 @@ import MainBurgerMenu from "../BurgerMenu/MainBurgerMenu/MainBurgerMenu";
 import LoginBurgerMenu from "../BurgerMenu/LoginBurgerMenu/LoginBurgerMenu";
 import { useState } from "react";
 import Logo from "../../components/Logo/Logo";
+import ProfileBurgerMenu from "../BurgerMenu/ProfileBurgerMenu/ProfileBurgerMenu";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -31,7 +32,12 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
     register: (
       <RegisterBurgerMenu setOpenedBurger={setOpenedBurger} key="auth" />
     ),
+    profile: <ProfileBurgerMenu setOpenedBurger={setOpenedBurger} />
   };
+
+  console.log("isLoggedIn:", isLoggedIn);
+  console.log("openedBurger:", openedBurger);
+  console.log("isOpen:", isOpen);
 
   return (
     <header className={css.header}>

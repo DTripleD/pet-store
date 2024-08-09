@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 99999;
-  background-color: #ffffff;
+  background-color: $white-color;
   top: 0;
   left: 0;
   transform: translateX(-100%);
@@ -14,29 +14,26 @@
   transform: translateX(0);
 }
 
-.categoryName {
-  font-size: 16px;
+.categoryBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.categoryName,
+.subCatName {
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.75;
+  color: $icon-grey-color;
 
-  color: #5d5d5d;
-
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 18px;
-    line-height: 13px;
+    line-height: 0.72;
   }
 }
 
 .subCatName {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 12px;
-  color: #3d3d3d;
-
-  @media screen and (min-width: 744px) {
-    font-size: 18px;
-    line-height: 13px;
-  }
+  color: $text-dark-color;
 }
 
 .subCatItem {

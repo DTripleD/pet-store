@@ -19,13 +19,13 @@ body {
 
 .container {
   min-width: $mobile-min-width;
-  max-width: 430px;
+  max-width: $mobile-max-width;
   margin: 0 auto;
   padding: 0 8px;
 
   @include on-tablet {
     min-width: $tablet-min-width;
-    max-width: 1024px;
+    max-width: $tablet-max-width;
   }
 
   @include on-desktop {

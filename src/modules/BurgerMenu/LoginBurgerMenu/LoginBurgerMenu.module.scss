@@ -3,6 +3,19 @@
   flex-direction: column;
   gap: 32px;
   align-items: center;
-
   margin-top: 48px;
+}
+
+.profileWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 48px;
+  left: 0;
+
+  &::after {
+    content: '';
+    width: 100vw;
+    border-bottom: 1px solid $light-color;
+  }
 }

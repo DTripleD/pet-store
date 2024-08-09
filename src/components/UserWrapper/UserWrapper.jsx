@@ -26,8 +26,8 @@ const UserWrapper = () => {
   };
 
   return (
-    <div className="container">
-      <div className={css.userInfoWrapper}>
+    // <div className="container">
+      <div className={`container ${css.userInfoWrapper}`}>
         <ul className={css.userInfoList}>
           {profileSidebarItems.map((item) => (
             <li key={item.title} className={css.userSidebarItem}>
@@ -51,7 +51,7 @@ const UserWrapper = () => {
           <Outlet />
         </Suspense>
       </div>
-    </div>
+    // </div>
   );
 };
 

@@ -6,7 +6,7 @@ const SortButton = ({ isActive, text, link }) => {
   return (
     <Link
       to={link}
-      className={`${css.product__nav_button} ${
+      className={`${css.productNavButton} ${
         isActive
           ? css.product__nav_button_active
           : css.product__nav_button_inactive
