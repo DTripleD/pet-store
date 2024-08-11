@@ -18,7 +18,7 @@ body {
 }
 
 .container {
-  min-width: $mobile-min-width;
+  min-width: 320px;
   max-width: $mobile-max-width;
   margin: 0 auto;
   padding: 0 8px;

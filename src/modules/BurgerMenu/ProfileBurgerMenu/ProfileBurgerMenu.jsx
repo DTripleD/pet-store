@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import ButtonBack from '../../../components/ButtonBack/ButtonBack';
+import BackButtonPage from '../../../components/BackButtonPage/BackButtonPage';
 import { selectAuthToken } from '../../../redux/auth/selectors';
 import { logOut } from '../../../redux/auth/operations';
 import { Link } from 'react-router-dom';
@@ -24,6 +24,10 @@ const ProfileBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
     setOpenedBurger("main");
   };
 
+  const handleBackClick = () => {
+    setOpenedBurger("main");
+  };
+
   const onClose = () => {
     setIsOpen(false);
   }
@@ -31,13 +35,12 @@ const ProfileBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
   return (
     <div className={css.profile}>
       <div className={css.wrapper}>
-      <div className={css.btnBack}>
-        <ButtonBack
+        <div className={css.btnBack}>
+          <BackButtonPage
           text={"Профіль"}
-          backTo={"main"}
-          setOpenedBurger={setOpenedBurger}
-        />
-      </div>
+          onClick={handleBackClick}
+           />
+        </div>
       <ul className={css.userInfoList}>
           {profileSidebarItems.map((item) => (
             <li key={item.title} className={css.userSidebarItem}>

@@ -14,11 +14,12 @@
 }
 
 .wrapper {
-  min-width: $mobile-min-width;
+  min-width: 320px;
   max-width: $mobile-max-width;
   margin: 0 auto;
 
   @include on-tablet {
+    min-width: $tablet-min-width;
     max-width: $tablet-max-width;
   }
 }

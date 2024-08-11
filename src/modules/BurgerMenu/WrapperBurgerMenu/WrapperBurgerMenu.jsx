@@ -1,19 +1,24 @@
 import icons from "src/images/icons.svg";
 import css from "./WrapperBurgerMenu.module.scss";
 import { useEffect } from "react";
-
+import ProfileBurgerMenu from '../ProfileBurgerMenu/ProfileBurgerMenu';
 import PropTypes from "prop-types";
 import Logo from "../../../components/Logo/Logo";
+import { useLocation } from "react-router-dom";
 
 const WrapperBurgerMenu = ({ children, isOpen, setIsOpen }) => {
+  const location = useLocation();
+
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    }
-    if (!isOpen) {
-      document.body.style.overflow = "";
-    }
-  });
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  }, [isOpen]);
+
+  const isProfilePage = [
+    "/user/profile",
+    "/user/delivery",
+    "/user/favorite",
+    "/user/cart"
+  ].includes(location.pathname);
 
   return (
     <div className={`${css.burgerWrapper} ${isOpen ? css.open : ""}`}>
@@ -34,11 +39,11 @@ const WrapperBurgerMenu = ({ children, isOpen, setIsOpen }) => {
         </div>
       )}
 
-      <div className={css.burgerContainer}>{children}</div>
-
-      {children?.key !== "auth" && (
+      {isProfilePage ? (
+        <ProfileBurgerMenu />
+      ) : (
         <>
-          {" "}
+        <div>{children}</div>
           <div className={css.burgerContainer}>
             <p className={css.contactsTitle}>Контакти</p>
             <ul className={css.contactsList}>
@@ -93,7 +98,7 @@ const WrapperBurgerMenu = ({ children, isOpen, setIsOpen }) => {
             </ul>
           </div>
         </>
-      )}
+        )}
     </div>
   );
 };

@@ -105,9 +105,9 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
               )}
           </div>
         </div>
-            <WrapperBurgerMenu isOpen={isOpen} setIsOpen={setIsOpen}>
-              {obj[openedBurger]}
-            </WrapperBurgerMenu>
+          <WrapperBurgerMenu isOpen={isOpen} setIsOpen={setIsOpen}>
+            {obj[openedBurger]}
+          </WrapperBurgerMenu>
       </div>
     </header>
   );

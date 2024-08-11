@@ -9,7 +9,7 @@ import {
   selectCartIsLoading,
   selectItemsInCart,
 } from "../../redux/cart/cartSelectors";
-import ButtonBack from "../../components/ButtonBack/ButtonBack";
+import BackButtonPage from "../../components/BackButtonPage/BackButtonPage";
 
 const CartPage = () => {
   const location = useLocation();
@@ -20,12 +20,11 @@ const CartPage = () => {
     <section className={css.cartSection}>
       <div className={css.wrapper}>
         <div className={css.btnBack}>
-          <ButtonBack
-            text={"Кошик"}
-            backTo={"main"}
-            // setOpenedBurger={setOpenedBurger}
-          />
+          <BackButtonPage text={"Кошик"} />
         </div>
+      </div>
+
+      <div className="container">
         <h2 className={css.cartTitle}>Кошик</h2>
         {cartIsLoading ? (
           <div className={css.loading}>Loading...</div>
