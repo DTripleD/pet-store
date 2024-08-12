@@ -24,8 +24,8 @@ const Slider = ({ data, title }) => {
   return (
     <section>
       <div className={css.sliderContainer}>
-        <div className={css.slider__header}>
-          <h2 className={css.slider__header_title}>{title}</h2>
+        <div className={css.sliderHeader}>
+          <h2 className={css.sliderHeaderTitle}>{title}</h2>
             <SliderButtons
               isStartBtnActive={isStartBtnActive}
               isEndBtnActive={isEndBtnActive}
@@ -47,8 +47,8 @@ const Slider = ({ data, title }) => {
             modules={[Navigation]}
             slidesPerView={4}
             spaceBetween={16}
-            className={css.swiper_container}
-            wrapperClass={css.swiper_wrapper}
+            className={css.swiperContainer}
+            wrapperClass={css.swiperWrapper}
             breakpoints={{
               1280: {
                 spaceBetween: 16,
@@ -63,7 +63,7 @@ const Slider = ({ data, title }) => {
             }}
           >
             {data.map(item => (
-              <SwiperSlide key={item.id} className={css.item_box}>
+              <SwiperSlide key={item.id} className={css.itemBox}>
                 {title === 'Акції' ? (
                 <SliderItem  item={item} />
                 ) : (
@@ -73,9 +73,9 @@ const Slider = ({ data, title }) => {
             ))}
           </Swiper>
         </div>
-         <Link to="new" className={css.styled__link}>
-          <p className={css.show__all_text}>Переглянути все</p>
-          <svg className={css.show__all_icon}>
+         <Link to="new" className={css.styledLink}>
+          <p className={css.showAllText}>Переглянути все</p>
+          <svg className={css.showAllIcon}>
             <use href={icons + "#icon-right"}></use>
           </svg>
         </Link>

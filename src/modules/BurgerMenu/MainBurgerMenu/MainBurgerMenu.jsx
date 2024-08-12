@@ -3,11 +3,11 @@ import icons from "src/images/icons.svg";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../../redux/auth/selectors";
+import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
 
 const MainBurgerMenu = ({ setIsOpen, setOpenedBurger }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
+  const user = useSelector(selectUser);
 
   return (
     <div className={css.burgerContainer}>
@@ -24,7 +24,7 @@ const MainBurgerMenu = ({ setIsOpen, setOpenedBurger }) => {
             className={css.burgerMenuText} 
             onClick={() => setIsOpen(false)}
             >
-              User Name
+              {user.first_name || 'User name'}
           </Link>
         ) : (
           <ul className={css.burgerAuthList}>
@@ -55,16 +55,28 @@ const MainBurgerMenu = ({ setIsOpen, setOpenedBurger }) => {
           <p className={css.burgerMenuText}>Каталог</p>
         </li>
         <li className={css.burgerMenuItem}>
-          <svg className={css.burgerIcon} onClick={() => setIsOpen(false)}>
+          <svg className={css.burgerIcon}>
             <use href={icons + "#heart"}></use>
           </svg>
-          <p className={css.burgerMenuText}>Обране</p>
+          <Link 
+            to={"/user/favorite"} 
+            className={css.burgerMenuText}
+            onClick={() => setIsOpen(false)}
+          >
+            Обране
+          </Link>
         </li>
         <li className={css.burgerMenuItem}>
-          <svg className={css.burgerIcon} onClick={() => setIsOpen(false)}>
+          <svg className={css.burgerIcon} >
             <use href={icons + "#cart"}></use>
           </svg>
-          <p className={css.burgerMenuText}>Кошик</p>
+          <Link 
+            to={"/user/cart"} 
+            className={css.burgerMenuText}
+            onClick={() => setIsOpen(false)}
+            >
+              Кошик
+          </Link>
         </li>
       </ul>
     </div>

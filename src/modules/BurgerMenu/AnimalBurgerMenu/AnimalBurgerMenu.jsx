@@ -43,12 +43,14 @@ const AnimalBurgerMenu = ({ setOpenedBurger }) => {
   }, []);
 
   return (
-    <>
-      <ButtonBack
-        text={"Категорії"}
-        backTo={"main"}
-        setOpenedBurger={setOpenedBurger}
-      />
+    <div className={css.wrapper}>
+      <div className={css.btnBack}>
+        <ButtonBack
+          text={"Каталог"}
+          backTo={"main"}
+          setOpenedBurger={setOpenedBurger}
+        />
+      </div>
       <ul className={css.animalsList}>
         {animals.map((item) => (
           <li
@@ -71,7 +73,7 @@ const AnimalBurgerMenu = ({ setOpenedBurger }) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

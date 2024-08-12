@@ -35,10 +35,6 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
     profile: <ProfileBurgerMenu setOpenedBurger={setOpenedBurger} />
   };
 
-  console.log("isLoggedIn:", isLoggedIn);
-  console.log("openedBurger:", openedBurger);
-  console.log("isOpen:", isOpen);
-
   return (
     <header className={css.header}>
       <div className="container">

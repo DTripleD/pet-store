@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import BackButtonPage from '../../../components/BackButtonPage/BackButtonPage';
 import { selectAuthToken } from '../../../redux/auth/selectors';
 import { logOut } from '../../../redux/auth/operations';
 import { Link } from 'react-router-dom';
@@ -24,48 +23,47 @@ const ProfileBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
     setOpenedBurger("main");
   };
 
-  const handleBackClick = () => {
-    setOpenedBurger("main");
-  };
-
   const onClose = () => {
     setIsOpen(false);
   }
 
   return (
     <div className={css.profile}>
-      <div className={css.wrapper}>
-        <div className={css.btnBack}>
-          <BackButtonPage
-          text={"Профіль"}
-          onClick={handleBackClick}
-           />
-        </div>
-      <ul className={css.userInfoList}>
-          {profileSidebarItems.map((item) => (
-            <li key={item.title} className={css.userSidebarItem}>
-              <svg className={css.userSidebarIcon}>
-                <use href={icons + `#${item.icon}`}></use>
-              </svg>
-              {item.link.length > 0 ? (
-                <Link to={`/user/${item.link}`} className={css.userNavItem} onClick={onClose}>
-                  {item.title}
-                </Link>
-              ) : (
-                <button className={css.userNavItem} onClick={handleLogOut}>
-                  Вийти
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
+      <div className={css.btnBack}>
+        <Link 
+          to=".."
+          className={css.linkBack}
+        >
+          <svg className={css.iconBack}>
+            <use href={icons + "#icon-down"}></use>
+          </svg>
+          <p className={css.textBack}>Профіль</p>
+        </Link>
       </div>
+      <ul className={css.userInfoList}>
+        {profileSidebarItems.map((item) => (
+          <li key={item.title} className={css.userSidebarItem}>
+            <svg className={css.userSidebarIcon}>
+              <use href={icons + `#${item.icon}`}></use>
+            </svg>
+            {item.link.length > 0 ? (
+              <Link to={`/user/${item.link}`} className={css.userNavItem} onClick={onClose}>
+                {item.title}
+              </Link>
+            ) : (
+              <button className={css.userNavItem} onClick={handleLogOut}>
+                Вийти
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
 ProfileBurgerMenu.propTypes = {
-  setOpenedBurger: PropTypes.func.isRequired,
+  setOpenedBurger: PropTypes.func,
   setIsOpen: PropTypes.func,
 };
 

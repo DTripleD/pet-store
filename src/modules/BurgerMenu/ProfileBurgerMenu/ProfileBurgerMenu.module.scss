@@ -3,7 +3,7 @@
   background-color: $white-color;
   left: 0;
   right: 0;
-  top: 65;
+  top: 65px;
   min-width: 100vw;
   height: 120vh;
   z-index: 555;
@@ -12,6 +12,32 @@
 
 .btnBack {
   padding-bottom: 16px;
+}
+
+.linkBack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+.iconBack {
+  transform: rotate(90deg);
+  stroke: $text-dark-color;
+  width: 24px;
+  height: 24px;
+}
+
+.textBack {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 0.67;
+  color: $text-dark-color;
+
+  @include on-tablet {
+    font-size: 20px;
+    line-height: 0.75;
+  }
 }
 
 .userInfoList {

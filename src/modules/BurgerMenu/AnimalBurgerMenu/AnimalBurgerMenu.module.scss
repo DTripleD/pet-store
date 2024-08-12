@@ -1,26 +1,28 @@
-.animalLogo {
+.wrapper {
+  padding: 16px;
+  border-bottom: 1px solid $light-color;
+}
+
+.btnBack {
+  padding-bottom: 16px;
+}
+
+.animalLogo,
+.toAnimalIcon {
   width: 24px;
   height: 24px;
-
-  stroke: #5d5d5d;
+  stroke: $icon-grey-color;
 }
 
 .animalItem {
   display: flex;
-
   align-items: center;
   justify-content: space-between;
-
   padding: 12px 8px;
 }
 
 .toAnimalIcon {
-  width: 24px;
-  height: 24px;
-
   transform: rotate(-90deg);
-
-  stroke: #5d5d5d;
 }
 
 .animalWrapper {
@@ -38,11 +40,10 @@
 .animalText {
   font-size: 16px;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.75;
+  color: $icon-grey-color;
 
-  color: #5d5d5d;
-
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 18px;
   }
 }

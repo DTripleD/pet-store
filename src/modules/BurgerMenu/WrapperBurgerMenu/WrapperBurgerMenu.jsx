@@ -22,14 +22,14 @@ const WrapperBurgerMenu = ({ children, isOpen, setIsOpen }) => {
 
   return (
     <div className={`${css.burgerWrapper} ${isOpen ? css.open : ""}`}>
-      {children?.key === "auth" ? (
+      {/* {isProfilePage ? (
         <svg
           className={`${css.burgerIcon} ${css.authCloseIcon}`}
           onClick={() => setIsOpen(false)}
         >
           <use href={icons + "#cross"}></use>
         </svg>
-      ) : (
+      ) : ( */}
         <div className={`${css.burgerContainer} ${css.burgerHeader}`}>
           <Logo color={"logoHeader"} />
 
@@ -37,7 +37,7 @@ const WrapperBurgerMenu = ({ children, isOpen, setIsOpen }) => {
             <use href={icons + "#cross"}></use>
           </svg>
         </div>
-      )}
+      {/* )} */}
 
       {isProfilePage ? (
         <ProfileBurgerMenu />
