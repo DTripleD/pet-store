@@ -14,6 +14,7 @@ const ModalLogin = ({
   setIsLogin,
   setOpenedBurger,
   isBurger = false,
+  onCloseModal,
 }) => {
   const dispatch = useDispatch();
 
@@ -37,6 +38,7 @@ const ModalLogin = ({
       }
 
       toast.success("User login succesfully!");
+      onCloseModal();
 
       return res;
     } catch (error) {
@@ -46,6 +48,11 @@ const ModalLogin = ({
 
   return (
     <>
+      <button className={css.register_box__close} onClick={onCloseModal}>
+        <svg className={css.icon_close}>
+          <use href={icons + "#close"}></use>
+        </svg>
+      </button>
       <h3 className={css.modalTitle}>Вхід до акаунту</h3>
       <form className={css.registerForm} onSubmit={login}>
         <div className={css.inputsWrapper}>
@@ -113,4 +120,5 @@ ModalLogin.propTypes = {
   setIsLogin: PropTypes.func,
   setOpenedBurger: PropTypes.func,
   isBurger: PropTypes.bool,
+  onCloseModal: PropTypes.func,
 };

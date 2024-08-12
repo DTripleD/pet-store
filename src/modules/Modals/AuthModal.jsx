@@ -25,6 +25,7 @@ const AuthModal = ({ activeAuthModal, setActiveAuthModal, onCloseModal }) => {
               passwordShown={passwordShown}
               setPasswordShown={setPasswordShown}
               setIsLogin={setIsLogin}
+              onCloseModal={onCloseModal}
             />
           </>
         ) : (

@@ -1,29 +1,33 @@
-.sort__text__wrapper {
+.sortTextWrapper {
   display: flex;
-  gap: 12px;
-  align-items: flex-end;
+  align-items: center;
+  gap: 8px;
+
+  @include on-desktop {
+    gap: 12px;
+  }
 }
 
-.sort__text {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 12px;
-  color: #888888;
-}
+// .sortText {
+//   font-size: 16px;
+//   font-weight: 500;
+//   line-height: 0.75;
+//   color: $light-grey-color;
+// }
 
-.sort_by__text {
-  color: #262626;
-}
+// .sortByText {
+//   color: $dark-color;
+// }
 
-.select__header {
+.selectHeader {
   cursor: pointer;
   display: flex;
   gap: 6px;
   align-items: flex-end;
 }
 
-.icon__down__sort {
-  stroke: #262626;
+.iconDownSort {
+  stroke: $dark-color;
   width: 24px;
   height: 24px;
   transition: transform 300ms ease-out;

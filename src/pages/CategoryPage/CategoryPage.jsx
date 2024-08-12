@@ -12,7 +12,6 @@ import icons from "../../images/icons.svg";
 
 const CategoryPage = () => {
   const { category } = useParams();
-
   const [categorys, setCategorys] = useState(null);
 
   const getCategoryPage = async (id) => {

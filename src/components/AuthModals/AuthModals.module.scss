@@ -1,16 +1,12 @@
-@import "../../scss/common";
-
 .register_box {
-  position: relative;
-
   &__close {
     display: none;
 
     @include on-desktop {
       display: flex;
       position: absolute;
-      top: -30px;
-      right: -30px;
+      top: 24px;
+      right: 24px;
       width: 24px;
       height: 24px;
       background-color: transparent;
@@ -62,62 +58,58 @@
   justify-content: center;
 }
 
-
-
 .registerForm {
   display: flex;
   flex-direction: column;
+  min-width: 320px;
 
-  width: 100%;
-
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     width: 472px;
   }
 }
 
 .inputsWrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-bottom: 32px;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     gap: 24px;
     margin-bottom: 24px;
   }
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     margin-bottom: 53px;
   }
 }
 
 .inputWrapper {
-  border: 1.6px solid #d1d1d1;
+  border: 1.6px solid $grey-border-color;
   padding: 15px 16px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     padding: 22px 16px;
   }
 }
 
 .registerInput {
+  width: 100%;
   border: none;
   outline: none;
   padding: 0;
-
-  color: #888888;
-
+  color: $light-grey-color;
   font-size: 15px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.2;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 16px;
-    line-height: 19px;
   }
 }
 
@@ -127,26 +119,23 @@
 }
 
 .haveAccText {
-  color: #888888;
-
+  color: $light-grey-color;
   font-size: 15px;
   font-weight: 500;
-  line-height: 11px;
+  line-height: 0.74;
 }
 
 .haveAccButton {
-  color: #5d5d5d;
+  color: $icon-grey-color;
   border: none;
   background-color: transparent;
   padding: 12px 8px;
-
   cursor: pointer;
-
   font-size: 15px;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.8;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 16px;
   }
 }
@@ -156,7 +145,7 @@
   flex-direction: column;
   gap: 16px;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     gap: 24px;
   }
 }
@@ -164,56 +153,47 @@
 .forgotPassword {
   padding: 12px 8px;
   background-color: transparent;
-
   font-size: 15px;
   font-weight: 500;
-  line-height: 12px;
-
+  line-height: 0.8;
   display: flex;
   width: fit-content;
   border: none;
+  color: $icon-grey-color;
 
-  color: #5d5d5d;
-
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 16px;
   }
 }
 
 .register_btn {
-  background-color: #34955d;
-  color: #ffffff;
-
+  background-color: $light-green-color;
+  color: $white-color;
   border: none;
-
   border-radius: 10px;
   width: 100%;
   padding: 18px;
-
   font-size: 16px;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.75;
+  cursor: pointer;
+  transition: background-color ease-in-out 200ms;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 18px;
-
     padding: 26px;
   }
 
-  cursor: pointer;
-
-  transition: background-color ease-in-out 200ms;
-
   &:hover {
-    background-color: #247749;
+    background-color: $hover-green-color;
   }
 
   &:active {
-    background-color: #1d5f3c;
+    background-color: $active-green-color;
   }
 
   &:disabled {
-    background-color: #e7e7e7;
-    color: #5d5d5d;
+    background-color: $light-border-color;
+    color: $icon-grey-color;
   }
 }

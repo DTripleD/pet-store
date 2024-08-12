@@ -1,50 +1,36 @@
 import css from "./DeliveryPage.module.scss";
-
 import SortButton from "components/SortButton/SortButton";
-
 import { useState } from "react";
-
-import { useLocation } from "react-router-dom";
+import BackButtonPage from "../../components/BackButtonPage/BackButtonPage";
+// import { useLocation } from "react-router-dom";
 
 const DeliveryPage = () => {
   const [selectedButton, setSelectedButton] = useState("Всі");
-
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   return (
-    <section>
-      <h2>Мої замовлення</h2>
-      <ul className={css.buttonsList}>
-        <li>
-          <SortButton
-            isActive={selectedButton === "Всі"}
-            text={"Всі"}
-            setSelectedButton={setSelectedButton}
-          />
-        </li>
-        <li>
-          <SortButton
-            isActive={selectedButton === "Поточні"}
-            text={"Поточні"}
-            setSelectedButton={setSelectedButton}
-          />
-        </li>
-        <li>
-          <SortButton
-            isActive={selectedButton === "Виконані"}
-            text={"Виконані"}
-            setSelectedButton={setSelectedButton}
-          />
-        </li>
-        <li>
-          <SortButton
-            isActive={selectedButton === "Скасовані"}
-            text={"Скасовані"}
-            setSelectedButton={setSelectedButton}
-          />
-        </li>
-      </ul>
-      <p>Замовлень ще немає</p>
+    <section className={css.deliveryPage}>
+      <div className={css.wrapper}>
+        <div className={css.btnBack}>
+          <BackButtonPage text={"Мої замовлення"} />
+        </div>
+
+          <div className="container">
+          <h2 className={css.title}>Мої замовлення</h2>
+          <ul className={css.buttonsList}>
+            {['Всі', 'Поточні', 'Виконані', 'Скасовані'].map((status, index) => (
+              <li className={css.item} key={index}>
+                <SortButton
+                  isActive={selectedButton === status}
+                  text={status}
+                  setSelectedButton={setSelectedButton}
+                />
+              </li>
+            ))}
+          </ul>
+          <p className={css.deliveryText}>Замовлень ще немає</p>
+        </div>
+      </div>
     </section>
   );
 };

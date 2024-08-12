@@ -11,4 +11,11 @@ export default defineConfig({
       modules: "/src/modules",
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "src/scss/common.scss";`
+      },
+    },
+  },
 });

@@ -5,17 +5,14 @@
 .amountPrice {
   font-size: 24px;
   font-weight: 600;
-  line-height: 22px;
-
-  color: #262626;
+  line-height: 0.92;
+  color: $dark-color;
 }
 
 .amountText {
   font-size: 15px;
   font-weight: 500;
-  line-height: 13px;
-
+  line-height: 0.87;
   margin-bottom: 8px;
-
-  color: #888888;
+  color: $light-grey-color;
 }

@@ -1,14 +1,19 @@
 .userInfoWrapper {
   display: flex;
   gap: 24px;
+  border-top: 1px solid $light-color;
+
+  @include on-desktop {
+    border: none;
+    background-color: transparent;
+  }
 }
 
 .userNavItem {
   font-size: 18px;
   font-weight: 500;
   line-height: 13px;
-  color: #5d5d5d;
-
+  color: $icon-grey-color;
   border: none;
   padding: 0;
   background-color: transparent;
@@ -17,7 +22,7 @@
 .userSidebarIcon {
   width: 24px;
   height: 24px;
-  stroke: #5d5d5d;
+  stroke: $icon-grey-color;
 }
 
 .userSidebarItem {
@@ -30,9 +35,12 @@
 }
 
 .userInfoList {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: none;
 
-  margin-top: 64px;
+  @include on-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 64px;
+  }
 }

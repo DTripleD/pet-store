@@ -1,49 +1,43 @@
 .button {
-  background-color: #34955d;
-  color: #ffffff;
-
+  background-color: $light-green-color;
+  color: $white-color;
   border: none;
-
   border-radius: 10px;
   width: 100%;
   padding: 18px;
-
   font-size: 16px;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.67;
+  cursor: pointer;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     font-size: 18px;
-
     padding: 26px;
   }
-
-  cursor: pointer;
 
   transition: background-color ease-in-out 200ms;
 
   &:hover {
-    background-color: #247749;
+    background-color: $hover-green-color;
   }
 
   &:active {
-    background-color: #1d5f3c;
+    background-color: $active-green-color;
   }
 
   &:disabled {
-    background-color: #e7e7e7;
-    color: #5d5d5d;
+    background-color: $light-border-color;
+    color: $icon-grey-color;
   }
 }
 
 .smallButton {
   font-size: 16px;
   font-weight: 600;
-  line-height: 12px;
-
+  line-height: 0.75;
   margin: 0;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     padding: 18px;
   }
 }

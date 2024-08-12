@@ -5,10 +5,14 @@ import { Link } from "react-router-dom";
 import ButtonBack from "../../../components/ButtonBack/ButtonBack";
 import PropTypes from "prop-types";
 
-const CategoryBurgerMenu = ({ setOpenedBurger }) => {
+const CategoryBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
   const animal = useSelector(selectedAnimal);
 
   console.log(animal);
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -19,7 +23,7 @@ const CategoryBurgerMenu = ({ setOpenedBurger }) => {
       />
       <ul className={css.categoryList}>
         {animal.product_categories.map((category) => (
-          <li key={category.id}>
+          <li key={category.id} className={css.categoryBox}>
             <Link
               to={`${animal.id}/${category.id}`}
               className={css.categoryName}
@@ -32,6 +36,7 @@ const CategoryBurgerMenu = ({ setOpenedBurger }) => {
                   <Link
                     to={`${animal.id}/${item.id}`}
                     className={css.subCatName}
+                    onClick={onClose}
                   >
                     {item.name}
                   </Link>
@@ -47,6 +52,7 @@ const CategoryBurgerMenu = ({ setOpenedBurger }) => {
 
 CategoryBurgerMenu.propTypes = {
   setOpenedBurger: PropTypes.func,
+  setIsOpen: PropTypes.func,
 };
 
 export default CategoryBurgerMenu;

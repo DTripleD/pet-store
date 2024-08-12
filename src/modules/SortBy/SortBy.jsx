@@ -5,21 +5,21 @@ import { useState } from "react";
 
 const SortBy = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const [sortBy, setSortBy] = useState("");
+  
   return (
     <div>
-      <div className={css.sort__text__wrapper}>
-        <p className={css.sort__text}>Сортувати</p>
+      <div className={css.sortTextWrapper}>
+        <p className={css.sortText}>Сортувати від</p>
         <div
-          className={css.select__header}
+          className={css.selectHeader}
           onClick={() => setIsOpen((prev) => !prev)}
         >
-          <p className={`${css.sort__text} ${css.sort_by__text}`}>
+          {/* <p className={`${css.sortText} ${css.sortByText}`}>
             {sortBy.length > 0 ? sortBy : "За рейтингом"}
-          </p>
+          </p> */}
           <svg
-            className={`${css.icon__down__sort} ${
+            className={`${css.iconDownSort} ${
               isOpen ? css.icon__sort__open : ""
             }`}
           >

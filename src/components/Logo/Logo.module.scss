@@ -1,0 +1,39 @@
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+
+  @include on-desktop {
+    width: 216px;
+  }
+}
+
+.logoHeader {
+  fill: $light-green-color;
+  stroke: $light-green-color;
+}
+
+.logoFooter {
+  fill: $white-color;
+  stroke: $white-color;
+}
+
+.icon_paw {
+  width: 24px;
+  height: 24px;
+
+  @include on-tablet {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.icon_name {
+  width: 79px;
+  height: 19px;
+
+  @include on-tablet {
+    width: 108px;
+    height: 25px;
+  }
+}

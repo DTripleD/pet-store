@@ -4,11 +4,11 @@
 
 .smallProductSlider .swiper-slide {
   border-radius: 20px;
-  border: 2px solid #e7e7e7;
+  border: 2px solid $light-border-color;
 }
 
 .smallProductSlider .swiper-slide-thumb-active {
-  border: 2px solid #34955d;
+  border: 2px solid $light-green-color;
 }
 
 iframe {

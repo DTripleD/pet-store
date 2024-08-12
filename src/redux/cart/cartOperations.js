@@ -5,16 +5,16 @@ const setCartHeader = (cartToken) => {
   instance.defaults.headers.common["Cart"] = "Token " + cartToken;
 };
 
-const clearCartHeader = () => {
-  instance.defaults.headers.common["Cart"] = "";
-};
+// const clearCartHeader = () => {
+//   instance.defaults.headers.common["Cart"] = "";
+// };
 
 export const getCart = createAsyncThunk(
   "cart/getCart",
   async (token, thunkAPI) => {
     try {
       setCartHeader(token);
-      const res = await instance.get("/cart/");
+      const res = await instance.get('/cart/');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -27,7 +27,7 @@ export const addToCart = createAsyncThunk(
   async ({ id, token }, thunkAPI) => {
     try {
       setCartHeader(token);
-      const res = await instance.post(`cart/add/${id}/`);
+      const res = await instance.post(`/cart/add/${id}/`);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

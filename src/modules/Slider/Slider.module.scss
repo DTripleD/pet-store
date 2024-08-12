@@ -1,5 +1,3 @@
-@import "../../scss/common";
-
 .sliderContainer {
   display: flex;
   flex-direction: column;
@@ -10,13 +8,13 @@
   }
 }
 
-.slider__header {
+.sliderHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.slider__header_title {
+.sliderHeaderTitle {
   color: $text-dark-color;
   font-size: 20px;
   font-weight: 600;
@@ -27,7 +25,7 @@
   }
 }
 
-.swiper_container {
+.swiperContainer {
   display: none;
 
   @include on-tablet {
@@ -35,7 +33,7 @@
   }
 }
 
-.swiper_wrapper {
+.swiperWrapper {
   display: flex;
   margin-bottom: 0;
 }
@@ -51,7 +49,7 @@
   }
 }
 
-.item_box {
+.itemBox {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -63,24 +61,23 @@
 }
 
 
-.styled__link {
+.styledLink {
   display: flex;
   gap: 8px;
   align-items: center;
   justify-content: center;
   padding: 12px 8px;
-  width: 182px;
   align-self: center;
 }
 
-.show__all_text {
+.showAllText {
   font-size: 16px;
   font-weight: 500;
   line-height: 0.75;
   color: $icon-grey-color;
 }
 
-.show__all_icon {
+.showAllIcon {
   stroke: $icon-grey-color;
   width: 24px;
   height: 24px;
