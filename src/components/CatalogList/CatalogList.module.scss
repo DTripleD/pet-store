@@ -9,13 +9,6 @@
   }
 }
 
-.catalogTitle {
-  color: $text-dark-color;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.21;
-}
-
 .filterMob {
   display: flex;
   justify-content: space-between;
@@ -49,6 +42,7 @@
 .filterParams {
   display: flex;
   gap: 8px;
+  padding-bottom: 16px;
 
   @include on-desktop {
     gap: 12px;
@@ -91,7 +85,7 @@
   flex-wrap: wrap;
   gap: 16px;
 
-  @include on-desktop {
+  @include on-desktop-max {
     gap: 24px;
   }
 }
@@ -102,4 +96,31 @@
   @include on-desktop {
     display: block;
   }
+}
+
+.filterLabel {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1.5px solid $disabled-icon-color;
+  border-radius: 100px;
+  height: 42px;
+  padding: 16px 15px;
+}
+
+.labelText {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 0.75;
+  letter-spacing: 0.01em;
+  color: $icon-grey-color;
+}
+
+.iconClose {
+  width: 24px;
+  height: 24px;
+  stroke: $icon-grey-color;
+  stroke-width: 2px;
 }

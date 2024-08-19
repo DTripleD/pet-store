@@ -1,229 +1,211 @@
-.main_product_info_wrapper {
+.mainProductInfoWrapper {
   display: flex;
-
   flex-direction: column;
   gap: 24px;
 
-  @media screen and (min-width: 744px) {
-  }
-
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     flex-direction: row;
     gap: 48px;
   }
 }
 
-.product__header {
+.productHeader {
   display: flex;
   flex-direction: column;
   gap: 24px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     gap: 36px;
   }
 }
 
-.base_info__wrapper {
+.baseInfoWrapper {
   display: flex;
   flex-direction: column;
   gap: 12px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     gap: 16px;
   }
 }
 
-.product_page_title {
-  color: #011240;
-
+.productPageTitle {
+  color: $dark-blue-color;
   font-size: 20px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 1.4;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 28px;
-    line-height: 40px;
   }
 }
 
-.product_code {
-  color: #b0b0b0;
-
+.productCode {
+  color: $disabled-icon-color;
   font-size: 16px;
   font-weight: 500;
-  line-height: 14px;
-  text-align: left;
+  line-height: 0.88;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 18px;
-    line-height: 16px;
   }
 }
 
-.in_stock__wrapper {
+.inStockWrapper {
   display: flex;
   gap: 6px;
   align-items: center;
 }
 
-.stock__icon {
+.stockIcon,
+.toWishIcon {
   width: 24px;
   height: 24px;
-  stroke: #34955d;
+  stroke: $light-green-color;
 }
 
-.to_wish__icon {
-  width: 24px;
-  height: 24px;
-  stroke: #5d5d5d;
+.toWishIcon {
+  stroke: $icon-grey-color;
 }
 
-.is_available {
-  color: #34955d;
-
+.isAvailable {
+  color: $light-green-color;
   font-size: 16px;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 0.88;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 18px;
-    font-weight: 500;
-    line-height: 16px;
   }
 }
 
-.price__wrapper {
+.priceWrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.product_page__price {
-  color: #262626;
-
+.productPagePrice {
+  color: $dark-color;
   font-size: 28px;
   font-weight: 700;
-  line-height: 28px;
+  line-height: 1;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 36px;
-    font-weight: 700;
-    line-height: 36px;
   }
 }
 
-.product_page__price_symbol {
+.productPagePriceSymbol {
   font-size: 18px;
-  line-height: 18px;
+  line-height: 1;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 24px;
-    line-height: 24px;
   }
 }
 
-.add__button {
+.addButton {
   font-size: 16px;
   font-weight: 500;
-  line-height: 12px;
-
+  line-height: 0.75;
   padding: 8px 16px;
-
-  @media screen and (min-width: 1920px) {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 12px;
-    padding: 15px 24px;
-  }
-
   border: none;
-
   border-radius: 100px;
-
   display: flex;
   align-items: center;
   gap: 8px;
-
   cursor: pointer;
+
+  @include on-desktop {
+    font-size: 18px;
+    padding: 15px 24px;
+  }
 }
 
-.add__button_wrapper {
+.addButtonWrapper {
   display: flex;
   gap: 8px;
 }
 
-.to_cart__button {
-  background-color: #34955d;
-  color: #ffffff;
+.toCartButton {
+  background-color: $light-green-color;
+  color: $white-color;
 }
 
-.to_cart__icon {
+.toCartIcon {
   width: 24px;
   height: 24px;
-  stroke: #ffffff;
+  stroke: $white-color;
 }
 
-.to_wish__button {
-  background-color: #e7e7e7;
-  color: #5d5d5d;
+.toWishButton {
+  background-color: $light-border-color;
+  color: $icon-grey-color;
 }
 
-.about_product_wrapper {
+.aboutProductWrapper {
   display: flex;
   flex-direction: column;
   gap: 24px;
-}
 
-.product_page__sub_title {
-  color: #262626;
-
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 16px;
-
-  @media screen and (min-width: 1920px) {
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 20px;
+  @include on-desktop {
+    width: 640px;
   }
 }
 
-.read_more_link {
-  color: #888888;
+.productPageSubTitle {
+  color: $text-dark-color;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 0.88;
 
-  text-decoration: underline;
+  @include on-desktop {
+    font-size: 22px;
+  }
+}
 
+.readMoreLink {
+  position: relative;
+  display: inline-block;
+  max-width: fit-content;
+  color: $light-grey-color;
   font-size: 15px;
   font-weight: 500;
   line-height: 18px;
+
+  &::after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: $light-grey-color;
+    left: 0;
+    bottom: 0;
+  }
 }
 
-.description__text {
-  color: #454545;
-
-  font-family: Inter;
+.descriptionText {
+  color: $descr-grey-color;
   font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
+  line-height: 1.5;
 }
 
-.priceWrapper {
+.priceBox {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .productDiscountPrice {
-  color: #b0b0b0;
+  color: $disabled-icon-color;
   text-decoration: line-through;
-
   font-size: 18px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 20px;
-    line-height: 20px;
   }
 }

@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   gap: 8px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     gap: 12px;
   }
 }

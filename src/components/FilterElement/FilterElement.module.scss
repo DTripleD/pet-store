@@ -1,9 +1,7 @@
 .labelText {
   font-size: 16px;
-  font-weight: 400;
-  line-height: 12px;
-
-  color: #4f4f4f;
+  line-height: 0.75;
+  color: $label-text-color;
 }
 
 .labelWrapper {

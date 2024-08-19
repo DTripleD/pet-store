@@ -3,22 +3,18 @@
   flex-direction: column;
   gap: 16px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop-max {
     gap: 24px;
   }
 }
 
-.form__title {
-  color: #3d3d3d;
-
-  font-size: 16px;
+.formTitle {
+  color: $text-dark-color;
   font-weight: 600;
-  line-height: 19px;
+  line-height: 1.2;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 18px;
-    font-weight: 600;
-    line-height: 22px;
   }
 }
 
@@ -28,17 +24,14 @@
 }
 
 .priceLabel {
-  border: 1.5px solid #d1d1d1;
+  border: 1.5px solid $grey-border-color
+;
   border-radius: 7px;
   padding: 13px 12px;
   display: flex;
-
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19px;
-  color: #888888;
+  line-height: 1.2;
+  color: $light-grey-color;
   justify-content: space-between;
-
   width: calc(50% - 4px);
 }
 
@@ -46,13 +39,17 @@
   border: none;
   outline: none;
   max-width: 50%;
-
   font-size: 18px;
   font-weight: 500;
-  line-height: 22px;
-  color: #3d3d3d;
-
+  line-height: 1.2;
+  color: $text-dark-color;
   text-align: end;
-
   padding: 0;
+}
+
+.priceInput::placeholder {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $text-dark-color;
 }

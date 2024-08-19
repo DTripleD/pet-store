@@ -26,7 +26,8 @@
   }
 
   &:disabled {
-    background-color: $disabled-color;
+    background-color: 
+$light-border-color;
   }
 }
 

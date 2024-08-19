@@ -1,5 +1,6 @@
 import FilterElement from "../FilterElement/FilterElement";
 import css from "./FilterBlock.module.scss";
+import PropTypes from "prop-types";
 
 const filtersArray = [
   {
@@ -25,12 +26,19 @@ const filtersArray = [
   },
 ];
 
-const FilterBlock = () => {
+const FilterBlock = ({ filters, setFilters }) => {
+  const handleCheckboxChange = (event) => {
+    setFilters({
+      ...filters,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
   return (
     <>
       {filtersArray.map((filter) => (
         <div className={css.labelsSection} key={filter.title}>
-          <p className={css.form__title}>{filter.title}</p>
+          <p className={css.formTitle}>{filter.title}</p>
           <ul className={css.labelsList}>
             {filter.filters.map((item) => (
               <FilterElement
@@ -38,6 +46,8 @@ const FilterBlock = () => {
                 text={item.text}
                 id={item.id}
                 name={item.name}
+                checked={filters[item.name] || false}
+                onChange={handleCheckboxChange}
               />
             ))}
           </ul>
@@ -45,6 +55,11 @@ const FilterBlock = () => {
       ))}
     </>
   );
+};
+
+FilterBlock.propTypes = {
+  filters: PropTypes.object,
+  setFilters: PropTypes.func,
 };
 
 export default FilterBlock;

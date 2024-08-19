@@ -3,21 +3,17 @@ import CatalogItem from "components/CatalogItem/CatalogItem";
 
 import PropTypes from "prop-types";
 import SortBy from "modules/SortBy/SortBy";
-import { useState } from "react";
 import icons from "src/images/icons.svg";
-import FilterBurger from "../../modules/FilterBurger/FilterBurger";
 
-const CatalogList = ({ products, value, setValue, animalId, productsId }) => {
-  const [filtersIsOpen, setFiltersIsOpen] = useState(false);
+const CatalogList = ({ products, openFilter }) => {
 
   return (
     <div className={css.catologListWrapper}>
-      <h2 className={css.catalogTitle}>Вологий корм</h2>
       <div className={css.filterMob}>
         <button
           className={css.filterButton}
           type="button"
-          onClick={() => setFiltersIsOpen((prev) => !prev)}
+          onClick={openFilter}
         >
           <svg className={css.filterIcon}>
             <use href={icons + "#filter"}></use>
@@ -27,11 +23,33 @@ const CatalogList = ({ products, value, setValue, animalId, productsId }) => {
         <SortBy />
       </div>
       <div className={css.filterParams}>
-      <button className={css.cleanButton}>Очистити</button>
-    </div>
+        <button className={css.cleanButton}>Очистити</button>
+        <div className={css.filterLabel}>
+          <p className={css.labelText}>Знижки</p>
+          <svg
+            className={css.iconClose}
+          >
+          <use href={icons + "#cross"}></use>
+        </svg>
+      </div>
+      </div>
 
       <div className={css.middleWrapper}>
-        <h2 className={css.foundTitle}>Знайдено {products.length} товарів</h2>
+        <h2 className={css.foundTitle}>
+          {products.length ? (
+            `Знайдено ${
+              products.length > 4
+                ? `${products.length} товарів`
+                : products.length === 1
+                ? `${products.length} товар`
+                : products.length > 1 && products.length < 5
+                ? `${products.length} товари`
+                : 'товари'
+            }`
+          ) : (
+            'Нічого не знайдено'
+          )}
+        </h2>
         <div className={css.sortByDesk}>
           <SortBy />
         </div>
@@ -42,24 +60,15 @@ const CatalogList = ({ products, value, setValue, animalId, productsId }) => {
           <CatalogItem item={item} key={item.id} />
         ))}
       </ul>
-      <FilterBurger
-        filtersIsOpen={filtersIsOpen}
-        setFiltersIsOpen={setFiltersIsOpen}
-        value={value}
-        setValue={setValue}
-        animalId={animalId}
-        productsId={productsId}
-      />
     </div>
   );
 };
 
-export default CatalogList;
-
 CatalogList.propTypes = {
   products: PropTypes.array,
-  animalId: PropTypes.string,
-  setValue: PropTypes.func,
-  value: PropTypes.array,
-  productsId: PropTypes.string,
+  openFilter: PropTypes.func,
 };
+
+export default CatalogList;
+
+

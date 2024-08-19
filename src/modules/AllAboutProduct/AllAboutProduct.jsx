@@ -41,39 +41,39 @@ const AllAboutProduct = () => {
 
   return (
     <>
-      <div className={css.main_product_info_wrapper}>
+      <div className={css.mainProductInfoWrapper}>
         <PhotoCarousel images={product.images} />
 
-        <div className={css.product__header}>
-          <div className={css.base_info__wrapper}>
-            <h2 className={css.product_page_title}>{product.name}</h2>
-            <p className={css.product_code}>код товару:0000000</p>
-            <div className={css.in_stock__wrapper}>
-              <svg className={css.stock__icon}>
+        <div className={css.productHeader}>
+          <div className={css.baseInfoWrapper}>
+            <h2 className={css.productPageTitle}>{product.name}</h2>
+            <p className={css.productCode}>код товару:0000000</p>
+            <div className={css.inStockWrapper}>
+              <svg className={css.stockIcon}>
                 <use href={icons + "#car-icon"}></use>
               </svg>
-              <p className={css.is_available}>В наявності</p>
+              <p className={css.isAvailable}>В наявності</p>
             </div>
           </div>
-          <div className={css.price__wrapper}>
+          <div className={css.priceWrapper}>
             <WeightButtonsList />
-            <div className={css.priceWrapper}>
-              <p className={css.product_page__price}>
-                {product.discount_price || product.price}
-                <span className={css.product_page__price_symbol}>₴</span>
+            <div className={css.priceBox}>
+              <p className={css.productPagePrice}>
+                {product.discountPrice || product.price}
+                <span className={css.productPagePriceSymbol}>₴</span>
               </p>
               {product.discount_price && (
                 <p className={css.productDiscountPrice}>{product.price} ₴</p>
               )}
             </div>
           </div>
-          <ul className={css.add__button_wrapper}>
+          <ul className={css.addButtonWrapper}>
             <li>
               <button
-                className={`${css.add__button} ${css.to_cart__button}`}
+                className={`${css.addButton} ${css.toCartButton}`}
                 onClick={handleAddToCart}
               >
-                <svg className={css.to_cart__icon}>
+                <svg className={css.toCartIcon}>
                   <use href={icons + "#cart"}></use>
                 </svg>
                 Додати в кошик
@@ -81,10 +81,10 @@ const AllAboutProduct = () => {
             </li>
             <li>
               <button
-                className={`${css.add__button} ${css.to_wish__button}`}
+                className={`${css.addButton} ${css.toWishButton}`}
                 onClick={handleAddToFeatured}
               >
-                <svg className={css.to_wish__icon}>
+                <svg className={css.toWishIcon}>
                   <use href={icons + "#heart"}></use>
                 </svg>
                 У бажане
@@ -93,18 +93,18 @@ const AllAboutProduct = () => {
           </ul>
         </div>
       </div>
-      <div className={css.about_product_wrapper}>
-        <h3 className={css.product_page__sub_title}>Характеристики</h3>
+      <div className={css.aboutProductWrapper}>
+        <h3 className={css.productPageSubTitle}>Характеристики</h3>
         <CharacteristicList array={characteristicsArray} />
 
-        <Link to="characteristic" className={css.read_more_link}>
+        <Link to="characteristic" className={css.readMoreLink}>
           Дивитись всі характеристики
         </Link>
       </div>
-      <div className={css.about_product_wrapper}>
-        <h3 className={css.product_page__sub_title}>Опис товару</h3>
-        <p className={css.description__text}>{product.description}</p>
-        <Link to="description" className={css.read_more_link}>
+      <div className={css.aboutProductWrapper}>
+        <h3 className={css.productPageSubTitle}>Опис товару</h3>
+        <p className={css.descriptionText}>{product.description}</p>
+        <Link to="description" className={css.readMoreLink}>
           Читати більше...
         </Link>
       </div>

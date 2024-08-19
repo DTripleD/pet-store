@@ -2,12 +2,10 @@
   background-color: #f4f4f4;
   display: flex;
   justify-content: space-between;
-
   border-radius: 7px;
-
   padding: 14px 16px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     padding: 21px 24px;
   }
 }
