@@ -5,9 +5,9 @@ const setCartHeader = (cartToken) => {
   instance.defaults.headers.common["Cart"] = "Token " + cartToken;
 };
 
-// const clearCartHeader = () => {
-//   instance.defaults.headers.common["Cart"] = "";
-// };
+const clearCartHeader = () => {
+  instance.defaults.headers.common["Cart"] = "";
+};
 
 export const getCart = createAsyncThunk(
   "cart/getCart",

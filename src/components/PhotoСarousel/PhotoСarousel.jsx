@@ -67,7 +67,7 @@ const PhotoCarousel = ({ images }) => {
               <use href={icons + "#icon-right"}></use>
             </svg>
           </button>
-        <div className={css.pagination} ref={paginationRef}>
+        <div className={css.pagination} ref={paginationRef.current}>
           <div className={css.bullet}></div>
         </div>
       </Swiper>
@@ -82,7 +82,7 @@ const PhotoCarousel = ({ images }) => {
           className="smallProductSlider"
         >
           {images.map((item) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={item.id} className={css.smallImage}>
               <img src={item.image} className={css.hita} />
             </SwiperSlide>
           ))}

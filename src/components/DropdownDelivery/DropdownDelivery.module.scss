@@ -1,0 +1,45 @@
+.dropdown {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropdownLabel {
+  color: $light-grey-color;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.dropdownBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: $dropdown-bcg-color;
+  height: 64px;
+  padding: 20px 0 20px 16px;
+  border-radius: 10px;
+}
+
+.dropdownTrigger {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.iconDown,
+.iconUp {
+  width: 24px;
+  height: 24px;
+  fill: $dark-color;
+  stroke: $dark-color;
+}

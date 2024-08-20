@@ -1,0 +1,56 @@
+.orderSubTitle {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $dark-color;
+  margin-bottom: 24px;
+}
+
+.dropdownWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropdownLabel {
+  color: $light-grey-color;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.dropdownBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $dropdown-bcg-color;
+  height: 64px;
+  padding: 20px 0 20px 16px;
+  border-radius: 10px;
+}
+
+.dropdownTrigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.iconDown,
+.iconUp {
+  width: 24px;
+  height: 24px;
+  fill: $dark-color;
+  stroke: $dark-color;
+}

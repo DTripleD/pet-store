@@ -22,9 +22,7 @@ const CartPage = () => {
         <div className={css.btnBack}>
           <BackButtonPage text={"Кошик"} />
         </div>
-      </div>
 
-      <div className="container">
         <h2 className={css.cartTitle}>Кошик</h2>
         {cartIsLoading ? (
           <div className={css.loading}>Loading...</div>
