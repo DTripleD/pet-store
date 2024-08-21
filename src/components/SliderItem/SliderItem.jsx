@@ -6,31 +6,34 @@ import WeightButtonsList from "components/WeightButtons/WeightButtonsList/Weight
 import { Link } from "react-router-dom";
 
 const SliderItem = ({ item }) => {
-  const { old_price, new_price} = item;
-  const disc = ((new_price - old_price) / old_price) * 100;
+  const { name, description, discount, images } = item;
 
   return (
     <>
       <Link to={item.id} className={css.item}>
-          <div className={css.swiper__image_wrapper}>
-            <img className={css.swiper__image} src={item.img} alt={item.title} />
-            <div className={css.swiper_disc}>{`${disc}%`}</div>
-            <button className={css.favorite__button}>
-              <svg className={css.heart__icon}>
+          <div className={css.swiperImageWrapper}>
+            <img className={css.swiperImage} src={images} alt={item.title} />
+            {discount ? (
+              <div className={css.swiperDisc}>{`${discount}%`}</div>
+            ) : (
+              <div></div>
+            )}
+            <button className={css.favoriteButton}>
+              <svg className={css.heartIcon}>
                 <use href={icons + "#heart"}></use>
               </svg>
             </button>
           </div>
           <WeightButtonsList />
 
-          <div className={css.swiper__descr_wrapper}>
-            <h3 className={css.swiper__title}>{item.title}</h3>
-              <p className={css.swipper__description}>{item.description}</p>
+          <div className={css.swiperDescrWrapper}>
+            <h3 className={css.swiperTitle}>{name}</h3>
+              <p className={css.swiperDescription}>{description}</p>
 
             <div className={css.mobileBuyWrapper}>
-              <div className={css.swiper__price_wrapper}>
-                <p className={css.swiper__new_price}>{item.new_price} грн.</p>
-                <p className={css.swiper__old_price}>{item.old_price} грн.</p>
+              <div className={css.swiperPriceWrapper}>
+                <p className={css.swiperNewPrice}>{item.discount_price} грн.</p>
+                <p className={css.swiperOldPrice}>{item.price} грн.</p>
               </div>
                 <svg className={css.cartBuyIcon}>
                   <use href={icons + "#cart"}></use>

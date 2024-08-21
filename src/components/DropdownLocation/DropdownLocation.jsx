@@ -1,21 +1,40 @@
 import { useState } from 'react';
 import css from './DropdownLocation.module.scss';
 import icons from "src/images/icons.svg";
+import { getCity } from "../../services/getCity";
 
 const DropdownLocation = () => {
   const [country, setCountry] = useState('Україна');
-  const [city, setCity] = useState('Оберіть місто');
-  const [isSortActive, setIsSortActive] = useState(false);
+  const [cities, setCities] = useState([]);
+  const [city, setCity] = useState('');
+  const [isCountryActive, setIsCountryActive] = useState(false);
+  const [isCityActive, setIsCityActive] = useState(false);
 
-
-  const handleCountrySelection = (selection) => {
-    setCountry(selection);
-    setIsSortActive(false);
+  const handleCountrySelection = () => {
+    setIsCountryActive(!isCountryActive);
   };
 
-  const handleCitySelection = (selection) => {
-    setCity(selection);
-    setIsSortActive(false);
+  const handleCityChange = async (e) => {
+    const cityName = e.target.value;
+    setCity(cityName);
+
+    if (cityName) {
+      try {
+        const fetchedCities = await getCity();
+        setCities(fetchedCities.filter(c => c.name.toLowerCase().includes(cityName.toLowerCase())));
+        console.log(fetchedCities);
+      } catch (err) {
+        console.error('Failed to fetch cities', err);
+      }
+    }
+
+    setCities([]);
+  };
+
+  const handleCitySelection = (selectedCity) => {
+    setCity(selectedCity);
+    setCities([]);
+    setIsCityActive(false);
   };
 
   return (
@@ -31,7 +50,7 @@ const DropdownLocation = () => {
               className={css.dropdownTrigger} 
               onClick={handleCountrySelection}
             >
-              {isSortActive ? (
+              {isCountryActive ? (
                 <svg className={css.iconDown}>
                   <use href={icons + "#icon-up"}></use>
                 </svg>
@@ -42,18 +61,41 @@ const DropdownLocation = () => {
               )}
             </button>
           </div>
+          
+          {isCountryActive && (
+            <ul className={css.dropdownOptions}>
+              <li 
+                className={css.option}
+                onClick={() => {
+                  setCountry('Україна');
+                  setIsCountryActive(false);
+                }}
+              >
+                Україна
+              </li>
+            </ul>
+          )}
           </div>
 
           <div className={css.dropdown}>
           <p className={css.dropdownLabel}>Місто</p>
-            <div className={css.dropdownBox}>
-              <span className={css.dropdownText}>{city}</span>
+            <label className={css.dropdownBox} htmlFor="cityInput">
+              <input 
+                type="text"
+                id="cityInput"
+                className={css.dropdownInput} 
+                value={city}
+                placeholder="Оберіть місто"
+                onChange={handleCityChange}
+                autoFocus
+                required
+                />
               <button 
                 type="button" 
                 className={css.dropdownTrigger} 
                 onClick={handleCitySelection}
               >
-                {isSortActive ? (
+                {isCityActive ? (
                   <svg className={css.iconDown}>
                     <use href={icons + "#icon-up"}></use>
                   </svg>
@@ -63,13 +105,15 @@ const DropdownLocation = () => {
                   </svg>
                 )}
               </button>
-            </div>
+            </label>
 
             <ul className={css.citiesList}>
-            {}
+            {cities.map(city => (
+              <li key={city.id}>{city}</li>
+            ))}
 
           </ul>
-          </div>
+        </div>
       </div>
     </div>
   );

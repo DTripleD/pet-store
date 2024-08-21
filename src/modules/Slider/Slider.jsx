@@ -33,7 +33,7 @@ const Slider = ({ data, title }) => {
             />
         </div>
         <ul className={css.productsList}>
-          {data.filter((item) => item.id > 4).map((item) => (
+          {data.filter((item) => item.id >=4 ).map((item) => (
             title === 'Акції' ? (
             <SliderItem key={item.id} item={item} />
             ) : (

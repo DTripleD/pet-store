@@ -9,7 +9,11 @@
 .dropdownWrapper {
   display: flex;
   justify-content: space-between;
-  gap: 32px;
+  gap: 16px;
+
+  @include on-desktop {
+    gap: 32px;
+  }
 }
 
 .dropdown {
@@ -22,9 +26,13 @@
 
 .dropdownLabel {
   color: $light-grey-color;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.2;
+
+  @include on-desktop {
+    font-size: 16px;
+  }
 }
 
 .dropdownBox {
@@ -32,9 +40,15 @@
   justify-content: space-between;
   align-items: center;
   background-color: $dropdown-bcg-color;
-  height: 64px;
-  padding: 20px 0 20px 16px;
-  border-radius: 10px;
+  height: 48px;
+  border-radius: 8px;
+  padding: 15px 0 15px 16px;
+  
+  @include on-desktop {
+    height: 64px;
+    padding: 20px 0 20px 16px;
+    border-radius: 10px;
+  }
 }
 
 .dropdownTrigger {
@@ -44,7 +58,11 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  padding: 20px;
+  padding: 12px;
+
+  @include on-desktop {
+    padding: 20px;
+  }
 }
 
 .iconDown,
@@ -54,3 +72,54 @@
   fill: $dark-color;
   stroke: $dark-color;
 }
+
+.dropdownText,
+.dropdownInput {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $input-color;
+
+  @include on-desktop {
+    font-size: 18px;
+  }
+}
+
+.dropdownInput {
+  width: 107px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    @include on-desktop {
+      font-size: 18px;
+    }
+  }
+
+  @include on-desktop {
+    width: 100%;
+  }
+}
+
+.dropdownOptions {
+  width: 100%;
+  position: absolute;
+  top: 95%;
+  left: 0;
+  background-color: $white-color;
+  border: 1px solid $light-border-color;
+  border-radius: 10px;
+  padding: 15px 20px;
+  z-index: 10;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.option {
+  cursor: pointer;
+}
+

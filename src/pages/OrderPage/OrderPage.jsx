@@ -7,11 +7,17 @@ import { useSelector } from "react-redux";
 import { selectItemsInCart } from "../../redux/cart/cartSelectors";
 import DropdownLocation from "../../components/DropdownLocation/DropdownLocation";
 import DropdownDelivery from "../../components/DropdownDelivery/DropdownDelivery";
+import Payment from "../../components/Payment/Payment";
+import { totalPrice } from "../../helpers/totalPrice";
 // import { getCity } from "../../services/getCity";
+// import { useEffect, useState } from "react";
 
 const OrderPage = () => {
   const { state } = useLocation();
   const itemsInCart = useSelector(selectItemsInCart);
+  const price = totalPrice(itemsInCart);
+
+  const finalPrice = price + 70;
 
   // useEffect(() => {
   //   const fetchCities = async () => {
@@ -29,10 +35,10 @@ const OrderPage = () => {
 
   return (
     <section className={css.orderSection}>
-      <div className={`container ${css.orderContainer} `}>
+      <div className={css.orderContainer}>
         <div className={css.formWrapper}>
           <div className={css.titleWrapper}>
-            <Link to={state || "/"}>
+            <Link to={state || "/"} className={css.linkBack}>
               <svg className={css.iconBack}>
                 <use href={icons + "#icon-down"}></use>
               </svg>
@@ -86,28 +92,7 @@ const OrderPage = () => {
             </ul>
             <DropdownLocation />
             <DropdownDelivery />
-
-            <div className={css.payment}>
-              <h3 className={css.paymentTitle}>Спосіб оплати</h3>
-              <label className={css.paymentLabel} htmlFor="paymentOnline">
-                <input 
-                  className={css.paymentRadio} 
-                  type="radio" 
-                  id="paymentOnline"
-                  name="paymentMethod"
-                  />
-                Карткою Online
-              </label>
-              <label className={css.paymentLabel} htmlFor="paymentCash">
-                <input 
-                  className={css.paymentRadio} 
-                  type="radio" 
-                  id="paymentCash"
-                  name="paymentMethod"
-                  />
-                Наложений платіж
-              </label>
-            </div>
+            <Payment />
 
             <label className={css.checkbox} >
               <input type="checkbox" className={css.checkboxInput} />
@@ -118,21 +103,37 @@ const OrderPage = () => {
         </div>
 
         <div className={css.orderInfoWrapper}>
+          <div className={css.orderInfoCart}>
+            <p className={css.cartTitle}>Кошик</p>
+            <Link to={"/user/cart"} className={css.goToCart}>Редагувати</Link>
+          </div>
+
           <ul>
             {itemsInCart.map((item) => (
               <CartItem key={item.id} item={item} isOrderPage={true} />
             ))}
           </ul>
+
           <ul className={css.priceList}>
             <li className={css.priceItem}>
               <p className={css.totalPrice}>До сплати</p>
               <p className={`${css.totalPrice} ${css.totalPriceNumber}`}>
-                970 грн
+                {finalPrice} грн
               </p>
             </li>
             <li className={css.priceItem}>
-              <p className={css.partPrice}>2 товари</p>
-              <p className={css.partPrice}>900 грн</p>
+              <p className={css.partPrice}>
+                {itemsInCart.length > 0 ? (
+                  itemsInCart.length > 4
+                    ? `${itemsInCart.length} товарів`
+                    : itemsInCart.length === 1
+                    ? `${itemsInCart.length} товар`
+                    : `${itemsInCart.length} товари`
+                ) : (
+                  '0 товарів'
+                )}
+              </p>
+              <p className={css.partPrice}>{price} грн</p>
             </li>
             <li className={css.priceItem}>
               <p className={css.partPrice}>Доставка</p>

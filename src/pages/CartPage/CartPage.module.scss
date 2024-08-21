@@ -28,6 +28,7 @@
 
 .btnBack {
   padding: 0 8px 16px;
+  margin: 0 -8px;
   border-bottom: 1px solid $light-color;
 
   @include on-desktop {

@@ -27,7 +27,7 @@
   }
 }
 
-.swiper__image_wrapper {
+.swiperImageWrapper {
   position: relative;
   display: flex;
   justify-content: center;
@@ -41,7 +41,7 @@
   }
 }
 
-.swiper_disc {
+.swiperDisc {
   background-color: $red-color;
   position: absolute;
   font-size: 13px;
@@ -57,12 +57,12 @@
   }
 }
 
-.swiper__image {
+.swiperImage {
   width: auto;
   height: 100%;
 }
 
-.favorite__button {
+.favoriteButton {
   display: flex;
   position: absolute;
   top: 0;
@@ -73,12 +73,12 @@
   background-color: transparent;
 
   @include on-desktop {
-    background-color: #e7e7e780;
+    background-color: $icon-background-color;
     padding: 12px;
   }
 }
 
-.heart__icon {
+.heartIcon {
   width: 20px;
   height: 20px;
   stroke: $dark-color;
@@ -94,9 +94,13 @@
   width: 24px;
   height: 24px;
   stroke: $light-green-color;
+
+  @include on-desktop {
+    display: none;
+  }
 }
 
-.swiper__descr_wrapper {
+.swiperDescrWrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -107,7 +111,7 @@
   }
 }
 
-.swiper__title {
+.swiperTitle {
   width: 163px;
   color: $text-dark-color;
   font-size: 15px;
@@ -125,7 +129,7 @@
   }
 }
 
-.swipper__description {
+.swiperDescription {
   display: none;
 
   @include on-desktop {
@@ -136,7 +140,7 @@
   }
 }
 
-.swiper__price_wrapper {
+.swiperPriceWrapper {
   display: flex;
   flex-direction: column-reverse;
   gap: 4px;
@@ -148,7 +152,7 @@
   }
 }
 
-.swiper__new_price {
+.swiperNewPrice {
   color: $text-dark-color;
   font-size: 16px;
   font-weight: 600;
@@ -161,7 +165,7 @@
   }
 }
 
-.swiper__old_price {
+.swiperOldPrice {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.21;

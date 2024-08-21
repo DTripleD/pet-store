@@ -15,8 +15,6 @@ const PhotoCarousel = ({ images }) => {
   const swiperRef = useRef();
   const paginationRef = useRef(null);
 
-  console.log(images);
-
   return (
     <div className={css.imageThumbWrapper}>
       <Swiper
@@ -31,10 +29,8 @@ const PhotoCarousel = ({ images }) => {
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
-        modules={[FreeMode, Navigation, Thumbs, Pagination]}
         pagination={{
           el: paginationRef.current,
-          // el: css.pagination,
           dynamicBullets: true,
           clickable: true,
           bulletClass: css.bullet,
@@ -43,6 +39,7 @@ const PhotoCarousel = ({ images }) => {
             return `<span class="${className}"></span>`;
           },
         }}
+        modules={[Pagination, FreeMode, Navigation, Thumbs]}
       >
         {images.map((item) => (
           <SwiperSlide key={item.id} className={`${css.swiperSlide}`}>
@@ -67,8 +64,8 @@ const PhotoCarousel = ({ images }) => {
               <use href={icons + "#icon-right"}></use>
             </svg>
           </button>
-        <div className={css.pagination} ref={paginationRef.current}>
-          <div className={css.bullet}></div>
+        <div className={css.pagination} ref={paginationRef}>
+          {/* <div className={css.bullet}></div> */}
         </div>
       </Swiper>
       <MediaQuery minWidth={1280}>
