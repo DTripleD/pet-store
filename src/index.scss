@@ -3,6 +3,10 @@
 @import "./scss/common";
 
 .smallProductSlider .swiper-slide {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  width: 72px;
   border-radius: 20px;
   border: 2px solid $light-border-color;
 }
@@ -11,6 +15,3 @@
   border: 2px solid $light-green-color;
 }
 
-iframe {
-  display: none;
-}

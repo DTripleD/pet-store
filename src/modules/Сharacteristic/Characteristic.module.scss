@@ -1,14 +1,11 @@
 .product_page__sub_title {
-  color: #262626;
-
+  color: $text-dark-color;
   font-size: 18px;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 0.88;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 22px;
-    font-weight: 500;
-    line-height: 20px;
   }
 }
 
@@ -16,4 +13,8 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @include on-desktop {
+    width: 640px;
+  }
 }

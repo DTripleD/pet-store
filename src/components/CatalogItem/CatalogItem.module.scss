@@ -1,202 +1,192 @@
 .productCard {
-  // transition: box-shadow 500ms ease-out;
+  position: relative;
   border-radius: 10px;
-
   width: calc((100% - (16px)) / 2);
+  background-color: $white-color;
+  border: 1px solid $light-color;
+  padding: 16px 8px;
 
-  background-color: #ffffff;
-
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     width: calc((100% - (16px * 3)) / 4);
   }
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
+    width: calc((100% - (16px * 2)) / 3);
+    border: none;
+    padding: 20px 16px 0;
+  }
+
+  @include on-desktop-max {
     width: calc((100% - (24px * 4)) / 5);
   }
+
+  @include hover(box-shadow, 0px 4px 8px 0px $box-shadow-hover);
 }
 
 .productLink {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 16px;
-
   height: 100%;
-  padding: 16px 8px;
-
-  @media screen and (min-width: 1920px) {
-    padding: 20px 16px;
-  }
 }
 
 .textWrapper {
   flex-grow: 1;
 }
 
-.productCard:hover,
-.productCard:focus {
-  // box-shadow: 0px 4px 8px 0px #16161633;
-}
-
 .productImageWrapper {
+  display: flex;
+  justify-content: center;
   overflow: hidden;
-  position: relative;
-  margin-right: auto;
-  margin-left: auto;
-
   max-width: 163px;
   height: 144px;
 
-  @media screen and (min-width: 744px) {
+  @include on-tablet {
     max-width: 154px;
   }
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     max-width: 252px;
     height: 258px;
   }
 }
 
-.favorite__button {
+.favoriteButton {
   display: flex;
   position: absolute;
   top: 0;
   right: 0;
   background-color: transparent;
   border-radius: 50%;
-  padding: 12px;
+  padding: 8px;
   border: none;
   outline: none;
 
-  @media screen and (min-width: 1920px) {
-    background-color: #e7e7e780;
+  @include on-desktop {
+    top: 16px;
+    right: 16px;
+    padding: 12px;
+    background-color: $icon-background-color;
   }
 }
 
 .discount {
   position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #ff5757;
-
-  color: #ffffff;
-
+  top: 6px;
+  left: 5.5px;
+  background-color: $red-color;
+  color: $white-color;
   padding: 7px 8px;
-
   border-radius: 100px;
-
   font-size: 13px;
+  line-height: 0.7;
 
-  line-height: 9px;
-
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
+    top: 16px;
+    left: 16px;
     font-size: 16px;
     font-weight: 500;
-    line-height: 12px;
+    line-height: 0.75;
     padding: 10px 12px;
   }
-
-  // display: flex;
-
-  // border-radius: 50%;
-  // padding: 12px;
-  // border: none;
-  // outline: none;
 }
 
-.heart__icon {
+.heartIcon {
   width: 20px;
   height: 20px;
-  stroke: #262626;
+  stroke: $dark-color;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     width: 24px;
     height: 24px;
-    stroke: #5d5d5d;
+    stroke: $icon-grey-color
   }
 }
 
-.swiper__descr_wrapper {
+.swiperDescrWrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 8px;
 }
 
-.swiper__title {
-  color: #3d3d3d;
-
+.swiperTitle {
+  color: $text-dark-color;
   font-size: 15px;
   font-weight: 500;
-  line-height: 19px;
+  line-height: 1.27;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 18px;
     font-weight: 700;
-    line-height: 23px;
   }
 }
 
-.swipper__description {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 19px;
+.swipperDescription {
+  display: none;
 
-  color: #5d5d5d;
-
-  max-height: 57px;
-  overflow: hidden;
+  @include on-desktop {
+    display: inline;
+    font-size: 15px;
+    line-height: 1.27;
+    color: $icon-grey-color;
+    max-height: 57px;
+    overflow: hidden;
+  }
 }
 
-.swiper__price_wrapper {
+.swiperPriceWrapper {
   display: flex;
   flex-direction: column-reverse;
-
   gap: 4px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     flex-direction: row;
     gap: 8px;
     align-items: center;
   }
 }
 
-.swiper__new_price {
-  color: #3d3d3d;
-
+.swiperNewPrice {
+  color: $text-dark-color;
   font-size: 16px;
   font-weight: 600;
-  line-height: 19px;
+  line-height: 1.2;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 20px;
     font-weight: 700;
-    line-height: 24px;
   }
 }
 
-.swiper__old_price {
+.swiperOldPrice {
   font-size: 14px;
   font-weight: 500;
-  line-height: 17px;
-
+  line-height: 1.22;
   text-decoration: line-through;
-  color: #b2b2b2;
+  color: $grey-color-price;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 16px;
     font-weight: 500;
-    line-height: 19px;
+    line-height: 1.19;
   }
 }
 
 .mobileBuyWrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+  padding-bottom: 32px;
+
+  @include on-tablet {
+    padding-bottom: 0;
+  }
 }
 
 .cartBuyIcon {
   width: 24px;
   height: 24px;
-  stroke: #34955d;
+  stroke: $light-green-color;
 }

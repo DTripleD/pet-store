@@ -8,14 +8,12 @@ import PropTypes from "prop-types";
 const CategoryBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
   const animal = useSelector(selectedAnimal);
 
-  console.log(animal);
-
   const onClose = () => {
     setIsOpen(false);
   };
 
   return (
-    <>
+    <div className={css.wrapper}>
       <ButtonBack
         text={animal.name}
         backTo={"animal"}
@@ -46,7 +44,7 @@ const CategoryBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

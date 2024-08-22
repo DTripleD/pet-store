@@ -11,15 +11,15 @@
   @include on-desktop {
     position: static;
     background-color: transparent;
-    width: 100%;
-    height: calc(100vh - 473px);;
-    padding: 48px;
+    max-width: 100%;
+    height: calc(100vh - 473px);
   }
 }
 
 .wrapper {
   max-width: $mobile-max-width;
   margin: 0 auto;
+  padding: 0 8px;
 
   @include on-tablet {
     max-width: $tablet-max-width;
@@ -28,6 +28,7 @@
 
 .btnBack {
   padding: 0 8px 16px;
+  margin: 0 -8px;
   border-bottom: 1px solid $light-color;
 
   @include on-desktop {
@@ -57,6 +58,8 @@
     border: 1.5px solid $light-border-color;
     border-radius: 20px;
     padding: 48px;
+    max-width: 100%;
+    overflow: hidden;
   }
 }
 

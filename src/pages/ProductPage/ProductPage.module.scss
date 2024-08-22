@@ -1,27 +1,74 @@
-// @import "../../scss/index.scss";
+.productPageContainer {
+  background-color: $white-color;
 
-.product_page__wrapper {
+  @include on-desktop {
+    display: flex;
+    gap: 24px;
+    background-color: transparent;
+  }
+}
+
+.productPageWrapper {
   display: flex;
   flex-direction: column;
-
   overflow: hidden;
   gap: 48px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     gap: 64px;
   }
 }
 
-.main__image_wrapper {
-  width: 516px;
-  height: 516px;
 
-  background-color: #f0c5c5;
-  border: 1.5px solid #e7e7e7;
-  border-radius: 20px;
+.sidebar {
+  display: none;
+
+  @include on-desktop {
+    display: inline-block;
+  }
 }
 
-.productPageContainer {
+.routes {
+  display: none;
+
+  @include on-desktop {
+    display: inline-block;
+  }
+}
+
+.contentBox {
+  @include on-desktop {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+.iconBack {
+  stroke: $text-dark-color;
+  transform: rotate(90deg);
+  width: 24px;
+  height: 24px;
+}
+
+.textBack {
+  color: $text-dark-color;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 0.67;
+
+  @include on-tablet {
+    font-size: 16px;
+  }
+}
+
+.linkBack {
   display: flex;
-  gap: 24px;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 8px 12px 0;
+
+  @include on-desktop {
+    display: none;
+  }
 }
+

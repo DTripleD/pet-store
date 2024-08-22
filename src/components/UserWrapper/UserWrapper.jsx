@@ -26,32 +26,30 @@ const UserWrapper = () => {
   };
 
   return (
-    // <div className="container">
-      <div className={`container ${css.userInfoWrapper}`}>
-        <ul className={css.userInfoList}>
-          {profileSidebarItems.map((item) => (
-            <li key={item.title} className={css.userSidebarItem}>
-              <svg className={css.userSidebarIcon}>
-                <use href={icons + `#${item.icon}`}></use>
-              </svg>
-              {item.link.length > 0 ? (
-                <Link to={item.link} className={css.userNavItem}>
-                  {item.title}
-                </Link>
-              ) : (
-                <button className={css.userNavItem} onClick={handleLogOut}>
-                  Вийти
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
+    <div className={`container ${css.userInfoWrapper}`}>
+      <ul className={css.userInfoList}>
+        {profileSidebarItems.map((item) => (
+          <li key={item.title} className={css.userSidebarItem}>
+            <svg className={css.userSidebarIcon}>
+              <use href={icons + `#${item.icon}`}></use>
+            </svg>
+            {item.link.length > 0 ? (
+              <Link to={item.link} className={css.userNavItem}>
+                {item.title}
+              </Link>
+            ) : (
+              <button className={css.userNavItem} onClick={handleLogOut}>
+                Вийти
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
 
-        <Suspense fallback={<div>Loading</div>}>
-          <Outlet />
-        </Suspense>
-      </div>
-    // </div>
+      <Suspense fallback={<div>Loading</div>}>
+        <Outlet />
+      </Suspense>
+    </div>
   );
 };
 

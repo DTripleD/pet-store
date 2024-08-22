@@ -1,39 +1,35 @@
-.filters__wrapper {
-  background-color: #ffffff;
+.filtersWrapper {
+  background-color: $white-color;
   border-radius: 10px;
   padding: 24px;
   display: flex;
   gap: 36px;
-
   flex-direction: column;
-
   width: 100%;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     width: 284px;
   }
 }
 
-.form__title {
-  color: #3d3d3d;
-
+.formTitle {
+  color: $text-dark-color;
   font-size: 16px;
   font-weight: 600;
-  line-height: 19px;
+  line-height: 1.19;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 18px;
-    font-weight: 600;
-    line-height: 22px;
+    line-height: 1.22;
   }
 }
 
-.clear__button {
+.clearButton {
   font-size: 16px;
   font-weight: 500;
   line-height: 12px;
-  color: #5d5d5d;
-  background-color: #e7e7e7;
+  color: $icon-grey-color;
+  background-color: $light-border-color;
   border-radius: 10px;
   padding: 18px;
   border: none;

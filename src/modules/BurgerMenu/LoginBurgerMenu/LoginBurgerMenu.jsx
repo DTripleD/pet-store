@@ -21,7 +21,7 @@ const LoginBurgerMenu = ({ setOpenedBurger }) => {
   };
 
   return (
-  <>
+  <div className={css.login}>
     {!isLoggedIn ? (
       <div className={css.loginWrapper}>
         <ModalLogin
@@ -37,7 +37,7 @@ const LoginBurgerMenu = ({ setOpenedBurger }) => {
           <ProfileBurgerMenu setOpenedBurger={setOpenedBurger} />
         </div>
       )}
-      </>
+    </div>
   );
 };
 

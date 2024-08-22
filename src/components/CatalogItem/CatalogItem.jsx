@@ -1,17 +1,16 @@
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
 import placeholder from "src/images/placeholder.jpg";
-
 import css from "./CatalogItem.module.scss";
 import WeightButtonsList from "components/WeightButtons/WeightButtonsList/WeightButtonsList";
 import icons from "src/images/icons.svg";
 import PropTypes from "prop-types";
-import MediaQuery from "react-responsive";
 
 const CatalogItem = ({ item }) => {
+  const location = useLocation();
+
   return (
     <li className={css.productCard}>
-      <Link to={`${item.id}`} className={css.productLink}>
+      <Link state={{ from: location }} to={`${item.id}`} className={css.productLink}>
         <div className={css.productImageWrapper}>
           <img
             src={
@@ -20,9 +19,10 @@ const CatalogItem = ({ item }) => {
                 : placeholder
             }
             alt={item.name}
+            className={css.img}
           />
-          <button className={css.favorite__button}>
-            <svg className={css.heart__icon}>
+          <button className={css.favoriteButton}>
+            <svg className={css.heartIcon}>
               <use href={icons + "#heart"}></use>
             </svg>
           </button>
@@ -30,24 +30,20 @@ const CatalogItem = ({ item }) => {
         </div>
         <WeightButtonsList />
         <div className={css.textWrapper}>
-          <div className={css.swiper__descr_wrapper}>
-            <h3 className={css.swiper__title}>{item.name}</h3>
-            <MediaQuery minWidth={1920}>
-              <p className={css.swipper__description}>{item.description}</p>
-            </MediaQuery>
+          <div className={css.swiperDescrWrapper}>
+            <h3 className={css.swiperTitle}>{item.name}</h3>
+              <p className={css.swipperDescription}>{item.description}</p>
 
             <div className={css.mobileBuyWrapper}>
-              <div className={css.swiper__price_wrapper}>
-                <p className={css.swiper__new_price}>
+              <div className={css.swiperPriceWrapper}>
+                <p className={css.swiperNewPrice}>
                   {item.discount_price} грн.
                 </p>
-                <p className={css.swiper__old_price}>{item.price} грн.</p>
+                <p className={css.swiperOldPrice}>{item.price} грн.</p>
               </div>
-              <MediaQuery maxWidth={1919}>
-                <svg className={css.cartBuyIcon}>
-                  <use href={icons + "#cart"}></use>
-                </svg>
-              </MediaQuery>
+              <svg className={css.cartBuyIcon}>
+                <use href={icons + "#cart"}></use>
+              </svg>
             </div>
           </div>
         </div>

@@ -1,13 +1,15 @@
+import PropTypes from "prop-types";
 import { Checkbox } from "@mui/material";
-
 import css from "./FilterElement.module.scss";
 
-const FilterElement = ({ text, id, name }) => {
+const FilterElement = ({ text, id, name, checked, onChange }) => {
   return (
     <li className={css.labelWrapper}>
       <Checkbox
         id={id}
         name={name}
+        checked={checked}
+        onChange={onChange}
         sx={{
           padding: 0,
           width: "20px",
@@ -23,6 +25,14 @@ const FilterElement = ({ text, id, name }) => {
       </label>
     </li>
   );
+};
+
+FilterElement.propTypes = {
+  text: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 export default FilterElement;

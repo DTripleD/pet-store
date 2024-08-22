@@ -1,0 +1,84 @@
+.wrapper {
+  position: absolute;
+  background-color: $white-color;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-width: 100vw;
+  min-height: 130%;
+  z-index: 555;
+}
+
+.activateContainer {
+  padding-top: 128px;
+
+  @include on-tablet {
+    width: 100%;
+    height: 130vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    background-color: $box-shadow-hover;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+
+  @include on-tablet {
+    position: relative;
+    background-color: $white-color;
+    width: 568px;
+    padding: 48px 0;
+    border-radius: 15px;
+  }
+}
+
+.btn {
+  position: absolute;
+  z-index: 556;
+  top: 16px;
+  right: 16px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  @include on-tablet {
+    top: 24px;
+    right: 24px;
+  }
+}
+
+.close {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2px;
+  stroke: $light-grey-color;
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 100px;
+  background-color: $bcg-green;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  stroke: $light-green-color;
+}
+
+.text {
+  color: $dark-color;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+

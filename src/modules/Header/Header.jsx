@@ -18,11 +18,13 @@ import LoginBurgerMenu from "../BurgerMenu/LoginBurgerMenu/LoginBurgerMenu";
 import { useState } from "react";
 import Logo from "../../components/Logo/Logo";
 import ProfileBurgerMenu from "../BurgerMenu/ProfileBurgerMenu/ProfileBurgerMenu";
+import { selectItemsInCart } from "../../redux/cart/cartSelectors";
 
 const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isOpen, setIsOpen] = useState(false);
   const [openedBurger, setOpenedBurger] = useState("");
+  const itemsInCart = useSelector(selectItemsInCart);
 
   const obj = {
     main: <MainBurgerMenu setOpenedBurger={setOpenedBurger} />,
@@ -62,16 +64,27 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
           
           <div className={css.info}>
               <Contacts />
-              <button className={css.info__btn}>
+              <Link to="/user/favorite" className={css.info__btn}>
                 <svg className={css.icon_heart}>
                   <use href={icons + "#heart"}></use>
                 </svg>
-              </button>
+              </Link>
               <button className={css.info__search}>
                 <svg className={css.icon_loop}>
                   <use href={icons + "#loop"}></use>
                 </svg>
               </button>
+              <Link 
+                className={css.cart} 
+                to="/user/cart"
+              >
+              <svg className={css.icon_cart}>
+                <use href={icons + "#cart"}></use>
+              </svg>
+              {itemsInCart.length > 0 && (
+                <span className={css.cart_count}>({itemsInCart.length})</span>
+              )}
+              </Link>
             <button
               className={css.info__cart}
               onClick={() => setActiveCartModal(true)}
@@ -79,9 +92,9 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
               <svg className={css.icon_cart}>
                 <use href={icons + "#cart"}></use>
               </svg>
-              {/* {!!totalCount && (
-                <span className={css.cart_count}>{({totalCount})}</span>
-              )} */}
+              {itemsInCart.length > 0 && (
+                <span className={css.cart_count}>({itemsInCart.length})</span>
+              )}
             </button>
               {isLoggedIn ? (
                 <Link to="/user/profile" className={css.info__user}>

@@ -1,31 +1,26 @@
 .characteristic__item {
-  background-color: #f4f4f4;
+  background-color: $bcg-light;
   display: flex;
   justify-content: space-between;
-
   border-radius: 7px;
-
   padding: 14px 16px;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     padding: 21px 24px;
   }
 }
 
 .characteristic_text {
-  color: #888888;
-
+  color: $light-grey-color;
   font-size: 15px;
-  font-weight: 400;
-  line-height: 12px;
+  line-height: 0.8;
 
-  @media screen and (min-width: 1920px) {
+  @include on-desktop {
     font-size: 16px;
   }
 }
 
 .characteristic_value {
-  color: #454545;
-
+  color: $descr-grey-color;
   font-weight: 500;
 }

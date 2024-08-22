@@ -1,85 +1,173 @@
 .orderSection {
+  background-color: $white-color;
   padding-top: 0;
-  padding-bottom: 100px;
-}
+  padding-bottom: 16px;
 
-.orderTitle {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 20px;
-
-  color: #262626;
-}
-
-.orderSubTitle {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 24px;
-
-  color: #262626;
-}
-
-.contactInfoList {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  gap: 24px;
-}
-
-.contactInfoLabel {
-  display: flex;
-  flex-direction: column;
-
-  gap: 10px;
-
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19px;
-
-  color: #262626;
-}
-
-.contactInfoInput {
-  padding: 22.5px 16px;
-  border: 1.6px solid #d1d1d1;
-  outline: none;
-  border-radius: 10px;
-
-  &::placeholder {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-
-    color: #888888;
+  @include on-desktop {
+    padding-bottom: 100px;
+    background-color: transparent;
   }
 }
 
 .orderContainer {
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  gap: 32px;
+  margin: 0 auto;
+  border-top: 1px solid $light-border-color;
+  padding: 0 8px;
+  max-width: $mobile-max-width;
+
+  @include on-tablet {
+    max-width: $tablet-max-width;
+  }
+
+  @include on-desktop {
+    flex-direction: row;
+    gap: 24px;
+    padding: 0 48px;
+    max-width: $desktop-max-width;
+    border: none;
+  }
 }
 
 .formWrapper {
   display: flex;
   flex-direction: column;
-  gap: 48px;
   flex-grow: 1;
 }
 
-.orderInfoWrapper {
-  background-color: #ffffff;
+.titleWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid $light-border-color;
+  margin: 0 -8px;
 
+  @include on-desktop {
+    padding: 24px 0;
+    border: none;
+    margin: 0 0 48px;
+  }
+}
+
+.linkBack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBack {
+  width: 24px;
+  height: 24px;
+  stroke: $dark-color;
+  transform: rotate(90deg);
+}
+
+.orderTitle {
+  padding: 12px 8px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 12px;
+  color: $text-dark-color;
+
+
+  @include on-desktop {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 0.84;
+    color: $dark-color;
+  }
+}
+
+.orderSubTitle {
+  padding-top: 16px;
+  margin-bottom: 32px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+
+  @include on-desktop {
+    font-size: 20px;
+    color: $dark-color;
+    margin-bottom: 24px;
+    padding-top: 0;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include on-desktop {
+    gap: 48px;
+  }
+}
+
+.contactInfoList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+
+  @include on-desktop {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contactInfoLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: $dark-color;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+
+  @include on-desktop {
+    font-size: 16px;
+  }
+}
+
+.contactInfoInput {
+  padding: 15px 16px;
+  border: 1.6px solid $grey-border-color;
+  outline: none;
+  border-radius: 8px;
+  letter-spacing: 0.01em;
+
+  &::placeholder {
+    font-weight: 500;
+    line-height: 1.2;
+    color: $light-grey-color;
+    letter-spacing: 0.01em;
+  }
+
+  @include on-desktop {
+    padding: 22.5px 16px;
+    border-radius: 10px;
+  }
+}
+
+.orderInfoWrapper {
+  background-color: $white-color;
   display: flex;
   flex-direction: column;
   gap: 24px;
-
-  border: 1.5px solid #e7e7e7;
+  border: 1.5px solid $light-border-color;
   border-radius: 15px;
-
-  width: 438px;
+  width: 100%;
   height: fit-content;
+  padding: 16px;
 
-  padding: 32px 16px;
+  @include on-desktop {
+    width: 438px;
+    padding: 32px 16px;
+    margin-top: 24px;
+  }
 }
 
 .priceItem {
@@ -90,9 +178,8 @@
 .totalPrice {
   font-size: 20px;
   font-weight: 500;
-  line-height: 24px;
-
-  color: #262626;
+  line-height: 1.2;
+  color: $dark-color;
 }
 
 .totalPriceNumber {
@@ -102,9 +189,8 @@
 .partPrice {
   font-size: 18px;
   font-weight: 500;
-  line-height: 22px;
-
-  color: #888888;
+  line-height: 1.2;
+  color: $light-grey-color;
 }
 
 .priceList {
@@ -112,19 +198,59 @@
   flex-direction: column;
   gap: 11px;
 
-  padding: 0 24px;
+  @include on-desktop {
+    padding: 0 24px;
+  }
 }
 
-.iconBack {
-  width: 24px;
-  height: 24px;
-  stroke: #262626;
-  transform: rotate(90deg);
-}
-
-.titleWrapper {
+.checkbox {
   display: flex;
-  gap: 8px;
   align-items: center;
-  padding: 24px 0;
+  gap: 8px;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: $label-text-color;
+
+  @include on-desktop {
+    font-size: 16px;
+  }
+}
+
+.checkboxInput {
+  width: 20px;
+  height: 20px;
+  color: $label-text-color;
+}
+
+.orderInfoCart {
+  display: flex;
+  justify-content: space-between;
+
+  @include on-desktop {
+    display: none;
+  }
+}
+
+.cartTitle {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $text-dark-color;
+}
+
+.goToCart {
+  position: relative;
+  color: $icon-grey-color;
+  font-size: 15px;
+  line-height: 1.2;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    background-color: $icon-grey-color;
+    height: 1px;
+    bottom: 3px;
+    left: 0;
+  }
 }

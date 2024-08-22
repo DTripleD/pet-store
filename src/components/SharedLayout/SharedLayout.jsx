@@ -9,6 +9,7 @@ export const SharedLayout = () => {
   const [activeAuthModal, setActiveAuthModal] = useState(false);
   const [activeCartModal, setActiveCartModal] = useState(false);
 
+
   const onCloseModal = () => setActiveAuthModal(false);
 
   return (

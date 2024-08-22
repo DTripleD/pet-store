@@ -51,7 +51,7 @@
 
 .info {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   gap: 8px;
 
@@ -85,8 +85,31 @@
   }
 
   &__cart {
+    display: none;
+
+    @include on-desktop {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      width: 55px;
+      position: relative;
+      cursor: pointer;
+    }
+  }
+
+  .cart {
     position: relative;
+    width: 55px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     cursor: pointer;
+
+    @include on-desktop {
+      display: none;
+    }
   }
 
   &__search {
@@ -123,8 +146,7 @@
   stroke: $icon-grey-color;
 }
 
-.icon_loop,
-.icon_cart {
+.icon_loop {
   width: 20px;
   height: 20px;
   stroke: $icon-grey-color;
@@ -132,11 +154,13 @@
 
 .cart_count {
   position: absolute;
-  color: $icon-grey-color;
+  right: 0;
+  color: $light-grey-color;
 }
 
 .icon_heart,
-.icon_person {
+.icon_person,
+.icon_cart {
   width: 24px;
   height: 24px;
   stroke: $icon-grey-color;

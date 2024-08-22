@@ -22,13 +22,11 @@ const CartPage = () => {
         <div className={css.btnBack}>
           <BackButtonPage text={"Кошик"} />
         </div>
-      </div>
 
-      <div className="container">
         <h2 className={css.cartTitle}>Кошик</h2>
         {cartIsLoading ? (
           <div className={css.loading}>Loading...</div>
-        ) : itemsInCart && !itemsInCart.length ? (
+        ) : itemsInCart && itemsInCart.length > 0 ? (
           <div className={css.productsWrapper}>
             <ul className={css.cartList}>
               {itemsInCart.map((item) => (
