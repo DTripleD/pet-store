@@ -1,0 +1,1 @@
+export const selectRegions = (state) => state.regions.regions;

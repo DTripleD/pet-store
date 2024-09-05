@@ -1,0 +1,1 @@
+export const selectBranches = (state) => state.post.branches;

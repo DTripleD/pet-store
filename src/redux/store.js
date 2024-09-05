@@ -7,6 +7,9 @@ import { cartReducer } from "./cart/cartSlice";
 import { productReducer } from "./product/productSlice";
 import { burgerAnimalReducer } from "./burgerAnimal/burgerAnimalSlice";
 import { featuredReducer } from "./featured/featuredSlice";
+import  citiesReducer from "./cities/citiesSlice";
+import  postReducer from "./post/postSlice";
+import regionsReducer from './regions/regionsSlice.js';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +19,9 @@ export const store = configureStore({
     cart: cartReducer,
     featured: featuredReducer,
     burgerAnimal: burgerAnimalReducer,
+    cities: citiesReducer,
+    post: postReducer,
+    regions: regionsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

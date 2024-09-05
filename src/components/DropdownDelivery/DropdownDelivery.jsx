@@ -1,63 +1,129 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './DropdownDelivery.module.scss';
 import icons from "src/images/icons.svg";
+import ButtonDropdown from '../ButtonDropdown/ButtonDropdown';
+import PropTypes from "prop-types";
+import { useSelector } from 'react-redux';
+import { selectBranches } from '../../redux/post/postSelectiors';
+import Loader from '../Loader/Loader';
 
-const DropdownDelivery = () => {
-  const deliveryMethods = [
-    { id: 'newPostBranch', label: 'Відділення Нова Пошта', icon: 'icon-newpost', color: css.iconNewPost, state: useState('Відділення Нова Пошта') },
-    { id: 'newPostCell', label: 'Поштомат Нова Пошта', icon: 'icon-newpost', color: css.iconNewPost, state: useState('Поштомат Нова Пошта') },
-    { id: 'newPostCourier', label: 'Кур’єр Нова Пошта', icon: 'icon-newpost', color: css.iconNewPost, state: useState('Кур’єр Нова Пошта') },
-    { id: 'ukrPostCourier', label: 'Кур’єр УкрПошта', icon: 'icon-ukrpost', color: css.iconUkrPost, state: useState('Кур’єр УкрПошта') },
-    { id: 'ukrPostBranch', label: 'Відділення УкрПошта', icon: 'icon-ukrpost', color: css.iconUkrPost, state: useState('Відділення УкрПошта') },
-  ];
+const DropdownDelivery = ({ branches, deliveryMethods, onMethodSelect }) => {
+  const [branchInput, setBranchInput] = useState({});
+  const [selectedMethod, setSelectedMethod] = useState(null);
+  const [isSortActive, setIsSortActive] = useState({});
+  const [filteredBranches, setFilteredBranches] = useState([]);
+  const { loading, error } = useSelector(selectBranches);
 
-  const [isSortActive, setIsSortActive] = useState(false);
+  useEffect(() => {
+    if (selectedMethod) {
+      setFilteredBranches(branches.filter(branch => branch.TypeOfWarehouse === selectedMethod.Ref));
+    }
+  }, [branches, selectedMethod]);
 
-  const handleSelection = (setter, selection) => {
-    setter(selection);
-    setIsSortActive(false);
+  const handleMethodSelection = (method) => {
+    setSelectedMethod(method);
+    setBranchInput({});
+    onMethodSelect(method);
+    setIsSortActive({});
+  };
+
+  const handleInputChange = (e, methodRef) => {
+    const inputValue = e.target.value;
+    setBranchInput(prev => ({ ...prev, [methodRef]: inputValue }));
+
+    if (inputValue) {
+      const newFilteredData = branches.filter(item =>
+        item.Description.toLowerCase().includes(inputValue.toLowerCase()) &&
+        item.TypeOfWarehouse === methodRef
+      );
+      setFilteredBranches(newFilteredData);
+    } else {
+      setFilteredBranches(branches.filter(branch => branch.TypeOfWarehouse === methodRef));
+    }
+  };
+
+  const handleSelection = (selectedBranch, methodRef) => {
+    setBranchInput(prev => ({ ...prev, [methodRef]: selectedBranch.Description }));
+    setIsSortActive(prev => ({ ...prev, [methodRef]: false }));
+  };
+
+  const toggleDropdown = (methodRef) => {
+    setIsSortActive(prev => ({ ...prev, [methodRef]: !prev[methodRef] }));
   };
 
   return (
     <div className={css.dropdown}>
       <p className={css.dropdownLabel}>Спосіб доставки</p>
-      {deliveryMethods.map(({ id, label, icon, color, state }) => {
-        const [value, setValue] = state;
-        return (
-          <label key={id} className={css.dropdownBox} htmlFor={id}>
-            <input 
-              type="radio" 
-              id={id} 
-              name="deliveryMethod"
-              className={css.radio}
+        {deliveryMethods.slice(1).map(delivery => (
+          <div key={delivery.Ref}>
+            <label className={css.dropdownBox} htmlFor={delivery.Ref}>
+              <input 
+                type="radio" 
+                id={delivery.Ref} 
+                name="deliveryMethod"
+                className={css.radio}
+                checked={selectedMethod?.Ref === delivery.Ref}
+                onChange={() => handleMethodSelection(delivery)}
+                required
+              />
+              <svg className={css.iconPost}>
+                <use href={icons + "#icon-newpost"}></use>
+              </svg>
+              <input 
+                type="text" 
+                name={delivery.Ref} 
+                className={css.dropdownInput}
+                value={branchInput[delivery.Ref] || ''}
+                placeholder={
+                  delivery.Description === "Поштове(ий)" 
+                  ? "Відділення Нова Пошта" 
+                  : delivery.Description === "Вантажне(ий)"
+                  ? "Вантажне відділення НП"
+                  : delivery.Description === "Поштомат"
+                  ? "Поштомат Нова Пошта"
+                  : delivery.Description
+                }
+                onChange={(e) => handleInputChange(e, delivery.Ref)}
+                required
+                autoComplete='on'
+                onFocus={() => toggleDropdown(delivery.Ref)}
+              />
+            <ButtonDropdown
+              onClick={() => toggleDropdown(delivery.Ref)}
+              isActive={selectedMethod?.Ref === delivery.Ref && isSortActive[delivery.Ref]}
             />
-            <svg className={`${css.iconPost} ${color}`}>
-              <use href={`${icons}#${icon}`}></use>
-            </svg>
-            <span className={css.dropdownText}>{value}</span>
-            <button 
-              type="button" 
-              className={css.dropdownTrigger} 
-              onClick={() => handleSelection(setValue, label)}
-            >
-              {isSortActive ? (
-                <svg className={css.iconDown}>
-                  <use href={`${icons}#icon-up`}></use>
-                </svg>
+
+          {isSortActive[delivery.Ref] && selectedMethod?.Ref === delivery.Ref &&(
+            <ul className={css.dropdownOptions}>
+              {loading ? (
+                <li><Loader /></li>
+              ) : error ? (
+                <li>Виникла помилка призавантаженні</li>
+              ) : filteredBranches.length > 0 ? (
+                filteredBranches.map(branch => (
+                  <li 
+                    key={branch.Ref}
+                    onClick={() => handleSelection(branch, delivery.Ref)}
+                  >
+                    {branch.Description}
+                  </li>
+                ))
               ) : (
-                <svg className={css.iconUp}>
-                  <use href={`${icons}#icon-down`}></use>
-                </svg>
+                <li>Відділень не знайдено</li>
               )}
-            </button>
-          </label>
-        );
-      })}
-      <ul className={css.citiesList}>
-        {/* Render city options here */}
-      </ul>
+            </ul>
+          )}
+        </label>
+        </div>
+      ))}
     </div>
   );
 }
+
+DropdownDelivery.propTypes = {
+  branches: PropTypes.array,
+  deliveryMethods: PropTypes.array,
+  onMethodSelect: PropTypes.func,
+};
 
 export default DropdownDelivery;

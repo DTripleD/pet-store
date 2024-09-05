@@ -4,6 +4,7 @@ import CatalogItem from "components/CatalogItem/CatalogItem";
 import PropTypes from "prop-types";
 import SortBy from "modules/SortBy/SortBy";
 import icons from "src/images/icons.svg";
+import getItemQuantityText from "../../services/getItemQuantityText";
 
 const CatalogList = ({ products, openFilter }) => {
 
@@ -38,13 +39,7 @@ const CatalogList = ({ products, openFilter }) => {
         <h2 className={css.foundTitle}>
           {products.length ? (
             `Знайдено ${
-              products.length > 4
-                ? `${products.length} товарів`
-                : products.length === 1
-                ? `${products.length} товар`
-                : products.length > 1 && products.length < 5
-                ? `${products.length} товари`
-                : 'товари'
+              getItemQuantityText(products.length)
             }`
           ) : (
             'Нічого не знайдено'

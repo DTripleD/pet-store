@@ -1,0 +1,44 @@
+.contactInfoList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+
+  @include on-desktop {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contactInfoLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: $dark-color;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+
+  @include on-desktop {
+    font-size: 16px;
+  }
+}
+
+.contactInfoInput {
+  padding: 15px 16px;
+  border: 1.6px solid $grey-border-color;
+  outline: none;
+  border-radius: 8px;
+  letter-spacing: 0.01em;
+
+  &::placeholder {
+    font-weight: 500;
+    line-height: 1.2;
+    color: $light-grey-color;
+    letter-spacing: 0.01em;
+  }
+
+  @include on-desktop {
+    padding: 22.5px 16px;
+    border-radius: 10px;
+  }
+}
