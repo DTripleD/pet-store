@@ -3,35 +3,69 @@ import Button from "../../components/Button/Button";
 import CartItem from "../../components/CartItem/CartItem";
 import css from "./OrderPage.module.scss";
 import icons from "src/images/icons.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectItemsInCart } from "../../redux/cart/cartSelectors";
 import DropdownLocation from "../../components/DropdownLocation/DropdownLocation";
 import DropdownDelivery from "../../components/DropdownDelivery/DropdownDelivery";
 import Payment from "../../components/Payment/Payment";
 import { totalPrice } from "../../helpers/totalPrice";
-// import { getCity } from "../../services/getCity";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import getItemQuantityText from "../../services/getItemQuantityText";
+import OrderForm from "../../components/OrderForm/OrderForm";
+import { selectBranches } from "../../redux/post/postSelectiors";
+import fetchCities from "../../redux/cities/citiesOperations";
+import fetchRegions from "../../redux/regions/regionsOperations";
+import { selectRegions } from "../../redux/regions/regionsSelectors";
+import { selectCities } from "../../redux/cities/citiesSelectors";
+import fetchBranches from "../../redux/post/postOperations";
+import { getWarehouseTypes } from "../../services/getWarehouseTypes";
 
 const OrderPage = () => {
-  const { state } = useLocation();
+  const dispatch = useDispatch();
+  const regions = useSelector(selectRegions);
+  const cities = useSelector(selectCities);
+  const branches = useSelector(selectBranches);
   const itemsInCart = useSelector(selectItemsInCart);
-  const price = totalPrice(itemsInCart);
+  const { state } = useLocation();
+  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [deliveryMethods, setDeliveryMethods] = useState([]);
+  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(null); 
 
+  const price = totalPrice(itemsInCart);
   const finalPrice = price + 70;
 
-  // useEffect(() => {
-  //   const fetchCities = async () => {
-  //     try {
-  //       const response = await getCity();
-  //       console.log(response)
-  //       setCities(response);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-   
-  //   fetchCities();
-  // }, []);
+  useEffect(() => {
+    const fetchMethods = async () => {
+      try {
+        const result = await getWarehouseTypes();
+        setDeliveryMethods(result);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchMethods();
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchRegions());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (selectedRegion) {
+      dispatch(fetchCities(selectedRegion.Ref));
+    }
+  }, [dispatch, selectedRegion]);
+
+  useEffect(() => {
+    if (selectedCity && selectedDeliveryMethod) {
+      dispatch(fetchBranches({
+        settlement_ref: selectedCity.Ref,
+        TypeOfWarehouse: selectedDeliveryMethod.Ref
+      }));
+    }
+  }, [dispatch, selectedCity, selectedDeliveryMethod]);
 
   return (
     <section className={css.orderSection}>
@@ -48,50 +82,18 @@ const OrderPage = () => {
           <h3 className={css.orderSubTitle}>Контактні дані</h3>
 
           <form className={css.form}>
-            <ul className={css.contactInfoList}>
-              <li>
-                <label className={css.contactInfoLabel}>
-                  Ім’я*
-                  <input
-                    type="text"
-                    placeholder="Введіть ім’я"
-                    className={css.contactInfoInput}
-                  />
-                </label>
-              </li>
-              <li>
-                <label className={css.contactInfoLabel}>
-                  Прізвище*
-                  <input
-                    type="text"
-                    placeholder="Введіть номер або email"
-                    className={css.contactInfoInput}
-                  />
-                </label>
-              </li>
-              <li>
-                <label className={css.contactInfoLabel}>
-                  Номер телефону*
-                  <input
-                    type="text"
-                    placeholder="Введіть номер"
-                    className={css.contactInfoInput}
-                  />
-                </label>
-              </li>
-              <li>
-                <label className={css.contactInfoLabel}>
-                  Електронна пошта
-                  <input
-                    type="text"
-                    placeholder="Введіть email"
-                    className={css.contactInfoInput}
-                  />
-                </label>
-              </li>
-            </ul>
-            <DropdownLocation />
-            <DropdownDelivery />
+            <OrderForm />
+            <DropdownLocation 
+              regions={regions} 
+              cities={cities} 
+              onRegionSelect={setSelectedRegion} 
+              onCitySelect={setSelectedCity}  
+            />
+            <DropdownDelivery 
+              deliveryMethods={deliveryMethods} 
+              branches={branches} 
+              onMethodSelect={setSelectedDeliveryMethod}
+            />
             <Payment />
 
             <label className={css.checkbox} >
@@ -123,15 +125,7 @@ const OrderPage = () => {
             </li>
             <li className={css.priceItem}>
               <p className={css.partPrice}>
-                {itemsInCart.length > 0 ? (
-                  itemsInCart.length > 4
-                    ? `${itemsInCart.length} товарів`
-                    : itemsInCart.length === 1
-                    ? `${itemsInCart.length} товар`
-                    : `${itemsInCart.length} товари`
-                ) : (
-                  '0 товарів'
-                )}
+                {getItemQuantityText(itemsInCart.length)}
               </p>
               <p className={css.partPrice}>{price} грн</p>
             </li>

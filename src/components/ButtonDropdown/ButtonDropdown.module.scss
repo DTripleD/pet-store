@@ -1,0 +1,24 @@
+.dropdownTrigger {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  @include on-desktop {
+    top: 20px;
+    right: 20px;
+  }
+}
+
+.iconDown,
+.iconUp {
+  width: 24px;
+  height: 24px;
+  fill: $dark-color;
+  stroke: $dark-color;
+}

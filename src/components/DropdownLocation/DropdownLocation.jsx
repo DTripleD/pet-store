@@ -1,122 +1,87 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './DropdownLocation.module.scss';
-import icons from "src/images/icons.svg";
-import { getCity } from "../../services/getCity";
+import PropTypes from "prop-types";
+import Dropdown from '../Dropdown/Dropdown';
 
-const DropdownLocation = () => {
-  const [country, setCountry] = useState('Україна');
-  const [cities, setCities] = useState([]);
+const DropdownLocation = ({ regions, onRegionSelect, cities, onCitySelect }) => {
+  const [region, setRegion] = useState('');
   const [city, setCity] = useState('');
-  const [isCountryActive, setIsCountryActive] = useState(false);
   const [isCityActive, setIsCityActive] = useState(false);
+  const [filteredCities, setFilteredCities] = useState(regions || []);
+  const [isRegionActive, setIsRegionActive] = useState(false);
+  const [filteredRegions, setFilteredRegions] = useState(regions || []);
 
-  const handleCountrySelection = () => {
-    setIsCountryActive(!isCountryActive);
-  };
+  useEffect(() => {
+    setFilteredRegions(regions);
+  }, [regions]);
 
-  const handleCityChange = async (e) => {
-    const cityName = e.target.value;
-    setCity(cityName);
+  useEffect(() => {
+    setFilteredCities(cities);
+  }, [cities]);
 
-    if (cityName) {
-      try {
-        const fetchedCities = await getCity();
-        setCities(fetchedCities.filter(c => c.name.toLowerCase().includes(cityName.toLowerCase())));
-        console.log(fetchedCities);
-      } catch (err) {
-        console.error('Failed to fetch cities', err);
-      }
+  const handleInputChange = (input, setInput, setFiltered, data) => (e) => {
+    const inputValue = e.target.value;
+    setInput(inputValue);
+
+    if (inputValue) {
+      const newFilteredData = data.filter(item =>
+        item.Description.toLowerCase().includes(inputValue.toLowerCase())
+      );
+      setFiltered(newFilteredData);
+    } else {
+      setFiltered(data);
     }
-
-    setCities([]);
   };
 
-  const handleCitySelection = (selectedCity) => {
-    setCity(selectedCity);
-    setCities([]);
-    setIsCityActive(false);
+  const handleSelection = (setInput, setActive, onSelect) => (selectedItem) => {
+    setInput(selectedItem.Description);
+    onSelect(selectedItem);
+    setActive(false);
+  };
+
+  const toggleDropdown = (setActive) => () => {
+    setActive(prev => !prev);
   };
 
   return (
     <div className={css.orderBox}>
       <h3 className={css.orderSubTitle}>Доставка</h3>
       <div className={css.dropdownWrapper}>
-        <div className={css.dropdown}>
-        <p className={css.dropdownLabel}>Країна</p>
-          <div className={css.dropdownBox}>
-            <span className={css.dropdownText}>{country}</span>
-            <button 
-              type="button" 
-              className={css.dropdownTrigger} 
-              onClick={handleCountrySelection}
-            >
-              {isCountryActive ? (
-                <svg className={css.iconDown}>
-                  <use href={icons + "#icon-up"}></use>
-                </svg>
-              ) : (
-                <svg className={css.iconUp}>
-                  <use href={icons + "#icon-down"}></use>
-                </svg>
-              )}
-            </button>
-          </div>
-          
-          {isCountryActive && (
-            <ul className={css.dropdownOptions}>
-              <li 
-                className={css.option}
-                onClick={() => {
-                  setCountry('Україна');
-                  setIsCountryActive(false);
-                }}
-              >
-                Україна
-              </li>
-            </ul>
-          )}
-          </div>
 
-          <div className={css.dropdown}>
-          <p className={css.dropdownLabel}>Місто</p>
-            <label className={css.dropdownBox} htmlFor="cityInput">
-              <input 
-                type="text"
-                id="cityInput"
-                className={css.dropdownInput} 
-                value={city}
-                placeholder="Оберіть місто"
-                onChange={handleCityChange}
-                autoFocus
-                required
-                />
-              <button 
-                type="button" 
-                className={css.dropdownTrigger} 
-                onClick={handleCitySelection}
-              >
-                {isCityActive ? (
-                  <svg className={css.iconDown}>
-                    <use href={icons + "#icon-up"}></use>
-                  </svg>
-                ) : (
-                  <svg className={css.iconUp}>
-                    <use href={icons + "#icon-down"}></use>
-                  </svg>
-                )}
-              </button>
-            </label>
+        <Dropdown
+          label="Область"
+          inputValue={region}
+          isActive={isRegionActive}
+          toggleDropdown={toggleDropdown(setIsRegionActive)}
+          filteredOptions={filteredRegions}
+          handleInputChange={handleInputChange(region, setRegion, setFilteredRegions, regions)}
+          handleSelection={handleSelection(setRegion, setIsRegionActive, onRegionSelect)}
+          placeholder="Оберіть область"
+          type='region'
+        />
 
-            <ul className={css.citiesList}>
-            {cities.map(city => (
-              <li key={city.id}>{city}</li>
-            ))}
+        <Dropdown
+          label="Місто"
+          inputValue={city}
+          isActive={isCityActive}
+          toggleDropdown={toggleDropdown(setIsCityActive)}
+          filteredOptions={filteredCities}
+          handleInputChange={handleInputChange(city, setCity, setFilteredCities, cities)}
+          handleSelection={handleSelection(setCity, setIsCityActive, onCitySelect)}
+          placeholder="Оберіть місто"
+          type='city'
+        />
 
-          </ul>
-        </div>
       </div>
     </div>
   );
 }
+
+DropdownLocation.propTypes = {
+  regions: PropTypes.array,
+  onRegionSelect: PropTypes.func,
+  cities: PropTypes.array,
+  onCitySelect: PropTypes.func,
+};
 
 export default DropdownLocation;

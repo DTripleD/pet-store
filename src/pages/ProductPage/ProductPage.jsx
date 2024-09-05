@@ -1,6 +1,5 @@
 import Slider from "modules/Slider/Slider";
 import icons from "../../images/icons.svg";
-// import data from "src/data/data";
 import css from "./ProductPage.module.scss";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import Sidebar from "components/Sidebar/Sidebar";
