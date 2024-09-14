@@ -1,10 +1,15 @@
-.productPageContainer {
+.productPageBox {
   background-color: $white-color;
 
   @include on-desktop {
+    background-color: transparent;
+  }
+}
+
+.productPageContainer {
+  @include on-desktop {
     display: flex;
     gap: 24px;
-    background-color: transparent;
   }
 }
 

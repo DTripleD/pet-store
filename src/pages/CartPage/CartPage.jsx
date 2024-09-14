@@ -10,6 +10,7 @@ import {
   selectItemsInCart,
 } from "../../redux/cart/cartSelectors";
 import BackButtonPage from "../../components/BackButtonPage/BackButtonPage";
+import Loader from '../../components/Loader/Loader';
 
 const CartPage = () => {
   const location = useLocation();
@@ -25,12 +26,14 @@ const CartPage = () => {
 
         <h2 className={css.cartTitle}>Кошик</h2>
         {cartIsLoading ? (
-          <div className={css.loading}>Loading...</div>
-        ) : itemsInCart && itemsInCart.length > 0 ? (
+          <Loader />
+        ) : itemsInCart?.length > 0 ? (
           <div className={css.productsWrapper}>
             <ul className={css.cartList}>
-              {itemsInCart.map((item) => (
-                <CartItem key={item.id} item={item} />
+              {itemsInCart.map(item => (
+                <li key={item.id}>
+                  <CartItem item={item} />
+                </li>
               ))}
             </ul>
             <div className={css.totalSection}>

@@ -5,14 +5,14 @@
   right: 0;
   top: 65;
   width: 100vw;
-  height: 120vh;
+  min-height: 150vh;
   z-index: 555;
 
   @include on-desktop {
     position: static;
     background-color: transparent;
     max-width: 100%;
-    height: calc(100vh - 473px);
+    min-height: calc(100vh - 473px);
   }
 }
 
@@ -82,8 +82,13 @@
 .cartList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 16px;
+  margin-bottom: 100px;
+
+  @include on-desktop {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
 }
 
 .orderButton,

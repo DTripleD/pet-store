@@ -38,8 +38,8 @@ const ProductPage = () => {
   }, [dispatch, productId]);
 
   return (
-    <div className={css.productPageContainer}>
-      <div className="container">
+    <div className={css.productPageBox}>
+      <div className={`container ${css.productPageContainer}`}>
         <div className={css.sidebar}>
           <Sidebar />
         </div>

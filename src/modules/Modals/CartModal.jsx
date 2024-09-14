@@ -15,7 +15,6 @@ import {
 
 const CartModal = ({ activeCartModal, setActiveCartModal }) => {
   const location = useLocation();
-
   const itemsInCart = useSelector(selectItemsInCart);
   const cartIsLoading = useSelector(selectCartIsLoading);
 

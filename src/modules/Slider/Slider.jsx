@@ -8,13 +8,16 @@ import css from "./Slider.module.scss";
 import icons from "src/images/icons.svg";
 import SliderButtons from "components/SliderButtons/SliderButtons";
 import SliderItem from "components/SliderItem/SliderItem";
-import SliderItemNew from "../../components/SliderItem/SliderItemNew";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cart/cartOperations";
 
 const Slider = ({ data, title }) => {
   const [isStartBtnActive, setStartBtnActive] = useState(true);
   const [isEndBtnActive, setIsEndBtnActive] = useState(false);
-
   const swiperRef = useRef();
+  const dispatch = useDispatch();
+
+  const addItem = (id) => dispatch(addToCart(id));
 
   function isButtonActive(e) {
     e.isBeginning ? setStartBtnActive(true) : setStartBtnActive(false);
@@ -33,12 +36,13 @@ const Slider = ({ data, title }) => {
             />
         </div>
         <ul className={css.productsList}>
-          {data.filter((item) => item.id >=4 ).map((item) => (
-            title === 'Акції' ? (
-            <SliderItem key={item.id} item={item} />
-            ) : (
-              <SliderItemNew key={item.id}  item={item} />
-            )
+          {data.filter((item) => item.id >= 4).map((item) => (
+            <SliderItem 
+              key={item.id}
+              item={item} 
+              onAdd={addItem} 
+              isDiscounted={title === 'Акції'} 
+            />
           ))}
         </ul>
         <div className={css.swiper}>
@@ -64,11 +68,11 @@ const Slider = ({ data, title }) => {
           >
             {data.map(item => (
               <SwiperSlide key={item.id} className={css.itemBox}>
-                {title === 'Акції' ? (
-                <SliderItem  item={item} />
-                ) : (
-                <SliderItemNew  item={item} />
-                )}
+                <SliderItem 
+                  item={item} 
+                  onAdd={addItem} 
+                  isDiscounted={title === 'Акції'} 
+                />
               </SwiperSlide>
             ))}
           </Swiper>
