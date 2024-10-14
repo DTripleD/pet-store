@@ -5,5 +5,3 @@ export const getProducts = (productsId, animalId, value = []) => {
     }`
   ).then((res) => res.json());
 };
-
-s
