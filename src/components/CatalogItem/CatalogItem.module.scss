@@ -58,6 +58,8 @@
   top: 0;
   right: 0;
   background-color: transparent;
+  z-index: 10000;
+  cursor: pointer;
   border-radius: 50%;
   padding: 8px;
   border: none;
@@ -96,11 +98,13 @@
   width: 20px;
   height: 20px;
   stroke: $dark-color;
+  fill: $dark-color;
 
   @include on-desktop {
     width: 24px;
     height: 24px;
-    stroke: $icon-grey-color
+    stroke: $icon-grey-color;
+    fill: $icon-grey-color;
   }
 }
 

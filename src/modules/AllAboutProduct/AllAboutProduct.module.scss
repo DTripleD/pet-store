@@ -66,6 +66,7 @@
 
 .toWishIcon {
   stroke: $icon-grey-color;
+  fill: $icon-grey-color;
 }
 
 .isAvailable {
@@ -177,7 +178,7 @@
   &::after {
     position: absolute;
     display: block;
-    content: '';
+    content: "";
     width: 100%;
     height: 2px;
     background-color: $light-grey-color;

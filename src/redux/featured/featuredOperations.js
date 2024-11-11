@@ -25,10 +25,22 @@ export const getFeatured = createAsyncThunk(
 export const addToFeatured = createAsyncThunk(
   "featured/addToFeatured",
   async ({ id, token }, thunkAPI) => {
-    console.log(token);
     try {
       setFeaturedHeader(token);
       const res = await instance.post(`featured/add/${id}/`);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteFromFeatured = createAsyncThunk(
+  "featured/deleteFromFeatured",
+  async ({ id, token }, thunkAPI) => {
+    try {
+      setFeaturedHeader(token);
+      const res = await instance.delete(`featured/delete/${id}/`);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

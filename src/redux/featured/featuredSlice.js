@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addToFeatured, getFeatured } from "./featuredOperations";
+import {
+  addToFeatured,
+  deleteFromFeatured,
+  getFeatured,
+} from "./featuredOperations";
 
 const initialState = { featured_items: [] };
 
@@ -22,6 +26,9 @@ const featuredSlice = createSlice({
         state.featured_items = payload.featured_items;
       })
       .addCase(addToFeatured.fulfilled, (state, { payload }) => {
+        state.featured_items = payload.featured_items;
+      })
+      .addCase(deleteFromFeatured.fulfilled, (state, { payload }) => {
         state.featured_items = payload.featured_items;
       })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)

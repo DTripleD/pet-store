@@ -9,7 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cart/cartOperations";
 import { getCookies } from "../../shared/cookies/cookies";
 import { selectProduct } from "../../redux/product/productSelectors";
-import { addToFeatured } from "../../redux/featured/featuredOperations";
+import {
+  addToFeatured,
+  deleteFromFeatured,
+  getFeatured,
+} from "../../redux/featured/featuredOperations";
+import { useEffect } from "react";
+import { selectFeaturedList } from "../../redux/featured/featuredSelectors";
 
 const characteristicsArray = [
   { name: "Lorem ipsum", descr: "Lorem ipsum", id: 1 },
@@ -22,6 +28,22 @@ const AllAboutProduct = () => {
 
   const { productId } = useParams();
 
+  const featuredList = useSelector(selectFeaturedList);
+
+  function isItemInFeaturedList() {
+    return featuredList
+      .map((product) => product.product.id)
+      .includes(Number(productId));
+  }
+
+  useEffect(() => {
+    const cookies = getCookies();
+
+    if (cookies.featuredTokenPetStore) {
+      dispatch(getFeatured(cookies.featuredTokenPetStore)).then;
+    }
+  }, [dispatch]);
+
   const handleAddToCart = () => {
     dispatch(
       addToCart({ token: getCookies().cartTokenPetStore, id: productId })
@@ -29,12 +51,21 @@ const AllAboutProduct = () => {
   };
 
   const handleAddToFeatured = () => {
-    dispatch(
-      addToFeatured({
-        token: getCookies().featuredTokenPetStore,
-        id: productId,
-      })
-    );
+    if (isItemInFeaturedList()) {
+      dispatch(
+        deleteFromFeatured({
+          token: getCookies().featuredTokenPetStore,
+          id: productId,
+        })
+      );
+    } else {
+      dispatch(
+        addToFeatured({
+          token: getCookies().featuredTokenPetStore,
+          id: productId,
+        })
+      );
+    }
   };
 
   const product = useSelector(selectProduct);
@@ -85,9 +116,15 @@ const AllAboutProduct = () => {
                 onClick={handleAddToFeatured}
               >
                 <svg className={css.toWishIcon}>
-                  <use href={icons + "#heart"}></use>
+                  <use
+                    href={
+                      isItemInFeaturedList()
+                        ? icons + "#icon-heart_fill"
+                        : icons + "#heart"
+                    }
+                  ></use>
                 </svg>
-                У бажане
+                {isItemInFeaturedList() ? "Прибрати" : "У бажане"}
               </button>
             </li>
           </ul>

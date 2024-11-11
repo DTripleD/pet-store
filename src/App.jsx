@@ -54,7 +54,6 @@ function App() {
     }
   };
 
-  
   const createFeatured = async () => {
     try {
       const res = await instance.post("/featured/create/");
