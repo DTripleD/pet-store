@@ -1,15 +1,9 @@
 .favoriteSection {
-  position: absolute;
   background-color: $white-color;
-  left: 0;
-  right: 0;
-  top: 65;
   width: 100vw;
   height: 120vh;
-  z-index: 555;
 
   @include on-desktop {
-    position: static;
     background-color: transparent;
     width: auto;
     height: auto;

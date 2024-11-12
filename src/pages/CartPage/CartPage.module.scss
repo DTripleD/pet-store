@@ -1,15 +1,9 @@
 .cartSection {
-  position: absolute;
   background-color: $white-color;
-  left: 0;
-  right: 0;
-  top: 65;
   width: 100vw;
   min-height: 150vh;
-  z-index: 555;
 
   @include on-desktop {
-    position: static;
     background-color: transparent;
     max-width: 100%;
     min-height: calc(100vh - 473px);
@@ -17,9 +11,9 @@
 }
 
 .wrapper {
+  min-width: 320px;
   max-width: $mobile-max-width;
   margin: 0 auto;
-  padding: 0 8px;
 
   @include on-tablet {
     max-width: $tablet-max-width;

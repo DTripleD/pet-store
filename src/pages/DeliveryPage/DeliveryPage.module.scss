@@ -1,14 +1,9 @@
 .deliveryPage {
-  position: absolute;
   background-color: $white-color;
-  left: 0;
-  right: 0;
   width: 100vw;
   min-height: 120vh;
-  z-index: 555;
 
   @include on-desktop {
-    position: static;
     background-color: transparent;
     width: auto;
     min-height: calc(100vh - 473px);

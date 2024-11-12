@@ -1,13 +1,8 @@
 .profilePage {
-  position: absolute;
   background-color: $white-color;
-  left: 0;
-  right: 0;
   width: 100vw;
-  z-index: 555;
 
   @include on-desktop {
-    position: static;
     background-color: transparent;
     width: auto;
   }
@@ -35,7 +30,7 @@
 
 .userTitle {
   display: none;
- 
+
   @include on-desktop {
     display: block;
     font-size: 24px;

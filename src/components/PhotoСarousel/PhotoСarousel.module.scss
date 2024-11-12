@@ -14,23 +14,22 @@
   border-radius: 20px;
 }
 
-
 .imageThumbWrapper {
-  max-width: 370px;
+  width: 370px;
   align-self: center;
 
   @include on-tablet {
-    max-width: 507px;
+    width: 507px;
   }
 
   @include on-desktop {
-    max-width: 516px;
+    width: 516px;
   }
 }
 
 .swiperSlide {
   position: relative;
-  display: flex !important; 
+  display: flex !important;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -110,7 +109,10 @@
   left: 12px;
 }
 
-.sliderButtonRight  {
+.sliderButtonRight {
   right: 12px;
 }
 
+.ddddd {
+  width: 512px;
+}

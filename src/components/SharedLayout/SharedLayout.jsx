@@ -9,7 +9,6 @@ export const SharedLayout = () => {
   const [activeAuthModal, setActiveAuthModal] = useState(false);
   const [activeCartModal, setActiveCartModal] = useState(false);
 
-
   const onCloseModal = () => setActiveAuthModal(false);
 
   return (
@@ -18,9 +17,11 @@ export const SharedLayout = () => {
         setActiveAuthModal={setActiveAuthModal}
         setActiveCartModal={setActiveCartModal}
       />
-      <Suspense fallback={<div>Loading</div>}>
-        <Outlet />
-      </Suspense>
+      <main>
+        <Suspense fallback={<div>Loading</div>}>
+          <Outlet />
+        </Suspense>
+      </main>
 
       <Footer />
 

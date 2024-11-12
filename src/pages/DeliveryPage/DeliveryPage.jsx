@@ -14,22 +14,22 @@ const DeliveryPage = () => {
         <div className={css.btnBack}>
           <BackButtonPage text={"Мої замовлення"} />
         </div>
+      </div>
 
-          <div className="container">
-          <h2 className={css.title}>Мої замовлення</h2>
-          <ul className={css.buttonsList}>
-            {['Всі', 'Поточні', 'Виконані', 'Скасовані'].map((status, index) => (
-              <li className={css.item} key={index}>
-                <SortButton
-                  isActive={selectedButton === status}
-                  text={status}
-                  setSelectedButton={setSelectedButton}
-                />
-              </li>
-            ))}
-          </ul>
-          <p className={css.deliveryText}>Замовлень ще немає</p>
-        </div>
+      <div className="container">
+        <h2 className={css.title}>Мої замовлення</h2>
+        <ul className={css.buttonsList}>
+          {["Всі", "Поточні", "Виконані", "Скасовані"].map((status, index) => (
+            <li className={css.item} key={index}>
+              <SortButton
+                isActive={selectedButton === status}
+                text={status}
+                setSelectedButton={setSelectedButton}
+              />
+            </li>
+          ))}
+        </ul>
+        <p className={css.deliveryText}>Замовлень ще немає</p>
       </div>
     </section>
   );

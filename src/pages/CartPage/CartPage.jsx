@@ -10,7 +10,7 @@ import {
   selectItemsInCart,
 } from "../../redux/cart/cartSelectors";
 import BackButtonPage from "../../components/BackButtonPage/BackButtonPage";
-import Loader from '../../components/Loader/Loader';
+import Loader from "../../components/Loader/Loader";
 
 const CartPage = () => {
   const location = useLocation();
@@ -23,14 +23,15 @@ const CartPage = () => {
         <div className={css.btnBack}>
           <BackButtonPage text={"Кошик"} />
         </div>
-
+      </div>
+      <div className="container">
         <h2 className={css.cartTitle}>Кошик</h2>
         {cartIsLoading ? (
           <Loader />
         ) : itemsInCart?.length > 0 ? (
           <div className={css.productsWrapper}>
             <ul className={css.cartList}>
-              {itemsInCart.map(item => (
+              {itemsInCart.map((item) => (
                 <li key={item.id}>
                   <CartItem item={item} />
                 </li>
@@ -45,10 +46,7 @@ const CartPage = () => {
               >
                 Оформити замовлення
               </Link>
-              <Link
-                to="/"
-                className={css.continueLink}
-              >
+              <Link to="/" className={css.continueLink}>
                 Продовжити покупки
               </Link>
             </div>
@@ -61,11 +59,8 @@ const CartPage = () => {
               </svg>
               <p className={css.emptyCartText}>Ваш кошик порожній</p>
             </div>
-            <Link
-                to="/"
-                className={css.emptyCartButton}
-              >
-                Продовжити покупки
+            <Link to="/" className={css.emptyCartButton}>
+              Продовжити покупки
             </Link>
           </div>
         )}

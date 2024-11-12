@@ -25,17 +25,15 @@ const FavoritePage = () => {
     }
   }, [dispatch]);
 
-
-  console.log(featuredList);
-
   return (
     <section className={css.favoriteSection}>
       <div className={css.wrapper}>
         <div className={css.btnBack}>
           <BackButtonPage text={"Бажане"} />
         </div>
+      </div>
 
-        <div className="container">
+      <div className="container">
         <h2 className={css.favoriteTitle}>Бажане</h2>
         {featuredList.length > 0 && (
           <ul className={css.favoriteList}>
@@ -44,7 +42,6 @@ const FavoritePage = () => {
             ))}
           </ul>
         )}
-        </div>
       </div>
     </section>
   );

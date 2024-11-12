@@ -46,45 +46,47 @@ const PhotoCarousel = ({ images }) => {
             <img src={item.image} className={css.bigImage} />
           </SwiperSlide>
         ))}
-          <button
-            onClick={() => {
-              swiperRef.current.slidePrev();
-            }}
-            className={css.sliderButtonLeft}
-          >
-            <svg className={css.slider__icon}>
-              <use href={icons + "#icon-left"}></use>
-            </svg>
-          </button>
-          <button
-            onClick={() => swiperRef.current.slideNext()}
-            className={css.sliderButtonRight}
-          >
-            <svg className={css.slider__icon}>
-              <use href={icons + "#icon-right"}></use>
-            </svg>
-          </button>
+        <button
+          onClick={() => {
+            swiperRef.current.slidePrev();
+          }}
+          className={css.sliderButtonLeft}
+        >
+          <svg className={css.slider__icon}>
+            <use href={icons + "#icon-left"}></use>
+          </svg>
+        </button>
+        <button
+          onClick={() => swiperRef.current.slideNext()}
+          className={css.sliderButtonRight}
+        >
+          <svg className={css.slider__icon}>
+            <use href={icons + "#icon-right"}></use>
+          </svg>
+        </button>
         <div className={css.pagination} ref={paginationRef}>
           {/* <div className={css.bullet}></div> */}
         </div>
       </Swiper>
-      <MediaQuery minWidth={1280}>
-        <Swiper
-          onSwiper={setThumbsSwiper}
-          spaceBetween={24}
-          slidesPerView={"auto"}
-          freeMode={true}
-          watchSlidesProgress={true}
-          modules={[FreeMode, Navigation, Thumbs]}
-          className="smallProductSlider"
-        >
-          {images.map((item) => (
-            <SwiperSlide key={item.id} className={css.smallImage}>
-              <img src={item.image} className={css.hita} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </MediaQuery>
+      <div className="ddddd">
+        <MediaQuery minWidth={1280}>
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            spaceBetween={24}
+            slidesPerView={"auto"}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className="smallProductSlider"
+          >
+            {images.map((item) => (
+              <SwiperSlide key={item.id} className={css.smallImage}>
+                <img src={item.image} className={css.hita} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </MediaQuery>
+      </div>
     </div>
   );
 };

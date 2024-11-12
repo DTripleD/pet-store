@@ -47,7 +47,7 @@ const ProfilePage = () => {
         </div>
       </div>
 
-        <div className="container">
+      <div className="container">
         <h2 className={css.userTitle}>Персональні дані</h2>
         <form onSubmit={updateUser} className={css.userForm}>
           <UserInfoItem
