@@ -17,7 +17,9 @@ const Slider = ({ data, title }) => {
   const swiperRef = useRef();
   const dispatch = useDispatch();
 
-  const addItem = (id) => dispatch(addToCart(id));
+  function addItem(id) {
+    dispatch(addToCart(id));
+  }
 
   function isButtonActive(e) {
     e.isBeginning ? setStartBtnActive(true) : setStartBtnActive(false);
@@ -29,21 +31,23 @@ const Slider = ({ data, title }) => {
       <div className={css.sliderContainer}>
         <div className={css.sliderHeader}>
           <h2 className={css.sliderHeaderTitle}>{title}</h2>
-            <SliderButtons
-              isStartBtnActive={isStartBtnActive}
-              isEndBtnActive={isEndBtnActive}
-              swiperRef={swiperRef}
-            />
+          <SliderButtons
+            isStartBtnActive={isStartBtnActive}
+            isEndBtnActive={isEndBtnActive}
+            swiperRef={swiperRef}
+          />
         </div>
         <ul className={css.productsList}>
-          {data.filter((item) => item.id >= 4).map((item) => (
-            <SliderItem 
-              key={item.id}
-              item={item} 
-              onAdd={addItem} 
-              isDiscounted={title === 'Акції'} 
-            />
-          ))}
+          {data
+            .filter((item) => item.id >= 4)
+            .map((item) => (
+              <SliderItem
+                key={item.id}
+                item={item}
+                onAdd={addItem}
+                isDiscounted={title === "Акції"}
+              />
+            ))}
         </ul>
         <div className={css.swiper}>
           <Swiper
@@ -58,26 +62,26 @@ const Slider = ({ data, title }) => {
                 spaceBetween: 16,
               },
               1920: {
-                  slidesPerView: 5,
-                  spaceBetween: 24,
-                },
-              }}
+                slidesPerView: 5,
+                spaceBetween: 24,
+              },
+            }}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
           >
-            {data.map(item => (
+            {data.map((item) => (
               <SwiperSlide key={item.id} className={css.itemBox}>
-                <SliderItem 
-                  item={item} 
-                  onAdd={addItem} 
-                  isDiscounted={title === 'Акції'} 
+                <SliderItem
+                  item={item}
+                  onAdd={addItem}
+                  isDiscounted={title === "Акції"}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-         <Link to="new" className={css.styledLink}>
+        <Link to="new" className={css.styledLink}>
           <p className={css.showAllText}>Переглянути все</p>
           <svg className={css.showAllIcon}>
             <use href={icons + "#icon-right"}></use>

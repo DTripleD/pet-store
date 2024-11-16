@@ -12,9 +12,7 @@ import { selectProduct } from "../../redux/product/productSelectors";
 import {
   addToFeatured,
   deleteFromFeatured,
-  getFeatured,
 } from "../../redux/featured/featuredOperations";
-import { useEffect } from "react";
 import { selectFeaturedList } from "../../redux/featured/featuredSelectors";
 
 const characteristicsArray = [
@@ -35,14 +33,6 @@ const AllAboutProduct = () => {
       .map((product) => product.product.id)
       .includes(Number(productId));
   }
-
-  useEffect(() => {
-    const cookies = getCookies();
-
-    if (cookies.featuredTokenPetStore) {
-      dispatch(getFeatured(cookies.featuredTokenPetStore)).then;
-    }
-  }, [dispatch]);
 
   const handleAddToCart = () => {
     dispatch(

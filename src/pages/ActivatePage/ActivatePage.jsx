@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { redirect, useNavigate, useParams } from "react-router-dom";
-import css from './ActivatePage.module.scss';
+import css from "./ActivatePage.module.scss";
 import icons from "src/images/icons.svg";
 
 const ActivatePage = () => {
@@ -34,6 +34,8 @@ const ActivatePage = () => {
     setIsOpen(false);
     navigate("/");
   };
+
+  setTimeout(() => handleClose(), 2000);
 
   return (
     !isOpen && (

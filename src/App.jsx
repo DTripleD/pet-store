@@ -30,47 +30,11 @@ import { getUserInfo } from "./redux/auth/operations";
 import { selectAuthToken } from "./redux/auth/selectors";
 import instance from "./shared/api/instance";
 import { getCookies } from "./shared/cookies/cookies";
-import { getCart } from "./redux/cart/cartOperations";
+import { createCart, getCart } from "./redux/cart/cartOperations";
+import { createFeatured } from "./redux/featured/featuredOperations";
 
 function App() {
   const dispatch = useDispatch();
-
-  const createCart = async () => {
-    try {
-      const res = await instance.post("/cart/create/");
-      // return res.data;
-
-      const date = new Date();
-      // 14 это количество дней
-      date.setTime(date.getTime() + 14 * 24 * 60 * 60 * 1000);
-
-      document.cookie = [
-        `cartTokenPetStore=${res.data.hash_code}`,
-        `expires=${date.toUTCString()}`,
-        "path=/",
-      ].join("; ");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const createFeatured = async () => {
-    try {
-      const res = await instance.post("/featured/create/");
-
-      const date = new Date();
-      // 14 это количество дней
-      date.setTime(date.getTime() + 14 * 24 * 60 * 60 * 1000);
-
-      document.cookie = [
-        `featuredTokenPetStore=${res.data.hash_code}`,
-        `expires=${date.toUTCString()}`,
-        "path=/",
-      ].join("; ");
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     const cookies = getCookies();
@@ -95,7 +59,7 @@ function App() {
   useEffect(() => {
     const cookies = getCookies();
 
-    dispatch(getCart(cookies.cartTokenPetStore));
+    dispatch(getCart(cookies.cartTokenPetStore)).then((res) => res);
   }, [dispatch]);
 
   const authToken = useSelector(selectAuthToken);

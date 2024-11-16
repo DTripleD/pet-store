@@ -40,6 +40,8 @@ const authSlice = createSlice({
         state.user.first_name = payload.first_name;
         state.isActivationSent = true;
         state.isRefreshing = false;
+
+        setTimeout(() => (state.isActivationSent = false), 5000);
       })
       .addCase(logOut.fulfilled, (state) => {
         state.authToken = null;

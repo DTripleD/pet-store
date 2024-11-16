@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addToCart, getCart } from "./cartOperations";
+import { addToCart, decreaseFromCart, getCart } from "./cartOperations";
 
 const initialState = {
   cartItems: [],
@@ -26,6 +26,10 @@ const cartSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addToCart.fulfilled, (state, { payload }) => {
+        state.cartItems = payload.cart_items;
+        state.isLoading = false;
+      })
+      .addCase(decreaseFromCart.fulfilled, (state, { payload }) => {
         state.cartItems = payload.cart_items;
         state.isLoading = false;
       })
