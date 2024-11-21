@@ -37,9 +37,7 @@ const CategoryPage = () => {
         <ul className={css.subCatList}>
           {categorys.product_categories.map((subCat) => (
             <li key={subCat.id} className={css.subCatItem}>
-              <Link
-                to={`/${categorys.id}/${subCat.id}`}
-              >
+              <Link to={`/${categorys.id}/${subCat.id}`}>
                 <div className={css.subCatImgWrapper}>
                   <img className={css.img} src={itemImage} alt={subCat.name} />
                 </div>
