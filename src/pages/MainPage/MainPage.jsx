@@ -18,22 +18,21 @@ const MainPage = () => {
       } catch (err) {
         console.log(err);
       }
-    }
+    };
 
     fetchData();
-  }, [])
+  }, []);
 
-  const discData = data.filter(item => item.discount > 0);
-  const newData = data.filter(item => item.discount === 0);
+  const discData = data.filter((item) => item.discount > 0);
+  const newData = data.filter((item) => item.discount === 0);
 
   return (
-
     <div className={`container ${css.main__wrapper}`}>
-        <Sidebar />
+      <Sidebar />
       <div className={css.main__container}>
         <Hero />
         <Slider title="Акції" data={discData} />
-        <Slider title="Новинки" data={newData} />
+        <Slider title="Новинки" data={newData} isNew={true} />
       </div>
     </div>
   );

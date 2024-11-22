@@ -28,7 +28,6 @@ import { toastOptions } from "src/shared/toasterOptions/toasterOptions";
 
 import { getUserInfo } from "./redux/auth/operations";
 import { selectAuthToken } from "./redux/auth/selectors";
-import instance from "./shared/api/instance";
 import { getCookies } from "./shared/cookies/cookies";
 import { createCart, getCart } from "./redux/cart/cartOperations";
 import { createFeatured } from "./redux/featured/featuredOperations";

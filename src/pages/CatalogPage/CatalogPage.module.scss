@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
 
+  width: 100%;
+
   @include on-desktop {
     flex-direction: row;
   }
@@ -79,6 +81,8 @@
   flex-direction: column;
   gap: 16px;
 
+  width: 100%;
+
   @include on-desktop {
     gap: 32px;
   }
@@ -95,7 +99,6 @@
   background-color: $light-green-color;
   cursor: pointer;
   align-self: center;
-
 
   @include on-tablet {
     width: 232px;
