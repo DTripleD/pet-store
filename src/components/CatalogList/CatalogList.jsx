@@ -7,15 +7,10 @@ import icons from "src/images/icons.svg";
 import getItemQuantityText from "../../services/getItemQuantityText";
 
 const CatalogList = ({ products, openFilter }) => {
-
   return (
     <div className={css.catologListWrapper}>
       <div className={css.filterMob}>
-        <button
-          className={css.filterButton}
-          type="button"
-          onClick={openFilter}
-        >
+        <button className={css.filterButton} type="button" onClick={openFilter}>
           <svg className={css.filterIcon}>
             <use href={icons + "#filter"}></use>
           </svg>
@@ -27,23 +22,17 @@ const CatalogList = ({ products, openFilter }) => {
         <button className={css.cleanButton}>Очистити</button>
         <div className={css.filterLabel}>
           <p className={css.labelText}>Знижки</p>
-          <svg
-            className={css.iconClose}
-          >
-          <use href={icons + "#cross"}></use>
-        </svg>
-      </div>
+          <svg className={css.iconClose}>
+            <use href={icons + "#cross"}></use>
+          </svg>
+        </div>
       </div>
 
       <div className={css.middleWrapper}>
         <h2 className={css.foundTitle}>
-          {products.length ? (
-            `Знайдено ${
-              getItemQuantityText(products.length)
-            }`
-          ) : (
-            'Нічого не знайдено'
-          )}
+          {products.length
+            ? `Знайдено ${getItemQuantityText(products.length)}`
+            : "Нічого не знайдено"}
         </h2>
         <div className={css.sortByDesk}>
           <SortBy />
@@ -65,5 +54,3 @@ CatalogList.propTypes = {
 };
 
 export default CatalogList;
-
-

@@ -11,8 +11,9 @@ import {
   deleteFromFeatured,
 } from "../../redux/featured/featuredOperations";
 import { getCookies } from "../../shared/cookies/cookies";
+import { addToCart } from "../../redux/cart/cartOperations";
 
-const CatalogItem = ({ item }) => {
+const CatalogItem = ({ item, isSlider, isNew }) => {
   const location = useLocation();
 
   const dispatch = useDispatch();
@@ -41,8 +42,12 @@ const CatalogItem = ({ item }) => {
     }
   };
 
+  const handleAddToCart = () => {
+    dispatch(addToCart({ token: getCookies().cartTokenPetStore, id: item.id }));
+  };
+
   return (
-    <li className={css.productCard}>
+    <li className={css.productCard} style={{ width: isSlider && "100%" }}>
       <button className={css.favoriteButton} onClick={handleAddToFeatured}>
         <svg className={css.heartIcon}>
           <use
@@ -54,6 +59,11 @@ const CatalogItem = ({ item }) => {
           ></use>
         </svg>
       </button>
+      <button className={css.cartButton} onClick={handleAddToCart}>
+        <svg className={css.cartBuyIcon}>
+          <use href={icons + "#cart"}></use>
+        </svg>
+      </button>
       <Link
         state={{ from: location }}
         to={`${item.id}`}
@@ -62,7 +72,7 @@ const CatalogItem = ({ item }) => {
         <div className={css.productImageWrapper}>
           <img
             src={
-              item.images.length > 0 && item.images.startsWith("http")
+              item.images?.length > 0 && item.images.startsWith("http")
                 ? item.images
                 : placeholder
             }
@@ -70,23 +80,21 @@ const CatalogItem = ({ item }) => {
             className={css.img}
           />
 
-          <div className={css.discount}>-{item.discount}%</div>
+          {item.discount > 0 && (
+            <div className={css.discount}>-{item.discount}%</div>
+          )}
+
+          {isNew && <div className={css.new}>New</div>}
         </div>
         <WeightButtonsList />
-        <div className={css.textWrapper}>
-          <div className={css.swiperDescrWrapper}>
-            <h3 className={css.swiperTitle}>{item.name}</h3>
-            <p className={css.swipperDescription}>{item.description}</p>
 
-            <div className={css.mobileBuyWrapper}>
-              <div className={css.swiperPriceWrapper}>
-                <p className={css.swiperNewPrice}>{item.discount_price} грн.</p>
-                <p className={css.swiperOldPrice}>{item.price} грн.</p>
-              </div>
-              <svg className={css.cartBuyIcon}>
-                <use href={icons + "#cart"}></use>
-              </svg>
-            </div>
+        <div className={css.swiperDescrWrapper}>
+          <h3 className={css.swiperTitle}>{item.name}</h3>
+          <p className={css.swipperDescription}>{item.description}</p>
+
+          <div className={css.swiperPriceWrapper}>
+            <p className={css.swiperNewPrice}>{item.discount_price} грн.</p>
+            <p className={css.swiperOldPrice}>{item.price} грн.</p>
           </div>
         </div>
       </Link>
@@ -98,4 +106,6 @@ export default CatalogItem;
 
 CatalogItem.propTypes = {
   item: PropTypes.object,
+  isSlider: PropTypes.bool,
+  isNew: PropTypes.bool,
 };

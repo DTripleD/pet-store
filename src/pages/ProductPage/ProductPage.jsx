@@ -6,15 +6,16 @@ import Sidebar from "components/Sidebar/Sidebar";
 import Routes from "components/Routes/Routes";
 import { useEffect, useRef, useState } from "react";
 import { getProduct } from "../../redux/product/productOperations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DescriptionNavigation from "../../components/DescriptionNavigation/DescriptionNavigation";
 import { getProducts } from "../../services/getProduct";
+import { selectProduct } from "../../redux/product/productSelectors";
 
 const ProductPage = () => {
   const { productId, catalog } = useParams();
   const dispatch = useDispatch();
   const location = useLocation();
-  const goBack = useRef(location.state?.from ?? `${catalog}`)
+  const goBack = useRef(location.state?.from ?? `${catalog}`);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -26,16 +27,20 @@ const ProductPage = () => {
       } catch (err) {
         console.log(err);
       }
-    }
+    };
 
     fetchData();
   }, []);
 
-  const discData = data.filter(item => item.discount > 0);
+  const discData = data.filter((item) => item.discount > 0);
 
   useEffect(() => {
     dispatch(getProduct(productId));
   }, [dispatch, productId]);
+
+  const product = useSelector(selectProduct);
+
+  console.log(product);
 
   return (
     <div className={css.productPageBox}>
@@ -45,13 +50,13 @@ const ProductPage = () => {
         </div>
         <div className={css.contentBox}>
           <div className={css.routes}>
-            <Routes routes={[{ name: productId, key: productId }]} />
+            <Routes routes={[{ name: product.name, key: productId }]} />
           </div>
           <Link to={goBack.current} className={css.linkBack}>
-              <svg className={css.iconBack}>
-                <use href={icons + "#icon-down"}></use>
-              </svg>
-              <p className={css.textBack}>{productId}</p>
+            <svg className={css.iconBack}>
+              <use href={icons + "#icon-down"}></use>
+            </svg>
+            <p className={css.textBack}>{productId}</p>
           </Link>
           <DescriptionNavigation />
           <div className={css.productPageWrapper}>

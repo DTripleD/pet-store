@@ -7,19 +7,13 @@ import { Link } from "react-router-dom";
 import css from "./Slider.module.scss";
 import icons from "src/images/icons.svg";
 import SliderButtons from "components/SliderButtons/SliderButtons";
-import SliderItem from "components/SliderItem/SliderItem";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/cart/cartOperations";
 
-const Slider = ({ data, title }) => {
+import CatalogItem from "../../components/CatalogItem/CatalogItem";
+
+const Slider = ({ data, title, isNew }) => {
   const [isStartBtnActive, setStartBtnActive] = useState(true);
   const [isEndBtnActive, setIsEndBtnActive] = useState(false);
   const swiperRef = useRef();
-  const dispatch = useDispatch();
-
-  function addItem(id) {
-    dispatch(addToCart(id));
-  }
 
   function isButtonActive(e) {
     e.isBeginning ? setStartBtnActive(true) : setStartBtnActive(false);
@@ -41,12 +35,7 @@ const Slider = ({ data, title }) => {
           {data
             .filter((item) => item.id >= 4)
             .map((item) => (
-              <SliderItem
-                key={item.id}
-                item={item}
-                onAdd={addItem}
-                isDiscounted={title === "Акції"}
-              />
+              <CatalogItem key={item.id} item={item} isNew={isNew} />
             ))}
         </ul>
         <div className={css.swiper}>
@@ -71,12 +60,8 @@ const Slider = ({ data, title }) => {
             }}
           >
             {data.map((item) => (
-              <SwiperSlide key={item.id} className={css.itemBox}>
-                <SliderItem
-                  item={item}
-                  onAdd={addItem}
-                  isDiscounted={title === "Акції"}
-                />
+              <SwiperSlide tag="ul" key={item.id} className={css.itemBox}>
+                <CatalogItem item={item} isSlider={true} isNew={isNew} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -97,4 +82,5 @@ export default Slider;
 Slider.propTypes = {
   title: PropTypes.string,
   data: PropTypes.array,
+  isNew: PropTypes.bool,
 };
