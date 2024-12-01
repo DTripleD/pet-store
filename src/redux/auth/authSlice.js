@@ -41,7 +41,7 @@ const authSlice = createSlice({
         state.isActivationSent = true;
         state.isRefreshing = false;
 
-        setTimeout(() => (state.isActivationSent = false), 5000);
+        setTimeout(() => (state.isActivationSent = false), 1000);
       })
       .addCase(logOut.fulfilled, (state) => {
         state.authToken = null;
