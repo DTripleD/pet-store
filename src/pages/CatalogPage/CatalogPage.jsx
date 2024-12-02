@@ -64,7 +64,7 @@ const CatalogPage = ({ animalId, productsId }) => {
             ]}
           />
         ) : (
-          <div>No routes</div>
+          <div></div>
         )}
         </div>
         <div className={css.btnBack}>
