@@ -67,7 +67,7 @@ const Slider = ({ data, title, isNew }) => {
             ))}
           </Swiper>
         </div>
-        <Link to={'/category/:catalog'} className={css.styledLink}>
+        <Link to={'/categories'} className={css.styledLink}>
           <p className={css.showAllText}>Переглянути все</p>
           <svg className={css.showAllIcon}>
             <use href={icons + "#icon-right"}></use>
