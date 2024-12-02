@@ -14,6 +14,7 @@ import {
 } from "../../redux/products/productsSelectors";
 import FilterBurger from "../../modules/FilterBurger/FilterBurger";
 import PropTypes from "prop-types";
+import Loader from "../../components/Loader/Loader";
 
 const CatalogPage = ({ animalId, productsId }) => {
   const { category, catalog } = useParams();
@@ -99,7 +100,7 @@ const CatalogPage = ({ animalId, productsId }) => {
                 openFilter={handleOpenFilter}
               />
             ) : (
-              <div>Loading...</div>
+              <Loader />
             )}
             <div className={css.btnLoadMore}>
               <p className={css.btnText}>Завантажити більше</p>

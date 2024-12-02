@@ -4,6 +4,7 @@ import Footer from "modules/Footer/Footer";
 import Header from "modules/Header/Header";
 import AuthModal from "modules/Modals/AuthModal";
 import CartModal from "modules/Modals/CartModal";
+import Loader from "../Loader/Loader";
 
 export const SharedLayout = () => {
   const [activeAuthModal, setActiveAuthModal] = useState(false);
@@ -18,7 +19,7 @@ export const SharedLayout = () => {
         setActiveCartModal={setActiveCartModal}
       />
       <main>
-        <Suspense fallback={<div>Loading</div>}>
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </main>
