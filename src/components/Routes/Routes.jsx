@@ -16,14 +16,14 @@ const Routes = ({ routes }) => {
       </Link>
 
       {routes.map((route, index) => (
-        <React.Fragment key={route.key}>
+        <React.Fragment key={route.id}>
           {routes.length > index && <p className={css.route__slash}>/</p>}
           {routes.length === index + 1 ? (
             <p className={`${css.last__route} ${css.route__text}`}>
               {route.name}
             </p>
           ) : (
-            <Link to={`/${route.id}`} className={css.route__text}>
+            <Link to={route.path} className={css.route__text}>
               {route.name}
             </Link>
           )}
