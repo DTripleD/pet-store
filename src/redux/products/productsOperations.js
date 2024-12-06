@@ -1,6 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import instance from "../../shared/api/instance";
 
+// export const setAuthHeader = (accessToken) => {
+//   instance.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
+// };
+
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async ({ productsId, animalId, value = [] }, thunkAPI) => {
