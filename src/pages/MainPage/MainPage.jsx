@@ -1,4 +1,3 @@
-// import data from "src/data/data";
 import Slider from "modules/Slider/Slider";
 import Sidebar from "components/Sidebar/Sidebar";
 import css from "./MainPage.module.scss";

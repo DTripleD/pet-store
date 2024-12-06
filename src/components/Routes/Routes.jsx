@@ -23,7 +23,7 @@ const Routes = ({ routes }) => {
               {route.name}
             </p>
           ) : (
-            <Link to={`/${route.id}`} className={css.route__text}>
+            <Link to={route.path} className={css.route__text}>
               {route.name}
             </Link>
           )}

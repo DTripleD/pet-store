@@ -7,6 +7,7 @@ import icons from "src/images/icons.svg";
 import { logOut } from "../../redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthToken } from "../../redux/auth/selectors";
+import Loader from "../Loader/Loader";
 
 const profileSidebarItems = [
   { title: "Персональні дані", link: "profile", icon: "person" },
@@ -46,7 +47,7 @@ const UserWrapper = () => {
         ))}
       </ul>
 
-      <Suspense fallback={<div>Loading</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </div>

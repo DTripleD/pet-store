@@ -1,20 +1,3 @@
-.categorySection {
-  padding: 0 0 100px 0;
-  background-color: $white-color;
-
-  @include on-desktop {
-    background-color: transparent;
-  }
-}
-
-.subCatTitle {
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 34px;
-  color: $dark-color;
-  padding: 24px 0;
-}
-
 .subCatList {
   display: flex;
   flex-wrap: wrap;
@@ -70,50 +53,4 @@
     font-weight: 700;
     line-height: 1.3;
   }
-}
-
-.btnBack {
-  @include on-desktop {
-    display: none;
-  }
-}
-
-.iconBack {
-  stroke: $text-dark-color;
-  transform: rotate(90deg);
-  width: 24px;
-  height: 24px;
-}
-
-.textBack {
-  color: $text-dark-color;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 0.67;
-
-  @include on-tablet {
-    font-size: 16px;
-  }
-}
-
-.linkBack {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  padding: 12px 8px 12px 0;
-}
-
-
-.routes {
-  display: none;
-
-  @include on-desktop {
-    display: block;
-  }
-}
-
-.loader {
-  display: flex;
-  justify-content: center;
-  padding: 30px;
 }

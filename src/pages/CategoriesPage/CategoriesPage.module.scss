@@ -1,0 +1,28 @@
+.categorySection {
+  padding: 0 0 100px 0;
+  background-color: $white-color;
+
+  @include on-desktop {
+    background-color: transparent;
+  }
+}
+
+.btnBack {
+  @include on-desktop {
+    display: none;
+  }
+}
+
+.routes {
+  display: none;
+
+  @include on-desktop {
+    display: block;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}

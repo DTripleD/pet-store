@@ -12,6 +12,7 @@ import {
   selectCartIsLoading,
   selectItemsInCart,
 } from "../../redux/cart/cartSelectors";
+import Loader from "../../components/Loader/Loader";
 
 const CartModal = ({ activeCartModal, setActiveCartModal }) => {
   const location = useLocation();
@@ -35,7 +36,7 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
             )}
           </div>
           {cartIsLoading ? (
-            <div>Loading...</div>
+            <Loader />
           ) : itemsInCart.length ? (
             <ul className={css.cartList}>
               {itemsInCart.map((item) => (

@@ -6,12 +6,12 @@
     display: block;
     float: left;
     overflow: hidden;
+    z-index: 10;
   }
 }
 
 .category__header_button {
-  background-color: 
-$light-border-color;
+  background-color: $light-border-color;
   border: none;
   padding: 12px 18px;
   border-radius: 100px;
