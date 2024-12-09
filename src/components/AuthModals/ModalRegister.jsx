@@ -73,7 +73,7 @@ const ModalRegister = ({
               <input
                 type="text"
                 name="name"
-                placeholder="Введіть номер або email"
+                placeholder="Введіть ім’я"
                 className={css.registerInput}
               />
             </div>
