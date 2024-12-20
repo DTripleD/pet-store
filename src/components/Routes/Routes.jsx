@@ -6,6 +6,18 @@ import React from "react";
 import css from "./Routes.module.scss";
 
 const Routes = ({ routes }) => {
+  function getPath(key) {
+    let fullPath = "";
+
+    for (let i = 0; i <= routes.length; i += 1) {
+      fullPath = fullPath + "/" + routes[i]?.id;
+
+      if (routes[i]?.key === key) {
+        return fullPath;
+      }
+    }
+  }
+
   return (
     <div className={css.routes__wrapper}>
       <svg className={css.icon__house}>
@@ -23,7 +35,7 @@ const Routes = ({ routes }) => {
               {route.name}
             </p>
           ) : (
-            <Link to={route.path} className={css.route__text}>
+            <Link to={getPath(route.key)} className={css.route__text}>
               {route.name}
             </Link>
           )}

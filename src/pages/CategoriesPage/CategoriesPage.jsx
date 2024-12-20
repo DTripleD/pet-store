@@ -14,7 +14,9 @@ const CategoriesPage = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const data = await fetchCategoryData("http://127.0.0.1:8000/api/v1/animalcategories/");
+        const data = await fetchCategoryData(
+          "http://127.0.0.1:8000/api/v1/animalcategories/"
+        );
         setCategories(data);
       } catch (error) {
         console.error(error);
@@ -26,17 +28,17 @@ const CategoriesPage = () => {
   }, []);
 
   return loading ? (
-      <div className={css.loader}>
-        <Loader />
-      </div>
-    ) : (
+    <div className={css.loader}>
+      <Loader />
+    </div>
+  ) : (
     <section className={css.categorySection}>
       <div className="container">
         <div className={css.btnBack}>
           <ButtonBack to="/" text="Головна сторінка" />
         </div>
         <div className={css.routes}>
-          <Routes routes={[{ name: 'Категорії', key: categories.key }]} />
+          <Routes routes={[{ name: "Категорії", key: categories.key }]} />
         </div>
         <CategoryList categories={categories} />
       </div>

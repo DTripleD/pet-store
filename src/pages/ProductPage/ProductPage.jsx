@@ -9,7 +9,11 @@ import { getProduct } from "../../redux/product/productOperations";
 import { useDispatch, useSelector } from "react-redux";
 import DescriptionNavigation from "../../components/DescriptionNavigation/DescriptionNavigation";
 import { getProducts } from "../../services/getProduct";
-import { selectProduct } from "../../redux/product/productSelectors";
+import {
+  selectProduct,
+  selectProductIsLoading,
+} from "../../redux/product/productSelectors";
+import Loader from "../../components/Loader/Loader";
 
 const ProductPage = () => {
   const { productId, catalog } = useParams();
@@ -39,6 +43,7 @@ const ProductPage = () => {
   }, [dispatch, productId]);
 
   const product = useSelector(selectProduct);
+  const isProductLoading = useSelector(selectProductIsLoading);
 
   console.log(product);
 
@@ -48,22 +53,43 @@ const ProductPage = () => {
         <div className={css.sidebar}>
           <Sidebar />
         </div>
-        <div className={css.contentBox}>
-          <div className={css.routes}>
-            <Routes routes={[{ name: product.name, key: productId }]} />
+
+        {isProductLoading ? (
+          <div className={css.loaderWrapper}>
+            <Loader />
           </div>
-          <Link to={goBack.current} className={css.linkBack}>
-            <svg className={css.iconBack}>
-              <use href={icons + "#icon-down"}></use>
-            </svg>
-            <p className={css.textBack}>{productId}</p>
-          </Link>
-          <DescriptionNavigation />
-          <div className={css.productPageWrapper}>
-            <Outlet />
-            <Slider title="Акції" data={discData} />
+        ) : (
+          <div className={css.contentBox}>
+            <div className={css.routes}>
+              <Routes
+                routes={[
+                  {
+                    name: product.categories.animal_category.name,
+                    key: product.categories.animal_category.key,
+                    id: product.categories.animal_category.id,
+                  },
+                  {
+                    name: product.categories.product_category.name,
+                    key: product.categories.product_category.key,
+                    id: product.categories.product_category.id,
+                  },
+                  { name: product.name, key: productId },
+                ]}
+              />
+            </div>
+            <Link to={goBack.current} className={css.linkBack}>
+              <svg className={css.iconBack}>
+                <use href={icons + "#icon-down"}></use>
+              </svg>
+              <p className={css.textBack}>{productId}</p>
+            </Link>
+            <DescriptionNavigation />
+            <div className={css.productPageWrapper}>
+              <Outlet />
+              <Slider title="Акції" data={discData} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

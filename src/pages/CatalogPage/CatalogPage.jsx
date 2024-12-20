@@ -20,7 +20,7 @@ const CatalogPage = ({ animalId, productsId }) => {
   const { category, catalog } = useParams();
   const [value, setValue] = useState([0, 0]);
   const products = useSelector(selectProducts);
-  const routes = useSelector(selectCategories);
+  const categories = useSelector(selectCategories);
   const dispatch = useDispatch();
   const [filtersIsOpen, setFiltersIsOpen] = useState(false);
 
@@ -43,42 +43,45 @@ const CatalogPage = ({ animalId, productsId }) => {
 
   const handleGoUp = () => {
     window.scrollTo(0, 0);
-  }
+  };
 
   const handleOpenFilter = () => {
     setFiltersIsOpen(true);
-  }
+  };
 
   return (
     <div className={css.wrapper}>
       <div className="container">
         <div className={css.routes}>
-        {routes.name ? (
-          <Routes
-            routes={[
-              { name: routes.name, key: routes.key, id: routes.id },
-              {
-                name: routes.product_category.name,
-                key: routes.product_category.key,
-              },
-            ]}
-          />
-        ) : (
-          <div></div>
-        )}
+          {categories.name ? (
+            <Routes
+              routes={[
+                {
+                  name: categories.name,
+                  key: categories.key,
+                  id: categories.id,
+                },
+                {
+                  name: categories.product_category.name,
+                  key: categories.product_category.key,
+                },
+              ]}
+            />
+          ) : (
+            <div></div>
+          )}
         </div>
         <div className={css.btnBack}>
-          <Link 
-            to={`/${routes.id}`}
-            className={css.linkBack}
-          >
+          <Link to={`/${categories.id}`} className={css.linkBack}>
             <svg className={css.iconBack}>
               <use href={icons + "#icon-down"}></use>
             </svg>
-            <p className={css.textBack}>{routes?.name || 'Back'}</p>
+            <p className={css.textBack}>{categories?.name || "Back"}</p>
           </Link>
         </div>
-        <h2 className={css.catalogTitle}>{routes?.product_category?.name || 'Catalog'}</h2>
+        <h2 className={css.catalogTitle}>
+          {categories?.product_category?.name || "Catalog"}
+        </h2>
         <div className={css.catalogContainer}>
           <div className={css.filterForm}>
             <FilterForm
@@ -110,14 +113,10 @@ const CatalogPage = ({ animalId, productsId }) => {
             </div>
           </div>
         </div>
-        <button 
-          type="button" 
-          className={css.goUp}
-          onClick={handleGoUp}
-        >
+        <button type="button" className={css.goUp} onClick={handleGoUp}>
           <svg className={css.iconUp}>
-              <use href={icons + "#icon-up"}></use>
-            </svg>
+            <use href={icons + "#icon-up"}></use>
+          </svg>
         </button>
         <div className={css.filterBurger}>
           <FilterBurger

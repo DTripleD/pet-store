@@ -2,8 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getProduct } from "./productOperations";
 
 const initialState = {
+  isLoading: true,
+  error: "",
   productInfo: {
     name: "",
+    categories: {
+      animal_category: { name: "", key: "", id: 0 },
+      product_category: { name: "", key: "", id: 0 },
+    },
     description: "",
     images: [],
     price: "",
@@ -12,10 +18,12 @@ const initialState = {
 };
 
 const handlePending = (state) => {
+  state.isLoading = true;
   state.error = "";
 };
 
 const handleRejected = (state, action) => {
+  state.isLoading = false;
   state.error = action.payload;
 };
 
@@ -26,9 +34,9 @@ const productSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(getProduct.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.productInfo = payload;
       })
-
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),

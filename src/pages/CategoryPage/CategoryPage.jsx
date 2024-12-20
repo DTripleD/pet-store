@@ -5,7 +5,7 @@ import css from "./CategoryPage.module.scss";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import { fetchCategoryData } from "../../helpers/getCategoryData";
-import ButtonBack from "../../components/ButtonBack/ButtonBack";
+import icons from "src/images/icons.svg";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -30,14 +30,19 @@ const CategoryPage = () => {
   }, [category]);
 
   return loading ? (
-      <div className={css.loader}>
-        <Loader />
-      </div>
-    ) : (
+    <div className={css.loader}>
+      <Loader />
+    </div>
+  ) : (
     <section className={css.categorySection}>
       <div className="container">
         <div className={css.btnBack}>
-          <ButtonBack to="/categories" text="Back" />
+          <Link to="/" className={css.linkBack}>
+            <svg className={css.iconBack}>
+              <use href={icons + "#icon-down"}></use>
+            </svg>
+            <p className={css.textBack}>Головна сторінка</p>
+          </Link>
         </div>
         <div className={css.routes}>
           <Routes routes={[{ name: categories.name, key: categories.key }]} />
