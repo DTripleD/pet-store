@@ -30,6 +30,8 @@ const CatalogPage = ({ animalId, productsId }) => {
     }
   }, [products]);
 
+  console.log(categories);
+
   useEffect(() => {
     if (catalog && category) {
       dispatch(

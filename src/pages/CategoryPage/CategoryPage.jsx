@@ -1,35 +1,31 @@
 import { Link, useParams } from "react-router-dom";
 import Routes from "components/Routes/Routes";
-import itemImage from "src/images/img.png";
+
 import css from "./CategoryPage.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Loader from "../../components/Loader/Loader";
-import { fetchCategoryData } from "../../helpers/getCategoryData";
 import icons from "src/images/icons.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { getAnimalCategory } from "../../redux/animal/animalOperations";
+import {
+  selectAnimalsLoading,
+  selectCurrentAnimal,
+} from "../../redux/animal/animalSelectors";
+import CategoryList from "../../components/CategoryList/CategoryList";
 
 const CategoryPage = () => {
   const { category } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState(null);
+
+  const dispatch = useDispatch();
+
+  const currentAnimal = useSelector(selectCurrentAnimal);
+  const isLoading = useSelector(selectAnimalsLoading);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const data = await fetchCategoryData(
-          `http://127.0.0.1:8000/api/v1/animalcategories/${category}`
-        );
-        setCategories(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [category]);
+    dispatch(getAnimalCategory(category));
+  }, [category, dispatch]);
 
-  return loading ? (
+  return isLoading ? (
     <div className={css.loader}>
       <Loader />
     </div>
@@ -45,21 +41,13 @@ const CategoryPage = () => {
           </Link>
         </div>
         <div className={css.routes}>
-          <Routes routes={[{ name: categories.name, key: categories.key }]} />
-          <h2 className={css.subCatTitle}>{categories.name}</h2>
+          <Routes
+            routes={[{ name: currentAnimal.name, key: currentAnimal.key }]}
+          />
+          <h2 className={css.subCatTitle}>{currentAnimal.name}</h2>
         </div>
-        <ul className={css.subCatList}>
-          {categories.product_categories.map((subCat) => (
-            <li key={subCat.id} className={css.subCatItem}>
-              <Link to={`/${category}/${subCat.id}`}>
-                <div className={css.subCatImgWrapper}>
-                  <img className={css.img} src={itemImage} alt={subCat.name} />
-                </div>
-                <p className={css.subCatText}>{subCat.name}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+
+        <CategoryList animals={currentAnimal.product_categories} />
       </div>
     </section>
   );

@@ -12,7 +12,9 @@ const OrderPage = lazy(() => import("./pages/OrderPage/OrderPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
 const ProductPage = lazy(() => import("./pages/ProductPage/ProductPage"));
-const CategoriesPage = lazy(() => import("./pages/CategoriesPage/CategoriesPage"));
+const CategoriesPage = lazy(() =>
+  import("./pages/CategoriesPage/CategoriesPage")
+);
 const CategoryPage = lazy(() => import("./pages/CategoryPage/CategoryPage"));
 const DeliveryPage = lazy(() => import("./pages/DeliveryPage/DeliveryPage"));
 const FavoritePage = lazy(() => import("./pages/FavoritePage/FavoritePage"));

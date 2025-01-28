@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import icons from "src/images/icons.svg";
 
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { getAnimals } from "../../redux/animal/animalOperations";
+import { selectAnimals } from "../../redux/animal/animalSelectors";
 
 const HeaderDropDown = ({ isOpen }) => {
   const [selectedAnimal, setSelectedAnimal] = useState({
@@ -12,17 +15,14 @@ const HeaderDropDown = ({ isOpen }) => {
     id: null,
     name: "",
   });
-  const [animals, setAnimals] = useState([]);
 
-  const getData = async () => {
-    return fetch("http://127.0.0.1:8000/api/v1/animalcategories/")
-      .then((res) => res.json())
-      .then((data) => setAnimals(data));
-  };
+  const animals = useSelector(selectAnimals);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getData();
-  }, []);
+    dispatch(getAnimals());
+  }, [dispatch]);
   return (
     <div
       className={`${css.menu} ${isOpen ? css.isOpen : ""}`}

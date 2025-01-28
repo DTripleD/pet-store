@@ -1,33 +1,28 @@
 import Routes from "components/Routes/Routes";
 import css from "./CategoriesPage.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Loader from "../../components/Loader/Loader";
 import ButtonBack from "../../components/ButtonBack/ButtonBack";
-import { fetchCategoryData } from "../../helpers/getCategoryData";
 import CategoryList from "../../components/CategoryList/CategoryList";
+import { getAnimals } from "../../redux/animal/animalOperations";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectAnimals,
+  selectAnimalsLoading,
+} from "../../redux/animal/animalSelectors";
 
 const CategoriesPage = () => {
-  const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState(null);
+  const animals = useSelector(selectAnimals);
+
+  const isLoading = useSelector(selectAnimalsLoading);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const data = await fetchCategoryData(
-          "http://127.0.0.1:8000/api/v1/animalcategories/"
-        );
-        setCategories(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+    dispatch(getAnimals());
+  }, [dispatch]);
 
-  return loading ? (
+  return isLoading ? (
     <div className={css.loader}>
       <Loader />
     </div>
@@ -38,9 +33,9 @@ const CategoriesPage = () => {
           <ButtonBack to="/" text="Головна сторінка" />
         </div>
         <div className={css.routes}>
-          <Routes routes={[{ name: "Категорії", key: categories.key }]} />
+          <Routes routes={[{ name: "Категорії", key: animals.key }]} />
         </div>
-        <CategoryList categories={categories} />
+        <CategoryList animals={animals} />
       </div>
     </section>
   );

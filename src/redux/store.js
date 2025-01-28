@@ -7,6 +7,7 @@ import { cartReducer } from "./cart/cartSlice";
 import { productReducer } from "./product/productSlice";
 import { burgerAnimalReducer } from "./burgerAnimal/burgerAnimalSlice";
 import { featuredReducer } from "./featured/featuredSlice";
+import { animalReducer } from "./animal/animalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     cart: cartReducer,
     featured: featuredReducer,
     burgerAnimal: burgerAnimalReducer,
+    animal: animalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

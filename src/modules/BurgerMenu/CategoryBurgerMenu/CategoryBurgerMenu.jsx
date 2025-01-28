@@ -8,9 +8,9 @@ import PropTypes from "prop-types";
 const CategoryBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
   const animal = useSelector(selectedAnimal);
 
-  const onClose = () => {
+  function close() {
     setIsOpen(false);
-  };
+  }
 
   return (
     <div className={css.wrapper}>
@@ -23,8 +23,9 @@ const CategoryBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
         {animal.product_categories.map((category) => (
           <li key={category.id} className={css.categoryBox}>
             <Link
-              to={`${animal.id}/${category.id}`}
+              to={`${animal.key}/${category.key}`}
               className={css.categoryName}
+              onClick={close}
             >
               {category.name}
             </Link>
@@ -32,9 +33,9 @@ const CategoryBurgerMenu = ({ setOpenedBurger, setIsOpen }) => {
               {category.subcategories.map((item) => (
                 <li key={item.id} className={css.subCatItem}>
                   <Link
-                    to={`${animal.id}/${item.id}`}
+                    to={`${animal.key}/${item.key}`}
                     className={css.subCatName}
-                    onClick={onClose}
+                    onClick={close}
                   >
                     {item.name}
                   </Link>

@@ -3,14 +3,14 @@ import itemImage from "src/images/img.png";
 import css from "./CategoryList.module.scss";
 import PropTypes from "prop-types";
 
-const CategoryList = ({ categories }) => (
+const CategoryList = ({ animals }) => (
   <ul className={css.subCatList}>
-    {categories.map((category) => (
+    {animals.map((category) => (
       <li key={category.id} className={css.subCatItem}>
-        <Link to={`/${category.id}`}>
+        <Link to={`${category.key}`}>
           <div className={css.subCatImgWrapper}>
             <img
-              className={css.img}
+              className="img"
               src={category.image_url || itemImage}
               alt={category.name}
             />
@@ -23,7 +23,7 @@ const CategoryList = ({ categories }) => (
 );
 
 CategoryList.propTypes = {
-  categories: PropTypes.array,
+  animals: PropTypes.array,
   parentPath: PropTypes.string,
 };
 
