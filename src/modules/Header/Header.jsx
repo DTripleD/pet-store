@@ -6,8 +6,8 @@ import HeaderSearch from "components/HeaderSearch/HeaderSearch";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Link } from "react-router-dom";
-import CategoryButton from "../../components/CategoryButton/CategoryButton";
-import Contacts from "../../components/Contacts/Contacts";
+import CategoryButton from "./components/CategoryButton/CategoryButton";
+import Contacts from "./components/Contacts/Contacts";
 
 import AnimalBurgerMenu from "../BurgerMenu/AnimalBurgerMenu/AnimalBurgerMenu";
 import WrapperBurgerMenu from "../BurgerMenu/WrapperBurgerMenu/WrapperBurgerMenu";
@@ -34,7 +34,7 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
     register: (
       <RegisterBurgerMenu setOpenedBurger={setOpenedBurger} key="auth" />
     ),
-    profile: <ProfileBurgerMenu setOpenedBurger={setOpenedBurger} />
+    profile: <ProfileBurgerMenu setOpenedBurger={setOpenedBurger} />,
   };
 
   return (
@@ -42,49 +42,45 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
       <div className="container">
         <div className={css.header__container}>
           <div className={css.header__box}>
-            <button 
+            <button
               className={css.header__burger}
               onClick={() => {
                 setOpenedBurger("main");
                 setIsOpen((prev) => !prev);
-              }}>
-                <svg
-                  className={css.icon_menu}
-                >
-                  <use href={icons + "#menu"}></use>
-                </svg>
-              </button>
+              }}
+            >
+              <svg className={css.icon_menu}>
+                <use href={icons + "#menu"}></use>
+              </svg>
+            </button>
             <Logo color={"logoHeader"} />
           </div>
 
           <div className={css.header__search}>
-              <CategoryButton />
-              <HeaderSearch />
+            <CategoryButton />
+            <HeaderSearch />
           </div>
-          
+
           <div className={css.info}>
-              <Contacts />
-              <Link to="/user/favorite" className={css.info__btn}>
-                <svg className={css.icon_heart}>
-                  <use href={icons + "#heart"}></use>
-                </svg>
-              </Link>
-              <button className={css.info__search}>
-                <svg className={css.icon_loop}>
-                  <use href={icons + "#loop"}></use>
-                </svg>
-              </button>
-              <Link 
-                className={css.cart} 
-                to="/user/cart"
-              >
+            <Contacts />
+            <Link to="/user/favorite" className={css.info__btn}>
+              <svg className={css.icon_heart}>
+                <use href={icons + "#heart"}></use>
+              </svg>
+            </Link>
+            <button className={css.info__search}>
+              <svg className={css.icon_loop}>
+                <use href={icons + "#loop"}></use>
+              </svg>
+            </button>
+            <Link className={css.cart} to="/user/cart">
               <svg className={css.icon_cart}>
                 <use href={icons + "#cart"}></use>
               </svg>
               {itemsInCart.length > 0 && (
                 <span className={css.cart_count}>({itemsInCart.length})</span>
               )}
-              </Link>
+            </Link>
             <button
               className={css.info__cart}
               onClick={() => setActiveCartModal(true)}
@@ -96,27 +92,27 @@ const Header = ({ setActiveAuthModal, setActiveCartModal }) => {
                 <span className={css.cart_count}>({itemsInCart.length})</span>
               )}
             </button>
-              {isLoggedIn ? (
-                <Link to="/user/profile" className={css.info__user}>
-                  <svg className={css.icon_person}>
-                    <use href={icons + "#person"}></use>
-                  </svg>
-                </Link>
-              ) : (
-                <button
-                  className={css.info__button}
-                  onClick={() => setActiveAuthModal(true)}
-                >
-                  <svg className={css.icon_person}>
-                    <use href={icons + "#person"}></use>
-                  </svg>
-                </button>
-              )}
+            {isLoggedIn ? (
+              <Link to="/user/profile" className={css.info__user}>
+                <svg className={css.icon_person}>
+                  <use href={icons + "#person"}></use>
+                </svg>
+              </Link>
+            ) : (
+              <button
+                className={css.info__button}
+                onClick={() => setActiveAuthModal(true)}
+              >
+                <svg className={css.icon_person}>
+                  <use href={icons + "#person"}></use>
+                </svg>
+              </button>
+            )}
           </div>
         </div>
-          <WrapperBurgerMenu isOpen={isOpen} setIsOpen={setIsOpen}>
-            {obj[openedBurger]}
-          </WrapperBurgerMenu>
+        <WrapperBurgerMenu isOpen={isOpen} setIsOpen={setIsOpen}>
+          {obj[openedBurger]}
+        </WrapperBurgerMenu>
       </div>
     </header>
   );

@@ -1,7 +1,7 @@
 import css from "./FilterForm.module.scss";
 import PropTypes from "prop-types";
-import FilterElement from "components/FilterElement/FilterElement";
-import FilterBlock from "../FilterBlock/FilterBlock";
+import FilterElement from "./components/FilterElement/FilterElement";
+import FilterBlock from "./components/FilterBlock/FilterBlock";
 import PriceSlider from "../PriceSlider/PriceSlider";
 import { useState } from "react";
 
@@ -31,17 +31,17 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
       <div className={css.labelsSection}>
         <p className={css.formTitle}>Фільтри</p>
         <ul className={css.labelsList}>
-          <FilterElement 
-            text={"Новинки"} 
-            id={"new"} 
-            name={"new"} 
+          <FilterElement
+            text={"Новинки"}
+            id={"new"}
+            name={"new"}
             checked={filters.new}
             onChange={handleCheckboxChange}
           />
-          <FilterElement 
-            text={"Знижка"} 
-            id={"discounts"} 
-            name={"discounts"} 
+          <FilterElement
+            text={"Знижка"}
+            id={"discounts"}
+            name={"discounts"}
             checked={filters.discounts}
             onChange={handleCheckboxChange}
           />
@@ -55,12 +55,14 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
       />
 
       <FilterBlock
-        filters={filters} 
-        setFilters={setFilters} 
-        handleCheckboxChange={handleCheckboxChange} 
+        filters={filters}
+        setFilters={setFilters}
+        handleCheckboxChange={handleCheckboxChange}
       />
 
-      <button className={css.clearButton} onClick={handleClearFilters}>Очистити</button>
+      <button className={css.clearButton} onClick={handleClearFilters}>
+        Очистити
+      </button>
     </div>
   );
 };

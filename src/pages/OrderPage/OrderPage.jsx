@@ -5,13 +5,13 @@ import css from "./OrderPage.module.scss";
 import icons from "src/images/icons.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItemsInCart } from "../../redux/cart/cartSelectors";
-import DropdownLocation from "../../components/DropdownLocation/DropdownLocation";
-import DropdownDelivery from "../../components/DropdownDelivery/DropdownDelivery";
+import DropdownLocation from "./components/DropdownLocation/DropdownLocation";
+import DropdownDelivery from "./components/DropdownDelivery/DropdownDelivery";
 import Payment from "../../components/Payment/Payment";
 import { totalPrice } from "../../helpers/totalPrice";
 import { useEffect, useState } from "react";
 import getItemQuantityText from "../../services/getItemQuantityText";
-import OrderForm from "../../components/OrderForm/OrderForm";
+import OrderForm from "./components/OrderForm/OrderForm";
 import { selectBranches } from "../../redux/post/postSelectiors";
 import fetchCities from "../../redux/cities/citiesOperations";
 import fetchRegions from "../../redux/regions/regionsOperations";
@@ -30,7 +30,7 @@ const OrderPage = () => {
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [deliveryMethods, setDeliveryMethods] = useState([]);
-  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(null); 
+  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(null);
 
   const price = totalPrice(itemsInCart);
   const finalPrice = price + 70;
@@ -43,7 +43,7 @@ const OrderPage = () => {
       } catch (err) {
         console.log(err);
       }
-    }
+    };
 
     fetchMethods();
   }, []);
@@ -60,10 +60,12 @@ const OrderPage = () => {
 
   useEffect(() => {
     if (selectedCity && selectedDeliveryMethod) {
-      dispatch(fetchBranches({
-        settlement_ref: selectedCity.Ref,
-        TypeOfWarehouse: selectedDeliveryMethod.Ref
-      }));
+      dispatch(
+        fetchBranches({
+          settlement_ref: selectedCity.Ref,
+          TypeOfWarehouse: selectedDeliveryMethod.Ref,
+        })
+      );
     }
   }, [dispatch, selectedCity, selectedDeliveryMethod]);
 
@@ -83,20 +85,20 @@ const OrderPage = () => {
 
           <form className={css.form}>
             <OrderForm />
-            <DropdownLocation 
-              regions={regions} 
-              cities={cities} 
-              onRegionSelect={setSelectedRegion} 
-              onCitySelect={setSelectedCity}  
+            <DropdownLocation
+              regions={regions}
+              cities={cities}
+              onRegionSelect={setSelectedRegion}
+              onCitySelect={setSelectedCity}
             />
-            <DropdownDelivery 
-              deliveryMethods={deliveryMethods} 
-              branches={branches} 
+            <DropdownDelivery
+              deliveryMethods={deliveryMethods}
+              branches={branches}
               onMethodSelect={setSelectedDeliveryMethod}
             />
             <Payment />
 
-            <label className={css.checkbox} >
+            <label className={css.checkbox}>
               <input type="checkbox" className={css.checkboxInput} />
               Не телефонувати мені
             </label>
@@ -107,7 +109,9 @@ const OrderPage = () => {
         <div className={css.orderInfoWrapper}>
           <div className={css.orderInfoCart}>
             <p className={css.cartTitle}>Кошик</p>
-            <Link to={"/user/cart"} className={css.goToCart}>Редагувати</Link>
+            <Link to={"/user/cart"} className={css.goToCart}>
+              Редагувати
+            </Link>
           </div>
 
           <ul>
