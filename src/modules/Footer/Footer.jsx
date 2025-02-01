@@ -2,13 +2,16 @@ import css from "./Footer.module.scss";
 import { Link } from "react-router-dom";
 import icons from "src/images/icons.svg";
 import Logo from "../../components/Logo/Logo";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import PropTypes from "prop-types";
 
 const navOnSiteArray = [
-  { text: "Вхід до кабінету", to: "/user/profile", id: 1 },
-  { text: "Оплата і доставка", to: "", id: 2 },
-  { text: "Про нас", to: "", id: 3 },
-  { text: "Відгуки", to: "", id: 4 },
-  { text: "Блог", to: "", id: 5 },
+  { text: "Вхід до кабінету", to: "/user/profile", id: 1, isAuth: true },
+  { text: "Оплата і доставка", to: "/about/oplata-i-dostavka", id: 2 },
+  { text: "Про нас", to: "/about", id: 3 },
+  { text: "Відгуки", to: "/about/reviews", id: 4 },
+  { text: "Блог", to: "/about/blog", id: 5 },
 ];
 
 const animalsArray = [
@@ -19,7 +22,9 @@ const animalsArray = [
   { text: "Рибам", to: "/fish", id: 5 },
 ];
 
-const Footer = () => {
+const Footer = ({ setActiveAuthModal }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <footer className={css.footer}>
       <div className={css.footerInfo}>
@@ -51,9 +56,18 @@ const Footer = () => {
           <ul className={css.footerNavList}>
             {navOnSiteArray.map((item) => (
               <li key={item.id}>
-                <Link to={item.to} className={css.footerNavText}>
-                  {item.text}
-                </Link>
+                {item.isAuth && !isLoggedIn ? (
+                  <button
+                    onClick={() => setActiveAuthModal(true)}
+                    className={`${css.footerNavText} ${css.footerNavButton}`}
+                  >
+                    {item.text}
+                  </button>
+                ) : (
+                  <Link to={item.to} className={css.footerNavText}>
+                    {item.text}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -142,3 +156,7 @@ const Footer = () => {
 };
 
 export default Footer;
+
+Footer.propTypes = {
+  setActiveAuthModal: PropTypes.func,
+};

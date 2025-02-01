@@ -5,8 +5,14 @@ import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
+const ReviewPage = lazy(() => import("./pages/ReviewPage/ReviewPage"));
+const AboutDeliveryPage = lazy(() =>
+  import("./pages/AboutDeliveryPage/AboutDeliveryPage")
+);
+const BlogPage = lazy(() => import("./pages/BlogPage/BlogPage"));
 const CartPage = lazy(() => import("./pages/CartPage/CartPage"));
 const OrderPage = lazy(() => import("./pages/OrderPage/OrderPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
@@ -78,6 +84,13 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="order" element={<OrderPage />} />
           <Route path="categories" element={<CategoriesPage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="about/reviews" element={<ReviewPage />} />
+          <Route
+            path="about/oplata-i-dostavka"
+            element={<AboutDeliveryPage />}
+          />
+          <Route path="about/blog" element={<BlogPage />} />
           <Route path=":category" element={<CategoryPage />} />
           <Route path=":category/:catalog" element={<CatalogPage />} />
           <Route path=":category/:catalog/:productId" element={<ProductPage />}>

@@ -24,7 +24,7 @@ export const SharedLayout = () => {
         </Suspense>
       </main>
 
-      <Footer />
+      <Footer setActiveAuthModal={setActiveAuthModal} />
 
       <AuthModal
         activeAuthModal={activeAuthModal}
