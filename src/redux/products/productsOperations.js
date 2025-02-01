@@ -20,3 +20,15 @@ export const getProducts = createAsyncThunk(
     }
   }
 );
+
+export const getDiscounts = createAsyncThunk(
+  "products/getDiscounts",
+  async (_, thunkAPI) => {
+    try {
+      const res = await instance.get("/products/?has_discount=true");
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

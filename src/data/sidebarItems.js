@@ -1,5 +1,5 @@
 export const sidebarItems = [
-  { to: "/categories", icon: "discount", title: "Акції", id: 7 },
+  { to: "/discount", icon: "discount", title: "Акції", id: 7 },
   { to: "/dogs", icon: "dogs", title: "Собаки", id: 1 },
   { to: "/cats", icon: "cats", title: "Коти", id: 2 },
   { to: "/rodents", icon: "rodents", title: "Гризуни", id: 3 },

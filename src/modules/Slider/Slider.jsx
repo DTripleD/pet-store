@@ -36,8 +36,7 @@ const Slider = ({ data, title, isNew }) => {
             .map((item) => (
               <CatalogItem key={item.id} item={item} isNew={isNew} />
             ))
-            .slice(0, 4)
-            }
+            .slice(0, 4)}
         </ul>
         <div className={css.swiper}>
           <Swiper
@@ -67,7 +66,7 @@ const Slider = ({ data, title, isNew }) => {
             ))}
           </Swiper>
         </div>
-        <Link to={'/categories'} className={css.styledLink}>
+        <Link to={"/discount"} className={css.styledLink}>
           <p className={css.showAllText}>Переглянути все</p>
           <svg className={css.showAllIcon}>
             <use href={icons + "#icon-right"}></use>

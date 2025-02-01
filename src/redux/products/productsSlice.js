@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "./productsOperations";
+import { getDiscounts, getProducts } from "./productsOperations";
 
 const initialState = {
   count: 2,
@@ -27,7 +27,10 @@ const productsSlice = createSlice({
         state.results = payload.results;
         state.categories = payload.categories;
       })
-
+      .addCase(getDiscounts.fulfilled, (state, { payload }) => {
+        state.results = payload.results;
+        state.categories = payload.categories;
+      })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),

@@ -27,7 +27,7 @@ const Routes = ({ routes }) => {
         Головна
       </Link>
 
-      {routes.map((route, index) => (
+      {routes?.map((route, index) => (
         <React.Fragment key={route.key}>
           {routes.length > index && <p className={css.route__slash}>/</p>}
           {routes.length === index + 1 ? (

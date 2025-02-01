@@ -1,0 +1,155 @@
+.catalogContainer {
+  position: relative;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  @include on-desktop {
+    flex-direction: row;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: $white-color;
+  padding-bottom: 16px;
+
+  @include on-desktop {
+    background-color: transparent;
+    padding-bottom: 100px;
+    gap: 0;
+  }
+}
+
+.routes {
+  display: none;
+
+  @include on-desktop {
+    display: block;
+  }
+}
+
+.btnBack {
+  @include on-desktop {
+    display: none;
+  }
+}
+
+.linkBack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+.iconBack {
+  transform: rotate(90deg);
+  stroke: $text-dark-color;
+  width: 24px;
+  height: 24px;
+}
+
+.textBack {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 0.75;
+  color: $text-dark-color;
+}
+
+.catalogTitle {
+  color: $text-dark-color;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.21;
+  margin-bottom: 16px;
+
+  @include on-desktop {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 0.71;
+    padding: 24px 0;
+    margin-bottom: 32px;
+  }
+}
+
+.productsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 100%;
+
+  @include on-desktop {
+    gap: 32px;
+  }
+}
+
+.btnLoadMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 222px;
+  height: 40px;
+  border-radius: 100px;
+  background-color: $light-green-color;
+  cursor: pointer;
+  align-self: center;
+
+  @include on-tablet {
+    width: 232px;
+  }
+}
+
+.btnText {
+  color: $white-color;
+  font-size: 15px;
+  line-height: 0.8;
+
+  @include on-tablet {
+    font-size: 16px;
+  }
+}
+
+.iconDown {
+  width: 24px;
+  height: 24px;
+  stroke: $white-color;
+}
+
+.goUp {
+  position: fixed;
+  bottom: 150px;
+  right: 8px;
+  width: 48px;
+  height: 32px;
+  background-color: $light-green-color;
+  border: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: pointer;
+}
+
+.iconUp {
+  width: 24px;
+  height: 24px;
+  stroke: $white-color;
+}
+
+.filterForm {
+  display: none;
+
+  @include on-desktop {
+    display: inline-block;
+  }
+}
+
+.filterBurger {
+  @include on-desktop {
+    display: none;
+  }
+}

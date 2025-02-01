@@ -12,7 +12,9 @@ const ReviewPage = lazy(() => import("./pages/ReviewPage/ReviewPage"));
 const AboutDeliveryPage = lazy(() =>
   import("./pages/AboutDeliveryPage/AboutDeliveryPage")
 );
+
 const BlogPage = lazy(() => import("./pages/BlogPage/BlogPage"));
+const DiscountPage = lazy(() => import("./pages/DiscountPage/DiscountPage"));
 const CartPage = lazy(() => import("./pages/CartPage/CartPage"));
 const OrderPage = lazy(() => import("./pages/OrderPage/OrderPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
@@ -84,6 +86,7 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="order" element={<OrderPage />} />
           <Route path="categories" element={<CategoriesPage />} />
+          <Route path="discount" element={<DiscountPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="about/reviews" element={<ReviewPage />} />
           <Route
