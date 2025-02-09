@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDiscounts, getProducts } from "./productsOperations";
+import { getDiscounts, getNew, getProducts } from "./productsOperations";
 
 const initialState = {
   count: 2,
@@ -28,6 +28,10 @@ const productsSlice = createSlice({
         state.categories = payload.categories;
       })
       .addCase(getDiscounts.fulfilled, (state, { payload }) => {
+        state.results = payload.results;
+        state.categories = payload.categories;
+      })
+      .addCase(getNew.fulfilled, (state, { payload }) => {
         state.results = payload.results;
         state.categories = payload.categories;
       })

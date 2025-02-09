@@ -6,7 +6,11 @@ import icons from "src/images/icons.svg";
 import css from "./CatalogPage.module.scss";
 import { useEffect, useState } from "react";
 import { getPriceLine } from "src/helpers/getPriceLine";
-import { getProducts } from "../../redux/products/productsOperations";
+import {
+  getDiscounts,
+  getNew,
+  getProducts,
+} from "../../redux/products/productsOperations";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCategories,
@@ -30,10 +34,15 @@ const CatalogPage = ({ animalId, productsId }) => {
     }
   }, [products]);
 
-  console.log(categories);
+  console.log(products);
 
   useEffect(() => {
-    if (catalog && category) {
+    console.log(catalog);
+    if (category === "special" && catalog === "new") {
+      dispatch(getNew());
+    } else if (category === "special" && catalog === "discount") {
+      dispatch(getDiscounts());
+    } else if (catalog && category) {
       dispatch(
         getProducts({
           productsId: catalog,
@@ -51,11 +60,19 @@ const CatalogPage = ({ animalId, productsId }) => {
     setFiltersIsOpen(true);
   };
 
+  function getPageName() {
+    if (category === "special" && catalog === "new") {
+      return "Новинки";
+    } else if (category === "special" && catalog === "discount") {
+      return "Акції";
+    }
+  }
+
   return (
     <div className={css.wrapper}>
       <div className="container">
         <div className={css.routes}>
-          {categories.name ? (
+          {categories?.name !== undefined ? (
             <Routes
               routes={[
                 {
@@ -74,7 +91,7 @@ const CatalogPage = ({ animalId, productsId }) => {
           )}
         </div>
         <div className={css.btnBack}>
-          <Link to={`/${categories.id}`} className={css.linkBack}>
+          <Link to={`/${categories?.id}`} className={css.linkBack}>
             <svg className={css.iconBack}>
               <use href={icons + "#icon-down"}></use>
             </svg>
@@ -82,7 +99,7 @@ const CatalogPage = ({ animalId, productsId }) => {
           </Link>
         </div>
         <h2 className={css.catalogTitle}>
-          {categories?.product_category?.name || "Catalog"}
+          {categories?.product_category?.name || getPageName()}
         </h2>
         <div className={css.catalogContainer}>
           <div className={css.filterForm}>

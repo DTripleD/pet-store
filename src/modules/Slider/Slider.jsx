@@ -20,6 +20,18 @@ const Slider = ({ data, title, isNew }) => {
     e.isEnd ? setIsEndBtnActive(true) : setIsEndBtnActive(false);
   }
 
+  function handleGoUp() {
+    window.scrollTo(0, 0);
+  }
+
+  function getNextRoute() {
+    if (title === "Акції") {
+      return "/special/discount";
+    } else if (title === "Новинки") {
+      return "/special/new";
+    }
+  }
+
   return (
     <section>
       <div className={css.sliderContainer}>
@@ -66,7 +78,11 @@ const Slider = ({ data, title, isNew }) => {
             ))}
           </Swiper>
         </div>
-        <Link to={"/discount"} className={css.styledLink}>
+        <Link
+          to={getNextRoute()}
+          onClick={handleGoUp}
+          className={css.styledLink}
+        >
           <p className={css.showAllText}>Переглянути все</p>
           <svg className={css.showAllIcon}>
             <use href={icons + "#icon-right"}></use>
