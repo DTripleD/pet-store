@@ -48,7 +48,7 @@ const ModalRegister = ({
       }
 
       toast.success("User register succesfully!");
-      
+
       return res;
     } catch (error) {
       return error;
@@ -102,16 +102,15 @@ const ModalRegister = ({
                 className={css.iconPassword}
                 onClick={() => setPasswordShown((prev) => !prev)}
               >
-                <use href={icons + "#eye"}></use>
+                <use
+                  href={icons + (passwordShown ? "#eye" : "#eye-cross")}
+                ></use>
               </svg>
             </div>
           </label>
         </div>
         <div className={css.authButtonWraper}>
-          <Button
-            text="Зареєструватись" 
-            type="submit"
-            />
+          <Button text="Зареєструватись" type="submit" />
           <div className={css.haveAccWrapper}>
             <p className={css.haveAccText}>Вже маєте акаунт?</p>
             <button

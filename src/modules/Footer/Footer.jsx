@@ -22,6 +22,10 @@ const animalsArray = [
   { text: "Рибам", to: "/fish", id: 5 },
 ];
 
+function handleGoUp() {
+  window.scrollTo(0, 0);
+}
+
 const Footer = ({ setActiveAuthModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -44,7 +48,11 @@ const Footer = ({ setActiveAuthModal }) => {
           <ul className={css.footerNavList}>
             {animalsArray.map((item) => (
               <li key={item.id}>
-                <Link to={item.to} className={css.footerNavText}>
+                <Link
+                  to={item.to}
+                  onClick={handleGoUp}
+                  className={css.footerNavText}
+                >
                   {item.text}
                 </Link>
               </li>
@@ -64,7 +72,11 @@ const Footer = ({ setActiveAuthModal }) => {
                     {item.text}
                   </button>
                 ) : (
-                  <Link to={item.to} className={css.footerNavText}>
+                  <Link
+                    to={item.to}
+                    onClick={handleGoUp}
+                    className={css.footerNavText}
+                  >
                     {item.text}
                   </Link>
                 )}

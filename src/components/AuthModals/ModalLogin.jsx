@@ -80,7 +80,9 @@ const ModalLogin = ({
                 className={css.iconPassword}
                 onClick={() => setPasswordShown((prev) => !prev)}
               >
-                <use href={icons + "#eye"}></use>
+                <use
+                  href={icons + (passwordShown ? "#eye" : "#eye-cross")}
+                ></use>
               </svg>
             </div>
             <button type="button" className={css.forgotPassword}>
