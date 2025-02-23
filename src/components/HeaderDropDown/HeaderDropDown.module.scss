@@ -67,14 +67,16 @@
   gap: 8px;
 }
 
+.subcategoryItem {
+  padding: 12px 8px;
+}
+
 .subcategoryName {
   font-size: 18px;
   font-weight: 500;
   line-height: 13px;
 
   color: #5d5d5d;
-
-  padding: 12px 8px;
 }
 
 .isOpen {

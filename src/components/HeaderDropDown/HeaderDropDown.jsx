@@ -62,8 +62,13 @@ const HeaderDropDown = ({ isOpen }) => {
               </Link>
               <ul className={css.subcategoryList}>
                 {categori.subcategories.map((sub) => (
-                  <li key={sub.key} className={css.subcategoryName}>
-                    {sub.name}
+                  <li key={sub.key} className={css.subcategoryItem}>
+                    <Link
+                      to={`${selectedAnimal.key}/${categori.key}?subCategory=${sub.key}`}
+                      className={css.subcategoryName}
+                    >
+                      {sub.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

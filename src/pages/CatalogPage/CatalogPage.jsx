@@ -34,10 +34,7 @@ const CatalogPage = ({ animalId, productsId }) => {
     }
   }, [products]);
 
-  console.log(products);
-
   useEffect(() => {
-    console.log(catalog);
     if (category === "special" && catalog === "new") {
       dispatch(getNew());
     } else if (category === "special" && catalog === "discount") {

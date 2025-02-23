@@ -1,38 +1,38 @@
+import { useSearchParams } from "react-router-dom";
 import FilterElement from "../FilterElement/FilterElement";
 import css from "./FilterBlock.module.scss";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSubCategories } from "../../../../redux/subCategories/subCategoriesOperations";
+import { selectSubCategories } from "../../../../redux/subCategories/subCategoriesSelectors";
 
-const filtersArray = [
-  {
-    title: "SubCat",
-    filters: [
-      { text: "Lorem Ipsum", id: "dogs", name: "dogs" },
-      { text: "Lorem Ipsum", id: "cats", name: "cats" },
-    ],
-  },
-  {
-    title: "Type",
-    filters: [
-      { text: "Lorem Ipsum", id: "Pack", name: "Pack" },
-      { text: "Lorem Ipsum", id: "Box", name: "Box" },
-    ],
-  },
-  {
-    title: "Size",
-    filters: [
-      { text: "Lorem Ipsum", id: "small", name: "small" },
-      { text: "Lorem Ipsum", id: "big", name: "big" },
-    ],
-  },
-];
+const FilterBlock = ({
+  filters,
+  animalId,
+  productsId,
+  handleCheckboxChange,
+}) => {
+  const [searchParams] = useSearchParams();
+  // console.log(searchParams.get("subCategory"));
 
-const FilterBlock = ({ filters, setFilters }) => {
-  const handleCheckboxChange = (event) => {
-    setFilters({
-      ...filters,
-      [event.target.name]: event.target.checked,
-    });
-  };
+  const subCategories = useSelector(selectSubCategories);
+  const filteredData = subCategories.filter((item) => {
+    return item.key.includes(animalId) && item.key.includes(productsId);
+  });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSubCategories());
+  }, [dispatch]);
+
+  const filtersArray = [
+    {
+      title: "Підкатегорія",
+      filters: filteredData,
+    },
+  ];
 
   return (
     <>
@@ -43,10 +43,10 @@ const FilterBlock = ({ filters, setFilters }) => {
             {filter.filters.map((item) => (
               <FilterElement
                 key={item.id}
-                text={item.text}
-                id={item.id}
-                name={item.name}
-                checked={filters[item.name] || false}
+                text={item.name}
+                id="subCategory"
+                name={item.key}
+                checked={filters[item.key]}
                 onChange={handleCheckboxChange}
               />
             ))}
@@ -59,7 +59,9 @@ const FilterBlock = ({ filters, setFilters }) => {
 
 FilterBlock.propTypes = {
   filters: PropTypes.object,
-  setFilters: PropTypes.func,
+  animalId: PropTypes.string,
+  productsId: PropTypes.string,
+  handleCheckboxChange: PropTypes.func,
 };
 
 export default FilterBlock;

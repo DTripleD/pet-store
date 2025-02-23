@@ -3,19 +3,47 @@ import PropTypes from "prop-types";
 import FilterElement from "./components/FilterElement/FilterElement";
 import FilterBlock from "./components/FilterBlock/FilterBlock";
 import PriceSlider from "../PriceSlider/PriceSlider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const FilterForm = ({ value, setValue, animalId, productsId }) => {
   const [filters, setFilters] = useState({
     new: false,
     discounts: false,
+    subCategory: false,
   });
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const handleCheckboxChange = (event) => {
-    setFilters({
-      ...filters,
-      [event.target.name]: event.target.checked,
-    });
+    if (event.target.id === "new") {
+      setFilters({
+        ...filters,
+        new: event.target.checked,
+      });
+    } else if (event.target.id === "discounts") {
+      setFilters({
+        ...filters,
+        discounts: event.target.checked,
+      });
+    } else if (event.target.id === "subCategory") {
+      console.log("sdf");
+      setFilters({
+        ...filters,
+        discounts: event.target.key,
+      });
+    }
+
+    const filteredFilters = Object.entries(filters)
+      .filter(([key, value]) => value !== false)
+      .reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      }, {});
+
+    // console.log(filteredFilters);
+
+    setSearchParams(filters);
   };
 
   const handleClearFilters = () => {
@@ -56,7 +84,8 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
 
       <FilterBlock
         filters={filters}
-        setFilters={setFilters}
+        animalId={animalId}
+        productsId={productsId}
         handleCheckboxChange={handleCheckboxChange}
       />
 

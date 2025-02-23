@@ -45,8 +45,6 @@ const ProductPage = () => {
   const product = useSelector(selectProduct);
   const isProductLoading = useSelector(selectProductIsLoading);
 
-  console.log(product);
-
   return (
     <div className={css.productPageBox}>
       <div className={`container ${css.productPageContainer}`}>

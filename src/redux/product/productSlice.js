@@ -34,13 +34,15 @@ const productSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(getProduct.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.productInfo = payload;
       })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
+      .addMatcher((action) => action.type.endsWith("/rejected"), handleRejected)
       .addMatcher(
-        (action) => action.type.endsWith("/rejected"),
-        handleRejected
+        (action) => action.type.endsWith("/fulfilled"),
+        (state) => {
+          state.isLoading = false;
+        }
       ),
 });
 

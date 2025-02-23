@@ -8,6 +8,7 @@ import { productReducer } from "./product/productSlice";
 import { burgerAnimalReducer } from "./burgerAnimal/burgerAnimalSlice";
 import { featuredReducer } from "./featured/featuredSlice";
 import { animalReducer } from "./animal/animalSlice";
+import { subCategoriesReducer } from "./subCategories/subCategoriesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     featured: featuredReducer,
     burgerAnimal: burgerAnimalReducer,
     animal: animalReducer,
+    subCategories: subCategoriesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
