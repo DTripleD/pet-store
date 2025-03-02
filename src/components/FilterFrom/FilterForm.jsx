@@ -27,7 +27,6 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
         discounts: event.target.checked,
       });
     } else if (event.target.id === "subCategory") {
-      console.log("sdf");
       setFilters({
         ...filters,
         discounts: event.target.key,

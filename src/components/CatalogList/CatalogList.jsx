@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import SortBy from "modules/SortBy/SortBy";
 import icons from "src/images/icons.svg";
 import getItemQuantityText from "../../services/getItemQuantityText";
+import FilterItem from "./components/FilterItem/FilterItem";
 
-const CatalogList = ({ products, openFilter }) => {
+const CatalogList = ({ products, openFilter, filters }) => {
   return (
     <div className={css.catologListWrapper}>
       <div className={css.filterMob}>
@@ -20,12 +21,10 @@ const CatalogList = ({ products, openFilter }) => {
       </div>
       <div className={css.filterParams}>
         <button className={css.cleanButton}>Очистити</button>
-        <div className={css.filterLabel}>
-          <p className={css.labelText}>Знижки</p>
-          <svg className={css.iconClose}>
-            <use href={icons + "#cross"}></use>
-          </svg>
-        </div>
+
+        {filters.map((filterValue) => (
+          <FilterItem key={filterValue} filterValue={filterValue} />
+        ))}
       </div>
 
       <div className={css.middleWrapper}>
@@ -51,6 +50,7 @@ const CatalogList = ({ products, openFilter }) => {
 CatalogList.propTypes = {
   products: PropTypes.array,
   openFilter: PropTypes.func,
+  filters: PropTypes.array,
 };
 
 export default CatalogList;

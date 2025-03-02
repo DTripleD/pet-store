@@ -6,6 +6,7 @@ import icons from "src/images/icons.svg";
 import css from "./CatalogPage.module.scss";
 import { useEffect, useState } from "react";
 import { getPriceLine } from "src/helpers/getPriceLine";
+import { useSearchParams } from "react-router-dom";
 import {
   getDiscounts,
   getNew,
@@ -65,6 +66,10 @@ const CatalogPage = ({ animalId, productsId }) => {
     }
   }
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  console.log(searchParams.get("searchValue"));
+
   return (
     <div className={css.wrapper}>
       <div className="container">
@@ -112,6 +117,7 @@ const CatalogPage = ({ animalId, productsId }) => {
             {products ? (
               <CatalogList
                 products={products}
+                filters={[searchParams.get("searchValue"), "Знижки"]}
                 value={value}
                 setValue={setValue}
                 animalId={catalog}

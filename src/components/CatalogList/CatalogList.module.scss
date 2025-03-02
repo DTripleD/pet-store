@@ -97,30 +97,3 @@
     display: block;
   }
 }
-
-.filterLabel {
-  width: max-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1.5px solid $disabled-icon-color;
-  border-radius: 100px;
-  height: 42px;
-  padding: 16px 15px;
-}
-
-.labelText {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 0.75;
-  letter-spacing: 0.01em;
-  color: $icon-grey-color;
-}
-
-.iconClose {
-  width: 24px;
-  height: 24px;
-  stroke: $icon-grey-color;
-  stroke-width: 2px;
-}
