@@ -29,7 +29,7 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className={css.cartWrapper}>
-          <div className={css.cartModalH}>
+          <div className={css.cartModalHeader}>
             <div className={css.titleWrapper}>
               <h3 className={css.cartTitle}>Кошик</h3>
               {itemsInCart.length > 0 && (
