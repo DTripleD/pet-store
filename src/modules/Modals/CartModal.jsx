@@ -29,11 +29,19 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className={css.cartWrapper}>
-          <div className={css.titleWrapper}>
-            <h3 className={css.cartTitle}>Кошик</h3>
-            {itemsInCart.length > 0 && (
-              <p className={css.quantityText}>{itemsInCart.length} товара</p>
-            )}
+          <div className={css.cartModalH}>
+            <div className={css.titleWrapper}>
+              <h3 className={css.cartTitle}>Кошик</h3>
+              {itemsInCart.length > 0 && (
+                <p className={css.quantityText}>{itemsInCart.length} товара</p>
+              )}
+            </div>
+            <svg
+              className={css.iconClose}
+              onClick={() => setActiveCartModal(false)}
+            >
+              <use href={icons + "#cross"}></use>
+            </svg>
           </div>
           {cartIsLoading ? (
             <Loader />
@@ -66,7 +74,10 @@ const CartModal = ({ activeCartModal, setActiveCartModal }) => {
               </Link>
             </div>
           ) : (
-            <button className={`${css.cartButton} ${css.emptyButton}`}>
+            <button
+              onClick={() => setActiveCartModal(false)}
+              className={`${css.cartButton} ${css.emptyButton}`}
+            >
               Продовжити покупки
             </button>
           )}

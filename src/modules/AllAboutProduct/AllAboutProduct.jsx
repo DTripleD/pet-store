@@ -14,6 +14,8 @@ import {
   deleteFromFeatured,
 } from "../../redux/featured/featuredOperations";
 import { selectFeaturedList } from "../../redux/featured/featuredSelectors";
+import { selectCartIsLoading } from "../../redux/cart/cartSelectors";
+import Loader from "../../components/Loader/Loader";
 
 const characteristicsArray = [
   { name: "Lorem ipsum", descr: "Lorem ipsum", id: 1 },
@@ -59,6 +61,7 @@ const AllAboutProduct = () => {
   };
 
   const product = useSelector(selectProduct);
+  const cartLoadingSelector = useSelector(selectCartIsLoading);
 
   return (
     <>
@@ -97,7 +100,7 @@ const AllAboutProduct = () => {
                 <svg className={css.toCartIcon}>
                   <use href={icons + "#cart"}></use>
                 </svg>
-                Додати в кошик
+                {cartLoadingSelector ? "Додаємо" : "Додати в кошик"}
               </button>
             </li>
             <li>

@@ -1,4 +1,3 @@
-
 .headerSearch {
   display: none;
 
@@ -21,12 +20,33 @@
   border: 1.6px solid $grey-border-color;
   border-right: none;
   border-radius: 100px 0 0 100px;
+  transition: all 300ms ease-out;
+  cursor: text;
+
+  &:hover {
+    border-color: $light-grey-color;
+  }
+
+  &.focused {
+    border-color: $icon-grey-color;
+
+    & .icon_loop {
+      stroke: $icon-grey-color;
+    }
+  }
+}
+
+.icon_cross {
+  stroke: $icon-grey-color;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .icon_loop {
   width: 20px;
   height: 20px;
-  stroke: $icon-grey-color;
+  stroke: $light-grey-color;
 }
 
 .headerInput {

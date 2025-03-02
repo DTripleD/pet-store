@@ -35,14 +35,15 @@ const productSlice = createSlice({
     builder
       .addCase(getProduct.fulfilled, (state, { payload }) => {
         state.productInfo = payload;
+        state.isLoading = false;
       })
-      .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
-      .addMatcher((action) => action.type.endsWith("/rejected"), handleRejected)
       .addMatcher(
-        (action) => action.type.endsWith("/fulfilled"),
-        (state) => {
-          state.isLoading = false;
-        }
+        (action) => action.type.endsWith("animal/getAnimals/fulfilled"),
+        handlePending
+      )
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        handleRejected
       ),
 });
 

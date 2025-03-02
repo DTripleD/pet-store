@@ -33,7 +33,10 @@ const cartSlice = createSlice({
         state.cartItems = payload.cart_items;
         state.isLoading = false;
       })
-      .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
+      .addMatcher(
+        (action) => action.type.endsWith("cart/addToCart/pending"),
+        handlePending
+      )
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         handleRejected
