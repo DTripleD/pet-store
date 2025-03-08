@@ -8,6 +8,7 @@ const FilterElement = ({ text, id, name, checked, onChange }) => {
       <Checkbox
         id={id}
         name={name}
+        value={name}
         checked={checked}
         onChange={onChange}
         sx={{

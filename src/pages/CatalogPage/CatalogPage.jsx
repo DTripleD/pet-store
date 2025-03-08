@@ -68,7 +68,7 @@ const CatalogPage = ({ animalId, productsId }) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  console.log(searchParams.get("searchValue"));
+  // console.log(searchParams.get("searchValue"));
 
   return (
     <div className={css.wrapper}>

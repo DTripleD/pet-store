@@ -44,7 +44,6 @@ const FilterBlock = ({
               <FilterElement
                 key={item.id}
                 text={item.name}
-                id="subCategory"
                 name={item.key}
                 checked={filters[item.key]}
                 onChange={handleCheckboxChange}

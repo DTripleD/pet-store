@@ -10,39 +10,29 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
   const [filters, setFilters] = useState({
     new: false,
     discounts: false,
-    subCategory: false,
+    subCategory: "",
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleCheckboxChange = (event) => {
-    if (event.target.id === "new") {
-      setFilters({
-        ...filters,
-        new: event.target.checked,
-      });
-    } else if (event.target.id === "discounts") {
-      setFilters({
-        ...filters,
-        discounts: event.target.checked,
-      });
-    } else if (event.target.id === "subCategory") {
-      setFilters({
-        ...filters,
-        discounts: event.target.key,
-      });
-    }
+    const key = event.target.name;
 
-    const filteredFilters = Object.entries(filters)
-      .filter(([key, value]) => value !== false)
-      .reduce((acc, [key, value]) => {
-        acc[key] = value;
-        return acc;
-      }, {});
+    setFilters((prevFilters) => {
+      const updatedFilters = { ...prevFilters };
 
-    // console.log(filteredFilters);
+      updatedFilters[key] = event.target.checked;
 
-    setSearchParams(filters);
+      const filteredFilters = Object.entries(updatedFilters)
+        .filter(([_, v]) => v !== "" && v !== false)
+        .reduce((acc, [k, v]) => {
+          acc[k] = v;
+          return acc;
+        }, {});
+
+      setSearchParams(filteredFilters);
+      return updatedFilters;
+    });
   };
 
   const handleClearFilters = () => {
@@ -52,6 +42,17 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
     });
     setValue([0, 0]);
   };
+
+  useEffect(() => {
+    const params = Object.fromEntries(searchParams.entries());
+    const updatedFilters = { ...filters };
+
+    for (const [key, value] of Object.entries(params)) {
+      updatedFilters[key] = value === "true";
+    }
+
+    setFilters(updatedFilters);
+  }, [searchParams]);
 
   return (
     <div className={css.filtersWrapper}>
