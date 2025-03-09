@@ -10,7 +10,8 @@ const SortBy = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   function setSortByd(sortBy) {
-    setSearchParams({ sortBy });
+    searchParams.set("sortBy", sortBy);
+    setSearchParams(searchParams);
   }
 
   return (

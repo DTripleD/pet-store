@@ -32,7 +32,7 @@ const FilterForm = ({
         }
 
         const isNew = updatedParams.get("new") === "true";
-        const hasDiscount = updatedParams.get("discounts") === "true";
+        const discount = updatedParams.get("discounts") === "true";
 
         dispatch(
           getProducts({
@@ -40,7 +40,7 @@ const FilterForm = ({
             animalId,
             value,
             isNew,
-            hasDiscount,
+            discount,
           })
         );
 

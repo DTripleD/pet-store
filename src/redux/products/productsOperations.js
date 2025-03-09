@@ -60,3 +60,15 @@ export const getNew = createAsyncThunk(
     }
   }
 );
+
+export const getAllProducts = createAsyncThunk(
+  "products/getAllProducts",
+  async ({ searchValue }, thunkAPI) => {
+    try {
+      const res = await instance.get(`/products?search=${searchValue || ""}`);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

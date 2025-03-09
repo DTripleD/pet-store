@@ -1,7 +1,7 @@
 import { useState } from "react";
 import css from "./HeaderSearch.module.scss";
 import icons from "src/images/icons.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const HeaderSearch = () => {
   const [isFocused, setIsFocused] = useState(false);
@@ -16,6 +16,8 @@ const HeaderSearch = () => {
     event.preventDefault();
 
     navigate(`/special/search?searchValue=${value}`);
+
+    clearFormInput();
   }
 
   return (
@@ -41,13 +43,9 @@ const HeaderSearch = () => {
           onBlur={() => setIsFocused(false)}
         />
       </label>
-      <Link
-        to={`/special/search?searchValue=${value}`}
-        type="submit"
-        className={css.searchButton}
-      >
+      <button type="submit" className={css.searchButton}>
         Знайти
-      </Link>
+      </button>
     </form>
   );
 };

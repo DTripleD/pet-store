@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { getPriceLine } from "src/helpers/getPriceLine";
 import { useSearchParams } from "react-router-dom";
 import {
+  getAllProducts,
   getDiscounts,
   getNew,
   getProducts,
@@ -25,7 +26,7 @@ const CatalogPage = ({ animalId, productsId }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState([
     Number(searchParams.get("min")) || 0,
-    Number(searchParams.get("max")) || 0,
+    Number(searchParams.get("max")) || 1,
   ]);
   const [initialValue, setInitialValue] = useState([0, 0]);
   const [filtersIsOpen, setFiltersIsOpen] = useState(false);
@@ -36,28 +37,39 @@ const CatalogPage = ({ animalId, productsId }) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (products.length) {
-      setValue(getPriceLine(products));
-    }
-  }, [products]);
+  // useEffect(() => {
+  //   if (products.length) {
+  //     setValue(getPriceLine(products));
+  //   }
+  // }, [products]);
 
   useEffect(() => {
     if (category === "special" && catalog === "new") {
       dispatch(getNew());
     } else if (category === "special" && catalog === "discount") {
       dispatch(getDiscounts());
+    } else if (category === "special" && catalog === "search") {
+      dispatch(
+        getAllProducts({ searchValue: searchParams.get("searchValue") })
+      );
     } else if (catalog && category) {
       dispatch(
         getProducts({
           productsId: catalog,
           animalId: category,
           subcategory,
-          value,
+          value:
+            searchParams.get("min") && searchParams.get("max")
+              ? [searchParams.get("min"), searchParams.get("max")]
+              : [],
           isNew: searchParams.get("new"),
           hasDiscount: searchParams.get("discount"),
         })
       ).then(({ payload }) => {
+        if (payload.results.length === 0) {
+          return;
+        }
+
         const prices = payload.results.map((product) => {
           return product.discount_price
             ? parseFloat(product.discount_price)
@@ -87,8 +99,6 @@ const CatalogPage = ({ animalId, productsId }) => {
     }
   }, [catalog, category, dispatch, searchParams, subcategory]);
 
-  // [searchParams.get("discounts"), "Знижки"]
-
   const handleGoUp = () => {
     window.scrollTo(0, 0);
   };
@@ -104,8 +114,6 @@ const CatalogPage = ({ animalId, productsId }) => {
       return "Акції";
     }
   }
-
-  // console.log(searchParams.get("searchValue"));
 
   const filterList = [
     { title: "Новинки", key: "new", value: searchParams.get("new") },
@@ -126,6 +134,11 @@ const CatalogPage = ({ animalId, productsId }) => {
       title: searchParams.get("sortBy"),
       key: "sortBy",
       value: searchParams.get("sortBy"),
+    },
+    {
+      title: searchParams.get("searchValue"),
+      key: "searchValue",
+      value: searchParams.get("searchValue"),
     },
   ];
 

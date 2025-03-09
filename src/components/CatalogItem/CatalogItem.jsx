@@ -12,6 +12,7 @@ import {
 } from "../../redux/featured/featuredOperations";
 import { getCookies } from "../../shared/cookies/cookies";
 import { addToCart } from "../../redux/cart/cartOperations";
+import { selectisProductLoading } from "../../redux/products/productsSelectors";
 
 const CatalogItem = ({ item, isSlider, isNew }) => {
   const location = useLocation();
@@ -19,6 +20,10 @@ const CatalogItem = ({ item, isSlider, isNew }) => {
   const dispatch = useDispatch();
 
   const featuredList = useSelector(selectFeaturedList);
+
+  const isLoading = useSelector(selectisProductLoading);
+
+  console.log(isLoading);
 
   function isItemInFeaturedList() {
     return featuredList.map((product) => product.product.id).includes(item.id);
@@ -46,7 +51,9 @@ const CatalogItem = ({ item, isSlider, isNew }) => {
     dispatch(addToCart({ token: getCookies().cartTokenPetStore, id: item.id }));
   };
 
-  return (
+  return isLoading ? (
+    <li className={css.loaderItem} style={{ width: isSlider && "100%" }}></li>
+  ) : (
     <li className={css.productCard} style={{ width: isSlider && "100%" }}>
       <button className={css.favoriteButton} onClick={handleAddToFeatured}>
         <svg className={css.heartIcon}>

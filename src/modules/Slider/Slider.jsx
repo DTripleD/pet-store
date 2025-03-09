@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import PropTypes from "prop-types";
@@ -9,11 +9,26 @@ import icons from "src/images/icons.svg";
 import SliderButtons from "components/SliderButtons/SliderButtons";
 
 import CatalogItem from "../../components/CatalogItem/CatalogItem";
+import { useDispatch, useSelector } from "react-redux";
+import { selectProducts } from "../../redux/products/productsSelectors";
+import { getDiscounts, getNew } from "../../redux/products/productsOperations";
 
-const Slider = ({ data, title, isNew }) => {
+const Slider = ({ title, isNew }) => {
   const [isStartBtnActive, setStartBtnActive] = useState(true);
   const [isEndBtnActive, setIsEndBtnActive] = useState(false);
   const swiperRef = useRef();
+
+  const data = useSelector(selectProducts);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (title === "Акції") {
+      dispatch(getDiscounts());
+    } else {
+      dispatch(getNew());
+    }
+  }, [dispatch, title]);
 
   function isButtonActive(e) {
     e.isBeginning ? setStartBtnActive(true) : setStartBtnActive(false);

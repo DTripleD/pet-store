@@ -18,7 +18,6 @@ const PriceSlider = ({
   const [searchParams, setSearchParams] = useSearchParams();
 
   function handleChange(event, newValue) {
-    // Преобразуем в массив, если это необходимо, и проверяем на NaN
     if (Array.isArray(newValue) && !newValue.includes(NaN)) {
       if (newValue[0] !== value[0] || newValue[1] !== value[1]) {
         setValue(newValue);
@@ -41,7 +40,9 @@ const PriceSlider = ({
       value[0] !== searchParams.get("min") ||
       value[1] !== searchParams.get("max")
     ) {
-      setSearchParams({ min: value[0], max: value[1] });
+      searchParams.set("min", value[0]);
+      searchParams.set("max", value[1]);
+      setSearchParams(searchParams);
       dispatch(getProducts({ productsId, animalId, value }));
     }
   }

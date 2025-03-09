@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom";
 import FilterElement from "../FilterElement/FilterElement";
 import css from "./FilterBlock.module.scss";
 import PropTypes from "prop-types";
@@ -8,9 +7,6 @@ import { getSubCategories } from "../../../../redux/subCategories/subCategoriesO
 import { selectSubCategories } from "../../../../redux/subCategories/subCategoriesSelectors";
 
 const FilterBlock = ({ filters, animalId, productsId }) => {
-  const [searchParams] = useSearchParams();
-  // console.log(searchParams.get("subCategory"));
-
   const subCategories = useSelector(selectSubCategories);
   const filteredData = subCategories.filter((item) => {
     return item.key.includes(animalId) && item.key.includes(productsId);

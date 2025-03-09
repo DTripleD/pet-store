@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDiscounts, getNew, getProducts } from "./productsOperations";
+import {
+  getAllProducts,
+  getDiscounts,
+  getNew,
+  getProducts,
+} from "./productsOperations";
 
 const initialState = {
   count: 2,
@@ -7,14 +12,17 @@ const initialState = {
   previous: null,
   results: [],
   categories: {},
+  isLoading: true,
 };
 
 const handlePending = (state) => {
   state.error = "";
+  state.isLoading = true;
 };
 
 const handleRejected = (state, action) => {
   state.error = action.payload;
+  state.isLoading = false;
 };
 
 const productsSlice = createSlice({
@@ -26,14 +34,34 @@ const productsSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.results = payload.results;
         state.categories = payload.categories;
+        state.isLoading = false;
+      })
+      .addCase(getProducts.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(getDiscounts.fulfilled, (state, { payload }) => {
         state.results = payload.results;
         state.categories = payload.categories;
+        state.isLoading = false;
+      })
+      .addCase(getDiscounts.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(getNew.fulfilled, (state, { payload }) => {
         state.results = payload.results;
         state.categories = payload.categories;
+        state.isLoading = false;
+      })
+      .addCase(getNew.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllProducts.fulfilled, (state, { payload }) => {
+        state.results = payload.results;
+        state.categories = payload.categories;
+        state.isLoading = false;
+      })
+      .addCase(getAllProducts.pending, (state) => {
+        state.isLoading = true;
       })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
