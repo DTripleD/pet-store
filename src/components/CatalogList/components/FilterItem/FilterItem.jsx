@@ -32,7 +32,6 @@ const FilterItem = ({ title, id }) => {
 };
 
 FilterItem.propTypes = {
-  filterValue: PropTypes.string,
   title: PropTypes.string,
   id: PropTypes.string,
 };

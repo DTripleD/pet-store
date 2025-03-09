@@ -23,8 +23,6 @@ const CatalogItem = ({ item, isSlider, isNew }) => {
 
   const isLoading = useSelector(selectisProductLoading);
 
-  console.log(isLoading);
-
   function isItemInFeaturedList() {
     return featuredList.map((product) => product.product.id).includes(item.id);
   }

@@ -24,8 +24,7 @@
 }
 
 .priceLabel {
-  border: 1.5px solid $grey-border-color
-;
+  border: 1.5px solid $grey-border-color;
   border-radius: 7px;
   padding: 13px 12px;
   display: flex;
@@ -52,4 +51,28 @@
   font-weight: 500;
   line-height: 1.2;
   color: $text-dark-color;
+}
+
+.labelsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formTitle {
+  color: $text-dark-color;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.19;
+
+  @include on-desktop {
+    font-size: 18px;
+    line-height: 1.22;
+  }
+}
+
+.labelsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

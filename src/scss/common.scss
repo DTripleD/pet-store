@@ -47,6 +47,7 @@ select:-webkit-autofill:focus {
 }
 
 .container {
+  width: 100%;
   min-width: 320px;
   max-width: $mobile-max-width;
   margin: 0 auto;

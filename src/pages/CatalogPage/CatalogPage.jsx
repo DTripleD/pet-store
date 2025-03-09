@@ -5,7 +5,6 @@ import Routes from "components/Routes/Routes";
 import icons from "src/images/icons.svg";
 import css from "./CatalogPage.module.scss";
 import { useEffect, useState } from "react";
-import { getPriceLine } from "src/helpers/getPriceLine";
 import { useSearchParams } from "react-router-dom";
 import {
   getAllProducts,
@@ -21,9 +20,10 @@ import {
 import FilterBurger from "../../modules/FilterBurger/FilterBurger";
 import PropTypes from "prop-types";
 import Loader from "../../components/Loader/Loader";
+import { handleGoUp } from "../../helpers/goUp";
 
 const CatalogPage = ({ animalId, productsId }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [value, setValue] = useState([
     Number(searchParams.get("min")) || 0,
     Number(searchParams.get("max")) || 1,
@@ -44,16 +44,51 @@ const CatalogPage = ({ animalId, productsId }) => {
   // }, [products]);
 
   useEffect(() => {
+    const handlePriceCalculation = (products) => {
+      if (products.length === 0) return;
+
+      const prices = products.map((product) =>
+        product.discount_price
+          ? parseFloat(product.discount_price)
+          : parseFloat(product.price)
+      );
+
+      const minPrice = Math.min(...prices);
+      const maxPrice = Math.max(...prices);
+
+      const roundedMinPrice = Math.floor(minPrice);
+      const roundedMaxPrice = Math.ceil(maxPrice);
+
+      const minPriceFilterSaved = Number(searchParams.get("min"));
+      const maxPriceFilterSaved = Number(searchParams.get("max"));
+
+      if (minPriceFilterSaved && maxPriceFilterSaved) {
+        setValue([minPriceFilterSaved, maxPriceFilterSaved]);
+      } else {
+        setValue([roundedMinPrice, roundedMaxPrice]);
+      }
+
+      setInitialValue([
+        Math.max(0, roundedMinPrice - 20),
+        roundedMaxPrice + 20,
+      ]);
+    };
+
+    const fetchData = async (action) => {
+      const { payload } = await dispatch(action);
+      handlePriceCalculation(payload.results);
+    };
+
     if (category === "special" && catalog === "new") {
-      dispatch(getNew());
+      fetchData(getNew());
     } else if (category === "special" && catalog === "discount") {
-      dispatch(getDiscounts());
+      fetchData(getDiscounts());
     } else if (category === "special" && catalog === "search") {
-      dispatch(
+      fetchData(
         getAllProducts({ searchValue: searchParams.get("searchValue") })
       );
     } else if (catalog && category) {
-      dispatch(
+      fetchData(
         getProducts({
           productsId: catalog,
           animalId: category,
@@ -65,43 +100,9 @@ const CatalogPage = ({ animalId, productsId }) => {
           isNew: searchParams.get("new"),
           hasDiscount: searchParams.get("discount"),
         })
-      ).then(({ payload }) => {
-        if (payload.results.length === 0) {
-          return;
-        }
-
-        const prices = payload.results.map((product) => {
-          return product.discount_price
-            ? parseFloat(product.discount_price)
-            : parseFloat(product.price);
-        });
-
-        const minPrice = Math.min(...prices);
-        const maxPrice = Math.max(...prices);
-
-        const roundedMinPrice = Math.floor(minPrice);
-        const roundedMaxPrice = Math.ceil(maxPrice);
-
-        const minPriceFilterSaved = Number(searchParams.get("min"));
-        const maxPriceFilterSaved = Number(searchParams.get("max"));
-
-        if (minPriceFilterSaved && maxPriceFilterSaved) {
-          setValue([minPriceFilterSaved, maxPriceFilterSaved]);
-        } else {
-          setValue([roundedMinPrice, roundedMaxPrice]);
-        }
-
-        setInitialValue([
-          Math.max(0, roundedMinPrice - 20),
-          roundedMaxPrice + 20,
-        ]);
-      });
+      );
     }
   }, [catalog, category, dispatch, searchParams, subcategory]);
-
-  const handleGoUp = () => {
-    window.scrollTo(0, 0);
-  };
 
   const handleOpenFilter = () => {
     setFiltersIsOpen(true);

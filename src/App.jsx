@@ -14,15 +14,11 @@ const AboutDeliveryPage = lazy(() =>
 );
 
 const BlogPage = lazy(() => import("./pages/BlogPage/BlogPage"));
-const DiscountPage = lazy(() => import("./pages/DiscountPage/DiscountPage"));
 const CartPage = lazy(() => import("./pages/CartPage/CartPage"));
 const OrderPage = lazy(() => import("./pages/OrderPage/OrderPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
 const ProductPage = lazy(() => import("./pages/ProductPage/ProductPage"));
-const CategoriesPage = lazy(() =>
-  import("./pages/CategoriesPage/CategoriesPage")
-);
 const CategoryPage = lazy(() => import("./pages/CategoryPage/CategoryPage"));
 const DeliveryPage = lazy(() => import("./pages/DeliveryPage/DeliveryPage"));
 const FavoritePage = lazy(() => import("./pages/FavoritePage/FavoritePage"));
@@ -85,8 +81,6 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
           <Route path="order" element={<OrderPage />} />
-          <Route path="categories" element={<CategoriesPage />} />
-          <Route path="discount" element={<DiscountPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="about/reviews" element={<ReviewPage />} />
           <Route

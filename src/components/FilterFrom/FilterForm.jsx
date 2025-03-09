@@ -1,8 +1,7 @@
 import css from "./FilterForm.module.scss";
 import PropTypes from "prop-types";
-import FilterElement from "./components/FilterElement/FilterElement";
+
 import PriceSlider from "../PriceSlider/PriceSlider";
-import FilterBlock from "./components/FilterBlock/FilterBlock";
 import { useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,77 +16,57 @@ const FilterForm = ({
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const dispatch = useDispatch();
-
-  const handleCheckboxChange = useCallback(
-    (event) => {
-      const { name, checked } = event.target;
-
-      setSearchParams((prevParams) => {
-        const updatedParams = new URLSearchParams(prevParams);
-        if (checked) {
-          updatedParams.set(name, "true");
-        } else {
-          updatedParams.delete(name);
-        }
-
-        const isNew = updatedParams.get("new") === "true";
-        const discount = updatedParams.get("discounts") === "true";
-
-        dispatch(
-          getProducts({
-            productsId,
-            animalId,
-            value,
-            isNew,
-            discount,
-          })
-        );
-
-        return updatedParams;
-      });
-    },
-    [animalId, dispatch, productsId, setSearchParams, value]
-  );
-
   const handleClearFilters = useCallback(() => {
     setSearchParams({});
     setValue(initialValue);
   }, [initialValue, setSearchParams, setValue]);
 
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = gatherFormData();
+
+    if (
+      formData.minPrice !== searchParams.get("min") ||
+      formData.maxPrice !== searchParams.get("max")
+    ) {
+      searchParams.set("min", formData.minPrice);
+      searchParams.set("max", formData.maxPrice);
+      setSearchParams(searchParams);
+    }
+
+    dispatch(
+      getProducts({
+        productsId,
+        animalId,
+        value: [formData.minPrice, formData.maxPrice],
+        isNew: formData.isNew,
+        discount: formData.isDiscount,
+      })
+    );
+  };
+
+  const gatherFormData = () => {
+    const minPrice = value[0];
+    const maxPrice = value[1];
+    const isNew = searchParams.get("new") === "true";
+    const isDiscount = searchParams.get("discounts") === "true";
+
+    return { minPrice, maxPrice, isNew, isDiscount };
+  };
+
   return (
     <div className={css.filtersWrapper}>
-      <div className={css.labelsSection}>
-        <p className={css.formTitle}>Фільтри</p>
-        <ul className={css.labelsList}>
-          <FilterElement
-            text={"Новинки"}
-            id={"new"}
-            name={"new"}
-            checked={searchParams.has("new")}
-            onChange={handleCheckboxChange}
-          />
-          <FilterElement
-            text={"Знижка"}
-            id={"discounts"}
-            name={"discounts"}
-            checked={searchParams.has("discounts")}
-            onChange={handleCheckboxChange}
-          />
-        </ul>
-      </div>
       <PriceSlider
         setValue={setValue}
         value={value}
         initialValue={initialValue}
         animalId={animalId}
         productsId={productsId}
+        handleSubmit={handleSubmit}
       />
-      <FilterBlock
-        filters={Object.fromEntries(searchParams.entries())}
-        animalId={animalId}
-        productsId={productsId}
-      />
+
       <button className={css.clearButton} onClick={handleClearFilters}>
         Очистити
       </button>

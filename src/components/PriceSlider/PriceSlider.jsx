@@ -1,10 +1,11 @@
-import css from "./PriceSlider.module.scss";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { getProducts } from "../../redux/products/productsOperations";
+import FilterElement from "../FilterFrom/components/FilterElement/FilterElement";
+import PropTypes from "prop-types";
 import Slider from "@mui/material/Slider";
 import Button from "../Button/Button";
-import { useDispatch } from "react-redux";
-import { getProducts } from "../../redux/products/productsOperations";
-import PropTypes from "prop-types";
-import { useSearchParams } from "react-router-dom";
+import css from "./PriceSlider.module.scss";
 
 const PriceSlider = ({
   setValue,
@@ -12,43 +13,77 @@ const PriceSlider = ({
   animalId,
   productsId,
   initialValue,
+  handleSubmit, // Добавляем обработчик сабмита
 }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     if (Array.isArray(newValue) && !newValue.includes(NaN)) {
       if (newValue[0] !== value[0] || newValue[1] !== value[1]) {
         setValue(newValue);
       }
     }
-  }
+  };
 
-  function handleInputChange(index, newValue) {
+  const handleInputChange = (index, newValue) => {
     const parsedValue = newValue === "" ? "" : parseInt(newValue, 10);
     const updatedValue = [...value];
     updatedValue[index] = isNaN(parsedValue) ? 0 : parsedValue;
 
     setValue(updatedValue);
-  }
+  };
 
-  function handlePrice(event) {
-    event.preventDefault();
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
 
-    if (
-      value[0] !== searchParams.get("min") ||
-      value[1] !== searchParams.get("max")
-    ) {
-      searchParams.set("min", value[0]);
-      searchParams.set("max", value[1]);
-      setSearchParams(searchParams);
-      dispatch(getProducts({ productsId, animalId, value }));
-    }
-  }
+    setSearchParams((prevParams) => {
+      const updatedParams = new URLSearchParams(prevParams);
+      if (checked) {
+        updatedParams.set(name, "true");
+      } else {
+        updatedParams.delete(name);
+      }
+
+      // Применяем фильтры через запрос
+      const isNew = updatedParams.get("new") === "true";
+      const discount = updatedParams.get("discounts") === "true";
+
+      dispatch(
+        getProducts({
+          productsId,
+          animalId,
+          value,
+          isNew,
+          discount,
+        })
+      );
+
+      return updatedParams;
+    });
+  };
 
   return (
-    <form className={css.priceForm} onSubmit={handlePrice}>
+    <form className={css.priceForm} onSubmit={handleSubmit}>
+      <div className={css.labelsSection}>
+        <p className={css.formTitle}>Фільтри</p>
+        <ul className={css.labelsList}>
+          <FilterElement
+            text={"Новинки"}
+            id={"new"}
+            name={"new"}
+            checked={searchParams.has("new")} // проверяем наличие параметра
+            onChange={handleCheckboxChange}
+          />
+          <FilterElement
+            text={"Знижка"}
+            id={"discounts"}
+            name={"discounts"}
+            checked={searchParams.has("discounts")} // проверяем наличие параметра
+            onChange={handleCheckboxChange}
+          />
+        </ul>
+      </div>
       <p className={css.formTitle}>Ціна</p>
 
       <Slider
@@ -67,7 +102,7 @@ const PriceSlider = ({
             type="text"
             className={css.priceInput}
             maxLength="7"
-            value={value[0] | ""}
+            value={value[0] || ""}
             onChange={(e) => handleInputChange(0, e.target.value)}
           />
         </label>
@@ -95,6 +130,7 @@ PriceSlider.propTypes = {
   animalId: PropTypes.string,
   productsId: PropTypes.string,
   initialValue: PropTypes.array,
+  handleSubmit: PropTypes.func,
 };
 
 export default PriceSlider;
