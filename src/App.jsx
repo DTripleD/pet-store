@@ -95,8 +95,14 @@ function App() {
           />
           <Route path="about/blog" element={<BlogPage />} />
           <Route path=":category" element={<CategoryPage />} />
-          <Route path=":category/:catalog" element={<CatalogPage />} />
-          <Route path=":category/:catalog/:productId" element={<ProductPage />}>
+          <Route
+            path=":category/:catalog/:subcategory?"
+            element={<CatalogPage />}
+          />
+          <Route
+            path=":category/:catalog/:subcategory/:productId"
+            element={<ProductPage />}
+          >
             <Route index element={<AllAboutProduct />} />
             <Route path="description" element={<Description />} />
             <Route path="characteristic" element={<Сharacteristic />} />

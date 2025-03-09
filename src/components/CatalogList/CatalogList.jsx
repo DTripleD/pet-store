@@ -7,7 +7,7 @@ import icons from "src/images/icons.svg";
 import getItemQuantityText from "../../services/getItemQuantityText";
 import FilterItem from "./components/FilterItem/FilterItem";
 
-const CatalogList = ({ products, openFilter, filters }) => {
+const CatalogList = ({ products, openFilter, filterList }) => {
   return (
     <div className={css.catologListWrapper}>
       <div className={css.filterMob}>
@@ -22,9 +22,17 @@ const CatalogList = ({ products, openFilter, filters }) => {
       <div className={css.filterParams}>
         <button className={css.cleanButton}>Очистити</button>
 
-        {filters.map((filterValue) => (
-          <FilterItem key={filterValue} filterValue={filterValue} />
-        ))}
+        {filterList.map(
+          (filterValue) =>
+            filterValue.value && (
+              <FilterItem
+                key={filterValue.key}
+                id={filterValue.key}
+                filterValue={filterValue.title}
+                title={filterValue.title}
+              />
+            )
+        )}
       </div>
 
       <div className={css.middleWrapper}>
@@ -50,7 +58,7 @@ const CatalogList = ({ products, openFilter, filters }) => {
 CatalogList.propTypes = {
   products: PropTypes.array,
   openFilter: PropTypes.func,
-  filters: PropTypes.array,
+  filterList: PropTypes.array,
 };
 
 export default CatalogList;

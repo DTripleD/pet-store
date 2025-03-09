@@ -10,7 +10,7 @@ const Routes = ({ routes }) => {
     let fullPath = "";
 
     for (let i = 0; i <= routes.length; i += 1) {
-      fullPath = fullPath + "/" + routes[i]?.id;
+      fullPath = fullPath + "/" + routes[i]?.key;
 
       if (routes[i]?.key === key) {
         return fullPath;

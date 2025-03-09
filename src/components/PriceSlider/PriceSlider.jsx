@@ -4,32 +4,47 @@ import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/products/productsOperations";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-const PriceSlider = ({ setValue, value = [0, 1000], animalId, productsId }) => {
+const PriceSlider = ({
+  setValue,
+  value,
+  animalId,
+  productsId,
+  initialValue,
+}) => {
   const dispatch = useDispatch();
-  const [sliderValue, setSliderValue] = useState(value);
 
-  const handleChange = (event, newValue) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function handleChange(event, newValue) {
+    // Преобразуем в массив, если это необходимо, и проверяем на NaN
     if (Array.isArray(newValue) && !newValue.includes(NaN)) {
-      setSliderValue(newValue);
-      setValue(newValue);
+      if (newValue[0] !== value[0] || newValue[1] !== value[1]) {
+        setValue(newValue);
+      }
     }
-  };
+  }
 
-  const handleInputChange = (index, newValue) => {
+  function handleInputChange(index, newValue) {
     const parsedValue = newValue === "" ? "" : parseInt(newValue, 10);
-    const updatedValue = [...sliderValue];
+    const updatedValue = [...value];
     updatedValue[index] = isNaN(parsedValue) ? 0 : parsedValue;
-    setSliderValue(updatedValue);
+
     setValue(updatedValue);
-  };
+  }
 
-  const handlePrice = (event) => {
+  function handlePrice(event) {
     event.preventDefault();
-    dispatch(getProducts({ productsId, animalId, value: sliderValue }));
-  };
 
+    if (
+      value[0] !== searchParams.get("min") ||
+      value[1] !== searchParams.get("max")
+    ) {
+      setSearchParams({ min: value[0], max: value[1] });
+      dispatch(getProducts({ productsId, animalId, value }));
+    }
+  }
 
   return (
     <form className={css.priceForm} onSubmit={handlePrice}>
@@ -37,11 +52,11 @@ const PriceSlider = ({ setValue, value = [0, 1000], animalId, productsId }) => {
 
       <Slider
         getAriaLabel={() => "Price"}
-        value={sliderValue}
+        value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        min={0}
-        max={1000}
+        min={initialValue[0]}
+        max={initialValue[1]}
       />
 
       <div className={css.priceInputsWrapper}>
@@ -51,7 +66,7 @@ const PriceSlider = ({ setValue, value = [0, 1000], animalId, productsId }) => {
             type="text"
             className={css.priceInput}
             maxLength="7"
-            value={sliderValue[0] | ""}
+            value={value[0] | ""}
             onChange={(e) => handleInputChange(0, e.target.value)}
           />
         </label>
@@ -62,7 +77,7 @@ const PriceSlider = ({ setValue, value = [0, 1000], animalId, productsId }) => {
             className={css.priceInput}
             maxLength="1000"
             placeholder="1000"
-            value={sliderValue[1] || ""}
+            value={value[1] || ""}
             onChange={(e) => handleInputChange(1, e.target.value)}
           />
         </label>
@@ -78,6 +93,7 @@ PriceSlider.propTypes = {
   setValue: PropTypes.func,
   animalId: PropTypes.string,
   productsId: PropTypes.string,
+  initialValue: PropTypes.array,
 };
 
 export default PriceSlider;

@@ -7,12 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSubCategories } from "../../../../redux/subCategories/subCategoriesOperations";
 import { selectSubCategories } from "../../../../redux/subCategories/subCategoriesSelectors";
 
-const FilterBlock = ({
-  filters,
-  animalId,
-  productsId,
-  handleCheckboxChange,
-}) => {
+const FilterBlock = ({ filters, animalId, productsId }) => {
   const [searchParams] = useSearchParams();
   // console.log(searchParams.get("subCategory"));
 
@@ -46,7 +41,6 @@ const FilterBlock = ({
                 text={item.name}
                 name={item.key}
                 checked={filters[item.key]}
-                onChange={handleCheckboxChange}
               />
             ))}
           </ul>
@@ -60,7 +54,6 @@ FilterBlock.propTypes = {
   filters: PropTypes.object,
   animalId: PropTypes.string,
   productsId: PropTypes.string,
-  handleCheckboxChange: PropTypes.func,
 };
 
 export default FilterBlock;

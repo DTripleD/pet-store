@@ -1,58 +1,59 @@
 import css from "./FilterForm.module.scss";
 import PropTypes from "prop-types";
 import FilterElement from "./components/FilterElement/FilterElement";
-import FilterBlock from "./components/FilterBlock/FilterBlock";
 import PriceSlider from "../PriceSlider/PriceSlider";
-import { useEffect, useState } from "react";
+import FilterBlock from "./components/FilterBlock/FilterBlock";
+import { useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../../redux/products/productsOperations";
 
-const FilterForm = ({ value, setValue, animalId, productsId }) => {
-  const [filters, setFilters] = useState({
-    new: false,
-    discounts: false,
-    subCategory: "",
-  });
-
+const FilterForm = ({
+  value,
+  setValue,
+  animalId,
+  productsId,
+  initialValue,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleCheckboxChange = (event) => {
-    const key = event.target.name;
+  const dispatch = useDispatch();
 
-    setFilters((prevFilters) => {
-      const updatedFilters = { ...prevFilters };
+  const handleCheckboxChange = useCallback(
+    (event) => {
+      const { name, checked } = event.target;
 
-      updatedFilters[key] = event.target.checked;
+      setSearchParams((prevParams) => {
+        const updatedParams = new URLSearchParams(prevParams);
+        if (checked) {
+          updatedParams.set(name, "true");
+        } else {
+          updatedParams.delete(name);
+        }
 
-      const filteredFilters = Object.entries(updatedFilters)
-        .filter(([_, v]) => v !== "" && v !== false)
-        .reduce((acc, [k, v]) => {
-          acc[k] = v;
-          return acc;
-        }, {});
+        const isNew = updatedParams.get("new") === "true";
+        const hasDiscount = updatedParams.get("discounts") === "true";
 
-      setSearchParams(filteredFilters);
-      return updatedFilters;
-    });
-  };
+        dispatch(
+          getProducts({
+            productsId,
+            animalId,
+            value,
+            isNew,
+            hasDiscount,
+          })
+        );
 
-  const handleClearFilters = () => {
-    setFilters({
-      new: false,
-      discounts: false,
-    });
-    setValue([0, 0]);
-  };
+        return updatedParams;
+      });
+    },
+    [animalId, dispatch, productsId, setSearchParams, value]
+  );
 
-  useEffect(() => {
-    const params = Object.fromEntries(searchParams.entries());
-    const updatedFilters = { ...filters };
-
-    for (const [key, value] of Object.entries(params)) {
-      updatedFilters[key] = value === "true";
-    }
-
-    setFilters(updatedFilters);
-  }, [searchParams]);
+  const handleClearFilters = useCallback(() => {
+    setSearchParams({});
+    setValue(initialValue);
+  }, [initialValue, setSearchParams, setValue]);
 
   return (
     <div className={css.filtersWrapper}>
@@ -63,14 +64,14 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
             text={"Новинки"}
             id={"new"}
             name={"new"}
-            checked={filters.new}
+            checked={searchParams.has("new")}
             onChange={handleCheckboxChange}
           />
           <FilterElement
             text={"Знижка"}
             id={"discounts"}
             name={"discounts"}
-            checked={filters.discounts}
+            checked={searchParams.has("discounts")}
             onChange={handleCheckboxChange}
           />
         </ul>
@@ -78,17 +79,15 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
       <PriceSlider
         setValue={setValue}
         value={value}
+        initialValue={initialValue}
         animalId={animalId}
         productsId={productsId}
       />
-
       <FilterBlock
-        filters={filters}
+        filters={Object.fromEntries(searchParams.entries())}
         animalId={animalId}
         productsId={productsId}
-        handleCheckboxChange={handleCheckboxChange}
       />
-
       <button className={css.clearButton} onClick={handleClearFilters}>
         Очистити
       </button>
@@ -96,11 +95,12 @@ const FilterForm = ({ value, setValue, animalId, productsId }) => {
   );
 };
 
-export default FilterForm;
-
 FilterForm.propTypes = {
   value: PropTypes.array,
   setValue: PropTypes.func,
   animalId: PropTypes.string,
   productsId: PropTypes.string,
+  initialValue: PropTypes.array,
 };
+
+export default FilterForm;

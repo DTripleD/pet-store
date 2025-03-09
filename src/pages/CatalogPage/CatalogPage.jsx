@@ -22,12 +22,19 @@ import PropTypes from "prop-types";
 import Loader from "../../components/Loader/Loader";
 
 const CatalogPage = ({ animalId, productsId }) => {
-  const { category, catalog } = useParams();
-  const [value, setValue] = useState([0, 0]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState([
+    Number(searchParams.get("min")) || 0,
+    Number(searchParams.get("max")) || 0,
+  ]);
+  const [initialValue, setInitialValue] = useState([0, 0]);
+  const [filtersIsOpen, setFiltersIsOpen] = useState(false);
+
+  const { category, catalog, subcategory } = useParams();
   const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
+
   const dispatch = useDispatch();
-  const [filtersIsOpen, setFiltersIsOpen] = useState(false);
 
   useEffect(() => {
     if (products.length) {
@@ -45,10 +52,42 @@ const CatalogPage = ({ animalId, productsId }) => {
         getProducts({
           productsId: catalog,
           animalId: category,
+          subcategory,
+          value,
+          isNew: searchParams.get("new"),
+          hasDiscount: searchParams.get("discount"),
         })
-      );
+      ).then(({ payload }) => {
+        const prices = payload.results.map((product) => {
+          return product.discount_price
+            ? parseFloat(product.discount_price)
+            : parseFloat(product.price);
+        });
+
+        const minPrice = Math.min(...prices);
+        const maxPrice = Math.max(...prices);
+
+        const roundedMinPrice = Math.floor(minPrice);
+        const roundedMaxPrice = Math.ceil(maxPrice);
+
+        const minPriceFilterSaved = Number(searchParams.get("min"));
+        const maxPriceFilterSaved = Number(searchParams.get("max"));
+
+        if (minPriceFilterSaved && maxPriceFilterSaved) {
+          setValue([minPriceFilterSaved, maxPriceFilterSaved]);
+        } else {
+          setValue([roundedMinPrice, roundedMaxPrice]);
+        }
+
+        setInitialValue([
+          Math.max(0, roundedMinPrice - 20),
+          roundedMaxPrice + 20,
+        ]);
+      });
     }
-  }, [catalog, category, dispatch]);
+  }, [catalog, category, dispatch, searchParams, subcategory]);
+
+  // [searchParams.get("discounts"), "Знижки"]
 
   const handleGoUp = () => {
     window.scrollTo(0, 0);
@@ -66,9 +105,29 @@ const CatalogPage = ({ animalId, productsId }) => {
     }
   }
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
   // console.log(searchParams.get("searchValue"));
+
+  const filterList = [
+    { title: "Новинки", key: "new", value: searchParams.get("new") },
+    {
+      title: "Знижки",
+      key: "discounts",
+      value: searchParams.get("discounts"),
+    },
+    {
+      title: `${searchParams.get("min")}-${searchParams.get("max")}`,
+      key: "price",
+      value:
+        searchParams.get("min") && searchParams.get("max")
+          ? `${searchParams.get("min")}-${searchParams.get("max")}`
+          : null,
+    },
+    {
+      title: searchParams.get("sortBy"),
+      key: "sortBy",
+      value: searchParams.get("sortBy"),
+    },
+  ];
 
   return (
     <div className={css.wrapper}>
@@ -108,8 +167,9 @@ const CatalogPage = ({ animalId, productsId }) => {
             <FilterForm
               value={value}
               setValue={setValue}
-              animalId={catalog}
-              productsId={category}
+              animalId={category}
+              productsId={catalog}
+              initialValue={initialValue}
             />
           </div>
 
@@ -117,11 +177,7 @@ const CatalogPage = ({ animalId, productsId }) => {
             {products ? (
               <CatalogList
                 products={products}
-                filters={[searchParams.get("searchValue"), "Знижки"]}
-                value={value}
-                setValue={setValue}
-                animalId={catalog}
-                productsId={category}
+                filterList={filterList}
                 openFilter={handleOpenFilter}
               />
             ) : (
@@ -148,6 +204,7 @@ const CatalogPage = ({ animalId, productsId }) => {
             setValue={setValue}
             animalId={animalId}
             productsId={productsId}
+            initialValue={initialValue}
           />
         </div>
       </div>

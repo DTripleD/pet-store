@@ -66,7 +66,7 @@ const CatalogItem = ({ item, isSlider, isNew }) => {
       </button>
       <Link
         state={{ from: location }}
-        to={`/${item.categories.animal_category.key}/${item.categories.product_category.key}/${item.id}`}
+        to={`/${item.categories.animal_category.key}/${item.categories.product_category.key}/${item.categories.subcategory.key}/${item.id}`}
         className={css.productLink}
       >
         <div className={css.productImageWrapper}>

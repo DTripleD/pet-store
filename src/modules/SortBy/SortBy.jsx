@@ -2,11 +2,17 @@ import css from "./SortBy.module.scss";
 
 import icons from "src/images/icons.svg";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const SortBy = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [sortBy, setSortBy] = useState("");
-  
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function setSortByd(sortBy) {
+    setSearchParams({ sortBy });
+  }
+
   return (
     <div>
       <div className={css.sortTextWrapper}>
@@ -33,7 +39,7 @@ const SortBy = () => {
           <li
             className={css.dropdownItem}
             onClick={() => {
-              setSortBy("Від дешевих до дорогих");
+              setSortByd("Від дешевих до дорогих");
               setIsOpen(false);
             }}
           >
@@ -42,7 +48,7 @@ const SortBy = () => {
           <li
             className={css.dropdownItem}
             onClick={() => {
-              setSortBy("Від дорогих до дешевих");
+              setSortByd("Від дорогих до дешевих");
               setIsOpen(false);
             }}
           >
