@@ -53,11 +53,27 @@
   font-weight: 500;
   font-size: 15px;
   line-height: 11px;
-  color: $icon-grey-color;
-  background-color: $light-border-color;
+  color: $white-color;
+  background-color: $light-green-color;
   border-radius: 100px;
   border: none;
   padding: 12px;
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+
+  &:hover {
+    background-color: $hover-green-color;
+  }
+
+  &:active {
+    background-color: $active-green-color;
+  }
+
+  &:disabled {
+    color: $icon-grey-color;
+    background-color: $light-border-color;
+    cursor: default;
+  }
 
   @include on-desktop {
     padding: 15px 16px;

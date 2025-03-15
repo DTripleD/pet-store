@@ -8,28 +8,21 @@ import instance from "../../shared/api/instance";
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (
-    {
-      productsId,
-      animalId,
-      value = [],
-      subcategory,
-      isNew = null,
-      hasDiscount = null,
-    },
+    { productsId, animalId, value, subcategory, isNew, hasDiscount },
     thunkAPI
   ) => {
     try {
-      const res = await instance.get(
-        `/products/?product_category=${productsId}&animal_category=${animalId}${
-          subcategory ? `&subcategory=${subcategory}` : ""
-        }${
-          value.length > 0 && value[0] !== 0 && value[1] !== 0
-            ? `&min_price=${value[0]}&max_price=${value[1]}`
-            : ""
-        }${isNew ? `&is_new=true` : ""}${
-          hasDiscount ? "has_discount=true" : ""
-        }`
-      );
+      const res = await instance.get("/products/", {
+        params: {
+          product_category: productsId,
+          animal_category: animalId,
+          subcategory: subcategory,
+          min_price: value[0],
+          max_price: value[1],
+          is_new: isNew,
+          has_discount: hasDiscount,
+        },
+      });
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

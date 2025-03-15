@@ -13,6 +13,7 @@ const initialState = {
   results: [],
   categories: {},
   isLoading: true,
+  priceRange: [0, 0],
 };
 
 const handlePending = (state) => {
@@ -35,6 +36,7 @@ const productsSlice = createSlice({
         state.results = payload.results;
         state.categories = payload.categories;
         state.isLoading = false;
+        state.priceRange = [1, 10000];
       })
       .addCase(getProducts.pending, (state) => {
         state.isLoading = true;
@@ -59,6 +61,7 @@ const productsSlice = createSlice({
         state.results = payload.results;
         state.categories = payload.categories;
         state.isLoading = false;
+        state.priceRange = [1, 10000];
       })
       .addCase(getAllProducts.pending, (state) => {
         state.isLoading = true;

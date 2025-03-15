@@ -11,8 +11,8 @@ const FilterItem = ({ title, id }) => {
       const updatedParams = new URLSearchParams(prevParams);
 
       if (id === "price") {
-        updatedParams.delete("min");
-        updatedParams.delete("max");
+        updatedParams.delete("minPrice");
+        updatedParams.delete("maxPrice");
       } else {
         updatedParams.delete(id);
       }

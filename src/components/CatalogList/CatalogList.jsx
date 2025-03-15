@@ -6,8 +6,29 @@ import SortBy from "modules/SortBy/SortBy";
 import icons from "src/images/icons.svg";
 import getItemQuantityText from "../../services/getItemQuantityText";
 import FilterItem from "./components/FilterItem/FilterItem";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-const CatalogList = ({ products, openFilter, filterList }) => {
+const CatalogList = ({
+  products,
+  openFilter,
+  filterList,
+  handleClearFilters,
+}) => {
+  const [isDisable, setIsDisable] = useState(true);
+
+  const [searchParams] = useSearchParams();
+
+  console.log();
+
+  useEffect(() => {
+    if (searchParams.size) {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+  }, [searchParams]);
+
   return (
     <div className={css.catologListWrapper}>
       <div className={css.filterMob}>
@@ -20,7 +41,13 @@ const CatalogList = ({ products, openFilter, filterList }) => {
         <SortBy />
       </div>
       <div className={css.filterParams}>
-        <button className={css.cleanButton}>Очистити</button>
+        <button
+          className={css.cleanButton}
+          disabled={isDisable}
+          onClick={handleClearFilters}
+        >
+          Очистити
+        </button>
 
         {filterList.map(
           (filterValue) =>
@@ -59,6 +86,7 @@ CatalogList.propTypes = {
   products: PropTypes.array,
   openFilter: PropTypes.func,
   filterList: PropTypes.array,
+  handleClearFilters: PropTypes.func,
 };
 
 export default CatalogList;

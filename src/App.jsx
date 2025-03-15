@@ -23,6 +23,7 @@ const CategoryPage = lazy(() => import("./pages/CategoryPage/CategoryPage"));
 const DeliveryPage = lazy(() => import("./pages/DeliveryPage/DeliveryPage"));
 const FavoritePage = lazy(() => import("./pages/FavoritePage/FavoritePage"));
 const ActivatePage = lazy(() => import("./pages/ActivatePage/ActivatePage"));
+const SearchPage = lazy(() => import("./pages/SearchPage/SearchPage"));
 
 import UserWrapper from "./components/UserWrapper/UserWrapper";
 import { SharedLayout } from "./components/SharedLayout/SharedLayout";
@@ -88,6 +89,7 @@ function App() {
             element={<AboutDeliveryPage />}
           />
           <Route path="about/blog" element={<BlogPage />} />
+          <Route path="search" element={<SearchPage />} />
           <Route path=":category" element={<CategoryPage />} />
           <Route
             path=":category/:catalog/:subcategory?"

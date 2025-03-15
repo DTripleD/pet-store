@@ -15,7 +15,7 @@ const HeaderSearch = () => {
   function navigateToSearchPage(event) {
     event.preventDefault();
 
-    navigate(`/special/search?searchValue=${value}`);
+    navigate(`/search?searchValue=${value}`);
 
     clearFormInput();
   }

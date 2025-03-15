@@ -10,7 +10,9 @@ const FilterBurger = ({
   setValue,
   animalId,
   productsId,
-  initialValue,
+  subcategory,
+  priceRange,
+  handleClearFilters,
 }) => {
   return (
     <div
@@ -33,7 +35,9 @@ const FilterBurger = ({
           setValue={setValue}
           animalId={animalId}
           productsId={productsId}
-          initialValue={initialValue}
+          subcategory={subcategory}
+          priceRange={priceRange}
+          handleClearFilters={handleClearFilters}
         />
       </div>
     </div>
@@ -47,7 +51,9 @@ FilterBurger.propTypes = {
   setValue: PropTypes.func,
   animalId: PropTypes.string,
   productsId: PropTypes.string,
-  initialValue: PropTypes.array,
+  subcategory: PropTypes.string,
+  priceRange: PropTypes.array,
+  handleClearFilters: PropTypes.func,
 };
 
 export default FilterBurger;

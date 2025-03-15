@@ -1,22 +1,21 @@
-import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import { getProducts } from "../../redux/products/productsOperations";
+import { useSelector } from "react-redux";
 import FilterElement from "../FilterFrom/components/FilterElement/FilterElement";
 import PropTypes from "prop-types";
 import Slider from "@mui/material/Slider";
 import Button from "../Button/Button";
 import css from "./PriceSlider.module.scss";
+import { selectPriceRange } from "../../redux/products/productsSelectors";
 
 const PriceSlider = ({
   setValue,
   value,
-  animalId,
-  productsId,
-  initialValue,
-  handleSubmit, // Добавляем обработчик сабмита
+  handleSubmit,
+  isNew,
+  setIsNew,
+  isDiscount,
+  setIsDiscount,
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useDispatch();
+  const priceRange = useSelector(selectPriceRange);
 
   const handleChange = (event, newValue) => {
     if (Array.isArray(newValue) && !newValue.includes(NaN)) {
@@ -34,35 +33,6 @@ const PriceSlider = ({
     setValue(updatedValue);
   };
 
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-
-    setSearchParams((prevParams) => {
-      const updatedParams = new URLSearchParams(prevParams);
-      if (checked) {
-        updatedParams.set(name, "true");
-      } else {
-        updatedParams.delete(name);
-      }
-
-      // Применяем фильтры через запрос
-      const isNew = updatedParams.get("new") === "true";
-      const discount = updatedParams.get("discounts") === "true";
-
-      dispatch(
-        getProducts({
-          productsId,
-          animalId,
-          value,
-          isNew,
-          discount,
-        })
-      );
-
-      return updatedParams;
-    });
-  };
-
   return (
     <form className={css.priceForm} onSubmit={handleSubmit}>
       <div className={css.labelsSection}>
@@ -72,15 +42,15 @@ const PriceSlider = ({
             text={"Новинки"}
             id={"new"}
             name={"new"}
-            checked={searchParams.has("new")} // проверяем наличие параметра
-            onChange={handleCheckboxChange}
+            checked={isNew}
+            onChange={() => setIsNew((prev) => !prev)}
           />
           <FilterElement
             text={"Знижка"}
             id={"discounts"}
             name={"discounts"}
-            checked={searchParams.has("discounts")} // проверяем наличие параметра
-            onChange={handleCheckboxChange}
+            checked={isDiscount}
+            onChange={() => setIsDiscount((prev) => !prev)}
           />
         </ul>
       </div>
@@ -91,8 +61,8 @@ const PriceSlider = ({
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        min={initialValue[0]}
-        max={initialValue[1]}
+        min={priceRange[0]}
+        max={priceRange[1]}
       />
 
       <div className={css.priceInputsWrapper}>
@@ -127,10 +97,11 @@ const PriceSlider = ({
 PriceSlider.propTypes = {
   value: PropTypes.array,
   setValue: PropTypes.func,
-  animalId: PropTypes.string,
-  productsId: PropTypes.string,
-  initialValue: PropTypes.array,
   handleSubmit: PropTypes.func,
+  isNew: PropTypes.bool,
+  setIsNew: PropTypes.func,
+  isDiscount: PropTypes.bool,
+  setIsDiscount: PropTypes.func,
 };
 
 export default PriceSlider;

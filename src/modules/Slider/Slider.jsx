@@ -3,9 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import PropTypes from "prop-types";
 import "swiper/scss";
-import { Link } from "react-router-dom";
+
 import css from "./Slider.module.scss";
-import icons from "src/images/icons.svg";
 import SliderButtons from "components/SliderButtons/SliderButtons";
 
 import CatalogItem from "../../components/CatalogItem/CatalogItem";
@@ -33,18 +32,6 @@ const Slider = ({ title, isNew }) => {
   function isButtonActive(e) {
     e.isBeginning ? setStartBtnActive(true) : setStartBtnActive(false);
     e.isEnd ? setIsEndBtnActive(true) : setIsEndBtnActive(false);
-  }
-
-  function handleGoUp() {
-    window.scrollTo(0, 0);
-  }
-
-  function getNextRoute() {
-    if (title === "Акції") {
-      return "/special/discount";
-    } else if (title === "Новинки") {
-      return "/special/new";
-    }
   }
 
   return (
@@ -93,16 +80,6 @@ const Slider = ({ title, isNew }) => {
             ))}
           </Swiper>
         </div>
-        <Link
-          to={getNextRoute()}
-          onClick={handleGoUp}
-          className={css.styledLink}
-        >
-          <p className={css.showAllText}>Переглянути все</p>
-          <svg className={css.showAllIcon}>
-            <use href={icons + "#icon-right"}></use>
-          </svg>
-        </Link>
       </div>
     </section>
   );

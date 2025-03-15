@@ -2,7 +2,7 @@ import css from "./FilterForm.module.scss";
 import PropTypes from "prop-types";
 
 import PriceSlider from "../PriceSlider/PriceSlider";
-import { useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/products/productsOperations";
@@ -12,48 +12,59 @@ const FilterForm = ({
   setValue,
   animalId,
   productsId,
-  initialValue,
+  subcategory,
+  priceRange,
+  handleClearFilters,
 }) => {
+  const [isNew, setIsNew] = useState(false);
+  const [isDiscount, setIsDiscount] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleClearFilters = useCallback(() => {
-    setSearchParams({});
-    setValue(initialValue);
-  }, [initialValue, setSearchParams, setValue]);
+  useEffect(() => {
+    setIsNew(!!searchParams.get("isNew"));
+    setIsDiscount(!!searchParams.get("hasDiscount"));
+  }, [searchParams]);
 
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = gatherFormData();
 
-    if (
-      formData.minPrice !== searchParams.get("min") ||
-      formData.maxPrice !== searchParams.get("max")
-    ) {
-      searchParams.set("min", formData.minPrice);
-      searchParams.set("max", formData.maxPrice);
-      setSearchParams(searchParams);
+    const searchValue = searchParams.get("searchValue");
+
+    const formData = {};
+
+    if (priceRange[0] !== value[0] || priceRange[1] !== value[1]) {
+      formData.minPrice = value[0];
+      formData.maxPrice = value[1];
     }
 
-    dispatch(
-      getProducts({
-        productsId,
-        animalId,
-        value: [formData.minPrice, formData.maxPrice],
-        isNew: formData.isNew,
-        discount: formData.isDiscount,
-      })
-    );
-  };
+    if (isNew) {
+      formData.isNew = isNew;
+    }
 
-  const gatherFormData = () => {
-    const minPrice = value[0];
-    const maxPrice = value[1];
-    const isNew = searchParams.get("new") === "true";
-    const isDiscount = searchParams.get("discounts") === "true";
+    if (isDiscount) {
+      formData.hasDiscount = isDiscount;
+    }
 
-    return { minPrice, maxPrice, isNew, isDiscount };
+    if (searchValue) {
+      formData.searchValue = searchValue;
+    }
+
+    if (Object.keys(formData).length > 0) {
+      setSearchParams(formData);
+      dispatch(
+        getProducts({
+          productsId,
+          animalId,
+          subcategory,
+          value: [formData.minPrice, formData.maxPrice],
+          isNew: formData.isNew,
+          hasDiscount: formData.hasDiscount,
+        })
+      );
+    }
   };
 
   return (
@@ -61,10 +72,11 @@ const FilterForm = ({
       <PriceSlider
         setValue={setValue}
         value={value}
-        initialValue={initialValue}
-        animalId={animalId}
-        productsId={productsId}
         handleSubmit={handleSubmit}
+        isNew={isNew}
+        setIsNew={setIsNew}
+        isDiscount={isDiscount}
+        setIsDiscount={setIsDiscount}
       />
 
       <button className={css.clearButton} onClick={handleClearFilters}>
@@ -79,7 +91,9 @@ FilterForm.propTypes = {
   setValue: PropTypes.func,
   animalId: PropTypes.string,
   productsId: PropTypes.string,
-  initialValue: PropTypes.array,
+  subcategory: PropTypes.string,
+  priceRange: PropTypes.array,
+  handleClearFilters: PropTypes.func,
 };
 
 export default FilterForm;

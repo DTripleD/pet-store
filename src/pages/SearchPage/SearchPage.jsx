@@ -3,10 +3,10 @@ import CatalogList from "components/CatalogList/CatalogList";
 import FilterForm from "components/FilterFrom/FilterForm";
 import Routes from "components/Routes/Routes";
 import icons from "src/images/icons.svg";
-import css from "./CatalogPage.module.scss";
+import css from "./SearchPage.module.scss";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getProducts } from "../../redux/products/productsOperations";
+import { getAllProducts } from "../../redux/products/productsOperations";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCategories,
@@ -19,14 +19,12 @@ import Loader from "../../components/Loader/Loader";
 import { handleGoUp } from "../../helpers/goUp";
 import { getFilterList } from "../../helpers/getFilterList";
 
-const CatalogPage = ({ animalId, productsId }) => {
+const SearchPage = ({ animalId, productsId }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState([]);
   const [filtersIsOpen, setFiltersIsOpen] = useState(false);
 
-  const { category, catalog, subcategory } = useParams();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
+  const { category, catalog } = useParams();
   const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
   const priceRange = useSelector(selectPriceRange);
@@ -38,6 +36,21 @@ const CatalogPage = ({ animalId, productsId }) => {
   const sortBy = searchParams.get("sortBy");
   const searchValue = searchParams.get("searchValue");
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllProducts({ searchValue: searchParams.get("searchValue") }));
+  }, [dispatch, searchParams]);
+
+  const handleOpenFilter = () => {
+    setFiltersIsOpen(true);
+  };
+
+  function handleClearFilters() {
+    setSearchParams({});
+    dispatch(getAllProducts());
+  }
+
   const filterList = getFilterList({
     min,
     max,
@@ -47,38 +60,9 @@ const CatalogPage = ({ animalId, productsId }) => {
     searchValue,
   });
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (catalog && category) {
-      dispatch(
-        getProducts({
-          productsId: catalog,
-          animalId: category,
-          subcategory,
-        })
-      );
-    }
-  }, [catalog, category, dispatch, subcategory]);
-
   useEffect(() => {
     setValue([Number(min) || priceRange[0], Number(max) || priceRange[1]]);
   }, [max, min, priceRange]);
-
-  const handleOpenFilter = () => {
-    setFiltersIsOpen(true);
-  };
-
-  function handleClearFilters() {
-    setSearchParams({});
-    dispatch(
-      getProducts({
-        productsId,
-        animalId,
-        subcategory,
-      })
-    );
-  }
 
   return (
     <div className={css.wrapper}>
@@ -110,9 +94,7 @@ const CatalogPage = ({ animalId, productsId }) => {
             <p className={css.textBack}>{categories?.name || "Back"}</p>
           </Link>
         </div>
-        <h2 className={css.catalogTitle}>
-          {categories?.product_category?.name}
-        </h2>
+        <h2 className={css.catalogTitle}>Пошук</h2>
         <div className={css.catalogContainer}>
           <div className={css.filterForm}>
             <FilterForm
@@ -120,7 +102,7 @@ const CatalogPage = ({ animalId, productsId }) => {
               setValue={setValue}
               animalId={category}
               productsId={catalog}
-              subcategory={subcategory}
+              priceRange={priceRange}
               handleClearFilters={handleClearFilters}
             />
           </div>
@@ -157,7 +139,7 @@ const CatalogPage = ({ animalId, productsId }) => {
             setValue={setValue}
             animalId={animalId}
             productsId={productsId}
-            subcategory={subcategory}
+            priceRange={priceRange}
             handleClearFilters={handleClearFilters}
           />
         </div>
@@ -166,9 +148,9 @@ const CatalogPage = ({ animalId, productsId }) => {
   );
 };
 
-CatalogPage.propTypes = {
+SearchPage.propTypes = {
   animalId: PropTypes.string,
   productsId: PropTypes.string,
 };
 
-export default CatalogPage;
+export default SearchPage;
