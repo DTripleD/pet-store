@@ -121,6 +121,7 @@ const CatalogPage = ({ animalId, productsId }) => {
               animalId={category}
               productsId={catalog}
               subcategory={subcategory}
+              priceRange={priceRange}
               handleClearFilters={handleClearFilters}
             />
           </div>

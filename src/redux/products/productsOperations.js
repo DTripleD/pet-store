@@ -11,17 +11,25 @@ export const getProducts = createAsyncThunk(
     { productsId, animalId, value, subcategory, isNew, hasDiscount },
     thunkAPI
   ) => {
+    const params = { product_category: productsId, animal_category: animalId };
+
+    if (subcategory) {
+      params.subcategory = subcategory;
+    }
+    if (value) {
+      params.min_price = value[0];
+      params.max_price = value[1];
+    }
+    if (isNew) {
+      params.is_new = isNew;
+    }
+    if (hasDiscount) {
+      params.has_discount = hasDiscount;
+    }
+
     try {
-      const res = await instance.get("/products/", {
-        params: {
-          product_category: productsId,
-          animal_category: animalId,
-          subcategory: subcategory,
-          min_price: value[0],
-          max_price: value[1],
-          is_new: isNew,
-          has_discount: hasDiscount,
-        },
+      const res = await instance.get("/products", {
+        params,
       });
       return res.data;
     } catch (error) {

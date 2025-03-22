@@ -18,11 +18,12 @@ export const SharedLayout = () => {
         setActiveAuthModal={setActiveAuthModal}
         setActiveCartModal={setActiveCartModal}
       />
-      <main>
-        <Suspense fallback={<Loader />}>
+
+      <Suspense fallback={<Loader />}>
+        <main>
           <Outlet />
-        </Suspense>
-      </main>
+        </main>
+      </Suspense>
 
       <Footer setActiveAuthModal={setActiveAuthModal} />
 

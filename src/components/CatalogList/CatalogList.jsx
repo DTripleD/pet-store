@@ -19,7 +19,7 @@ const CatalogList = ({
 
   const [searchParams] = useSearchParams();
 
-  console.log();
+  // function deleteSearchParam() {}
 
   useEffect(() => {
     if (searchParams.size) {
