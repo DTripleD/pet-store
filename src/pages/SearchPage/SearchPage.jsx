@@ -39,8 +39,36 @@ const SearchPage = ({ animalId, productsId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllProducts({ searchValue: searchParams.get("searchValue") }));
-  }, [dispatch, searchParams]);
+    const formData = {};
+
+    if (min && max) {
+      formData.minPrice = min;
+      formData.maxPrice = max;
+    }
+    if (isNew) {
+      formData.isNew = isNew;
+    }
+    if (discount) {
+      formData.hasDiscount = discount;
+    }
+    if (searchValue) {
+      formData.searchValue = searchValue;
+    }
+    if (sortBy) {
+      formData.ordering =
+        sortBy === "Від дешевих до дорогих" ? "price" : "-price";
+    }
+
+    dispatch(
+      getAllProducts({
+        searchValue: searchParams.get("searchValue"),
+        value: [formData.minPrice, formData.maxPrice],
+        isNew: formData.isNew,
+        hasDiscount: formData.hasDiscount,
+        ordering: formData.ordering,
+      })
+    );
+  }, [discount, dispatch, isNew, max, min, searchParams, searchValue, sortBy]);
 
   const handleOpenFilter = () => {
     setFiltersIsOpen(true);

@@ -50,16 +50,51 @@ const CatalogPage = ({ animalId, productsId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const formData = {};
+
+    if (min && max) {
+      formData.minPrice = min;
+      formData.maxPrice = max;
+    }
+    if (isNew) {
+      formData.isNew = isNew;
+    }
+    if (discount) {
+      formData.hasDiscount = discount;
+    }
+    if (searchValue) {
+      formData.searchValue = searchValue;
+    }
+    if (sortBy) {
+      formData.ordering =
+        sortBy === "Від дешевих до дорогих" ? "price" : "-price";
+    }
+
     if (catalog && category) {
       dispatch(
         getProducts({
           productsId: catalog,
           animalId: category,
           subcategory,
+          value: [formData.minPrice, formData.maxPrice],
+          isNew: formData.isNew,
+          hasDiscount: formData.hasDiscount,
+          ordering: formData.ordering,
         })
       );
     }
-  }, [catalog, category, dispatch, subcategory]);
+  }, [
+    catalog,
+    category,
+    discount,
+    dispatch,
+    isNew,
+    max,
+    min,
+    searchValue,
+    sortBy,
+    subcategory,
+  ]);
 
   useEffect(() => {
     setValue([Number(min) || priceRange[0], Number(max) || priceRange[1]]);

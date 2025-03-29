@@ -8,7 +8,7 @@ import instance from "../../shared/api/instance";
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (
-    { productsId, animalId, value, subcategory, isNew, hasDiscount },
+    { productsId, animalId, value, subcategory, isNew, hasDiscount, ordering },
     thunkAPI
   ) => {
     const params = { product_category: productsId, animal_category: animalId };
@@ -25,6 +25,9 @@ export const getProducts = createAsyncThunk(
     }
     if (hasDiscount) {
       params.has_discount = hasDiscount;
+    }
+    if (ordering) {
+      params.ordering = ordering;
     }
 
     try {
