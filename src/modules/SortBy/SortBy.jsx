@@ -1,7 +1,7 @@
 import css from "./SortBy.module.scss";
 
 import icons from "src/images/icons.svg";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const SortBy = () => {
@@ -18,26 +18,13 @@ const SortBy = () => {
 
   const sortByValues = ["Від дешевих до дорогих", "Від дорогих до дешевих"];
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <div>
-      <div
-        className={css.sortTextWrapper}
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
+    <div
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      onClick={() => setIsOpen(false)}
+    >
+      <div className={css.sortTextWrapper}>
         <p className={css.sortText}>Сортувати від</p>
         <div className={css.selectHeader}>
           <p className={`${css.sortText} ${css.sortByText}`}>
@@ -53,22 +40,23 @@ const SortBy = () => {
         </div>
       </div>
 
-      {isOpen && (
-        <ul ref={dropdownRef} className={css.dropdown}>
-          {sortByValues.map((value) => (
-            <li
-              key={value}
-              className={css.dropdownItem}
-              onClick={() => {
-                setSortByd(value);
-                setIsOpen(false);
-              }}
-            >
-              {value}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        ref={dropdownRef}
+        className={`${css.dropdown} ${isOpen ? css.isOpen : ""}`}
+      >
+        {sortByValues.map((value) => (
+          <li
+            key={value}
+            className={css.dropdownItem}
+            onClick={() => {
+              setSortByd(value);
+              setIsOpen(false);
+            }}
+          >
+            {value}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
