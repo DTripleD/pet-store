@@ -141,7 +141,6 @@ const SearchPage = ({ animalId, productsId }) => {
                 products={products}
                 filterList={filterList}
                 openFilter={handleOpenFilter}
-                handleClearFilters={handleClearFilters}
               />
             ) : (
               <Loader />

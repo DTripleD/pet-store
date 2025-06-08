@@ -28,6 +28,7 @@
   &:disabled {
     background-color: $light-border-color;
     color: $icon-grey-color;
+    cursor: default;
   }
 }
 

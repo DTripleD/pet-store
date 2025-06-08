@@ -167,7 +167,6 @@ const CatalogPage = ({ animalId, productsId }) => {
                 products={products}
                 filterList={filterList}
                 openFilter={handleOpenFilter}
-                handleClearFilters={handleClearFilters}
               />
             ) : (
               <Loader />
