@@ -15,6 +15,7 @@ const initialState = {
     price: "",
     discount_price: "",
   },
+  next: null,
 };
 
 const handlePending = (state) => {
@@ -36,6 +37,7 @@ const productSlice = createSlice({
       .addCase(getProduct.fulfilled, (state, { payload }) => {
         state.productInfo = payload;
         state.isLoading = false;
+        state.next = payload.next;
       })
       .addMatcher(
         (action) => action.type.endsWith("animal/getAnimals/fulfilled"),

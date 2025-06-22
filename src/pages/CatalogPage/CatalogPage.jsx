@@ -18,6 +18,7 @@ import PropTypes from "prop-types";
 import Loader from "../../components/Loader/Loader";
 import { handleGoUp } from "../../helpers/goUp";
 import { getFilterList } from "../../helpers/getFilterList";
+import { selectIsLoadMoreAble } from "../../redux/product/productSelectors";
 
 const CatalogPage = ({ animalId, productsId }) => {
   const [value, setValue] = useState([]);
@@ -30,6 +31,7 @@ const CatalogPage = ({ animalId, productsId }) => {
   const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
   const priceRange = useSelector(selectPriceRange);
+  const isLoadMoreAble = useSelector(selectIsLoadMoreAble);
 
   const min = searchParams.get("minPrice");
   const max = searchParams.get("maxPrice");
@@ -171,12 +173,14 @@ const CatalogPage = ({ animalId, productsId }) => {
             ) : (
               <Loader />
             )}
-            <div className={css.btnLoadMore}>
-              <p className={css.btnText}>Завантажити більше</p>
-              <svg className={css.iconDown}>
-                <use href={icons + "#icon-down"}></use>
-              </svg>
-            </div>
+            {isLoadMoreAble && (
+              <div className={css.btnLoadMore}>
+                <p className={css.btnText}>Завантажити більше</p>
+                <svg className={css.iconDown}>
+                  <use href={icons + "#icon-down"}></use>
+                </svg>
+              </div>
+            )}
           </div>
         </div>
         <button type="button" className={css.goUp} onClick={handleGoUp}>
